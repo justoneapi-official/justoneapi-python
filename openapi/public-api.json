@@ -265,7 +265,7 @@
     },
     "/api/aliexpress/get-product-detail/v1": {
       "get": {
-        "description": "Retrieves an AliExpress product by item ID with optional currency, region, and locale controls. Use it to inspect a known listing for catalog review, product comparison, or downstream commerce analysis.",
+        "description": "Retrieves an AliExpress product overview by item ID for the United States or global site. Use it to inspect a known listing for catalog review or search snippets.",
         "operationId": "getApiAliexpressGetProductDetailV1",
         "parameters": [
           {
@@ -287,29 +287,17 @@
             }
           },
           {
-            "description": "Currency code used for product prices.",
+            "description": "AliExpress site: US (default) or GLO (global).\n\nAvailable Values:\n- `GLO`: Global site\n- `US`: United States site",
             "in": "query",
-            "name": "currency",
+            "name": "site",
             "required": false,
             "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "AliExpress marketplace region.",
-            "in": "query",
-            "name": "region",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Locale used for the AliExpress response.",
-            "in": "query",
-            "name": "locale",
-            "required": false,
-            "schema": {
+              "default": "US",
+              "description": "AliExpress marketplace site",
+              "enum": [
+                "GLO",
+                "US"
+              ],
               "type": "string"
             }
           }
@@ -344,7 +332,7 @@
             "$ref": "#/components/responses/ResultServiceUnavailableResponse"
           }
         },
-        "summary": "Product Details",
+        "summary": "Product Overview",
         "tags": [
           "AliExpress"
         ],
@@ -353,12 +341,12 @@
         "x-highlights": [],
         "x-order": "19501100",
         "x-search-aliases": [
-          "AliExpress product details API",
+          "AliExpress product overview API",
           "AliExpress item ID lookup",
-          "AliExpress listing details",
+          "AliExpress listing overview",
           "速卖通商品详情",
           "AliExpress 商品 ID 查询",
-          "速卖通商品信息"
+          "速卖通商品概述"
         ]
       }
     },
@@ -11926,6 +11914,84 @@
         ]
       }
     },
+    "/api/instagram/general-search/v1": {
+      "get": {
+        "description": "Performs a general search on Instagram by keyword with token-based pagination. Use it to discover matching results, research topics, and continue through subsequent result pages.",
+        "operationId": "getApiInstagramGeneralSearchV1",
+        "parameters": [
+          {
+            "description": "Access token for the API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The keyword to search for on Instagram.",
+            "in": "query",
+            "name": "keyword",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Pagination token from the previous response. Omit it for the first page.",
+            "in": "query",
+            "name": "paginationToken",
+            "required": false,
+            "schema": {
+              "default": "",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "General Search",
+        "tags": [
+          "Instagram"
+        ],
+        "x-api-version": "v1",
+        "x-endpoint-family": "instagram_general_search",
+        "x-highlights": [],
+        "x-order": "24001250",
+        "x-search-aliases": [
+          "Instagram 综合搜索",
+          "ins 综合搜索"
+        ]
+      }
+    },
     "/api/instagram/get-comment-replies/v1": {
       "get": {
         "description": "Retrieves replies to a specific Instagram post comment by media and comment IDs, with cursor pagination. Use it to inspect threaded discussion and continue through reply pages.",
@@ -13320,6 +13386,7 @@
     },
     "/api/jd/search-item-list/v2": {
       "get": {
+        "deprecated": true,
         "description": "Search JD.com products by keyword with page-based pagination and sales-volume ordering. Use it to discover popular products and collect item IDs for follow-up lookups.",
         "operationId": "getApiJdSearchItemListV2",
         "parameters": [
@@ -13386,6 +13453,7 @@
           "JD.com"
         ],
         "x-api-version": "v2",
+        "x-docs-hidden": true,
         "x-endpoint-family": "jd_search_item_list",
         "x-highlights": [],
         "x-order": "19001085",
@@ -14772,6 +14840,115 @@
           "豆包网页回答",
           "豆包问题查询",
           "豆包 AI 答案"
+        ]
+      }
+    },
+    "/api/pixabay/search-image/v1": {
+      "get": {
+        "description": "Searches public Pixabay photo result pages by keyword with a requested image count and page controls. Each result includes its Pixabay photo page, public contributor information when shown, and a source-provided image URL.",
+        "operationId": "getApiPixabaySearchImageV1",
+        "parameters": [
+          {
+            "description": "Authentication token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Photo search keyword, up to 100 characters without control characters.",
+            "in": "query",
+            "name": "keyword",
+            "required": true,
+            "schema": {
+              "maxLength": 100,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          {
+            "description": "Maximum number of unique photos to return.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "maximum": 10000,
+              "minimum": 1,
+              "type": "string"
+            }
+          },
+          {
+            "description": "First result page to search, starting from 1.",
+            "in": "query",
+            "name": "startPage",
+            "required": false,
+            "schema": {
+              "maximum": 10000,
+              "minimum": 1,
+              "type": "string"
+            }
+          },
+          {
+            "description": "Maximum number of pages to visit in this request. The last page must not exceed 10000.",
+            "in": "query",
+            "name": "maxPages",
+            "required": false,
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Photo Search",
+        "tags": [
+          "Pixabay"
+        ],
+        "x-api-version": "v1",
+        "x-endpoint-family": "pixabay_search_image",
+        "x-highlights": [
+          {
+            "content": "An interrupted deep-page search may return partial progress. Check completion before treating the requested image count as fulfilled.",
+            "kind": "GUIDANCE",
+            "type": "warning"
+          }
+        ],
+        "x-order": "38002000",
+        "x-search-aliases": [
+          "Pixabay图片搜索",
+          "Pixabay keyword photo search"
         ]
       }
     },
@@ -18025,6 +18202,7 @@
     },
     "/api/taobao/get-item-detail/v7": {
       "get": {
+        "deprecated": true,
         "description": "Retrieves Taobao or Tmall product details by item ID through the V7 endpoint. Use it to perform direct product lookup for catalog research, product monitoring, or ecommerce analysis.",
         "operationId": "getApiTaobaoGetItemDetailV7",
         "parameters": [
@@ -18082,6 +18260,7 @@
           "Taobao and Tmall"
         ],
         "x-api-version": "v7",
+        "x-docs-hidden": true,
         "x-endpoint-family": "taobao_get_item_detail",
         "x-highlights": [
           {
@@ -18098,6 +18277,105 @@
           "淘宝商品详情 V7",
           "天猫商品详情查询 V7",
           "淘宝商品 ID 查询 V7"
+        ]
+      }
+    },
+    "/api/taobao/get-item-detail/v8": {
+      "get": {
+        "description": "Retrieves Taobao or Tmall product details by item ID through the V8 endpoint, which provides accurate SKU quantity information. Use it to perform direct product lookup for catalog research, product monitoring, or ecommerce analysis.",
+        "operationId": "getApiTaobaoGetItemDetailV8",
+        "parameters": [
+          {
+            "description": "Access token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Unique product identifier on Taobao/Tmall (item ID).",
+            "in": "query",
+            "name": "itemId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Product Details",
+        "tags": [
+          "Taobao and Tmall"
+        ],
+        "x-api-version": "v8",
+        "x-endpoint-family": "taobao_get_item_detail",
+        "x-highlights": [
+          {
+            "aliases": [
+              "accurate SKU quantity",
+              "accurate SKU stock",
+              "SKU数量准确",
+              "SKU库存准确"
+            ],
+            "concept": "accurate_sku_quantity",
+            "content": "This endpoint returns accurate SKU quantity information.",
+            "kind": "CAPABILITY",
+            "type": "tip"
+          },
+          {
+            "aliases": [
+              "rate limit retry",
+              "retry on failure",
+              "occasional failure",
+              "限速失败",
+              "失败重试"
+            ],
+            "concept": "rate_limit_retry",
+            "content": "This endpoint may occasionally fail due to rate limiting; retry the request when it fails.",
+            "kind": "CONDITION",
+            "type": "warning"
+          }
+        ],
+        "x-order": "11001390",
+        "x-recommended": true,
+        "x-search-aliases": [
+          "Taobao product details v8",
+          "Tmall item detail lookup v8",
+          "Taobao item information API v8",
+          "淘宝商品详情 V8",
+          "天猫商品详情查询 V8",
+          "淘宝商品 ID 查询 V8"
         ]
       }
     },
@@ -18483,6 +18761,7 @@
           }
         ],
         "x-order": "11001700",
+        "x-recommended": true,
         "x-search-aliases": [
           "Taobao shop product list v2",
           "Tmall shop catalog lookup",
@@ -18495,8 +18774,7 @@
     },
     "/api/taobao/get-shop-item-list/v3": {
       "get": {
-        "deprecated": true,
-        "description": "Get Taobao and Tmall shop Product List data, including item titles, prices, and images, for seller research and catalog tracking.",
+        "description": "Retrieves products from a Taobao or Tmall shop by seller ID and shop ID with page-based pagination and configurable sorting, including a new-arrivals sort for discovering a shop's latest products. Use it to browse or monitor a known seller's catalog.",
         "operationId": "getApiTaobaoGetShopItemListV3",
         "parameters": [
           {
@@ -18527,19 +18805,18 @@
             }
           },
           {
-            "description": "Sort order for the result set.\n\nAvailable Values:\n- `coefp`: Comprehensive sorting\n- `hotsell`: Hot selling / Sales volume\n- `oldstarts`: New arrivals / Old starts\n- `bid`: Price: Low to High\n- `_bid`: Price: High to Low",
+            "description": "Sort order for the result set.\n\nAvailable Values:\n- `comprehensive`: Comprehensive sorting\n- `sales`: Sort by sales volume\n- `new`: Sort by new arrivals, newest first\n- `favorites`: Sort by favorites",
             "in": "query",
             "name": "sort",
             "required": false,
             "schema": {
-              "default": "coefp",
-              "description": "Sort types for product list (V5.0)",
+              "default": "new",
+              "description": "Sort order for shop product list V3",
               "enum": [
-                "coefp",
-                "hotsell",
-                "oldstarts",
-                "bid",
-                "_bid"
+                "comprehensive",
+                "sales",
+                "new",
+                "favorites"
               ],
               "type": "string"
             }
@@ -18591,10 +18868,32 @@
           "Taobao and Tmall"
         ],
         "x-api-version": "v3",
-        "x-docs-hidden": true,
         "x-endpoint-family": "taobao_get_shop_item_list",
-        "x-highlights": [],
-        "x-order": "11001800"
+        "x-highlights": [
+          {
+            "aliases": [
+              "new arrivals sort",
+              "sort by newest",
+              "latest shop products",
+              "新品排序",
+              "店铺最新商品"
+            ],
+            "concept": "new_arrivals_sort",
+            "content": "This endpoint supports sorting by new arrivals, so it can be used to retrieve a shop's latest products.",
+            "kind": "CAPABILITY",
+            "type": "tip"
+          }
+        ],
+        "x-order": "11001800",
+        "x-recommended": true,
+        "x-search-aliases": [
+          "Taobao shop product list v3",
+          "Tmall shop items by seller v3",
+          "Taobao shop latest products",
+          "淘宝店铺商品列表 V3",
+          "天猫店铺商品查询 V3",
+          "淘宝店铺新品列表"
+        ]
       }
     },
     "/api/taobao/get-shop-item-list/v4": {
@@ -18981,8 +19280,179 @@
         ]
       }
     },
+    "/api/temu/get-categories/v1": {
+      "get": {
+        "deprecated": true,
+        "description": "Retrieves the Temu product category tree for a selected site. Use it to browse category structure and select categories for product research.",
+        "operationId": "getApiTemuGetCategoriesV1",
+        "parameters": [
+          {
+            "description": "Authentication token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Temu regional site. Defaults to US.\n\nAvailable Values:\n- `US`: United States\n- `EU`: Europe\n- `UK`: United Kingdom\n- `CA`: Canada\n- `AU`: Australia",
+            "in": "query",
+            "name": "site",
+            "required": false,
+            "schema": {
+              "default": "US",
+              "description": "Temu site",
+              "enum": [
+                "US",
+                "EU",
+                "UK",
+                "CA",
+                "AU"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Product Category Tree",
+        "tags": [
+          "Temu"
+        ],
+        "x-api-version": "v1",
+        "x-docs-hidden": true,
+        "x-endpoint-family": "temu_get_categories",
+        "x-highlights": [],
+        "x-order": "20003100"
+      }
+    },
+    "/api/temu/get-category-top-sales/v1": {
+      "get": {
+        "deprecated": true,
+        "description": "Retrieves Temu bestselling products in a category for a selected site with page number pagination. Use it for category research and product sourcing.",
+        "operationId": "getApiTemuGetCategoryTopSalesV1",
+        "parameters": [
+          {
+            "description": "Authentication token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Temu category ID. Defaults to 7320.",
+            "in": "query",
+            "name": "optId",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Temu regional site. Defaults to US.\n\nAvailable Values:\n- `US`: United States\n- `EU`: Europe\n- `UK`: United Kingdom\n- `CA`: Canada\n- `AU`: Australia",
+            "in": "query",
+            "name": "site",
+            "required": false,
+            "schema": {
+              "default": "US",
+              "description": "Temu site",
+              "enum": [
+                "US",
+                "EU",
+                "UK",
+                "CA",
+                "AU"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Page number from 1 to 20.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "maximum": 20,
+              "minimum": 1,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Category Top Sales",
+        "tags": [
+          "Temu"
+        ],
+        "x-api-version": "v1",
+        "x-docs-hidden": true,
+        "x-endpoint-family": "temu_get_category_top_sales",
+        "x-highlights": [],
+        "x-order": "20003000"
+      }
+    },
     "/api/temu/get-homepage-goods/v1": {
       "get": {
+        "deprecated": true,
         "description": "Retrieves Temu homepage product feed cards for a selected site with offset pagination. Use it for product sourcing, catalog monitoring, and marketplace trend analysis.",
         "operationId": "getApiTemuGetHomepageGoodsV1",
         "parameters": [
@@ -19057,6 +19527,7 @@
           "Temu"
         ],
         "x-api-version": "v1",
+        "x-docs-hidden": true,
         "x-endpoint-family": "temu_get_homepage_goods",
         "x-highlights": [],
         "x-order": "20001000",
@@ -19068,6 +19539,673 @@
           "Temu 首页货盘",
           "Temu 选品趋势监控"
         ]
+      }
+    },
+    "/api/temu/get-mall-goods/v1": {
+      "get": {
+        "deprecated": true,
+        "description": "Retrieves Temu store products by store ID for a selected site with page number pagination. Use it for store catalog research and product discovery.",
+        "operationId": "getApiTemuGetMallGoodsV1",
+        "parameters": [
+          {
+            "description": "Authentication token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Temu store ID.",
+            "in": "query",
+            "name": "mallId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Temu regional site. Defaults to US.\n\nAvailable Values:\n- `US`: United States\n- `EU`: Europe\n- `UK`: United Kingdom\n- `CA`: Canada\n- `AU`: Australia",
+            "in": "query",
+            "name": "site",
+            "required": false,
+            "schema": {
+              "default": "US",
+              "description": "Temu site",
+              "enum": [
+                "US",
+                "EU",
+                "UK",
+                "CA",
+                "AU"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Page number from 1 to 20.",
+            "in": "query",
+            "name": "pageNumber",
+            "required": false,
+            "schema": {
+              "maximum": 20,
+              "minimum": 1,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Store Product List",
+        "tags": [
+          "Temu"
+        ],
+        "x-api-version": "v1",
+        "x-docs-hidden": true,
+        "x-endpoint-family": "temu_get_mall_goods",
+        "x-highlights": [],
+        "x-order": "20005000"
+      }
+    },
+    "/api/temu/get-mall-reviews/v1": {
+      "get": {
+        "deprecated": true,
+        "description": "Retrieves Temu store reviews by store ID for a selected site with page number pagination and a sort type. Use it for store research and customer feedback analysis.",
+        "operationId": "getApiTemuGetMallReviewsV1",
+        "parameters": [
+          {
+            "description": "Authentication token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Temu store ID.",
+            "in": "query",
+            "name": "mallId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Temu regional site. Defaults to US.\n\nAvailable Values:\n- `US`: United States\n- `EU`: Europe\n- `UK`: United Kingdom\n- `CA`: Canada\n- `AU`: Australia",
+            "in": "query",
+            "name": "site",
+            "required": false,
+            "schema": {
+              "default": "US",
+              "description": "Temu site",
+              "enum": [
+                "US",
+                "EU",
+                "UK",
+                "CA",
+                "AU"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Page number from 1 to 20.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "maximum": 20,
+              "minimum": 1,
+              "type": "string"
+            }
+          },
+          {
+            "description": "Review sort type. Defaults to 0.",
+            "in": "query",
+            "name": "sortType",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Store Review List",
+        "tags": [
+          "Temu"
+        ],
+        "x-api-version": "v1",
+        "x-docs-hidden": true,
+        "x-endpoint-family": "temu_get_mall_reviews",
+        "x-highlights": [],
+        "x-order": "20004100"
+      }
+    },
+    "/api/temu/get-product-detail/v1": {
+      "get": {
+        "deprecated": true,
+        "description": "Retrieves full Temu product details by product ID for a selected site, with an option to include SKU data. Use it for product research and catalog analysis.",
+        "operationId": "getApiTemuGetProductDetailV1",
+        "parameters": [
+          {
+            "description": "Authentication token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Temu product ID.",
+            "in": "query",
+            "name": "goodsId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Temu regional site. Defaults to US.\n\nAvailable Values:\n- `US`: United States\n- `EU`: Europe\n- `UK`: United Kingdom\n- `CA`: Canada\n- `AU`: Australia",
+            "in": "query",
+            "name": "site",
+            "required": false,
+            "schema": {
+              "default": "US",
+              "description": "Temu site",
+              "enum": [
+                "US",
+                "EU",
+                "UK",
+                "CA",
+                "AU"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Product URL slug. Defaults to item.",
+            "in": "query",
+            "name": "slug",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Full Temu product URL, when available.",
+            "in": "query",
+            "name": "productUrl",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Whether to include SKU data in the product detail request.",
+            "in": "query",
+            "name": "includeSkus",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Full Product Details",
+        "tags": [
+          "Temu"
+        ],
+        "x-api-version": "v1",
+        "x-docs-hidden": true,
+        "x-endpoint-family": "temu_get_product_detail",
+        "x-highlights": [],
+        "x-order": "20002000"
+      }
+    },
+    "/api/temu/get-product-reviews-info/v1": {
+      "get": {
+        "deprecated": true,
+        "description": "Retrieves the Temu product review summary by product ID for a selected site. Use it to assess customer feedback during product research.",
+        "operationId": "getApiTemuGetProductReviewsInfoV1",
+        "parameters": [
+          {
+            "description": "Authentication token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Temu product ID.",
+            "in": "query",
+            "name": "goodsId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Temu regional site. Defaults to US.\n\nAvailable Values:\n- `US`: United States\n- `EU`: Europe\n- `UK`: United Kingdom\n- `CA`: Canada\n- `AU`: Australia",
+            "in": "query",
+            "name": "site",
+            "required": false,
+            "schema": {
+              "default": "US",
+              "description": "Temu site",
+              "enum": [
+                "US",
+                "EU",
+                "UK",
+                "CA",
+                "AU"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Product Review Summary",
+        "tags": [
+          "Temu"
+        ],
+        "x-api-version": "v1",
+        "x-docs-hidden": true,
+        "x-endpoint-family": "temu_get_product_reviews_info",
+        "x-highlights": [],
+        "x-order": "20004200"
+      }
+    },
+    "/api/temu/get-product-reviews/v1": {
+      "get": {
+        "deprecated": true,
+        "description": "Retrieves Temu product reviews by product ID for a selected site with page number pagination. Use it to review customer feedback for product research.",
+        "operationId": "getApiTemuGetProductReviewsV1",
+        "parameters": [
+          {
+            "description": "Authentication token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Temu product ID.",
+            "in": "query",
+            "name": "goodsId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Temu regional site. Defaults to US.\n\nAvailable Values:\n- `US`: United States\n- `EU`: Europe\n- `UK`: United Kingdom\n- `CA`: Canada\n- `AU`: Australia",
+            "in": "query",
+            "name": "site",
+            "required": false,
+            "schema": {
+              "default": "US",
+              "description": "Temu site",
+              "enum": [
+                "US",
+                "EU",
+                "UK",
+                "CA",
+                "AU"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Page number from 1 to 20.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "maximum": 20,
+              "minimum": 1,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Product Review List",
+        "tags": [
+          "Temu"
+        ],
+        "x-api-version": "v1",
+        "x-docs-hidden": true,
+        "x-endpoint-family": "temu_get_product_reviews",
+        "x-highlights": [],
+        "x-order": "20004000"
+      }
+    },
+    "/api/temu/get-product-snapshot/v1": {
+      "get": {
+        "deprecated": true,
+        "description": "Retrieves a Temu product core snapshot by product ID for a selected site. Use it for product monitoring and catalog research.",
+        "operationId": "getApiTemuGetProductSnapshotV1",
+        "parameters": [
+          {
+            "description": "Authentication token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Temu product ID.",
+            "in": "query",
+            "name": "goodsId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Temu regional site. Defaults to US.\n\nAvailable Values:\n- `US`: United States\n- `EU`: Europe\n- `UK`: United Kingdom\n- `CA`: Canada\n- `AU`: Australia",
+            "in": "query",
+            "name": "site",
+            "required": false,
+            "schema": {
+              "default": "US",
+              "description": "Temu site",
+              "enum": [
+                "US",
+                "EU",
+                "UK",
+                "CA",
+                "AU"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Product Core Snapshot",
+        "tags": [
+          "Temu"
+        ],
+        "x-api-version": "v1",
+        "x-docs-hidden": true,
+        "x-endpoint-family": "temu_get_product_snapshot",
+        "x-highlights": [],
+        "x-order": "20002100"
+      }
+    },
+    "/api/temu/search-products/v1": {
+      "get": {
+        "deprecated": true,
+        "description": "Searches Temu products by keyword for a selected site with offset pagination. Use it for product discovery and catalog research.",
+        "operationId": "getApiTemuSearchProductsV1",
+        "parameters": [
+          {
+            "description": "Authentication token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Keyword used to search Temu products.",
+            "in": "query",
+            "name": "keyword",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Temu regional site. Defaults to US.\n\nAvailable Values:\n- `US`: United States\n- `EU`: Europe\n- `UK`: United Kingdom\n- `CA`: Canada\n- `AU`: Australia",
+            "in": "query",
+            "name": "site",
+            "required": false,
+            "schema": {
+              "default": "US",
+              "description": "Temu site",
+              "enum": [
+                "US",
+                "EU",
+                "UK",
+                "CA",
+                "AU"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Zero-based offset for pagination.",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "minimum": 0,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Keyword Product Search",
+        "tags": [
+          "Temu"
+        ],
+        "x-api-version": "v1",
+        "x-docs-hidden": true,
+        "x-endpoint-family": "temu_search_products",
+        "x-highlights": [],
+        "x-order": "20006000"
       }
     },
     "/api/tiktok-shop/get-product-detail/v1": {
@@ -19912,6 +21050,7 @@
     },
     "/api/tiktok/search-user/v1": {
       "get": {
+        "deprecated": true,
         "description": "Searches TikTok users by keyword with cursor pagination and search-session continuity. Use it to discover accounts related to a creator name, topic, brand, or other search term.",
         "operationId": "getApiTiktokSearchUserV1",
         "parameters": [
@@ -19989,6 +21128,7 @@
           "TikTok"
         ],
         "x-api-version": "v1",
+        "x-docs-hidden": true,
         "x-endpoint-family": "tiktok_search_user",
         "x-highlights": [],
         "x-order": 22001500,
@@ -20544,6 +21684,78 @@
         ]
       }
     },
+    "/api/twitter/get-post-detail/v1": {
+      "get": {
+        "description": "Retrieves the full detail of an X (Twitter) post identified by its tweet ID. Use it to inspect a known post after finding it through search, a user timeline, or an existing post URL.",
+        "operationId": "getApiTwitterGetPostDetailV1",
+        "parameters": [
+          {
+            "description": "Authentication token required for API access.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The unique identifier of the X (Twitter) post.",
+            "in": "query",
+            "name": "tweetId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Post Detail",
+        "tags": [
+          "Twitter"
+        ],
+        "x-api-version": "v1",
+        "x-endpoint-family": "twitter_get_post_detail",
+        "x-highlights": [],
+        "x-order": 31001300,
+        "x-search-aliases": [
+          "X Twitter tweet detail API",
+          "Twitter post detail by tweet ID",
+          "Twitter tweet lookup",
+          "X 推特推文详情接口",
+          "Twitter 推文详情",
+          "推特帖子详情查询"
+        ]
+      }
+    },
     "/api/twitter/get-user-detail/v1": {
       "get": {
         "description": "Retrieves an X (Twitter) user profile identified by its numeric Rest ID. Use it to review a known account before monitoring its posts or conducting creator and account research.",
@@ -20795,6 +22007,144 @@
           "X 推特搜索接口",
           "Twitter 时间线搜索",
           "推特关键词分类搜索"
+        ]
+      }
+    },
+    "/api/vcg/search-image/v1": {
+      "get": {
+        "description": "Searches VCG images by keyword with a requested image count, page controls, exclusions for previously collected resource IDs, and an optional 500px Select/Prime filter excluding AIGC. Use the same content filter when continuing an interrupted search.",
+        "operationId": "getApiVcgSearchImageV1",
+        "parameters": [
+          {
+            "description": "Authentication token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Image search keyword, up to 200 characters without control characters.",
+            "in": "query",
+            "name": "keyword",
+            "required": true,
+            "schema": {
+              "maxLength": 200,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          {
+            "description": "Maximum number of unique images to return, excluding the supplied resource IDs.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "maximum": 10000,
+              "minimum": 1,
+              "type": "string"
+            }
+          },
+          {
+            "description": "First page to search, starting from 1. For continuation, use the next page returned by the previous request.",
+            "in": "query",
+            "name": "startPage",
+            "required": false,
+            "schema": {
+              "maximum": 10000,
+              "minimum": 1,
+              "type": "string"
+            }
+          },
+          {
+            "description": "Maximum number of pages to visit in this request. The last requested page must not exceed 10000.",
+            "in": "query",
+            "name": "maxPages",
+            "required": false,
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "string"
+            }
+          },
+          {
+            "description": "Previously collected VCG resource IDs to exclude when continuing a search. Supply comma-separated IDs or repeat this query parameter.",
+            "in": "query",
+            "name": "excludeResourceIds",
+            "required": false,
+            "schema": {
+              "items": {
+                "pattern": "^VCG[A-Za-z0-9_-]{1,125}$",
+                "type": "string"
+              },
+              "maxItems": 100000,
+              "type": "array"
+            }
+          },
+          {
+            "description": "Optional brand and AIGC search restriction. Keep this value unchanged across pagination and continuation.\n\nAvailable Values:\n- `all`: Keep the default search without additional brand or AIGC filters.\n- `selected_500px_no_aigc`: Select only 500px Select and 500px Prime, exclude AIGC using the site's filter, and retain best ordering. Do not expand to other brands when results run out.",
+            "in": "query",
+            "name": "contentFilter",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "description": "VCG search content filter",
+              "enum": [
+                "all",
+                "selected_500px_no_aigc"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Image Search",
+        "tags": [
+          "VCG"
+        ],
+        "x-api-version": "v1",
+        "x-endpoint-family": "vcg_search_image",
+        "x-highlights": [
+          {
+            "content": "An interrupted search may return partial progress. Check completion before treating the requested image count as fulfilled.",
+            "kind": "GUIDANCE",
+            "type": "warning"
+          }
+        ],
+        "x-order": "37001000",
+        "x-search-aliases": [
+          "视觉中国图片搜索",
+          "VCG keyword image search"
         ]
       }
     },
@@ -31756,6 +33106,116 @@
         ]
       }
     },
+    "/api/zcool/search-image/v1": {
+      "get": {
+        "description": "Searches ZCool community work images by keyword with a requested image count and page controls. Each returned image carries its own work-image page URL and the author of the source work.",
+        "operationId": "getApiZcoolSearchImageV1",
+        "parameters": [
+          {
+            "description": "Authentication token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Image search keyword, up to 200 characters without control characters.",
+            "in": "query",
+            "name": "keyword",
+            "required": true,
+            "schema": {
+              "maxLength": 200,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          {
+            "description": "Maximum number of unique images to return.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "maximum": 10000,
+              "minimum": 1,
+              "type": "string"
+            }
+          },
+          {
+            "description": "First page to search, starting from 1. For continuation, use the next page returned by the previous request.",
+            "in": "query",
+            "name": "startPage",
+            "required": false,
+            "schema": {
+              "maximum": 10000,
+              "minimum": 1,
+              "type": "string"
+            }
+          },
+          {
+            "description": "Maximum number of pages to visit in this request. The last requested page must not exceed 10000.",
+            "in": "query",
+            "name": "maxPages",
+            "required": false,
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Image Search",
+        "tags": [
+          "ZCOOL"
+        ],
+        "x-api-version": "v1",
+        "x-docs-hidden": true,
+        "x-endpoint-family": "zcool_search_image",
+        "x-highlights": [
+          {
+            "content": "An interrupted search may return partial progress. Check completion before treating the requested image count as fulfilled.",
+            "kind": "GUIDANCE",
+            "type": "warning"
+          }
+        ],
+        "x-order": "37002000",
+        "x-search-aliases": [
+          "站酷图片搜索",
+          "ZCool keyword image search"
+        ]
+      }
+    },
     "/api/zhihu/get-answer-comments/v1": {
       "get": {
         "description": "Retrieve comments for a Zhihu answer with hottest or latest sorting and offset pagination. Use it to review discussion around a known answer and continue through additional comment pages.",
@@ -33178,6 +34638,19 @@
       "x-platform-id": "zhihu"
     },
     {
+      "description": "ZCool keyword image search with pagination for image discovery and collection workflows.",
+      "name": "ZCOOL",
+      "x-platform-aliases": [
+        "ZCOOL",
+        "站酷"
+      ],
+      "x-platform-detection-aliases": [
+        "ZCOOL",
+        "站酷"
+      ],
+      "x-platform-id": "zcool"
+    },
+    {
       "description": "YouTube channel uploads and video details for content indexing, creator monitoring, and media analysis.",
       "name": "YouTube",
       "x-platform-aliases": [
@@ -33285,6 +34758,19 @@
         "微博"
       ],
       "x-platform-id": "weibo"
+    },
+    {
+      "description": "VCG keyword image search with pagination for image discovery and collection workflows.",
+      "name": "VCG",
+      "x-platform-aliases": [
+        "VCG",
+        "视觉中国"
+      ],
+      "x-platform-detection-aliases": [
+        "VCG",
+        "视觉中国"
+      ],
+      "x-platform-id": "vcg"
     },
     {
       "description": "Twitter profiles and timelines for creator research, account monitoring, and content aggregation.",
@@ -33428,6 +34914,19 @@
         "互选"
       ],
       "x-platform-id": "qq-huxuan-creator-marketplace"
+    },
+    {
+      "description": "Pixabay keyword photo search with deep pagination for image discovery and collection workflows.",
+      "name": "Pixabay",
+      "x-platform-aliases": [
+        "Pixabay",
+        "Pixabay 图片"
+      ],
+      "x-platform-detection-aliases": [
+        "Pixabay",
+        "Pixabay 图片"
+      ],
+      "x-platform-id": "pixabay"
     },
     {
       "description": "Large-language-model answer collection from supported client experiences for response monitoring and comparison.",
@@ -33677,5 +35176,5 @@
       "x-platform-id": "1688"
     }
   ],
-  "x-openapi-release-id": "7eab8c272e73abe7"
+  "x-openapi-release-id": "60fce1689e6ec6d1"
 }

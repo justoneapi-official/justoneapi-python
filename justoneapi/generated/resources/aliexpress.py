@@ -69,27 +69,21 @@ class AliexpressResource(BaseResource):
         self,
         *,
         item_id: str,
-        currency: str | None = None,
-        region: str | None = None,
-        locale: str | None = None,
+        site: str | None = "US",
     ) -> ApiResponse[Any]:
         """
-        Product Details
+        Product Overview
 
-        Retrieves an AliExpress product by item ID with optional currency, region, and locale controls. Use it to inspect a known listing for catalog review, product comparison, or downstream commerce analysis.
+        Retrieves an AliExpress product overview by item ID for the United States or global site. Use it to inspect a known listing for catalog review or search snippets.
 
         Args:
             item_id: Numeric AliExpress item ID.
-            currency: Currency code used for product prices.
-            region: AliExpress marketplace region.
-            locale: Locale used for the AliExpress response.
+            site: AliExpress site: US (default) or GLO (global).  Available Values: - `GLO`: Global site - `US`: United States site
         """
         return self._get(
             "/api/aliexpress/get-product-detail/v1",
             {
                 "itemId": item_id,
-                "currency": currency,
-                "region": region,
-                "locale": locale,
+                "site": site,
             },
         )

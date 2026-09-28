@@ -149,6 +149,26 @@ class TaobaoResource(BaseResource):
             },
         )
 
+    def get_item_detail_v8(
+        self,
+        *,
+        item_id: str,
+    ) -> ApiResponse[Any]:
+        """
+        Product Details
+
+        Retrieves Taobao or Tmall product details by item ID through the V8 endpoint, which provides accurate SKU quantity information. Use it to perform direct product lookup for catalog research, product monitoring, or ecommerce analysis.
+
+        Args:
+            item_id: Unique product identifier on Taobao/Tmall (item ID).
+        """
+        return self._get(
+            "/api/taobao/get-item-detail/v8",
+            {
+                "itemId": item_id,
+            },
+        )
+
     def get_item_detail_v9(
         self,
         *,
@@ -278,18 +298,18 @@ class TaobaoResource(BaseResource):
         *,
         user_id: str,
         shop_id: str,
-        sort: str | None = "coefp",
+        sort: str | None = "new",
         page: int | None = 1,
     ) -> ApiResponse[Any]:
         """
         Shop Product List
 
-        Get Taobao and Tmall shop Product List data, including item titles, prices, and images, for seller research and catalog tracking.
+        Retrieves products from a Taobao or Tmall shop by seller ID and shop ID with page-based pagination and configurable sorting, including a new-arrivals sort for discovering a shop's latest products. Use it to browse or monitor a known seller's catalog.
 
         Args:
             user_id: Shop identifier. Also known as Seller ID or User ID (they refer to the same value).
             shop_id: Unique shop identifier on Taobao/Tmall (shop ID).
-            sort: Sort order for the result set.  Available Values: - `coefp`: Comprehensive sorting - `hotsell`: Hot selling / Sales volume - `oldstarts`: New arrivals / Old starts - `bid`: Price: Low to High - `_bid`: Price: High to Low
+            sort: Sort order for the result set.  Available Values: - `comprehensive`: Comprehensive sorting - `sales`: Sort by sales volume - `new`: Sort by new arrivals, newest first - `favorites`: Sort by favorites
             page: Page number for pagination.
         """
         return self._get(

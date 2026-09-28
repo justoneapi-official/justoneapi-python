@@ -92,6 +92,29 @@ class InstagramResource(BaseResource):
             },
         )
 
+    def general_search_v1(
+        self,
+        *,
+        keyword: str,
+        pagination_token: str | None = "",
+    ) -> ApiResponse[Any]:
+        """
+        General Search
+
+        Performs a general search on Instagram by keyword with token-based pagination. Use it to discover matching results, research topics, and continue through subsequent result pages.
+
+        Args:
+            keyword: The keyword to search for on Instagram.
+            pagination_token: Pagination token from the previous response. Omit it for the first page.
+        """
+        return self._get(
+            "/api/instagram/general-search/v1",
+            {
+                "keyword": keyword,
+                "paginationToken": pagination_token,
+            },
+        )
+
     def search_reels_v1(
         self,
         *,

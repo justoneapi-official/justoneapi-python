@@ -17,6 +17,7 @@ from justoneapi.generated.resources.jd import JdResource
 from justoneapi.generated.resources.kuaishou import KuaishouResource
 from justoneapi.generated.resources.linkedin import LinkedinResource
 from justoneapi.generated.resources.llm import LlmResource
+from justoneapi.generated.resources.pixabay import PixabayResource
 from justoneapi.generated.resources.qq_huxuan import QqHuxuanResource
 from justoneapi.generated.resources.reddit import RedditResource
 from justoneapi.generated.resources.search import SearchResource
@@ -27,6 +28,7 @@ from justoneapi.generated.resources.tiktok import TiktokResource
 from justoneapi.generated.resources.tiktok_shop import TiktokShopResource
 from justoneapi.generated.resources.toutiao import ToutiaoResource
 from justoneapi.generated.resources.twitter import TwitterResource
+from justoneapi.generated.resources.vcg import VcgResource
 from justoneapi.generated.resources.weibo import WeiboResource
 from justoneapi.generated.resources.weixin import WeixinResource
 from justoneapi.generated.resources.weixin_channels import WeixinChannelsResource
@@ -36,6 +38,7 @@ from justoneapi.generated.resources.xiaohongshu_ec import XiaohongshuEcResource
 from justoneapi.generated.resources.xiaohongshu_pgy import XiaohongshuPgyResource
 from justoneapi.generated.resources.youku import YoukuResource
 from justoneapi.generated.resources.youtube import YoutubeResource
+from justoneapi.generated.resources.zcool import ZcoolResource
 from justoneapi.generated.resources.zhihu import ZhihuResource
 
 RESOURCE_CLASSES = {
@@ -56,6 +59,7 @@ RESOURCE_CLASSES = {
     "kuaishou": KuaishouResource,
     "linkedin": LinkedinResource,
     "llm": LlmResource,
+    "pixabay": PixabayResource,
     "qq_huxuan": QqHuxuanResource,
     "reddit": RedditResource,
     "search": SearchResource,
@@ -66,6 +70,7 @@ RESOURCE_CLASSES = {
     "tiktok_shop": TiktokShopResource,
     "toutiao": ToutiaoResource,
     "twitter": TwitterResource,
+    "vcg": VcgResource,
     "weibo": WeiboResource,
     "weixin": WeixinResource,
     "weixin_channels": WeixinChannelsResource,
@@ -75,6 +80,7 @@ RESOURCE_CLASSES = {
     "xiaohongshu_pgy": XiaohongshuPgyResource,
     "youku": YoukuResource,
     "youtube": YoutubeResource,
+    "zcool": ZcoolResource,
     "zhihu": ZhihuResource,
 }
 
@@ -96,6 +102,7 @@ __all__ = [
     "KuaishouResource",
     "LinkedinResource",
     "LlmResource",
+    "PixabayResource",
     "QqHuxuanResource",
     "RedditResource",
     "SearchResource",
@@ -106,6 +113,7 @@ __all__ = [
     "TiktokShopResource",
     "ToutiaoResource",
     "TwitterResource",
+    "VcgResource",
     "WeiboResource",
     "WeixinResource",
     "WeixinChannelsResource",
@@ -115,6 +123,7 @@ __all__ = [
     "XiaohongshuPgyResource",
     "YoukuResource",
     "YoutubeResource",
+    "ZcoolResource",
     "ZhihuResource",
     "RESOURCE_CLASSES",
 ]

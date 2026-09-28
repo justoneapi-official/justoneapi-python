@@ -100,3 +100,23 @@ class TwitterResource(BaseResource):
                 "cursor": cursor,
             },
         )
+
+    def get_post_detail_v1(
+        self,
+        *,
+        tweet_id: str,
+    ) -> ApiResponse[Any]:
+        """
+        Post Detail
+
+        Retrieves the full detail of an X (Twitter) post identified by its tweet ID. Use it to inspect a known post after finding it through search, a user timeline, or an existing post URL.
+
+        Args:
+            tweet_id: The unique identifier of the X (Twitter) post.
+        """
+        return self._get(
+            "/api/twitter/get-post-detail/v1",
+            {
+                "tweetId": tweet_id,
+            },
+        )
