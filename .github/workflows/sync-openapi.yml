@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   sync:
-    if: github.repository == 'justoneapi/justoneapi-python'
+    if: github.repository == 'justoneapi-official/justoneapi-python'
     runs-on: ubuntu-latest
 
     steps:

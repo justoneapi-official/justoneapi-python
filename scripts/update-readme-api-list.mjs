@@ -3,7 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { loadExampleManifest, renderExampleAnnotation, updateExampleLinksOnly } from "./readme-example-links.mjs";
 
-const REPOSITORY = "justoneapi/justoneapi-python";
+const REPOSITORY = "justoneapi-official/justoneapi-python";
 const README_FILE = process.env.README_FILE || "README.md";
 const OPENAPI_FILE = process.env.OPENAPI_FILE || "";
 const OPENAPI_URL =
