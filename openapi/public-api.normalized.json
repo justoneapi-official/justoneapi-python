@@ -24559,7 +24559,7 @@
                   },
                   "publishTimeType": {
                     "default": "ALL",
-                    "description": "WeChat Channels video search publish time filter",
+                    "description": "Publish time filter for WeChat Channels video web search.\n\nAvailable Values:\n- `ALL`: All publish times\n- `ONE_DAY`: Published in the last day\n- `SEVEN_DAYS`: Published in the last seven days\n- `HALF_YEAR`: Published in the last half year",
                     "enum": [
                       "ALL",
                       "ONE_DAY",
@@ -24570,7 +24570,7 @@
                   },
                   "sortType": {
                     "default": "COMPREHENSIVE",
-                    "description": "WeChat Channels video search sort type",
+                    "description": "Sort order for WeChat Channels video search results.\n\nAvailable Values:\n- `COMPREHENSIVE`: Comprehensive sort\n- `LATEST`: Latest first\n- `HOT`: Hot first",
                     "enum": [
                       "COMPREHENSIVE",
                       "LATEST",
@@ -24907,7 +24907,7 @@
                 "properties": {
                   "itemShowType": {
                     "default": "0",
-                    "description": "WeChat Official Account content tab",
+                    "description": "Content tab: 0 = articles (default), 5 = videos, 7 = audio, 8 = images.\n\nAvailable Values:\n- `0`: Articles\n- `5`: Videos\n- `7`: Audio\n- `8`: Images",
                     "enum": [
                       "0",
                       "5",
@@ -26462,7 +26462,7 @@
                   },
                   "publishTimeType": {
                     "default": "ALL",
-                    "description": "Weixin web article search publish time filter",
+                    "description": "Publish time filter for WeChat Official Account article web search.\n\nAvailable Values:\n- `ALL`: All time\n- `ONE_DAY`: Last day\n- `SEVEN_DAYS`: Last seven days\n- `HALF_YEAR`: Last half year",
                     "enum": [
                       "ALL",
                       "ONE_DAY",
@@ -26473,7 +26473,7 @@
                   },
                   "sortType": {
                     "default": "COMPREHENSIVE",
-                    "description": "Weixin web article search sort type",
+                    "description": "Sort order for WeChat Official Account article web search results.\n\nAvailable Values:\n- `COMPREHENSIVE`: Comprehensive sort\n- `LATEST`: Latest first\n- `HOT`: Hot first",
                     "enum": [
                       "COMPREHENSIVE",
                       "LATEST",
@@ -26585,7 +26585,7 @@
                   },
                   "subSearchType": {
                     "default": "ALL",
-                    "description": "Weixin article category search subtype",
+                    "description": "Subcategory filter for categorized WeChat Official Account article web search.\n\nAvailable Values:\n- `ALL`: All\n- `FOLLOWED`: Followed accounts\n- `LATEST`: Latest\n- `RECENT_READ`: Recently read\n- `HOT`: Hot",
                     "enum": [
                       "ALL",
                       "FOLLOWED",
@@ -35854,5 +35854,5 @@
       "x-platform-id": "1688"
     }
   ],
-  "x-openapi-release-id": "01b6321150fef994"
+  "x-openapi-release-id": "a238bf51c176c2ec"
 }
