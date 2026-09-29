@@ -24482,7 +24482,7 @@
                     "type": "string"
                   },
                   "username": {
-                    "description": "WeChat Official Account username with the gh_ prefix, for example gh_363b924965e9.",
+                    "description": "WeChat Official Account username with the gh_ prefix.",
                     "type": "string"
                   }
                 },
@@ -35161,5 +35161,5 @@
       "x-platform-id": "1688"
     }
   ],
-  "x-openapi-release-id": "6f1dc2fa2c34bd41"
+  "x-openapi-release-id": "01b6321150fef994"
 }
