@@ -24454,61 +24454,48 @@
     },
     "/api/weixin/get-account-history-articles/v1": {
       "post": {
-        "deprecated": true,
-        "description": "Retrieves page-number-paginated historical articles for a WeChat Official Account identified by biz ID, article URL, account name, or wxid. Use it to browse an account's article archive one page at a time.",
+        "description": "Retrieves historical posts for a WeChat Official Account by username, with cursor pagination and article, video, audio, or image content tabs. Use it to browse an account's publishing history.",
         "operationId": "postApiWeixinGetAccountHistoryArticlesV1",
-        "parameters": [
-          {
-            "description": "Access token for this API service.",
-            "in": "query",
-            "name": "token",
-            "required": true,
-            "schema": {
-              "type": "string"
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "properties": {
+                  "itemShowType": {
+                    "default": "0",
+                    "description": "WeChat Official Account content tab",
+                    "enum": [
+                      "0",
+                      "5",
+                      "7",
+                      "8"
+                    ],
+                    "type": "string"
+                  },
+                  "offset": {
+                    "default": "",
+                    "description": "Base64 pagination cursor. Leave empty for the first page; pass next_offset from the previous response for the next page. Send it in the URL-encoded form body.",
+                    "type": "string"
+                  },
+                  "token": {
+                    "description": "Access token for this API service.",
+                    "type": "string"
+                  },
+                  "username": {
+                    "description": "WeChat Official Account username with the gh_ prefix, for example gh_363b924965e9.",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "token",
+                  "username"
+                ],
+                "type": "object"
+              }
             }
           },
-          {
-            "description": "WeChat Official Account biz id. You can read it from the __biz query parameter in an article URL. Use one of biz, url, or name.",
-            "in": "query",
-            "name": "biz",
-            "required": false,
-            "schema": {
-              "default": "",
-              "type": "string"
-            }
-          },
-          {
-            "description": "WeChat Official Account article URL used to identify the account. Use one of biz, url, or name.",
-            "in": "query",
-            "name": "url",
-            "required": false,
-            "schema": {
-              "default": "",
-              "type": "string"
-            }
-          },
-          {
-            "description": "WeChat Official Account name or wxid. Use one of biz, url, or name.",
-            "in": "query",
-            "name": "name",
-            "required": false,
-            "schema": {
-              "default": "",
-              "type": "string"
-            }
-          },
-          {
-            "description": "Page number starting from 1 for paginated WeChat Official Account historical articles.",
-            "in": "query",
-            "name": "page",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "format": "int32",
-              "type": "integer"
-            }
-          }
-        ],
+          "required": true
+        },
         "responses": {
           "200": {
             "content": {
@@ -24547,13 +24534,11 @@
         "x-endpoint-family": "weixin_get_account_history_articles",
         "x-highlights": [],
         "x-order": "16101010",
+        "x-recommended": true,
         "x-search-aliases": [
-          "WeChat Official Account article history",
-          "WeChat account article archive",
-          "WeChat historical posts by page",
           "微信公众号历史文章",
           "公众号文章归档",
-          "微信公众号历史发文分页"
+          "WeChat account article archive"
         ]
       }
     },
@@ -35176,5 +35161,5 @@
       "x-platform-id": "1688"
     }
   ],
-  "x-openapi-release-id": "60fce1689e6ec6d1"
+  "x-openapi-release-id": "6f1dc2fa2c34bd41"
 }

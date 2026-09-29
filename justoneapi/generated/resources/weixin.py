@@ -37,31 +37,15 @@ class WeixinResource(BaseResource):
 
     def get_account_history_articles_v1(
         self,
-        *,
-        biz: str | None = "",
-        url: str | None = "",
-        name: str | None = "",
-        page: int | None = 1,
     ) -> ApiResponse[Any]:
         """
         Account Historical Articles
 
-        Retrieves page-number-paginated historical articles for a WeChat Official Account identified by biz ID, article URL, account name, or wxid. Use it to browse an account's article archive one page at a time.
-
-        Args:
-            biz: WeChat Official Account biz id. You can read it from the __biz query parameter in an article URL. Use one of biz, url, or name.
-            url: WeChat Official Account article URL used to identify the account. Use one of biz, url, or name.
-            name: WeChat Official Account name or wxid. Use one of biz, url, or name.
-            page: Page number starting from 1 for paginated WeChat Official Account historical articles.
+        Retrieves historical posts for a WeChat Official Account by username, with cursor pagination and article, video, audio, or image content tabs. Use it to browse an account's publishing history.
         """
         return self._get(
             "/api/weixin/get-account-history-articles/v1",
-            {
-                "biz": biz,
-                "url": url,
-                "name": name,
-                "page": page,
-            },
+            {},
         )
 
     def get_account_history_articles_v2(
