@@ -24462,13 +24462,13 @@
               "schema": {
                 "properties": {
                   "itemShowType": {
-                    "default": "0",
-                    "description": "Content tab: 0 = articles (default), 5 = videos, 7 = audio, 8 = images.\n\nAvailable Values:\n- `0`: Articles\n- `5`: Videos\n- `7`: Audio\n- `8`: Images",
+                    "default": "ARTICLE",
+                    "description": "Content tab. Defaults to ARTICLE.\n\nAvailable Values:\n- `ARTICLE`: Articles\n- `VIDEO`: Videos\n- `AUDIO`: Audio\n- `IMAGE`: Images",
                     "enum": [
-                      "0",
-                      "5",
-                      "7",
-                      "8"
+                      "ARTICLE",
+                      "VIDEO",
+                      "AUDIO",
+                      "IMAGE"
                     ],
                     "type": "string"
                   },
@@ -35161,5 +35161,5 @@
       "x-platform-id": "1688"
     }
   ],
-  "x-openapi-release-id": "a238bf51c176c2ec"
+  "x-openapi-release-id": "76c958bd5aba6581"
 }
