@@ -18,11 +18,12 @@ class VcgResource(BaseResource):
         max_pages: str | None = None,
         exclude_resource_ids: list[Any] | None = None,
         content_filter: str | None = "all",
+        result_mode: str | None = "full",
     ) -> ApiResponse[Any]:
         """
         Image Search
 
-        Searches VCG images by keyword with a requested image count, page controls, exclusions for previously collected resource IDs, and an optional 500px Select/Prime filter excluding AIGC. Use the same content filter when continuing an interrupted search.
+        Searches VCG images by keyword with page controls, resource ID exclusions, and an optional 500px Select/Prime filter excluding AIGC. Use full image details for collection or candidate_ids for single-page ID inspection.
 
         Args:
             keyword: Image search keyword, up to 200 characters without control characters.
@@ -31,6 +32,7 @@ class VcgResource(BaseResource):
             max_pages: Maximum number of pages to visit in this request. The last requested page must not exceed 10000.
             exclude_resource_ids: Previously collected VCG resource IDs to exclude when continuing a search. Supply comma-separated IDs or repeat this query parameter.
             content_filter: Optional brand and AIGC search restriction. Keep this value unchanged across pagination and continuation.  Available Values: - `all`: Keep the default search without additional brand or AIGC filters. - `selected_500px_no_aigc`: Select only 500px Select and 500px Prime, exclude AIGC using the site's filter, and retain best ordering. Do not expand to other brands when results run out.
+            result_mode: Result mode: full returns normal image details; candidate_ids only inspects one page of resource IDs and requires limit 10000, maxPages 1, and no excluded resource IDs. A candidate inspection does not complete or advance an image search.  Available Values: - `full`: Return the normal image search result with complete image details. - `candidate_ids`: Inspect resource IDs from one validated search page without image details. Requires limit 10000, maxPages 1, and no excluded resource IDs; this is not an image result or a completion receipt.
         """
         return self._get(
             "/api/vcg/search-image/v1",
@@ -41,5 +43,6 @@ class VcgResource(BaseResource):
                 "maxPages": max_pages,
                 "excludeResourceIds": exclude_resource_ids,
                 "contentFilter": content_filter,
+                "resultMode": result_mode,
             },
         )

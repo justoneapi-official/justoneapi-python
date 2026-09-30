@@ -22012,7 +22012,7 @@
     },
     "/api/vcg/search-image/v1": {
       "get": {
-        "description": "Searches VCG images by keyword with a requested image count, page controls, exclusions for previously collected resource IDs, and an optional 500px Select/Prime filter excluding AIGC. Use the same content filter when continuing an interrupted search.",
+        "description": "Searches VCG images by keyword with page controls, resource ID exclusions, and an optional 500px Select/Prime filter excluding AIGC. Use full image details for collection or candidate_ids for single-page ID inspection.",
         "operationId": "getApiVcgSearchImageV1",
         "parameters": [
           {
@@ -22093,6 +22093,21 @@
               "enum": [
                 "all",
                 "selected_500px_no_aigc"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Result mode: full returns normal image details; candidate_ids only inspects one page of resource IDs and requires limit 10000, maxPages 1, and no excluded resource IDs. A candidate inspection does not complete or advance an image search.\n\nAvailable Values:\n- `full`: Return the normal image search result with complete image details.\n- `candidate_ids`: Inspect resource IDs from one validated search page without image details. Requires limit 10000, maxPages 1, and no excluded resource IDs; this is not an image result or a completion receipt.",
+            "in": "query",
+            "name": "resultMode",
+            "required": false,
+            "schema": {
+              "default": "full",
+              "description": "VCG search result mode",
+              "enum": [
+                "full",
+                "candidate_ids"
               ],
               "type": "string"
             }
@@ -35161,5 +35176,5 @@
       "x-platform-id": "1688"
     }
   ],
-  "x-openapi-release-id": "76c958bd5aba6581"
+  "x-openapi-release-id": "b61cba28b5992dc5"
 }
