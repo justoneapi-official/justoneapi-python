@@ -182,6 +182,7 @@
           "1688"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "product-details-v1",
         "x-endpoint-family": "1688_get_item_detail",
         "x-highlights": [],
         "x-order": "19101000",
@@ -254,6 +255,7 @@
           "1688"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "product-search-v1",
         "x-endpoint-family": "1688_search_item_list",
         "x-highlights": [],
         "x-order": "19101100",
@@ -342,6 +344,7 @@
           "AliExpress"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "product-overview-v1",
         "x-endpoint-family": "aliexpress_get_product_detail",
         "x-highlights": [],
         "x-order": "19501100",
@@ -544,6 +547,7 @@
           "AliExpress"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "product-search-v1",
         "x-endpoint-family": "aliexpress_search_products",
         "x-highlights": [],
         "x-order": "19501000",
@@ -666,6 +670,7 @@
           "Amazon"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "best-sellers-v1",
         "x-endpoint-family": "amazon_get_best_sellers",
         "x-highlights": [],
         "x-order": "29001200",
@@ -808,6 +813,7 @@
           "Amazon"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "products-by-category-v1",
         "x-endpoint-family": "amazon_get_category_products",
         "x-highlights": [],
         "x-order": "29001300",
@@ -918,6 +924,7 @@
           "Amazon"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "product-details-v1",
         "x-endpoint-family": "amazon_get_product_detail",
         "x-highlights": [],
         "x-order": "29001000",
@@ -1028,6 +1035,7 @@
           "Amazon"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "product-top-reviews-v1",
         "x-endpoint-family": "amazon_get_product_top_reviews",
         "x-highlights": [],
         "x-order": "29001100",
@@ -1217,6 +1225,7 @@
           "Amazon"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "product-search-v1",
         "x-endpoint-family": "amazon_search_products",
         "x-highlights": [],
         "x-order": "29000900",
@@ -1313,6 +1322,7 @@
           "Beike"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "community-list-v1",
         "x-endpoint-family": "beike_community_list",
         "x-highlights": [],
         "x-order": "32001200",
@@ -1396,6 +1406,7 @@
           "Beike"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "resale-housing-details-v1",
         "x-endpoint-family": "beike_ershoufang_detail",
         "x-highlights": [],
         "x-order": "32001000",
@@ -1492,6 +1503,7 @@
           "Beike"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "resale-housing-list-v1",
         "x-endpoint-family": "beike_get_ershoufang_list",
         "x-highlights": [],
         "x-order": "32001100",
@@ -1564,6 +1576,7 @@
           "Bilibili"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "user-profile-v2",
         "x-endpoint-family": "bilibili_get_user_detail",
         "x-highlights": [],
         "x-order": 18001200,
@@ -1636,6 +1649,7 @@
           "Bilibili"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-relation-stats-v1",
         "x-endpoint-family": "bilibili_get_user_relation_stat",
         "x-highlights": [],
         "x-order": 18001700,
@@ -1718,6 +1732,7 @@
           "Bilibili"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "user-published-videos-v2",
         "x-endpoint-family": "bilibili_get_user_video_list",
         "x-highlights": [],
         "x-order": 18001100,
@@ -1810,6 +1825,7 @@
           "Bilibili"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "video-captions-v2",
         "x-endpoint-family": "bilibili_get_video_caption",
         "x-highlights": [],
         "x-order": 18001800,
@@ -1892,6 +1908,7 @@
           "Bilibili"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "video-comments-v2",
         "x-endpoint-family": "bilibili_get_video_comment",
         "x-highlights": [],
         "x-order": 18001400,
@@ -1984,6 +2001,7 @@
           "Bilibili"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "video-danmaku-v2",
         "x-endpoint-family": "bilibili_get_video_danmu",
         "x-highlights": [],
         "x-order": 18001300,
@@ -2056,6 +2074,7 @@
           "Bilibili"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "video-details-v2",
         "x-endpoint-family": "bilibili_get_video_detail",
         "x-highlights": [],
         "x-order": 18001000,
@@ -2157,6 +2176,7 @@
           "Bilibili"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "video-search-v2",
         "x-endpoint-family": "bilibili_search_video",
         "x-highlights": [],
         "x-order": 18001500,
@@ -2229,6 +2249,7 @@
           "Bilibili"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "share-link-resolution-v1",
         "x-endpoint-family": "bilibili_share_url_transfer",
         "x-highlights": [
           {
@@ -2341,6 +2362,7 @@
           "Dewu (Poizon)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "product-search-v1",
         "x-endpoint-family": "dewu_search_item_list",
         "x-highlights": [],
         "x-order": "18951000",
@@ -2441,6 +2463,7 @@
           "Douban Movie"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "comments-v1",
         "x-endpoint-family": "douban_get_movie_comments",
         "x-highlights": [],
         "x-order": "21001200",
@@ -2513,6 +2536,7 @@
           "Douban Movie"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "review-details-v1",
         "x-endpoint-family": "douban_get_movie_review_detail",
         "x-highlights": [],
         "x-order": "21001100",
@@ -2613,6 +2637,7 @@
           "Douban Movie"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "movie-reviews-v1",
         "x-endpoint-family": "douban_get_movie_reviews",
         "x-highlights": [],
         "x-order": "21001000",
@@ -2687,6 +2712,7 @@
           "Douban Movie"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "recent-hot-movie-v1",
         "x-endpoint-family": "douban_get_recent_hot_movie",
         "x-highlights": [],
         "x-order": "21001300",
@@ -2761,6 +2787,7 @@
           "Douban Movie"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "recent-hot-tv-v1",
         "x-endpoint-family": "douban_get_recent_hot_tv",
         "x-highlights": [],
         "x-order": "21001400",
@@ -2833,6 +2860,7 @@
           "Douban Movie"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "subject-details-v1",
         "x-endpoint-family": "douban_get_subject_detail",
         "x-highlights": [],
         "x-order": "21001200",
@@ -2915,6 +2943,7 @@
           "Douyin E-commerce"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "item-comments-v1",
         "x-endpoint-family": "douyin_ec_get_item_comments",
         "x-highlights": [],
         "x-order": "14502100",
@@ -2989,6 +3018,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "item-details-v1",
         "x-endpoint-family": "douyin_ec_get_item_detail",
         "x-highlights": [],
         "x-order": "14502000",
@@ -3053,6 +3083,7 @@
           "Douyin E-commerce"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "item-details-v2",
         "x-endpoint-family": "douyin_ec_get_item_detail",
         "x-highlights": [
           {
@@ -3138,6 +3169,7 @@
           "Douyin E-commerce"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "product-sku-info-v1",
         "x-endpoint-family": "douyin_ec_get_item_sku_info",
         "x-highlights": [],
         "x-order": "14502035",
@@ -3210,6 +3242,7 @@
           "Douyin E-commerce"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "product-sku-info-v2",
         "x-endpoint-family": "douyin_ec_get_item_sku_info",
         "x-highlights": [],
         "x-order": "14502040",
@@ -3292,6 +3325,7 @@
           "Douyin E-commerce"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "shop-product-list-v1",
         "x-endpoint-family": "douyin_ec_get_shop_item_list",
         "x-highlights": [],
         "x-order": "14502150",
@@ -3385,6 +3419,7 @@
           "Douyin E-commerce"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "product-search-v1",
         "x-endpoint-family": "douyin_ec_search_item_list",
         "x-highlights": [],
         "x-order": "14502050",
@@ -3469,6 +3504,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-author-commerce-seed-base-info-v1",
         "x-endpoint-family": "douyin_xingtu_get_author_commerce_seed_base_info",
         "x-highlights": [],
         "x-order": "15005100",
@@ -3535,6 +3571,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-author-commerce-spread-info-v1",
         "x-endpoint-family": "douyin_xingtu_get_author_commerce_spread_info",
         "x-highlights": [],
         "x-order": "15005000",
@@ -3601,6 +3638,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-author-content-hot-keywords-v1",
         "x-endpoint-family": "douyin_xingtu_get_author_content_hot_keywords",
         "x-highlights": [],
         "x-order": "15004900",
@@ -3667,6 +3705,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-author-hot-comment-tokens-v1",
         "x-endpoint-family": "douyin_xingtu_get_author_hot_comment_tokens",
         "x-highlights": [],
         "x-order": "15004800",
@@ -3733,6 +3772,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-kol-audience-distribution-v1",
         "x-endpoint-family": "douyin_xingtu_get_kol_audience_distribution",
         "x-highlights": [],
         "x-order": "15003200",
@@ -3814,6 +3854,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-kol-convert-ability-v1",
         "x-endpoint-family": "douyin_xingtu_get_kol_convert_ability",
         "x-highlights": [],
         "x-order": "15003800",
@@ -3906,6 +3947,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-kol-convert-videos-or-products-v1",
         "x-endpoint-family": "douyin_xingtu_get_kol_convert_videos_or_products",
         "x-highlights": [],
         "x-order": "15004100",
@@ -3972,6 +4014,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-kol-cp-info-v1",
         "x-endpoint-family": "douyin_xingtu_get_kol_cp_info",
         "x-highlights": [],
         "x-order": "15004400",
@@ -4058,6 +4101,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-kol-daily-fans-v1",
         "x-endpoint-family": "douyin_xingtu_get_kol_daily_fans",
         "x-highlights": [],
         "x-order": "15004700",
@@ -4140,6 +4184,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-kol-fans-distribution-v1",
         "x-endpoint-family": "douyin_xingtu_get_kol_fans_distribution",
         "x-highlights": [],
         "x-order": "15003300",
@@ -4222,6 +4267,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-kol-info-v1",
         "x-endpoint-family": "douyin_xingtu_get_kol_info",
         "x-highlights": [],
         "x-order": "15003100",
@@ -4299,6 +4345,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-kol-link-info-v1",
         "x-endpoint-family": "douyin_xingtu_get_kol_link_info",
         "x-highlights": [],
         "x-order": "15004000",
@@ -4365,6 +4412,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-kol-link-struct-v1",
         "x-endpoint-family": "douyin_xingtu_get_kol_link_struct",
         "x-highlights": [],
         "x-order": "15004200",
@@ -4447,6 +4495,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-kol-marketing-info-v1",
         "x-endpoint-family": "douyin_xingtu_get_kol_marketing_info",
         "x-highlights": [],
         "x-order": "15003400",
@@ -4513,6 +4562,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-kol-rec-videos-v1",
         "x-endpoint-family": "douyin_xingtu_get_kol_rec_videos",
         "x-highlights": [],
         "x-order": "15004500",
@@ -4590,6 +4640,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-kol-show-items-v2-v1",
         "x-endpoint-family": "douyin_xingtu_get_kol_show_items_v2",
         "x-highlights": [],
         "x-order": "15003900",
@@ -4710,6 +4761,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-kol-spread-info-v1",
         "x-endpoint-family": "douyin_xingtu_get_kol_spread_info",
         "x-highlights": [],
         "x-order": "15003500",
@@ -4776,6 +4828,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-kol-touch-distribution-v1",
         "x-endpoint-family": "douyin_xingtu_get_kol_touch_distribution",
         "x-highlights": [],
         "x-order": "15004300",
@@ -4842,6 +4895,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-video-detail-v1",
         "x-endpoint-family": "douyin_xingtu_get_video_detail",
         "x-highlights": [],
         "x-order": "15005200",
@@ -4922,6 +4976,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "commerce-seeding-base-info-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_aggregator_get_author_commerce_seed_base_info",
         "x-highlights": [],
         "x-order": "15003090",
@@ -4994,6 +5049,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "creator-commerce-spread-info-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_aggregator_get_author_commerce_spread_info",
         "x-highlights": [],
         "x-order": "15003080",
@@ -5081,6 +5137,7 @@
         "tags": [
           "Douyin Creator Marketplace (Xingtu)"
         ],
+        "x-docs-slug": "creator-contract-base-info",
         "x-endpoint-family": "douyin_xingtu_gw_api_aggregator_get_author_contract_base_info",
         "x-highlights": [],
         "x-order": "15003095",
@@ -5226,6 +5283,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "creator-homepage-videos-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_aggregator_get_author_homepage_videos",
         "x-highlights": [],
         "x-order": "15003082",
@@ -5359,6 +5417,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "live-statistics-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_aggregator_get_author_live_statistics",
         "x-highlights": [],
         "x-order": "15003086",
@@ -5465,6 +5524,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "live-watch-distribution-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_aggregator_get_author_live_watch_distribution",
         "x-highlights": [],
         "x-order": "15003087",
@@ -5553,6 +5613,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "creator-order-experience-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_aggregator_get_author_order_experience",
         "x-highlights": [],
         "x-order": "15001400",
@@ -5625,6 +5686,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "creator-side-base-info-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_aggregator_get_author_side_base_info",
         "x-highlights": [],
         "x-order": "15003085",
@@ -5697,6 +5759,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "creator-tags-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_aggregator_get_author_tags",
         "x-highlights": [],
         "x-order": "15003084",
@@ -5787,6 +5850,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "creator-profile-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_author_get_author_base_info",
         "x-highlights": [],
         "x-order": "15001000",
@@ -5877,6 +5941,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "marketing-metrics-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_author_get_author_marketing_info",
         "x-highlights": [],
         "x-order": "15001800",
@@ -5967,6 +6032,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "creator-channel-metrics-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_author_get_author_platform_channel_info_v2",
         "x-highlights": [],
         "x-order": "15001300",
@@ -6084,6 +6150,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "showcase-items-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_author_get_author_show_items_v2",
         "x-highlights": [],
         "x-order": "15002100",
@@ -6156,6 +6223,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "comment-keyword-analysis-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_data_get_author_hot_comment_tokens",
         "x-highlights": [],
         "x-order": "15003050",
@@ -6265,6 +6333,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "audience-distribution-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_data_sp_author_audience_distribution",
         "x-highlights": [],
         "x-order": "15001700",
@@ -6355,6 +6424,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "cost-performance-analysis-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_data_sp_author_cp_info",
         "x-highlights": [],
         "x-order": "15002300",
@@ -6445,6 +6515,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "creator-link-structure-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_data_sp_author_link_struct",
         "x-highlights": [],
         "x-order": "15001100",
@@ -6535,6 +6606,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "recommended-videos-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_data_sp_author_rec_videos_v2",
         "x-highlights": [],
         "x-order": "15002500",
@@ -6625,6 +6697,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "audience-touchpoint-distribution-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_data_sp_author_touch_distribution",
         "x-highlights": [],
         "x-order": "15002400",
@@ -6715,6 +6788,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "video-distribution-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_data_sp_author_video_distribution",
         "x-highlights": [],
         "x-order": "15001600",
@@ -6805,6 +6879,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "creator-visibility-status-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_data_sp_check_author_display",
         "x-highlights": [],
         "x-order": "15001200",
@@ -6911,6 +6986,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "conversion-analysis-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_data_sp_get_author_convert_ability",
         "x-highlights": [],
         "x-order": "15002000",
@@ -7097,6 +7173,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "conversion-resources-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_data_sp_get_author_convert_videos_or_products",
         "x-highlights": [],
         "x-order": "15002200",
@@ -7189,6 +7266,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "follower-growth-trend-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_data_sp_get_author_daily_fans",
         "x-highlights": [],
         "x-order": "15003060",
@@ -7277,6 +7355,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "follower-distribution-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_data_sp_get_author_fans_distribution",
         "x-highlights": [],
         "x-order": "15002600",
@@ -7419,6 +7498,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "creator-link-metrics-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_data_sp_get_author_link_info",
         "x-highlights": [],
         "x-order": "15001500",
@@ -7568,6 +7648,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "spread-metrics-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_data_sp_get_author_spread_info",
         "x-highlights": [],
         "x-order": "15001900",
@@ -7640,6 +7721,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "video-details-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_data_sp_item_report_detail",
         "x-highlights": [],
         "x-order": "15002900",
@@ -7712,6 +7794,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "item-report-analysis-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_data_sp_item_report_th_analysis",
         "x-highlights": [],
         "x-order": "15003000",
@@ -7784,6 +7867,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "item-report-trends-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_data_sp_item_report_trend",
         "x-highlights": [],
         "x-order": "15002800",
@@ -7856,6 +7940,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "creator-business-card-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_gauthor_author_get_business_card_info",
         "x-highlights": [],
         "x-order": "15003075",
@@ -7928,6 +8013,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "content-keyword-analysis-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_gauthor_get_author_content_hot_keywords",
         "x-highlights": [],
         "x-order": "15003070",
@@ -8393,6 +8479,7 @@
           "Douyin Creator Marketplace (Xingtu)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "creator-search-v1",
         "x-endpoint-family": "douyin_xingtu_gw_api_gsearch_search_for_author_square",
         "x-highlights": [],
         "x-order": "15000010",
@@ -8494,6 +8581,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "creator-search-light-v1",
         "x-endpoint-family": "douyin_xingtu_search_kol_simple",
         "x-highlights": [],
         "x-order": "15002750",
@@ -8558,6 +8646,7 @@
           "Douyin (TikTok China)"
         ],
         "x-api-version": "v3",
+        "x-docs-slug": "user-profile-v3",
         "x-endpoint-family": "douyin_get_user_detail",
         "x-highlights": [],
         "x-order": "14001600",
@@ -8657,6 +8746,7 @@
           "Douyin (TikTok China)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-published-videos-v1",
         "x-endpoint-family": "douyin_get_user_video_list",
         "x-highlights": [],
         "x-order": "14001100",
@@ -8742,6 +8832,7 @@
           "Douyin (TikTok China)"
         ],
         "x-api-version": "v3",
+        "x-docs-slug": "user-published-videos-v3",
         "x-endpoint-family": "douyin_get_user_video_list",
         "x-highlights": [
           {
@@ -8839,6 +8930,7 @@
           "Douyin (TikTok China)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "video-comments-v1",
         "x-endpoint-family": "douyin_get_video_comment",
         "x-highlights": [],
         "x-order": "14001400",
@@ -8911,6 +9003,7 @@
           "Douyin (TikTok China)"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "video-details-v2",
         "x-endpoint-family": "douyin_get_video_detail",
         "x-highlights": [],
         "x-order": "14001300",
@@ -8995,6 +9088,7 @@
           "Douyin (TikTok China)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "comment-replies-v1",
         "x-endpoint-family": "douyin_get_video_sub_comment",
         "x-highlights": [],
         "x-order": "14001500",
@@ -9273,6 +9367,7 @@
           "Douyin (TikTok China)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "hot-search-v1",
         "x-endpoint-family": "douyin_hot_search",
         "x-highlights": [],
         "x-order": "14001050",
@@ -9356,6 +9451,7 @@
           "Douyin (TikTok China)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "image-post-search-v1",
         "x-endpoint-family": "douyin_search_image",
         "x-highlights": [],
         "x-order": "14001025",
@@ -9456,6 +9552,7 @@
           "Douyin (TikTok China)"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "user-search-v2",
         "x-endpoint-family": "douyin_search_user",
         "x-highlights": [],
         "x-order": "14001100",
@@ -9594,6 +9691,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "video-search-v1",
         "x-endpoint-family": "douyin_search_video",
         "x-highlights": [],
         "x-order": "14000900",
@@ -9741,6 +9839,7 @@
           "Douyin (TikTok China)"
         ],
         "x-api-version": "v4",
+        "x-docs-slug": "video-search-v4",
         "x-endpoint-family": "douyin_search_video",
         "x-highlights": [],
         "x-order": "14001000",
@@ -9813,6 +9912,7 @@
           "Douyin (TikTok China)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "share-link-resolution-v1",
         "x-endpoint-family": "douyin_share_url_transfer",
         "x-highlights": [],
         "x-order": "14001700",
@@ -9905,6 +10005,7 @@
           "Facebook"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "comment-replies-v1",
         "x-endpoint-family": "facebook_get_comment_replies",
         "x-highlights": [],
         "x-order": "30001040",
@@ -9988,6 +10089,7 @@
           "Facebook"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "post-comments-v1",
         "x-endpoint-family": "facebook_get_post_comments",
         "x-highlights": [],
         "x-order": "30001030",
@@ -10060,6 +10162,7 @@
           "Facebook"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "get-profile-id-v1",
         "x-endpoint-family": "facebook_get_profile_id",
         "x-highlights": [],
         "x-order": "30001010",
@@ -10143,6 +10246,7 @@
           "Facebook"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "get-profile-posts-v1",
         "x-endpoint-family": "facebook_get_profile_posts",
         "x-highlights": [],
         "x-order": "30001020",
@@ -10248,6 +10352,7 @@
           "Facebook"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "post-search-v1",
         "x-endpoint-family": "facebook_search_post",
         "x-highlights": [],
         "x-order": "30001000",
@@ -10379,6 +10484,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "keyword-search-v1",
         "x-endpoint-family": "imdb_main_search_query",
         "x-highlights": [],
         "x-order": 34002400,
@@ -10474,6 +10580,7 @@
           "IMDb"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "news-by-category-v1",
         "x-endpoint-family": "imdb_news_by_category_query",
         "x-highlights": [],
         "x-order": 34002600,
@@ -10560,6 +10667,7 @@
           "IMDb"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "streaming-picks-v1",
         "x-endpoint-family": "imdb_streaming_picks_query",
         "x-highlights": [],
         "x-order": 34002500,
@@ -10656,6 +10764,7 @@
           "IMDb"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "awards-summary-v1",
         "x-endpoint-family": "imdb_title_awards_summary_query",
         "x-highlights": [],
         "x-order": 34001700,
@@ -10752,6 +10861,7 @@
           "IMDb"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "base-info-v1",
         "x-endpoint-family": "imdb_title_base_query",
         "x-highlights": [],
         "x-order": 34001300,
@@ -10848,6 +10958,7 @@
           "IMDb"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "box-office-summary-v1",
         "x-endpoint-family": "imdb_title_box_office_summary",
         "x-highlights": [],
         "x-order": 34002200,
@@ -10949,6 +11060,7 @@
           "IMDb"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "chart-rankings-v1",
         "x-endpoint-family": "imdb_title_chart_rankings",
         "x-highlights": [],
         "x-order": 34002700,
@@ -11045,6 +11157,7 @@
           "IMDb"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "contribution-questions-v1",
         "x-endpoint-family": "imdb_title_contribution_questions",
         "x-highlights": [],
         "x-order": 34002000,
@@ -11141,6 +11254,7 @@
           "IMDb"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "countries-of-origin-v1",
         "x-endpoint-family": "imdb_title_countries_of_origin",
         "x-highlights": [],
         "x-order": 34002800,
@@ -11237,6 +11351,7 @@
           "IMDb"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "critics-review-summary-v1",
         "x-endpoint-family": "imdb_title_critics_review_summary_query",
         "x-highlights": [],
         "x-order": 34001600,
@@ -11333,6 +11448,7 @@
           "IMDb"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "details-v1",
         "x-endpoint-family": "imdb_title_details_query",
         "x-highlights": [],
         "x-order": 34002100,
@@ -11429,6 +11545,7 @@
           "IMDb"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "did-you-know-insights-v1",
         "x-endpoint-family": "imdb_title_did_you_know_query",
         "x-highlights": [],
         "x-order": 34001500,
@@ -11525,6 +11642,7 @@
           "IMDb"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "extended-details-v1",
         "x-endpoint-family": "imdb_title_extended_details_query",
         "x-highlights": [],
         "x-order": 34001100,
@@ -11621,6 +11739,7 @@
           "IMDb"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "recommendations-v1",
         "x-endpoint-family": "imdb_title_more_like_this_query",
         "x-highlights": [],
         "x-order": 34002300,
@@ -11717,6 +11836,7 @@
           "IMDb"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "plot-summary-v1",
         "x-endpoint-family": "imdb_title_plot_query",
         "x-highlights": [],
         "x-order": 34001900,
@@ -11813,6 +11933,7 @@
           "IMDb"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "redux-overview-v1",
         "x-endpoint-family": "imdb_title_redux_overview_query",
         "x-highlights": [],
         "x-order": 34001400,
@@ -11909,6 +12030,7 @@
           "IMDb"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "release-expectation-v1",
         "x-endpoint-family": "imdb_title_release_expectation_query",
         "x-highlights": [],
         "x-order": 34001000,
@@ -12005,6 +12127,7 @@
           "IMDb"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "top-cast-and-crew-v1",
         "x-endpoint-family": "imdb_title_top_cast_and_crew",
         "x-highlights": [],
         "x-order": 34001200,
@@ -12101,6 +12224,7 @@
           "IMDb"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-reviews-summary-v1",
         "x-endpoint-family": "imdb_title_user_reviews_summary_query",
         "x-highlights": [],
         "x-order": 34001800,
@@ -12184,6 +12308,7 @@
           "Instagram"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "general-search-v1",
         "x-endpoint-family": "instagram_general_search",
         "x-highlights": [],
         "x-order": "24001250",
@@ -12273,6 +12398,7 @@
           "Instagram"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "comment-reply-list-v1",
         "x-endpoint-family": "instagram_get_comment_replies",
         "x-highlights": [],
         "x-order": "24001600",
@@ -12372,6 +12498,7 @@
           "Instagram"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "post-comment-list-v1",
         "x-endpoint-family": "instagram_get_post_comments",
         "x-highlights": [],
         "x-order": "24001500",
@@ -12444,6 +12571,7 @@
           "Instagram"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "post-details-v1",
         "x-endpoint-family": "instagram_get_post_detail",
         "x-highlights": [],
         "x-order": "24001100",
@@ -12516,6 +12644,7 @@
           "Instagram"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-profile-v1",
         "x-endpoint-family": "instagram_get_user_detail",
         "x-highlights": [],
         "x-order": "24001000",
@@ -12588,6 +12717,7 @@
           "Instagram"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "user-profile-v2",
         "x-endpoint-family": "instagram_get_user_detail",
         "x-highlights": [],
         "x-order": "24001010",
@@ -12672,6 +12802,7 @@
           "Instagram"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-published-posts-v1",
         "x-endpoint-family": "instagram_get_user_posts",
         "x-highlights": [],
         "x-order": "24001200",
@@ -12755,6 +12886,7 @@
           "Instagram"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "hashtag-posts-search-v1",
         "x-endpoint-family": "instagram_search_hashtag_posts",
         "x-highlights": [],
         "x-order": "24001400",
@@ -12838,6 +12970,7 @@
           "Instagram"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "reels-search-v1",
         "x-endpoint-family": "instagram_search_reels",
         "x-highlights": [],
         "x-order": "24001300",
@@ -12920,6 +13053,7 @@
           "JD.com"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "product-comments-v1",
         "x-endpoint-family": "jd_get_item_comments",
         "x-highlights": [],
         "x-order": "19001100",
@@ -13002,6 +13136,7 @@
           "JD.com"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "product-comments-v2",
         "x-endpoint-family": "jd_get_item_comments",
         "x-highlights": [],
         "x-order": "19001125",
@@ -13074,6 +13209,7 @@
           "JD.com"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "product-details-v1",
         "x-endpoint-family": "jd_get_item_detail",
         "x-highlights": [],
         "x-order": "19001000",
@@ -13146,6 +13282,7 @@
           "JD.com"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "product-details-v2",
         "x-endpoint-family": "jd_get_item_detail",
         "x-highlights": [
           {
@@ -13236,6 +13373,7 @@
           "JD.com"
         ],
         "x-api-version": "v3",
+        "x-docs-slug": "product-details-v3",
         "x-endpoint-family": "jd_get_item_detail",
         "x-highlights": [
           {
@@ -13291,8 +13429,7 @@
     },
     "/api/jd/get-item-detail/v4": {
       "get": {
-        "deprecated": true,
-        "description": "Retrieves JD.com product details by item ID through the V4 endpoint. Use it to perform direct product lookup for catalog research, product monitoring, or ecommerce analysis.",
+        "description": "Retrieve JD.com product details by item ID, including a complete set of product images. Use it to review product information and images for catalog research or ecommerce analysis.",
         "operationId": "getApiJdGetItemDetailV4",
         "parameters": [
           {
@@ -13346,7 +13483,7 @@
           "JD.com"
         ],
         "x-api-version": "v4",
-        "x-docs-hidden": true,
+        "x-docs-slug": "product-details-v4",
         "x-endpoint-family": "jd_get_item_detail",
         "x-highlights": [],
         "x-order": "19001040",
@@ -13419,6 +13556,7 @@
           "JD.com"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "product-price-v1",
         "x-endpoint-family": "jd_get_item_price",
         "x-highlights": [],
         "x-order": "19001050",
@@ -13501,6 +13639,7 @@
           "JD.com"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "shop-product-list-v1",
         "x-endpoint-family": "jd_get_shop_item_list",
         "x-highlights": [],
         "x-order": "19001200",
@@ -13583,6 +13722,7 @@
           "JD.com"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "product-search-v1",
         "x-endpoint-family": "jd_search_item_list",
         "x-highlights": [],
         "x-order": "19001075",
@@ -13667,6 +13807,7 @@
         ],
         "x-api-version": "v2",
         "x-docs-hidden": true,
+        "x-docs-slug": "product-search-v2",
         "x-endpoint-family": "jd_search_item_list",
         "x-highlights": [],
         "x-order": "19001085",
@@ -13739,6 +13880,7 @@
           "Kuaishou"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-profile-v1",
         "x-endpoint-family": "kuaishou_get_user_detail",
         "x-highlights": [],
         "x-order": "16001500",
@@ -13821,6 +13963,7 @@
           "Kuaishou"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "user-published-videos-v2",
         "x-endpoint-family": "kuaishou_get_user_video_list",
         "x-highlights": [],
         "x-order": "16001200",
@@ -13902,6 +14045,7 @@
         "tags": [
           "Kuaishou"
         ],
+        "x-docs-slug": "video-comments-v1",
         "x-endpoint-family": "kuaishou_get_video_comment",
         "x-highlights": [],
         "x-order": "16001400",
@@ -13974,6 +14118,7 @@
           "Kuaishou"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "video-details-v2",
         "x-endpoint-family": "kuaishou_get_video_detail",
         "x-highlights": [
           {
@@ -14064,6 +14209,7 @@
           "Kuaishou"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "user-search-v2",
         "x-endpoint-family": "kuaishou_search_user",
         "x-highlights": [],
         "x-order": "16001100",
@@ -14146,6 +14292,7 @@
           "Kuaishou"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "video-search-v1",
         "x-endpoint-family": "kuaishou_search_video",
         "x-highlights": [],
         "x-order": "16000500",
@@ -14230,6 +14377,7 @@
           "Kuaishou"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "video-search-v2",
         "x-endpoint-family": "kuaishou_search_video",
         "x-highlights": [],
         "x-order": "16001000",
@@ -14302,6 +14450,7 @@
           "Kuaishou"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "share-link-resolution-v1",
         "x-endpoint-family": "kuaishou_share_url_transfer",
         "x-highlights": [],
         "x-order": "16001600",
@@ -14387,6 +14536,7 @@
           "LinkedIn"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "company-employees-v1",
         "x-endpoint-family": "linkedin_get_company_employees",
         "x-highlights": [],
         "x-order": 31501100,
@@ -14509,6 +14659,7 @@
           "LinkedIn"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "post-comments-v1",
         "x-endpoint-family": "linkedin_get_post_comments",
         "x-highlights": [],
         "x-order": 31501400,
@@ -14614,6 +14765,7 @@
           "LinkedIn"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "post-reactions-v1",
         "x-endpoint-family": "linkedin_get_post_reactions",
         "x-highlights": [],
         "x-order": 31501300,
@@ -14686,6 +14838,7 @@
           "LinkedIn"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-profile-v1",
         "x-endpoint-family": "linkedin_get_user_detail",
         "x-highlights": [],
         "x-order": 31501000,
@@ -14798,6 +14951,7 @@
           "LinkedIn"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-published-posts-v1",
         "x-endpoint-family": "linkedin_get_user_posts",
         "x-highlights": [],
         "x-order": 31501200,
@@ -14996,6 +15150,7 @@
           "LinkedIn"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "people-search-v1",
         "x-endpoint-family": "linkedin_search_user",
         "x-highlights": [],
         "x-order": 31500900,
@@ -15069,6 +15224,7 @@
           "LLM"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "doubao-answer-v1",
         "x-endpoint-family": "llm_doubao_answer",
         "x-highlights": [],
         "x-order": "36001000",
@@ -15179,6 +15335,7 @@
           "Pixabay"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "photo-search-v1",
         "x-endpoint-family": "pixabay_search_image",
         "x-highlights": [
           {
@@ -15253,6 +15410,7 @@
           "QQ Huxuan Creator Marketplace"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "video-account-creator-details-v1",
         "x-endpoint-family": "qq_huxuan_cgi_bin_advertiser_finder_publisher_detail",
         "x-highlights": [],
         "x-order": "16250300",
@@ -15375,6 +15533,7 @@
           "QQ Huxuan Creator Marketplace"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "video-account-recent-videos-v1",
         "x-endpoint-family": "qq_huxuan_cgi_bin_advertiser_finder_publisher_get_finder_video_show",
         "x-highlights": [],
         "x-order": "16250400",
@@ -15460,6 +15619,7 @@
           "QQ Huxuan Creator Marketplace"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "video-account-creator-search-v1",
         "x-endpoint-family": "qq_huxuan_cgi_bin_advertiser_finder_publisher_search",
         "x-highlights": [],
         "x-order": "16250100",
@@ -15532,6 +15692,7 @@
           "QQ Huxuan Creator Marketplace"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "official-account-creator-details-v1",
         "x-endpoint-family": "qq_huxuan_cgi_bin_advertiser_mp_publisher_detail",
         "x-highlights": [],
         "x-order": "16250500",
@@ -15663,6 +15824,7 @@
           "QQ Huxuan Creator Marketplace"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "official-account-article-list-v1",
         "x-endpoint-family": "qq_huxuan_cgi_bin_advertiser_mp_publisher_get_user_articles",
         "x-highlights": [],
         "x-order": "16250600",
@@ -15748,6 +15910,7 @@
           "QQ Huxuan Creator Marketplace"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "official-account-creator-search-v1",
         "x-endpoint-family": "qq_huxuan_cgi_bin_advertiser_mp_publisher_search",
         "x-highlights": [],
         "x-order": "16250200",
@@ -15831,6 +15994,7 @@
           "Reddit"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "post-comments-v1",
         "x-endpoint-family": "reddit_get_post_comments",
         "x-highlights": [],
         "x-order": "26001100",
@@ -15903,6 +16067,7 @@
           "Reddit"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "post-details-v1",
         "x-endpoint-family": "reddit_get_post_detail",
         "x-highlights": [],
         "x-order": "26001000",
@@ -15986,6 +16151,7 @@
           "Reddit"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "keyword-search-v1",
         "x-endpoint-family": "reddit_search",
         "x-highlights": [],
         "x-order": "26001200",
@@ -16111,6 +16277,7 @@
           "Social Media"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "cross-platform-search-v1",
         "x-endpoint-family": "search",
         "x-highlights": [
           {
@@ -16211,6 +16378,7 @@
           "Shopee"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "item-details-v1",
         "x-endpoint-family": "shopee_get_item_detail",
         "x-highlights": [],
         "x-order": "20501000",
@@ -16308,6 +16476,7 @@
           "Shopee"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "item-details-v2",
         "x-endpoint-family": "shopee_get_item_detail",
         "x-highlights": [],
         "x-order": "20501200",
@@ -16415,6 +16584,7 @@
           "Shopee"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "item-installments-and-amounts-v1",
         "x-endpoint-family": "shopee_get_item_installments",
         "x-highlights": [],
         "x-order": "20502900",
@@ -16512,6 +16682,7 @@
           "Shopee"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "item-review-model-distribution-v1",
         "x-endpoint-family": "shopee_get_item_review_models",
         "x-highlights": [],
         "x-order": "20502600",
@@ -16609,6 +16780,7 @@
           "Shopee"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "item-review-tags-v1",
         "x-endpoint-family": "shopee_get_item_review_tags",
         "x-highlights": [],
         "x-order": "20502700",
@@ -16726,6 +16898,7 @@
           "Shopee"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "item-reviews-v1",
         "x-endpoint-family": "shopee_get_item_reviews",
         "x-highlights": [],
         "x-order": "20502200",
@@ -16823,6 +16996,7 @@
           "Shopee"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "item-sku-matrix-v1",
         "x-endpoint-family": "shopee_get_item_sku_matrix",
         "x-highlights": [],
         "x-order": "20501400",
@@ -16940,6 +17114,7 @@
           "Shopee"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "item-sku-models-v1",
         "x-endpoint-family": "shopee_get_item_sku_models",
         "x-highlights": [],
         "x-order": "20501700",
@@ -17037,6 +17212,7 @@
           "Shopee"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "item-display-snapshot-v1",
         "x-endpoint-family": "shopee_get_item_snapshot",
         "x-highlights": [],
         "x-order": "20502000",
@@ -17122,6 +17298,7 @@
           "Shopee"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "search-category-facets-v1",
         "x-endpoint-family": "shopee_get_search_facets",
         "x-highlights": [],
         "x-order": "20502800",
@@ -17207,6 +17384,7 @@
           "Shopee"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "shop-basic-profile-v1",
         "x-endpoint-family": "shopee_get_shop_base",
         "x-highlights": [],
         "x-order": "20501500",
@@ -17303,6 +17481,7 @@
           "Shopee"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "shop-categories-v1",
         "x-endpoint-family": "shopee_get_shop_categories",
         "x-highlights": [],
         "x-order": "20502500",
@@ -17388,6 +17567,7 @@
           "Shopee"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "shop-details-v1",
         "x-endpoint-family": "shopee_get_shop_detail",
         "x-highlights": [],
         "x-order": "20501800",
@@ -17473,6 +17653,7 @@
           "Shopee"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "shop-item-list-v1",
         "x-endpoint-family": "shopee_get_shop_item_list",
         "x-highlights": [],
         "x-order": "20501300",
@@ -17569,6 +17750,7 @@
           "Shopee"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "rich-shop-reviews-v1",
         "x-endpoint-family": "shopee_get_shop_reviews_rich",
         "x-highlights": [],
         "x-order": "20501900",
@@ -17675,6 +17857,7 @@
           "Shopee"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "shop-reviews-v1",
         "x-endpoint-family": "shopee_get_shop_reviews",
         "x-highlights": [],
         "x-order": "20502100",
@@ -17761,6 +17944,7 @@
           "Shopee"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "shop-profile-and-rating-summary-v1",
         "x-endpoint-family": "shopee_get_shop_seo",
         "x-highlights": [],
         "x-order": "20501100",
@@ -17846,6 +18030,7 @@
           "Shopee"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "item-search-v1",
         "x-endpoint-family": "shopee_search_item_list",
         "x-highlights": [],
         "x-order": "20501600",
@@ -17943,6 +18128,7 @@
           "Taobao and Tmall"
         ],
         "x-api-version": "v3",
+        "x-docs-slug": "product-reviews-v3",
         "x-endpoint-family": "taobao_get_item_comment",
         "x-highlights": [],
         "x-order": "11001500",
@@ -18015,6 +18201,7 @@
           "Taobao and Tmall"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "product-details-v1",
         "x-endpoint-family": "taobao_get_item_detail",
         "x-highlights": [
           {
@@ -18100,6 +18287,7 @@
           "Taobao and Tmall"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "product-details-v2",
         "x-endpoint-family": "taobao_get_item_detail",
         "x-highlights": [
           {
@@ -18190,6 +18378,7 @@
           "Taobao and Tmall"
         ],
         "x-api-version": "v3",
+        "x-docs-slug": "product-details-v3",
         "x-endpoint-family": "taobao_get_item_detail",
         "x-highlights": [],
         "x-order": "11001150",
@@ -18263,6 +18452,7 @@
           "Taobao and Tmall"
         ],
         "x-api-version": "v4",
+        "x-docs-slug": "product-details-v4",
         "x-endpoint-family": "taobao_get_item_detail",
         "x-highlights": [
           {
@@ -18360,6 +18550,7 @@
           "Taobao and Tmall"
         ],
         "x-api-version": "v5",
+        "x-docs-slug": "product-details-v5",
         "x-endpoint-family": "taobao_get_item_detail",
         "x-highlights": [
           {
@@ -18445,6 +18636,7 @@
           "Taobao and Tmall"
         ],
         "x-api-version": "v6",
+        "x-docs-slug": "product-details-v6",
         "x-endpoint-family": "taobao_get_item_detail",
         "x-highlights": [
           {
@@ -18557,6 +18749,7 @@
         ],
         "x-api-version": "v7",
         "x-docs-hidden": true,
+        "x-docs-slug": "product-details-v7",
         "x-endpoint-family": "taobao_get_item_detail",
         "x-highlights": [
           {
@@ -18635,6 +18828,7 @@
           "Taobao and Tmall"
         ],
         "x-api-version": "v8",
+        "x-docs-slug": "product-details-v8",
         "x-endpoint-family": "taobao_get_item_detail",
         "x-highlights": [
           {
@@ -18734,6 +18928,7 @@
           "Taobao and Tmall"
         ],
         "x-api-version": "v9",
+        "x-docs-slug": "product-details-v9",
         "x-endpoint-family": "taobao_get_item_detail",
         "x-highlights": [
           {
@@ -18820,6 +19015,7 @@
           "Taobao and Tmall"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "product-sales-v1",
         "x-endpoint-family": "taobao_get_item_sale",
         "x-highlights": [],
         "x-order": "11001850",
@@ -18920,6 +19116,7 @@
           "Taobao and Tmall"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "shop-product-list-v1",
         "x-endpoint-family": "taobao_get_shop_item_list",
         "x-highlights": [
           {
@@ -19046,6 +19243,7 @@
           "Taobao and Tmall"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "shop-product-list-v2",
         "x-endpoint-family": "taobao_get_shop_item_list",
         "x-highlights": [
           {
@@ -19172,6 +19370,7 @@
           "Taobao and Tmall"
         ],
         "x-api-version": "v3",
+        "x-docs-slug": "shop-product-list-v3",
         "x-endpoint-family": "taobao_get_shop_item_list",
         "x-highlights": [
           {
@@ -19271,6 +19470,7 @@
           "Taobao and Tmall"
         ],
         "x-api-version": "v4",
+        "x-docs-slug": "shop-product-list-v4",
         "x-endpoint-family": "taobao_get_shop_item_list",
         "x-highlights": [
           {
@@ -19361,6 +19561,7 @@
           "Taobao and Tmall"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "product-questions-v1",
         "x-endpoint-family": "taobao_get_social_feed",
         "x-highlights": [],
         "x-order": "11001550",
@@ -19494,6 +19695,7 @@
           "Taobao and Tmall"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "product-search-v1",
         "x-endpoint-family": "taobao_search_item_list",
         "x-highlights": [],
         "x-order": "11001900",
@@ -19578,6 +19780,7 @@
           "Taobao and Tmall"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "product-search-v2",
         "x-endpoint-family": "taobao_search_item_list",
         "x-highlights": [],
         "x-order": "11001910",
@@ -19662,6 +19865,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "product-category-tree-v1",
         "x-endpoint-family": "temu_get_categories",
         "x-highlights": [],
         "x-order": "20003100",
@@ -19759,6 +19963,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "category-top-sales-v1",
         "x-endpoint-family": "temu_get_category_top_sales",
         "x-highlights": [],
         "x-order": "20003000",
@@ -19843,6 +20048,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "homepage-product-feed-v1",
         "x-endpoint-family": "temu_get_homepage_goods",
         "x-highlights": [],
         "x-order": "20001000",
@@ -19948,6 +20154,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "store-product-list-v1",
         "x-endpoint-family": "temu_get_mall_goods",
         "x-highlights": [],
         "x-order": "20005000",
@@ -20055,6 +20262,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "store-review-list-v1",
         "x-endpoint-family": "temu_get_mall_reviews",
         "x-highlights": [],
         "x-order": "20004100",
@@ -20170,6 +20378,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "full-product-details-v1",
         "x-endpoint-family": "temu_get_product_detail",
         "x-highlights": [],
         "x-order": "20002000",
@@ -20255,6 +20464,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "product-review-summary-v1",
         "x-endpoint-family": "temu_get_product_reviews_info",
         "x-highlights": [],
         "x-order": "20004200",
@@ -20352,6 +20562,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "product-review-list-v1",
         "x-endpoint-family": "temu_get_product_reviews",
         "x-highlights": [],
         "x-order": "20004000",
@@ -20437,6 +20648,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "product-core-snapshot-v1",
         "x-endpoint-family": "temu_get_product_snapshot",
         "x-highlights": [],
         "x-order": "20002100",
@@ -20533,6 +20745,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "keyword-product-search-v1",
         "x-endpoint-family": "temu_search_products",
         "x-highlights": [],
         "x-order": "20006000",
@@ -20620,6 +20833,7 @@
           "TikTok Shop"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "product-details-v1",
         "x-endpoint-family": "tiktok_shop_get_product_detail",
         "x-highlights": [],
         "x-order": "22501100",
@@ -20709,6 +20923,7 @@
         ],
         "x-api-version": "v2",
         "x-docs-hidden": true,
+        "x-docs-slug": "product-details-v2",
         "x-endpoint-family": "tiktok_shop_get_product_detail",
         "x-highlights": [],
         "x-order": "22501150",
@@ -20818,6 +21033,7 @@
           "TikTok Shop"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "product-search-v1",
         "x-endpoint-family": "tiktok_shop_search_products",
         "x-highlights": [],
         "x-order": "22501000",
@@ -20901,6 +21117,7 @@
           "TikTok"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "post-comments-v1",
         "x-endpoint-family": "tiktok_get_post_comment",
         "x-highlights": [],
         "x-order": 22001300,
@@ -20973,6 +21190,7 @@
           "TikTok"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "post-details-v1",
         "x-endpoint-family": "tiktok_get_post_detail",
         "x-highlights": [],
         "x-order": 22001100,
@@ -21066,6 +21284,7 @@
           "TikTok"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "comment-replies-v1",
         "x-endpoint-family": "tiktok_get_post_sub_comment",
         "x-highlights": [],
         "x-order": 22001400,
@@ -21150,6 +21369,7 @@
           "TikTok"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-profile-v1",
         "x-endpoint-family": "tiktok_get_user_detail",
         "x-highlights": [],
         "x-order": 22001200,
@@ -21249,6 +21469,7 @@
           "TikTok"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-published-posts-v1",
         "x-endpoint-family": "tiktok_get_user_post",
         "x-highlights": [],
         "x-order": 22001000,
@@ -21380,6 +21601,7 @@
           "TikTok"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "post-search-v1",
         "x-endpoint-family": "tiktok_search_post",
         "x-highlights": [],
         "x-order": 22001600,
@@ -21476,6 +21698,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "user-search-v1",
         "x-endpoint-family": "tiktok_search_user",
         "x-highlights": [],
         "x-order": 22001500,
@@ -21548,6 +21771,7 @@
           "Toutiao"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "article-details-v1",
         "x-endpoint-family": "toutiao_get_article_detail",
         "x-highlights": [],
         "x-order": "27001000",
@@ -21620,6 +21844,7 @@
           "Toutiao"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-profile-v1",
         "x-endpoint-family": "toutiao_get_user_detail",
         "x-highlights": [],
         "x-order": "27001100",
@@ -21692,6 +21917,7 @@
           "Toutiao"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-id-v1",
         "x-endpoint-family": "toutiao_get_user_id",
         "x-highlights": [],
         "x-order": "27001150",
@@ -21764,6 +21990,7 @@
           "Toutiao"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "video-details-v1",
         "x-endpoint-family": "toutiao_get_video_detail",
         "x-highlights": [],
         "x-order": "27001050",
@@ -21861,6 +22088,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "app-keyword-search-v1",
         "x-endpoint-family": "toutiao_search",
         "x-highlights": [],
         "x-order": "27001200",
@@ -21925,6 +22153,7 @@
           "Toutiao"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "web-keyword-search-v2",
         "x-endpoint-family": "toutiao_search",
         "x-highlights": [
           {
@@ -22021,6 +22250,7 @@
           "Twitter"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "post-comments-v1",
         "x-endpoint-family": "twitter_get_post_comments",
         "x-highlights": [],
         "x-order": 31001200,
@@ -22093,6 +22323,7 @@
           "Twitter"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "post-detail-v1",
         "x-endpoint-family": "twitter_get_post_detail",
         "x-highlights": [],
         "x-order": 31001300,
@@ -22165,6 +22396,7 @@
           "Twitter"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-profile-v1",
         "x-endpoint-family": "twitter_get_user_detail",
         "x-highlights": [],
         "x-order": 31001000,
@@ -22248,6 +22480,7 @@
           "Twitter"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-published-posts-v1",
         "x-endpoint-family": "twitter_get_user_posts",
         "x-highlights": [],
         "x-order": 31001100,
@@ -22350,6 +22583,7 @@
           "Twitter"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "search-timeline-v1",
         "x-endpoint-family": "twitter_search",
         "x-highlights": [],
         "x-order": 31000900,
@@ -22507,6 +22741,7 @@
           "VCG"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "image-search-v1",
         "x-endpoint-family": "vcg_search_image",
         "x-highlights": [
           {
@@ -22593,6 +22828,7 @@
           "Weibo"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-fans-v1",
         "x-endpoint-family": "weibo_get_fans",
         "x-highlights": [],
         "x-order": "17001300",
@@ -22677,6 +22913,7 @@
           "Weibo"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-followers-v1",
         "x-endpoint-family": "weibo_get_followers",
         "x-highlights": [],
         "x-order": "17001400",
@@ -22775,6 +23012,7 @@
           "Weibo"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "post-comments-v1",
         "x-endpoint-family": "weibo_get_post_comments",
         "x-highlights": [],
         "x-order": "17001800",
@@ -22847,6 +23085,7 @@
           "Weibo"
         ],
         "x-api-version": "v3",
+        "x-docs-slug": "user-profile-v3",
         "x-endpoint-family": "weibo_get_user_detail",
         "x-highlights": [],
         "x-order": "17001200",
@@ -22941,6 +23180,7 @@
           "Weibo"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-published-posts-v1",
         "x-endpoint-family": "weibo_get_user_post",
         "x-highlights": [],
         "x-order": "17001500",
@@ -23023,6 +23263,7 @@
           "Weibo"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-video-list-v1",
         "x-endpoint-family": "weibo_get_user_video_list",
         "x-highlights": [],
         "x-order": "17001510",
@@ -23095,6 +23336,7 @@
           "Weibo"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "post-details-v1",
         "x-endpoint-family": "weibo_get_weibo_detail",
         "x-highlights": [],
         "x-order": "17001100",
@@ -23156,6 +23398,7 @@
           "Weibo"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "hot-search-v1",
         "x-endpoint-family": "weibo_hot_search",
         "x-highlights": [],
         "x-order": "17001700",
@@ -23312,6 +23555,7 @@
           "Weibo"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "keyword-search-v2",
         "x-endpoint-family": "weibo_search_all",
         "x-highlights": [],
         "x-order": "17001000",
@@ -23426,6 +23670,7 @@
           "Weibo"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "search-user-published-posts-v1",
         "x-endpoint-family": "weibo_search_profile",
         "x-highlights": [],
         "x-order": "17001900",
@@ -23498,6 +23743,7 @@
           "Weibo"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "tv-video-details-v1",
         "x-endpoint-family": "weibo_tv_component",
         "x-highlights": [],
         "x-order": "17001600",
@@ -23570,6 +23816,7 @@
           "WeChat Channels"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "export-id-conversion-v1",
         "x-endpoint-family": "weixin_channels_convert_export_id",
         "x-highlights": [],
         "x-order": "16201420",
@@ -23660,6 +23907,7 @@
           "WeChat Channels"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "account-videos-v1",
         "x-endpoint-family": "weixin_channels_get_account_videos",
         "x-highlights": [],
         "x-order": "16201200",
@@ -23744,6 +23992,7 @@
           "WeChat Channels"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "get-bound-channel-v1",
         "x-endpoint-family": "weixin_channels_get_bound_channel",
         "x-highlights": [],
         "x-order": "16201300",
@@ -23816,6 +24065,7 @@
           "WeChat Channels"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "video-basic-info-v1",
         "x-endpoint-family": "weixin_channels_get_video_basic_info",
         "x-highlights": [],
         "x-order": "16201400",
@@ -23911,6 +24161,7 @@
           "WeChat Channels"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "video-comments-v1",
         "x-endpoint-family": "weixin_channels_get_video_comment",
         "x-highlights": [],
         "x-order": "16201600",
@@ -23994,6 +24245,7 @@
           "WeChat Channels"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "video-download-url-v1",
         "x-endpoint-family": "weixin_channels_get_video_download_url",
         "x-highlights": [],
         "x-order": "16201430",
@@ -24089,6 +24341,7 @@
           "WeChat Channels"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "video-metrics-v1",
         "x-endpoint-family": "weixin_channels_get_video_metrics",
         "x-highlights": [],
         "x-order": "16201500",
@@ -24184,6 +24437,7 @@
           "WeChat Channels"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "video-sub-comments-v1",
         "x-endpoint-family": "weixin_channels_get_video_sub_comment",
         "x-highlights": [],
         "x-order": "16201610",
@@ -24267,6 +24521,7 @@
           "WeChat Channels"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "video-title-v1",
         "x-endpoint-family": "weixin_channels_get_video_title",
         "x-highlights": [
           {
@@ -24382,6 +24637,7 @@
           "WeChat Channels"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "account-search-v1",
         "x-endpoint-family": "weixin_channels_search_account",
         "x-highlights": [],
         "x-order": "16201100",
@@ -24454,6 +24710,7 @@
           "WeChat Channels"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "account-search-v2",
         "x-endpoint-family": "weixin_channels_search_account",
         "x-highlights": [],
         "x-order": "16201110",
@@ -24526,6 +24783,7 @@
           "WeChat Channels"
         ],
         "x-api-version": "v3",
+        "x-docs-slug": "account-search-v3",
         "x-endpoint-family": "weixin_channels_search_account",
         "x-highlights": [],
         "x-order": "16201120",
@@ -24649,6 +24907,7 @@
           "WeChat Channels"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "video-search-v1",
         "x-endpoint-family": "weixin_channels_search_video",
         "x-highlights": [],
         "x-order": "16201000",
@@ -24751,6 +25010,7 @@
           "WeChat Channels"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "video-search-v2",
         "x-endpoint-family": "weixin_channels_search_video",
         "x-highlights": [],
         "x-order": "16201010",
@@ -24823,6 +25083,7 @@
           "WeChat Official Accounts"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "article-link-conversion-v1",
         "x-endpoint-family": "weixin_convert_article_link",
         "x-highlights": [],
         "x-order": "16101700",
@@ -24895,6 +25156,7 @@
           "WeChat Official Accounts"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "account-basic-info-v1",
         "x-endpoint-family": "weixin_get_account_basic_info",
         "x-highlights": [],
         "x-order": "16101620",
@@ -24996,6 +25258,7 @@
           "WeChat Official Accounts"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "account-historical-articles-v1",
         "x-endpoint-family": "weixin_get_account_history_articles",
         "x-highlights": [],
         "x-order": "16101010",
@@ -25089,6 +25352,7 @@
           "WeChat Official Accounts"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "account-historical-articles-v2",
         "x-endpoint-family": "weixin_get_account_history_articles",
         "x-highlights": [],
         "x-order": "16101020",
@@ -25173,6 +25437,7 @@
           "WeChat Official Accounts"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "account-original-article-count-v1",
         "x-endpoint-family": "weixin_get_account_original_count",
         "x-highlights": [],
         "x-order": "16101600",
@@ -25268,6 +25533,7 @@
           "WeChat Official Accounts"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "account-principal-info-v1",
         "x-endpoint-family": "weixin_get_account_principal_info",
         "x-highlights": [],
         "x-order": "16101610",
@@ -25364,6 +25630,7 @@
           "WeChat Official Accounts"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "account-today-articles-v1",
         "x-endpoint-family": "weixin_get_account_today_articles",
         "x-highlights": [],
         "x-order": "16101000",
@@ -25454,6 +25721,7 @@
           "WeChat Official Accounts"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "article-comments-v1",
         "x-endpoint-family": "weixin_get_article_comment",
         "x-highlights": [],
         "x-order": "16101300",
@@ -25542,6 +25810,7 @@
           "WeChat Official Accounts"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "article-details-v1",
         "x-endpoint-family": "weixin_get_article_detail",
         "x-highlights": [],
         "x-order": "16101200",
@@ -25614,6 +25883,7 @@
           "WeChat Official Accounts"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "article-details-v2",
         "x-endpoint-family": "weixin_get_article_detail",
         "x-highlights": [],
         "x-order": "16101210",
@@ -25702,6 +25972,7 @@
           "WeChat Official Accounts"
         ],
         "x-api-version": "v3",
+        "x-docs-slug": "article-details-v3",
         "x-endpoint-family": "weixin_get_article_detail",
         "x-highlights": [],
         "x-order": "16101220",
@@ -25774,6 +26045,7 @@
           "WeChat Official Accounts"
         ],
         "x-api-version": "v4",
+        "x-docs-slug": "article-details-v4",
         "x-endpoint-family": "weixin_get_article_detail",
         "x-highlights": [],
         "x-order": "16101230",
@@ -25846,6 +26118,7 @@
           "WeChat Official Accounts"
         ],
         "x-api-version": "v5",
+        "x-docs-slug": "article-details-v5",
         "x-endpoint-family": "weixin_get_article_detail",
         "x-highlights": [],
         "x-order": "16101240",
@@ -25918,6 +26191,7 @@
           "WeChat Official Accounts"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "article-metrics-v1",
         "x-endpoint-family": "weixin_get_article_metrics",
         "x-highlights": [],
         "x-order": "16101100",
@@ -25990,6 +26264,7 @@
           "WeChat Official Accounts"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "article-metrics-v2",
         "x-endpoint-family": "weixin_get_article_metrics",
         "x-highlights": [],
         "x-order": "16101110",
@@ -26072,6 +26347,7 @@
           "WeChat Official Accounts"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "article-comment-replies-v1",
         "x-endpoint-family": "weixin_get_article_sub_comment",
         "x-highlights": [],
         "x-order": "16101310",
@@ -26156,6 +26432,7 @@
           "WeChat Official Accounts"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "account-search-v1",
         "x-endpoint-family": "weixin_search_account",
         "x-highlights": [],
         "x-order": "16101500",
@@ -26258,6 +26535,7 @@
           "WeChat Official Accounts"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "account-search-v2",
         "x-endpoint-family": "weixin_search_account",
         "x-highlights": [],
         "x-order": "16101510",
@@ -26429,6 +26707,7 @@
           "WeChat Official Accounts"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "hot-article-search-v1",
         "x-endpoint-family": "weixin_search_article_hot",
         "x-highlights": [],
         "x-order": "16101420",
@@ -26552,6 +26831,7 @@
           "WeChat Official Accounts"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "article-search-v1",
         "x-endpoint-family": "weixin_search_article",
         "x-highlights": [],
         "x-order": "16101430",
@@ -26666,6 +26946,7 @@
           "WeChat Official Accounts"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "article-search-v2",
         "x-endpoint-family": "weixin_search_article",
         "x-highlights": [],
         "x-order": "16101440",
@@ -26768,6 +27049,7 @@
           "WeChat Official Accounts"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "mini-program-search-v1",
         "x-endpoint-family": "weixin_search_miniprogram",
         "x-highlights": [],
         "x-order": "16101450",
@@ -26867,6 +27149,7 @@
           "WeChat Official Accounts"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "search-suggestions-v1",
         "x-endpoint-family": "weixin_search_suggestions",
         "x-highlights": [],
         "x-order": "16101470",
@@ -26939,6 +27222,7 @@
           "WeChat Official Accounts"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "wechat-index-search-v1",
         "x-endpoint-family": "weixin_search_wechat_index",
         "x-highlights": [],
         "x-order": "16101460",
@@ -27011,6 +27295,7 @@
           "Xianyu (GooFish)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "product-details-v1",
         "x-endpoint-family": "xianyu_get_item_detail",
         "x-highlights": [],
         "x-order": "19051100",
@@ -27114,6 +27399,7 @@
           "Xianyu (GooFish)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "product-search-v1",
         "x-endpoint-family": "xianyu_search_item_list",
         "x-highlights": [],
         "x-order": "19051000",
@@ -27207,6 +27493,7 @@
           "Xiaohongshu E-commerce (RedNote)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "product-search-v1",
         "x-endpoint-family": "xiaohongshu_ec_search_products",
         "x-highlights": [],
         "x-order": "12501000",
@@ -27354,6 +27641,7 @@
           "Xiaohongshu Creator Marketplace (Pugongying)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "content-square-notes-v1",
         "x-endpoint-family": "xiaohongshu_pgy_api_pgy_content_square_search_note_v2",
         "x-highlights": [],
         "x-order": "13002350",
@@ -27491,6 +27779,7 @@
           "Xiaohongshu Creator Marketplace (Pugongying)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "creator-core-metrics-v1",
         "x-endpoint-family": "xiaohongshu_pgy_api_pgy_kol_data_core_data",
         "x-highlights": [],
         "x-order": "13002300",
@@ -28215,6 +28504,7 @@
           "Xiaohongshu Creator Marketplace (Pugongying)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "creator-search-v1",
         "x-endpoint-family": "xiaohongshu_pgy_api_solar_cooperator_blogger_v2",
         "x-highlights": [],
         "x-order": "13000010",
@@ -28287,6 +28577,7 @@
           "Xiaohongshu Creator Marketplace (Pugongying)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "creator-profile-v1",
         "x-endpoint-family": "xiaohongshu_pgy_api_solar_cooperator_user_blogger_userid",
         "x-highlights": [],
         "x-order": "13001000",
@@ -28391,6 +28682,7 @@
           "Xiaohongshu Creator Marketplace (Pugongying)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "follower-growth-history-v1",
         "x-endpoint-family": "xiaohongshu_pgy_api_solar_kol_data_userid_fans_overall_new_history",
         "x-highlights": [],
         "x-order": "13001200",
@@ -28463,6 +28755,7 @@
           "Xiaohongshu Creator Marketplace (Pugongying)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "follower-distribution-v1",
         "x-endpoint-family": "xiaohongshu_pgy_api_solar_kol_data_userid_fans_profile",
         "x-highlights": [],
         "x-order": "13001900",
@@ -28535,6 +28828,7 @@
           "Xiaohongshu Creator Marketplace (Pugongying)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "cost-effectiveness-analysis-v1",
         "x-endpoint-family": "xiaohongshu_pgy_api_solar_kol_datav2_costeffective",
         "x-highlights": [],
         "x-order": "13002000",
@@ -28607,6 +28901,7 @@
           "Xiaohongshu Creator Marketplace (Pugongying)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "creator-content-tags-v1",
         "x-endpoint-family": "xiaohongshu_pgy_api_solar_kol_datav2_kolcontenttags",
         "x-highlights": [],
         "x-order": "13001600",
@@ -28679,6 +28974,7 @@
           "Xiaohongshu Creator Marketplace (Pugongying)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "creator-feature-tags-v1",
         "x-endpoint-family": "xiaohongshu_pgy_api_solar_kol_datav2_kolfeaturetags",
         "x-highlights": [],
         "x-order": "13001500",
@@ -28830,6 +29126,7 @@
           "Xiaohongshu Creator Marketplace (Pugongying)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "creator-note-list-v1",
         "x-endpoint-family": "xiaohongshu_pgy_api_solar_kol_datav2_notesdetail",
         "x-highlights": [],
         "x-order": "13002895",
@@ -28918,6 +29215,7 @@
           "Xiaohongshu Creator Marketplace (Pugongying)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "data-summary-v1",
         "x-endpoint-family": "xiaohongshu_pgy_api_solar_kol_datav3_datasummary",
         "x-highlights": [],
         "x-order": "13001100",
@@ -28990,6 +29288,7 @@
           "Xiaohongshu Creator Marketplace (Pugongying)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "follower-summary-v1",
         "x-endpoint-family": "xiaohongshu_pgy_api_solar_kol_datav3_fanssummary",
         "x-highlights": [],
         "x-order": "13001300",
@@ -29127,6 +29426,7 @@
           "Xiaohongshu Creator Marketplace (Pugongying)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "note-performance-metrics-v1",
         "x-endpoint-family": "xiaohongshu_pgy_api_solar_kol_datav3_notesrate",
         "x-highlights": [],
         "x-order": "13001700",
@@ -29211,6 +29511,7 @@
           "Xiaohongshu Creator Marketplace (Pugongying)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "similar-creators-v1",
         "x-endpoint-family": "xiaohongshu_pgy_api_solar_kol_get_similar_kol",
         "x-highlights": [],
         "x-order": "13001400",
@@ -29283,6 +29584,7 @@
           "Xiaohongshu Creator Marketplace (Pugongying)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "note-details-v1",
         "x-endpoint-family": "xiaohongshu_pgy_api_solar_note_noteid_detail",
         "x-highlights": [
           {
@@ -29447,6 +29749,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-kol-core-data-v1",
         "x-endpoint-family": "xiaohongshu_pgy_get_kol_core_data",
         "x-highlights": [],
         "x-order": "13003400",
@@ -29513,6 +29816,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-kol-cost-effective-v1",
         "x-endpoint-family": "xiaohongshu_pgy_get_kol_cost_effective",
         "x-highlights": [],
         "x-order": "13003200",
@@ -29594,6 +29898,7 @@
         ],
         "x-api-version": "v2",
         "x-docs-hidden": true,
+        "x-docs-slug": "data-summary-v2",
         "x-endpoint-family": "xiaohongshu_pgy_get_kol_data_summary",
         "x-highlights": [],
         "x-order": "13003100",
@@ -29660,6 +29965,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-kol-fans-portrait-v1",
         "x-endpoint-family": "xiaohongshu_pgy_get_kol_fans_portrait",
         "x-highlights": [],
         "x-order": "13002600",
@@ -29726,6 +30032,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-kol-fans-summary-v1",
         "x-endpoint-family": "xiaohongshu_pgy_get_kol_fans_summary",
         "x-highlights": [],
         "x-order": "13002700",
@@ -29822,6 +30129,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-kol-fans-trend-v1",
         "x-endpoint-family": "xiaohongshu_pgy_get_kol_fans_trend",
         "x-highlights": [],
         "x-order": "13002800",
@@ -29888,6 +30196,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-kol-info-v1",
         "x-endpoint-family": "xiaohongshu_pgy_get_kol_info",
         "x-highlights": [],
         "x-order": "13002400",
@@ -30013,6 +30322,7 @@
           "Xiaohongshu Creator Marketplace (Pugongying)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "creator-note-list-pro-v1",
         "x-endpoint-family": "xiaohongshu_pgy_get_kol_note_list",
         "x-highlights": [],
         "x-order": "13002900",
@@ -30152,6 +30462,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-kol-note-rate-v1",
         "x-endpoint-family": "xiaohongshu_pgy_get_kol_note_rate",
         "x-highlights": [],
         "x-order": "13002500",
@@ -30218,6 +30529,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "get-note-detail-v1",
         "x-endpoint-family": "xiaohongshu_pgy_get_note_detail",
         "x-highlights": [],
         "x-order": "13003300",
@@ -30281,6 +30593,7 @@
         "tags": [
           "Xiaohongshu (RedNote)"
         ],
+        "x-docs-slug": "ask-dots-ai",
         "x-endpoint-family": "xiaohongshu_ask_dots",
         "x-highlights": [],
         "x-order": "12000000",
@@ -30354,6 +30667,7 @@
           "Xiaohongshu (RedNote)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "hot-inspiration-feed-v1",
         "x-endpoint-family": "xiaohongshu_get_creator_hot_inspiration_feed",
         "x-highlights": [],
         "x-order": "12001020",
@@ -30449,6 +30763,7 @@
           "Xiaohongshu (RedNote)"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "note-comments-v2",
         "x-endpoint-family": "xiaohongshu_get_note_comment",
         "x-highlights": [
           {
@@ -30555,6 +30870,7 @@
         ],
         "x-api-version": "v3",
         "x-docs-hidden": true,
+        "x-docs-slug": "note-comments-v3",
         "x-endpoint-family": "xiaohongshu_get_note_comment",
         "x-highlights": [],
         "x-order": "12001505",
@@ -30647,6 +30963,7 @@
         ],
         "x-api-version": "v4",
         "x-docs-hidden": true,
+        "x-docs-slug": "note-comments-v4",
         "x-endpoint-family": "xiaohongshu_get_note_comment",
         "x-highlights": [
           {
@@ -30717,6 +31034,7 @@
           "Xiaohongshu (RedNote)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "note-details-v1",
         "x-endpoint-family": "xiaohongshu_get_note_detail",
         "x-highlights": [
           {
@@ -30809,6 +31127,7 @@
         ],
         "x-api-version": "v2",
         "x-docs-hidden": true,
+        "x-docs-slug": "note-details-v2",
         "x-endpoint-family": "xiaohongshu_get_note_detail",
         "x-highlights": [
           {
@@ -30892,6 +31211,7 @@
         ],
         "x-api-version": "v3",
         "x-docs-hidden": true,
+        "x-docs-slug": "note-details-v3",
         "x-endpoint-family": "xiaohongshu_get_note_detail",
         "x-highlights": [],
         "x-order": "12001420",
@@ -30957,6 +31277,7 @@
         ],
         "x-api-version": "v4",
         "x-docs-hidden": true,
+        "x-docs-slug": "note-details-v4",
         "x-endpoint-family": "xiaohongshu_get_note_detail",
         "x-highlights": [
           {
@@ -31040,6 +31361,7 @@
         ],
         "x-api-version": "v5",
         "x-docs-hidden": true,
+        "x-docs-slug": "note-details-v5",
         "x-endpoint-family": "xiaohongshu_get_note_detail",
         "x-highlights": [
           {
@@ -31129,6 +31451,7 @@
           "Xiaohongshu (RedNote)"
         ],
         "x-api-version": "v6",
+        "x-docs-slug": "note-details-v6",
         "x-endpoint-family": "xiaohongshu_get_note_detail",
         "x-highlights": [
           {
@@ -31215,6 +31538,7 @@
           "Xiaohongshu (RedNote)"
         ],
         "x-docs-hidden": true,
+        "x-docs-slug": "note-details-v7",
         "x-endpoint-family": "xiaohongshu_get_note_detail",
         "x-highlights": [],
         "x-order": "12001450",
@@ -31299,6 +31623,7 @@
           "Xiaohongshu (RedNote)"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "comment-replies-v2",
         "x-endpoint-family": "xiaohongshu_get_note_sub_comment",
         "x-highlights": [],
         "x-order": "12001600",
@@ -31397,6 +31722,7 @@
           "Xiaohongshu (RedNote)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "topic-note-list-v1",
         "x-endpoint-family": "xiaohongshu_get_topic_note_list",
         "x-highlights": [],
         "x-order": "12001900",
@@ -31480,6 +31806,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "user-published-notes-v1",
         "x-endpoint-family": "xiaohongshu_get_user_note_list",
         "x-highlights": [],
         "x-order": "12001290",
@@ -31554,6 +31881,7 @@
           "Xiaohongshu (RedNote)"
         ],
         "x-docs-hidden": true,
+        "x-docs-slug": "user-published-notes-v2",
         "x-endpoint-family": "xiaohongshu_get_user_note_list",
         "x-highlights": [],
         "x-order": "12001300",
@@ -31628,6 +31956,7 @@
           "Xiaohongshu (RedNote)"
         ],
         "x-docs-hidden": true,
+        "x-docs-slug": "user-published-notes-v3",
         "x-endpoint-family": "xiaohongshu_get_user_note_list",
         "x-highlights": [],
         "x-order": "12001305",
@@ -31638,7 +31967,7 @@
     },
     "/api/xiaohongshu/get-user-note-list/v4": {
       "get": {
-        "description": "Retrieves notes published by a Xiaohongshu (RedNote) user, accepting a user ID or supported profile URL and a cursor for pagination. Use it to support creator content browsing, account monitoring, and reviewing a user's note history.",
+        "description": "Reads a user's published public Xiaohongshu (RedNote) notes by user ID or supported profile URL, with lastCursor pagination. This endpoint does not create, upload or publish notes.",
         "operationId": "getApiXiaohongshuGetUserNoteListV4",
         "parameters": [
           {
@@ -31652,7 +31981,7 @@
             "x-sdk-python-name": "user_id"
           },
           {
-            "description": "Pagination cursor from the previous page (the last note's cursor value).",
+            "description": "Omit on the first request. For the next page, pass the last note's cursor value from the previous response.",
             "in": "query",
             "name": "lastCursor",
             "required": false,
@@ -31697,11 +32026,12 @@
             "tokenAuth": []
           }
         ],
-        "summary": "User Published Notes",
+        "summary": "User Notes",
         "tags": [
           "Xiaohongshu (RedNote)"
         ],
         "x-api-version": "v4",
+        "x-docs-slug": "user-published-notes-v4",
         "x-endpoint-family": "xiaohongshu_get_user_note_list",
         "x-highlights": [],
         "x-order": "12001310",
@@ -31774,6 +32104,7 @@
           "Xiaohongshu (RedNote)"
         ],
         "x-api-version": "v3",
+        "x-docs-slug": "user-profile-v3",
         "x-endpoint-family": "xiaohongshu_get_user",
         "x-highlights": [],
         "x-order": "12001700",
@@ -31847,6 +32178,7 @@
         ],
         "x-api-version": "v4",
         "x-docs-hidden": true,
+        "x-docs-slug": "user-profile-v4",
         "x-endpoint-family": "xiaohongshu_get_user",
         "x-highlights": [],
         "x-order": "12001710",
@@ -31901,6 +32233,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "hot-list-v1",
         "x-endpoint-family": "xiaohongshu_hot_list",
         "x-highlights": [],
         "x-order": "12001010",
@@ -32037,6 +32370,7 @@
           "Xiaohongshu (RedNote)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "hot-search-v1",
         "x-endpoint-family": "xiaohongshu_hot_search",
         "x-highlights": [],
         "x-order": "12001000",
@@ -32174,6 +32508,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "note-search-v1",
         "x-endpoint-family": "xiaohongshu_search_note",
         "x-highlights": [],
         "x-order": "12001090",
@@ -32184,7 +32519,7 @@
     },
     "/api/xiaohongshu/search-note/v2": {
       "get": {
-        "description": "Searches Xiaohongshu (RedNote) notes by keyword with pagination plus sort, note-type, and publish-time filters. Use it to support topic research, content discovery, and monitoring keyword-related posts.",
+        "description": "Searches Xiaohongshu (RedNote) notes by keyword with page-based pagination, sorting and note-type filters. The V2 noteTime filter may return notes outside the selected time range. This endpoint does not search user accounts.",
         "operationId": "getApiXiaohongshuSearchNoteV2",
         "parameters": [
           {
@@ -32198,7 +32533,7 @@
             "x-sdk-python-name": "keyword"
           },
           {
-            "description": "Page number for pagination.",
+            "description": "Page number for pagination. Start at 1, then increment page while keeping the keyword and filters unchanged.",
             "in": "query",
             "name": "page",
             "required": false,
@@ -32297,11 +32632,12 @@
             "tokenAuth": []
           }
         ],
-        "summary": "Note Search",
+        "summary": "Keyword Note Search",
         "tags": [
           "Xiaohongshu (RedNote)"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "note-search-v2",
         "x-endpoint-family": "xiaohongshu_search_note",
         "x-highlights": [
           {
@@ -32445,6 +32781,7 @@
         ],
         "x-api-version": "v3",
         "x-docs-hidden": true,
+        "x-docs-slug": "note-search-v3",
         "x-endpoint-family": "xiaohongshu_search_note",
         "x-highlights": [],
         "x-order": "12001110",
@@ -32575,6 +32912,7 @@
           "Xiaohongshu (RedNote)"
         ],
         "x-api-version": "v4",
+        "x-docs-slug": "note-search-v4",
         "x-endpoint-family": "xiaohongshu_search_note",
         "x-highlights": [
           {
@@ -32653,6 +32991,7 @@
           "Xiaohongshu (RedNote)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "keyword-suggestions-v1",
         "x-endpoint-family": "xiaohongshu_search_recommend",
         "x-highlights": [],
         "x-order": "12001800",
@@ -32737,6 +33076,7 @@
           "Xiaohongshu (RedNote)"
         ],
         "x-api-version": "v2",
+        "x-docs-slug": "user-search-v2",
         "x-endpoint-family": "xiaohongshu_search_user",
         "x-highlights": [],
         "x-order": "12001200",
@@ -32809,6 +33149,7 @@
           "Xiaohongshu (RedNote)"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "share-link-resolution-v1",
         "x-endpoint-family": "xiaohongshu_share_url_transfer",
         "x-highlights": [],
         "x-order": "12002000",
@@ -32881,6 +33222,7 @@
           "YOUKU"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-profile-v1",
         "x-endpoint-family": "youku_get_user_detail",
         "x-highlights": [],
         "x-order": "23001200",
@@ -32953,6 +33295,7 @@
           "YOUKU"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "video-details-v1",
         "x-endpoint-family": "youku_get_video_detail",
         "x-highlights": [],
         "x-order": "23001100",
@@ -33037,6 +33380,7 @@
           "YOUKU"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "video-search-v1",
         "x-endpoint-family": "youku_search_video",
         "x-highlights": [],
         "x-order": "23001000",
@@ -33120,6 +33464,7 @@
           "YouTube"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "channel-shorts-v1",
         "x-endpoint-family": "youtube_get_channel_shorts",
         "x-highlights": [],
         "x-order": "25001003",
@@ -33202,6 +33547,7 @@
           "YouTube"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "channel-videos-v1",
         "x-endpoint-family": "youtube_get_channel_videos",
         "x-highlights": [],
         "x-order": "25001001",
@@ -33303,6 +33649,7 @@
           "YouTube"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "video-captions-v1",
         "x-endpoint-family": "youtube_get_video_captions",
         "x-highlights": [],
         "x-order": "25001002",
@@ -33424,6 +33771,7 @@
           "YouTube"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "video-comment-list-v1",
         "x-endpoint-family": "youtube_get_video_comment",
         "x-highlights": [],
         "x-order": "25001100",
@@ -33506,6 +33854,7 @@
           "YouTube"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "video-details-v1",
         "x-endpoint-family": "youtube_get_video_detail",
         "x-highlights": [],
         "x-order": "25001000",
@@ -33600,6 +33949,7 @@
           "YouTube"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "video-sub-comment-list-v1",
         "x-endpoint-family": "youtube_get_video_sub_comment",
         "x-highlights": [],
         "x-order": "25001200",
@@ -33749,6 +34099,7 @@
           "YouTube"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "general-search-v1",
         "x-endpoint-family": "youtube_search",
         "x-highlights": [],
         "x-order": "25000900",
@@ -33864,6 +34215,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "image-search-v1",
         "x-endpoint-family": "zcool_search_image",
         "x-highlights": [
           {
@@ -33965,6 +34317,7 @@
           "Zhihu"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "answer-comments-v1",
         "x-endpoint-family": "zhihu_get_answer_comments",
         "x-highlights": [],
         "x-order": "28002300",
@@ -34087,6 +34440,7 @@
           "Zhihu"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "answer-list-v1",
         "x-endpoint-family": "zhihu_get_answer_list",
         "x-highlights": [],
         "x-order": "28001100",
@@ -34159,6 +34513,7 @@
           "Zhihu"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "column-article-details-v1",
         "x-endpoint-family": "zhihu_get_column_article_detail",
         "x-highlights": [],
         "x-order": "28001000",
@@ -34243,6 +34598,7 @@
           "Zhihu"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "column-article-list-v1",
         "x-endpoint-family": "zhihu_get_column_article_list",
         "x-highlights": [],
         "x-order": "28001300",
@@ -34342,6 +34698,7 @@
           "Zhihu"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "comment-replies-v1",
         "x-endpoint-family": "zhihu_get_comment_replies",
         "x-highlights": [],
         "x-order": "28002400",
@@ -34442,6 +34799,7 @@
           "Zhihu"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-articles-v1",
         "x-endpoint-family": "zhihu_get_user_articles",
         "x-highlights": [],
         "x-order": "28001700",
@@ -34526,6 +34884,7 @@
           "Zhihu"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-follow-collections-v1",
         "x-endpoint-family": "zhihu_get_user_follow_collections",
         "x-highlights": [],
         "x-order": "28002100",
@@ -34610,6 +34969,7 @@
           "Zhihu"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-follow-columns-v1",
         "x-endpoint-family": "zhihu_get_user_follow_columns",
         "x-highlights": [],
         "x-order": "28001900",
@@ -34695,6 +35055,7 @@
         ],
         "x-api-version": "v1",
         "x-docs-hidden": true,
+        "x-docs-slug": "user-follow-questions-v1",
         "x-endpoint-family": "zhihu_get_user_follow_questions",
         "x-highlights": [],
         "x-order": "28002000",
@@ -34779,6 +35140,7 @@
           "Zhihu"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-follow-topics-v1",
         "x-endpoint-family": "zhihu_get_user_follow_topics",
         "x-highlights": [],
         "x-order": "28002200",
@@ -34863,6 +35225,7 @@
           "Zhihu"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-followees-v1",
         "x-endpoint-family": "zhihu_get_user_followees",
         "x-highlights": [],
         "x-order": "28001500",
@@ -34947,6 +35310,7 @@
           "Zhihu"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-followers-v1",
         "x-endpoint-family": "zhihu_get_user_followers",
         "x-highlights": [],
         "x-order": "28001600",
@@ -35031,6 +35395,7 @@
           "Zhihu"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-included-articles-v1",
         "x-endpoint-family": "zhihu_get_user_included_articles",
         "x-highlights": [],
         "x-order": "28001800",
@@ -35103,6 +35468,7 @@
           "Zhihu"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "user-info-v1",
         "x-endpoint-family": "zhihu_get_user_info",
         "x-highlights": [],
         "x-order": "28001400",
@@ -35253,6 +35619,7 @@
           "Zhihu"
         ],
         "x-api-version": "v1",
+        "x-docs-slug": "keyword-search-v1",
         "x-endpoint-family": "zhihu_search",
         "x-highlights": [],
         "x-order": "28001200",
@@ -35870,5 +36237,5 @@
       "x-platform-id": "1688"
     }
   ],
-  "x-openapi-release-id": "b61cba28b5992dc5"
+  "x-openapi-release-id": "0f997eb5633f3ec5"
 }

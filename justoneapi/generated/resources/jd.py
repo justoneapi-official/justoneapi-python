@@ -77,7 +77,7 @@ class JdResource(BaseResource):
         """
         Product Details
 
-        Retrieves JD.com product details by item ID through the V4 endpoint. Use it to perform direct product lookup for catalog research, product monitoring, or ecommerce analysis.
+        Retrieve JD.com product details by item ID, including a complete set of product images. Use it to review product information and images for catalog research or ecommerce analysis.
 
         Args:
             item_id: A unique product identifier on JD.com (item ID).

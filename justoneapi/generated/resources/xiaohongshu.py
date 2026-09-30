@@ -136,13 +136,13 @@ class XiaohongshuResource(BaseResource):
         note_time: str | None = None,
     ) -> ApiResponse[Any]:
         """
-        Note Search
+        Keyword Note Search
 
-        Searches Xiaohongshu (RedNote) notes by keyword with pagination plus sort, note-type, and publish-time filters. Use it to support topic research, content discovery, and monitoring keyword-related posts.
+        Searches Xiaohongshu (RedNote) notes by keyword with page-based pagination, sorting and note-type filters. The V2 noteTime filter may return notes outside the selected time range. This endpoint does not search user accounts.
 
         Args:
             keyword: Search keyword.
-            page: Page number for pagination.
+            page: Page number for pagination. Start at 1, then increment page while keeping the keyword and filters unchanged.
             sort: Sort order for the result set.  Available Values: - `general`: General - `popularity_descending`: Popularity Descending - `time_descending`: Time Descending - `comment_descending`: Comment Descending - `collect_descending`: Collect Descending
             note_type: Note type filter.  Available Values: - `_0`: General - `_1`: Video - `_2`: Normal
             note_time: Note publish time filter. Results may include notes published outside the selected time range.  Available Values: - `ONE_DAY`: Within one day - `ONE_WEEK`: Within a week - `HALF_YEAR`: Within half a year
@@ -321,13 +321,13 @@ class XiaohongshuResource(BaseResource):
         last_cursor: str | None = None,
     ) -> ApiResponse[Any]:
         """
-        User Published Notes
+        User Notes
 
-        Retrieves notes published by a Xiaohongshu (RedNote) user, accepting a user ID or supported profile URL and a cursor for pagination. Use it to support creator content browsing, account monitoring, and reviewing a user's note history.
+        Reads a user's published public Xiaohongshu (RedNote) notes by user ID or supported profile URL, with lastCursor pagination. This endpoint does not create, upload or publish notes.
 
         Args:
             user_id: A Xiaohongshu user ID or a profile URL containing /user/profile/.
-            last_cursor: Pagination cursor from the previous page (the last note's cursor value).
+            last_cursor: Omit on the first request. For the next page, pass the last note's cursor value from the previous response.
         """
         return self._get(
             "/api/xiaohongshu/get-user-note-list/v4",
