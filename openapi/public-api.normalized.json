@@ -93,6 +93,9 @@
               "null"
             ]
           },
+          "reason": {
+            "type": "string"
+          },
           "recordTime": {
             "type": [
               "string",
@@ -36237,5 +36240,5 @@
       "x-platform-id": "1688"
     }
   ],
-  "x-openapi-release-id": "0f997eb5633f3ec5"
+  "x-openapi-release-id": "73f85fb61df3494d"
 }

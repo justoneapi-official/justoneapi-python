@@ -31,5 +31,6 @@ class Result(BaseModel):
     code: Code
     data: Any
     message: str | None
+    reason: str | None = None
     recordTime: str | None
     requestId: str | None = None
