@@ -7,6 +7,7 @@ import re
 import subprocess
 import sys
 import textwrap
+import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -76,7 +77,14 @@ def dump_json(data: dict[str, Any], path: Path) -> None:
 
 def fetch_openapi(url: str, username: str, password: str) -> dict[str, Any]:
     with httpx.Client(timeout=60, follow_redirects=True) as client:
-        response = client.get(url, auth=(username, password))
+        for attempt in range(1, 4):
+            try:
+                response = client.get(url, auth=(username, password))
+                break
+            except (httpx.ConnectTimeout, httpx.ReadTimeout):
+                if attempt == 3:
+                    raise
+                time.sleep(2**attempt)
         response.raise_for_status()
         return response.json()
 
