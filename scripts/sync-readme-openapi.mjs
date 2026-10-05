@@ -15,6 +15,7 @@ import { spawnSync } from "node:child_process";
 const GENERATOR = "scripts/update-readme-api-list.mjs";
 const CACHE_FILE = "i18n-cache.json";
 const MAX_ATTEMPTS = 3;
+const MAX_FETCH_ATTEMPTS = 3;
 
 function run(command, args, cwd, env = {}, allowFailure = false) {
   const result = spawnSync(command, args, {
@@ -72,14 +73,26 @@ async function cacheOpenApi(root, destination) {
     const password = process.env.OPENAPI_BASIC_AUTH_PASS?.trim() || process.env.OPENAPI_BASIC_AUTH_PASSWORD?.trim();
     if (!username || !password) throw new Error("OpenAPI basic authentication credentials are required.");
     const url = process.env.OPENAPI_URL?.trim() || "https://api.justoneapi.com/v3/api-docs/public-api";
-    const timeout = Number(process.env.OPENAPI_FETCH_TIMEOUT_MS || "30000");
+    const timeout = Number(process.env.OPENAPI_FETCH_TIMEOUT_MS || "60000");
     if (!Number.isFinite(timeout) || timeout <= 0) throw new Error("Invalid OPENAPI_FETCH_TIMEOUT_MS.");
-    const response = await fetch(url, {
-      headers: { Accept: "application/json", Authorization: `Basic ${Buffer.from(`${username}:${password}`).toString("base64")}` },
-      signal: AbortSignal.timeout(timeout),
-    });
-    if (!response.ok) throw new Error(`OpenAPI fetch failed: HTTP ${response.status}`);
-    api = await response.json();
+    for (let attempt = 1; attempt <= MAX_FETCH_ATTEMPTS; attempt += 1) {
+      try {
+        const response = await fetch(url, {
+          headers: { Accept: "application/json", Authorization: `Basic ${Buffer.from(`${username}:${password}`).toString("base64")}` },
+          signal: AbortSignal.timeout(timeout),
+        });
+        if (!response.ok) throw new Error(`OpenAPI fetch failed: HTTP ${response.status}`);
+        api = await response.json();
+        break;
+      } catch (error) {
+        const isTimeout = error?.name === "TimeoutError" ||
+          ["UND_ERR_CONNECT_TIMEOUT", "UND_ERR_HEADERS_TIMEOUT", "UND_ERR_BODY_TIMEOUT"].includes(error?.cause?.code);
+        if (!isTimeout || attempt === MAX_FETCH_ATTEMPTS) throw error;
+        const delay = 2 ** attempt * 1000;
+        console.warn(`OpenAPI fetch timed out; retrying in ${delay / 1000}s (attempt ${attempt + 1}/${MAX_FETCH_ATTEMPTS}).`);
+        await new Promise((resolve) => setTimeout(resolve, delay));
+      }
+    }
   }
   if (!api || typeof api.paths !== "object" || !api.paths || Array.isArray(api.paths)) {
     throw new Error("OpenAPI must contain a paths object.");

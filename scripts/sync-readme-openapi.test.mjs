@@ -71,9 +71,9 @@ async function service(t) {
   return { counts, env: { OPENAPI_URL: `${url}/openapi`, OPENAPI_BASIC_AUTH_USER: "fixture", OPENAPI_BASIC_AUTH_PASS: "fixture", DEEPSEEK_BASE_URL: url, DEEPSEEK_API_KEY: "fixture" } };
 }
 
-function invoke(root, env, publish = true) {
+function invoke(root, env, publish = true, nodeArgs = []) {
   return new Promise((resolve, reject) => {
-    const child = spawn(process.execPath, [path.join(root, "scripts/sync-readme-openapi.mjs"), ...(publish ? ["--publish"] : [])], {
+    const child = spawn(process.execPath, [...nodeArgs, path.join(root, "scripts/sync-readme-openapi.mjs"), ...(publish ? ["--publish"] : [])], {
       cwd: root,
       env: { ...gitEnv, README_SYNC_TARGETS: "README.en.md:en,README.md:zh", ...env },
     });
@@ -84,6 +84,48 @@ function invoke(root, env, publish = true) {
     child.on("error", reject);
     child.on("close", (status) => resolve({ status, stdout, stderr }));
   });
+}
+
+function installFetchProbe(f, specUrl, outcomes = []) {
+  const preload = path.join(f.scratch, "fetch-probe.mjs");
+  const traceFile = path.join(f.scratch, "fetch-trace.json");
+  fs.writeFileSync(preload, `
+import fs from "node:fs";
+const traceFile = ${JSON.stringify(traceFile)};
+const specUrl = ${JSON.stringify(specUrl)};
+const outcomes = ${JSON.stringify(outcomes)};
+const api = ${JSON.stringify(api)};
+const trace = { requests: 0, timeouts: [], delays: [] };
+const save = () => fs.writeFileSync(traceFile, JSON.stringify(trace));
+save();
+const timeout = AbortSignal.timeout.bind(AbortSignal);
+AbortSignal.timeout = (ms) => { trace.timeouts.push(ms); save(); return timeout(ms); };
+const realFetch = globalThis.fetch;
+globalThis.fetch = async (url, options) => {
+  if (url !== specUrl) return realFetch(url, options);
+  trace.requests += 1;
+  save();
+  const outcome = outcomes.shift() || {};
+  if (outcome.timeout) throw new DOMException("Simulated request timeout", "TimeoutError");
+  if (outcome.causeCode) throw new TypeError("fetch failed", { cause: { code: outcome.causeCode } });
+  const response = new Response(outcome.body ?? JSON.stringify(api), { status: outcome.status ?? 200 });
+  if (outcome.bodyTimeout) response.json = async () => { throw new DOMException("Simulated body timeout", "TimeoutError"); };
+  return response;
+};
+const realSetTimeout = globalThis.setTimeout;
+globalThis.setTimeout = (callback, ms, ...args) => {
+  if (ms === 2000 || ms === 4000) { trace.delays.push(ms); save(); return realSetTimeout(callback, 0, ...args); }
+  return realSetTimeout(callback, ms, ...args);
+};
+`);
+  return { nodeArgs: ["--import", preload], trace: () => JSON.parse(fs.readFileSync(traceFile, "utf8")) };
+}
+
+function assertUnpublished(f) {
+  assert.equal(git(f.root, "rev-parse", "HEAD"), f.initial);
+  assert.equal(git(f.root, "--git-dir=" + f.remote, "rev-parse", "main"), f.initial);
+  assert.equal(git(f.root, "status", "--porcelain"), "");
+  assert.equal((git(f.root, "worktree", "list", "--porcelain").match(/^worktree /gm) || []).length, 1);
 }
 
 function installRace(f, competitor = null) {
@@ -164,4 +206,99 @@ test("three advancing-main rejections stop without changing the caller checkout"
   assert.equal(git(f.root, "rev-parse", "HEAD"), f.initial);
   assert.equal(git(f.root, "status", "--porcelain"), "");
   assert.equal((git(f.root, "worktree", "list", "--porcelain").match(/^worktree /gm) || []).length, 1);
+});
+
+test("OpenAPI defaults to 60 seconds and preserves a custom timeout", async (t) => {
+  const f = fixture(t);
+  const server = await service(t);
+  const probe = installFetchProbe(f, server.env.OPENAPI_URL);
+  for (const timeout of [undefined, "1234"]) {
+    const result = await invoke(f.root, { ...server.env, OPENAPI_FETCH_TIMEOUT_MS: timeout }, false, probe.nodeArgs);
+    assert.equal(result.status, 0, result.stderr);
+    assert.deepEqual(probe.trace(), { requests: 1, timeouts: [timeout ? 1234 : 60000], delays: [] });
+    assertUnpublished(f);
+  }
+});
+
+test("OpenAPI request and body timeouts recover on the next attempt", async (t) => {
+  const f = fixture(t);
+  const server = await service(t);
+  for (const outcome of [{ timeout: true }, { bodyTimeout: true }]) {
+    const probe = installFetchProbe(f, server.env.OPENAPI_URL, [outcome]);
+    const result = await invoke(f.root, server.env, false, probe.nodeArgs);
+    assert.equal(result.status, 0, result.stderr);
+    assert.deepEqual(probe.trace(), { requests: 2, timeouts: [60000, 60000], delays: [2000] });
+    assert.match(result.stderr, /attempt 2\/3/);
+    assertUnpublished(f);
+  }
+});
+
+test("two OpenAPI timeouts recover on the third attempt with 2 and 4 second backoff", async (t) => {
+  const f = fixture(t);
+  const server = await service(t);
+  const probe = installFetchProbe(f, server.env.OPENAPI_URL, [{ timeout: true }, { timeout: true }]);
+  const result = await invoke(f.root, server.env, false, probe.nodeArgs);
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(probe.trace(), { requests: 3, timeouts: [60000, 60000, 60000], delays: [2000, 4000] });
+  assertUnpublished(f);
+});
+
+test("three OpenAPI timeouts stop before translating or publishing", async (t) => {
+  const f = fixture(t);
+  const server = await service(t);
+  const probe = installFetchProbe(f, server.env.OPENAPI_URL, Array.from({ length: 3 }, () => ({ timeout: true })));
+  const result = await invoke(f.root, server.env, true, probe.nodeArgs);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /Simulated request timeout/);
+  assert.deepEqual(probe.trace(), { requests: 3, timeouts: [60000, 60000, 60000], delays: [2000, 4000] });
+  assert.deepEqual(server.counts, { spec: 0, translation: 0 });
+  assertUnpublished(f);
+});
+
+test("Undici connection, header, and body timeout causes are retried", async (t) => {
+  const f = fixture(t);
+  const server = await service(t);
+  for (const causeCode of ["UND_ERR_CONNECT_TIMEOUT", "UND_ERR_HEADERS_TIMEOUT", "UND_ERR_BODY_TIMEOUT"]) {
+    const probe = installFetchProbe(f, server.env.OPENAPI_URL, [{ causeCode }]);
+    const result = await invoke(f.root, server.env, false, probe.nodeArgs);
+    assert.equal(result.status, 0, result.stderr);
+    assert.deepEqual(probe.trace(), { requests: 2, timeouts: [60000, 60000], delays: [2000] });
+    assertUnpublished(f);
+  }
+});
+
+test("HTTP and JSON errors are not retried or published", async (t) => {
+  const f = fixture(t);
+  const server = await service(t);
+  for (const outcome of [{ status: 401 }, { status: 503 }, { body: "not JSON" }]) {
+    const probe = installFetchProbe(f, server.env.OPENAPI_URL, [outcome]);
+    const result = await invoke(f.root, server.env, true, probe.nodeArgs);
+    assert.equal(result.status, 1);
+    assert.deepEqual(probe.trace(), { requests: 1, timeouts: [60000], delays: [] });
+    assert.deepEqual(server.counts, { spec: 0, translation: 0 });
+    assertUnpublished(f);
+  }
+});
+
+test("non-timeout transport errors are not retried", async (t) => {
+  const f = fixture(t);
+  const server = await service(t);
+  const probe = installFetchProbe(f, server.env.OPENAPI_URL, [{ causeCode: "ECONNRESET" }]);
+  const result = await invoke(f.root, server.env, true, probe.nodeArgs);
+  assert.equal(result.status, 1);
+  assert.deepEqual(probe.trace(), { requests: 1, timeouts: [60000], delays: [] });
+  assertUnpublished(f);
+});
+
+test("invalid OpenAPI timeout values fail before fetching or publishing", async (t) => {
+  const f = fixture(t);
+  const server = await service(t);
+  const probe = installFetchProbe(f, server.env.OPENAPI_URL);
+  for (const timeout of ["0", "-1", "NaN", "Infinity"]) {
+    const result = await invoke(f.root, { ...server.env, OPENAPI_FETCH_TIMEOUT_MS: timeout }, true, probe.nodeArgs);
+    assert.equal(result.status, 1);
+    assert.match(result.stderr, /Invalid OPENAPI_FETCH_TIMEOUT_MS/);
+    assert.deepEqual(probe.trace(), { requests: 0, timeouts: [], delays: [] });
+    assertUnpublished(f);
+  }
 });
