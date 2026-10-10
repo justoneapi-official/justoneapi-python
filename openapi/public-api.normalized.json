@@ -31742,6 +31742,93 @@
         ]
       }
     },
+    "/api/xiaohongshu/get-user-faved-note-list/v1": {
+      "get": {
+        "description": "Retrieves a Xiaohongshu (RedNote) user's favorited notes by user ID with cursor pagination. Use it to review a user's saved content and research content interests.",
+        "operationId": "getApiXiaohongshuGetUserFavedNoteListV1",
+        "parameters": [
+          {
+            "description": "Unique user identifier on Xiaohongshu.",
+            "in": "query",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "user_id"
+          },
+          {
+            "description": "For the next page, pass the cursor from the previous response. Omit or pass an empty value for the first page.",
+            "in": "query",
+            "name": "lastCursor",
+            "required": false,
+            "schema": {
+              "default": "",
+              "type": "string"
+            },
+            "x-sdk-python-name": "last_cursor"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "User Favorited Notes",
+        "tags": [
+          "Xiaohongshu (RedNote)"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "user-favorited-notes-v1",
+        "x-endpoint-family": "xiaohongshu_get_user_faved_note_list",
+        "x-highlights": [
+          {
+            "content": "First-page, subsequent-page, empty collection, and private collection results are billable.",
+            "kind": "GUIDANCE",
+            "type": "info"
+          }
+        ],
+        "x-order": "12001320",
+        "x-sdk-class-name": "XiaohongshuResource",
+        "x-sdk-method-name": "get_user_faved_note_list_v1",
+        "x-sdk-resource": "xiaohongshu",
+        "x-search-aliases": [
+          "小红书用户收藏笔记列表",
+          "小红书收藏笔记",
+          "RedNote user saved notes"
+        ]
+      }
+    },
     "/api/xiaohongshu/get-user-note-list/v1": {
       "get": {
         "description": "Get Xiaohongshu (RedNote) user Published Notes data, including note metadata, covers, publish times, pagination cursors, and engagement signals, for account monitoring, creator research, and content analysis.",
@@ -36240,5 +36327,5 @@
       "x-platform-id": "1688"
     }
   ],
-  "x-openapi-release-id": "73f85fb61df3494d"
+  "x-openapi-release-id": "4c9d181327a3440f"
 }

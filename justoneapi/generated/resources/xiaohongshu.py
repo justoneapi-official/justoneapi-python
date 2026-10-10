@@ -337,6 +337,29 @@ class XiaohongshuResource(BaseResource):
             },
         )
 
+    def get_user_faved_note_list_v1(
+        self,
+        *,
+        user_id: str,
+        last_cursor: str | None = "",
+    ) -> ApiResponse[Any]:
+        """
+        User Favorited Notes
+
+        Retrieves a Xiaohongshu (RedNote) user's favorited notes by user ID with cursor pagination. Use it to review a user's saved content and research content interests.
+
+        Args:
+            user_id: Unique user identifier on Xiaohongshu.
+            last_cursor: For the next page, pass the cursor from the previous response. Omit or pass an empty value for the first page.
+        """
+        return self._get(
+            "/api/xiaohongshu/get-user-faved-note-list/v1",
+            {
+                "userId": user_id,
+                "lastCursor": last_cursor,
+            },
+        )
+
     def get_note_detail_v1(
         self,
         *,
