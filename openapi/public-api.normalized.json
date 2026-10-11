@@ -15244,119 +15244,6 @@
         ]
       }
     },
-    "/api/pixabay/search-image/v1": {
-      "get": {
-        "description": "Searches public Pixabay photo result pages by keyword with a requested image count and page controls. Each result includes its Pixabay photo page, public contributor information when shown, and a source-provided image URL.",
-        "operationId": "getApiPixabaySearchImageV1",
-        "parameters": [
-          {
-            "description": "Photo search keyword, up to 100 characters without control characters.",
-            "in": "query",
-            "name": "keyword",
-            "required": true,
-            "schema": {
-              "maxLength": 100,
-              "minLength": 1,
-              "type": "string"
-            },
-            "x-sdk-python-name": "keyword"
-          },
-          {
-            "description": "Maximum number of unique photos to return.",
-            "in": "query",
-            "name": "limit",
-            "required": false,
-            "schema": {
-              "maximum": 10000,
-              "minimum": 1,
-              "type": "string"
-            },
-            "x-sdk-python-name": "limit"
-          },
-          {
-            "description": "First result page to search, starting from 1.",
-            "in": "query",
-            "name": "startPage",
-            "required": false,
-            "schema": {
-              "maximum": 10000,
-              "minimum": 1,
-              "type": "string"
-            },
-            "x-sdk-python-name": "start_page"
-          },
-          {
-            "description": "Maximum number of pages to visit in this request. The last page must not exceed 10000.",
-            "in": "query",
-            "name": "maxPages",
-            "required": false,
-            "schema": {
-              "maximum": 100,
-              "minimum": 1,
-              "type": "string"
-            },
-            "x-sdk-python-name": "max_pages"
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Result"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "$ref": "#/components/responses/ResultBadRequestResponse"
-          },
-          "401": {
-            "$ref": "#/components/responses/ResultUnauthorizedResponse"
-          },
-          "403": {
-            "$ref": "#/components/responses/ResultForbiddenResponse"
-          },
-          "429": {
-            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
-          },
-          "500": {
-            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
-          },
-          "503": {
-            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
-          }
-        },
-        "security": [
-          {
-            "tokenAuth": []
-          }
-        ],
-        "summary": "Photo Search",
-        "tags": [
-          "Pixabay"
-        ],
-        "x-api-version": "v1",
-        "x-docs-slug": "photo-search-v1",
-        "x-endpoint-family": "pixabay_search_image",
-        "x-highlights": [
-          {
-            "content": "An interrupted deep-page search may return partial progress. Check completion before treating the requested image count as fulfilled.",
-            "kind": "GUIDANCE",
-            "type": "warning"
-          }
-        ],
-        "x-order": "38002000",
-        "x-sdk-class-name": "PixabayResource",
-        "x-sdk-method-name": "search_image_v1",
-        "x-sdk-resource": "pixabay",
-        "x-search-aliases": [
-          "Pixabay图片搜索",
-          "Pixabay keyword photo search"
-        ]
-      }
-    },
     "/api/qq-huxuan/cgi-bin/advertiser/finder_publisher/detail/v1": {
       "get": {
         "description": "Retrieves QQ Huxuan Video Account creator details for a known creator app ID. Use it to review a shortlisted video creator before Tencent Huxuan campaign selection.",
@@ -22600,166 +22487,6 @@
           "X 推特搜索接口",
           "Twitter 时间线搜索",
           "推特关键词分类搜索"
-        ]
-      }
-    },
-    "/api/vcg/search-image/v1": {
-      "get": {
-        "description": "Searches VCG images by keyword with page controls, resource ID exclusions, and an optional 500px Select/Prime filter excluding AIGC. Use full image details for collection or candidate_ids for single-page ID inspection.",
-        "operationId": "getApiVcgSearchImageV1",
-        "parameters": [
-          {
-            "description": "Image search keyword, up to 200 characters without control characters.",
-            "in": "query",
-            "name": "keyword",
-            "required": true,
-            "schema": {
-              "maxLength": 200,
-              "minLength": 1,
-              "type": "string"
-            },
-            "x-sdk-python-name": "keyword"
-          },
-          {
-            "description": "Maximum number of unique images to return, excluding the supplied resource IDs.",
-            "in": "query",
-            "name": "limit",
-            "required": false,
-            "schema": {
-              "maximum": 10000,
-              "minimum": 1,
-              "type": "string"
-            },
-            "x-sdk-python-name": "limit"
-          },
-          {
-            "description": "First page to search, starting from 1. For continuation, use the next page returned by the previous request.",
-            "in": "query",
-            "name": "startPage",
-            "required": false,
-            "schema": {
-              "maximum": 10000,
-              "minimum": 1,
-              "type": "string"
-            },
-            "x-sdk-python-name": "start_page"
-          },
-          {
-            "description": "Maximum number of pages to visit in this request. The last requested page must not exceed 10000.",
-            "in": "query",
-            "name": "maxPages",
-            "required": false,
-            "schema": {
-              "maximum": 100,
-              "minimum": 1,
-              "type": "string"
-            },
-            "x-sdk-python-name": "max_pages"
-          },
-          {
-            "description": "Previously collected VCG resource IDs to exclude when continuing a search. Supply comma-separated IDs or repeat this query parameter.",
-            "in": "query",
-            "name": "excludeResourceIds",
-            "required": false,
-            "schema": {
-              "items": {
-                "pattern": "^VCG[A-Za-z0-9_-]{1,125}$",
-                "type": "string"
-              },
-              "maxItems": 100000,
-              "type": "array"
-            },
-            "x-sdk-python-name": "exclude_resource_ids"
-          },
-          {
-            "description": "Optional brand and AIGC search restriction. Keep this value unchanged across pagination and continuation.\n\nAvailable Values:\n- `all`: Keep the default search without additional brand or AIGC filters.\n- `selected_500px_no_aigc`: Select only 500px Select and 500px Prime, exclude AIGC using the site's filter, and retain best ordering. Do not expand to other brands when results run out.",
-            "in": "query",
-            "name": "contentFilter",
-            "required": false,
-            "schema": {
-              "default": "all",
-              "description": "VCG search content filter",
-              "enum": [
-                "all",
-                "selected_500px_no_aigc"
-              ],
-              "type": "string"
-            },
-            "x-sdk-python-name": "content_filter"
-          },
-          {
-            "description": "Result mode: full returns normal image details; candidate_ids only inspects one page of resource IDs and requires limit 10000, maxPages 1, and no excluded resource IDs. A candidate inspection does not complete or advance an image search.\n\nAvailable Values:\n- `full`: Return the normal image search result with complete image details.\n- `candidate_ids`: Inspect resource IDs from one validated search page without image details. Requires limit 10000, maxPages 1, and no excluded resource IDs; this is not an image result or a completion receipt.",
-            "in": "query",
-            "name": "resultMode",
-            "required": false,
-            "schema": {
-              "default": "full",
-              "description": "VCG search result mode",
-              "enum": [
-                "full",
-                "candidate_ids"
-              ],
-              "type": "string"
-            },
-            "x-sdk-python-name": "result_mode"
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Result"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "$ref": "#/components/responses/ResultBadRequestResponse"
-          },
-          "401": {
-            "$ref": "#/components/responses/ResultUnauthorizedResponse"
-          },
-          "403": {
-            "$ref": "#/components/responses/ResultForbiddenResponse"
-          },
-          "429": {
-            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
-          },
-          "500": {
-            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
-          },
-          "503": {
-            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
-          }
-        },
-        "security": [
-          {
-            "tokenAuth": []
-          }
-        ],
-        "summary": "Image Search",
-        "tags": [
-          "VCG"
-        ],
-        "x-api-version": "v1",
-        "x-docs-slug": "image-search-v1",
-        "x-endpoint-family": "vcg_search_image",
-        "x-highlights": [
-          {
-            "content": "An interrupted search may return partial progress. Check completion before treating the requested image count as fulfilled.",
-            "kind": "GUIDANCE",
-            "type": "warning"
-          }
-        ],
-        "x-order": "37001000",
-        "x-sdk-class-name": "VcgResource",
-        "x-sdk-method-name": "search_image_v1",
-        "x-sdk-resource": "vcg",
-        "x-search-aliases": [
-          "视觉中国图片搜索",
-          "VCG keyword image search"
         ]
       }
     },
@@ -35911,19 +35638,6 @@
       "x-platform-id": "weibo"
     },
     {
-      "description": "VCG keyword image search with pagination for image discovery and collection workflows.",
-      "name": "VCG",
-      "x-platform-aliases": [
-        "VCG",
-        "视觉中国"
-      ],
-      "x-platform-detection-aliases": [
-        "VCG",
-        "视觉中国"
-      ],
-      "x-platform-id": "vcg"
-    },
-    {
       "description": "Twitter profiles and timelines for creator research, account monitoring, and content aggregation.",
       "name": "Twitter",
       "x-platform-aliases": [
@@ -36065,19 +35779,6 @@
         "互选"
       ],
       "x-platform-id": "qq-huxuan-creator-marketplace"
-    },
-    {
-      "description": "Pixabay keyword photo search with deep pagination for image discovery and collection workflows.",
-      "name": "Pixabay",
-      "x-platform-aliases": [
-        "Pixabay",
-        "Pixabay 图片"
-      ],
-      "x-platform-detection-aliases": [
-        "Pixabay",
-        "Pixabay 图片"
-      ],
-      "x-platform-id": "pixabay"
     },
     {
       "description": "Large-language-model answer collection from supported client experiences for response monitoring and comparison.",
@@ -36327,5 +36028,5 @@
       "x-platform-id": "1688"
     }
   ],
-  "x-openapi-release-id": "4c9d181327a3440f"
+  "x-openapi-release-id": "15101334462a0acb"
 }
