@@ -597,17 +597,9 @@ except BusinessError as exc:
 
 - [豆包回答 (V1)（已弃用）](https://docs.justoneapi.com/zh/api/llm/doubao-answer-v1-deprecated?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_justoneapi_python&utm_content=repo_readme_api_list#deprecated) <!-- api-operation:GET /api/llm/doubao-answer/v1 -->
 
-### VCG
-
-- [图片搜索 (V1)](https://docs.justoneapi.com/zh/api/vcg/image-search-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/vcg/search-image/v1 -->
-
 ### ZCOOL
 
 - [图片搜索 (V1)](https://docs.justoneapi.com/zh/api/zcool/image-search-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/zcool/search-image/v1 -->
-
-### Pixabay
-
-- [照片搜索 (V1)](https://docs.justoneapi.com/zh/api/pixabay/photo-search-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/pixabay/search-image/v1 -->
 
 <!-- API_LIST_END -->
 

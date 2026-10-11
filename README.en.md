@@ -595,17 +595,9 @@ The API list below is generated from OpenAPI and shows the current public API ca
 
 - [Doubao Answer (V1) (Deprecated)](https://docs.justoneapi.com/en/api/llm/doubao-answer-v1-deprecated?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_justoneapi_python&utm_content=repo_readme_api_list#deprecated) <!-- api-operation:GET /api/llm/doubao-answer/v1 -->
 
-### VCG
-
-- [Image Search (V1)](https://docs.justoneapi.com/en/api/vcg/image-search-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/vcg/search-image/v1 -->
-
 ### ZCOOL
 
 - [Image Search (V1)](https://docs.justoneapi.com/en/api/zcool/image-search-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/zcool/search-image/v1 -->
-
-### Pixabay
-
-- [Photo Search (V1)](https://docs.justoneapi.com/en/api/pixabay/photo-search-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/pixabay/search-image/v1 -->
 
 <!-- API_LIST_END -->
 
