@@ -13231,6 +13231,7 @@
     },
     "/api/jd/get-item-detail/v2": {
       "get": {
+        "deprecated": true,
         "description": "Access the asynchronous JD.com product detail workflow from the Just One API dashboard Task Management page. Use it to submit and download product detail research tasks.",
         "operationId": "getApiJdGetItemDetailV2",
         "parameters": [
@@ -13285,6 +13286,7 @@
           "JD.com"
         ],
         "x-api-version": "v2",
+        "x-docs-hidden": true,
         "x-docs-slug": "product-details-v2",
         "x-endpoint-family": "jd_get_item_detail",
         "x-highlights": [
@@ -18123,6 +18125,7 @@
     },
     "/api/taobao/get-item-detail/v2": {
       "get": {
+        "deprecated": true,
         "description": "Access the asynchronous Taobao and Tmall product detail workflow from the Just One API dashboard Task Management page. Use it to submit and download product detail research tasks.",
         "operationId": "getApiTaobaoGetItemDetailV2",
         "parameters": [
@@ -18177,6 +18180,7 @@
           "Taobao and Tmall"
         ],
         "x-api-version": "v2",
+        "x-docs-hidden": true,
         "x-docs-slug": "product-details-v2",
         "x-endpoint-family": "taobao_get_item_detail",
         "x-highlights": [
@@ -36028,5 +36032,5 @@
       "x-platform-id": "1688"
     }
   ],
-  "x-openapi-release-id": "15101334462a0acb"
+  "x-openapi-release-id": "d10193f81ba66467"
 }
