@@ -57,7 +57,7 @@ class JdResource(BaseResource):
         """
         Product Details
 
-        Retrieves JD.com product details for a known item ID. Use it to review a known listing during product research or offer comparison.
+        Retrieve JD.com product details by item ID. Use it to review product information and description images for catalog research or product displays.
 
         Args:
             item_id: A unique product identifier on JD.com (item ID).

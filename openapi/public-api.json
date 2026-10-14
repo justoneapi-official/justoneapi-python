@@ -13182,8 +13182,7 @@
     },
     "/api/jd/get-item-detail/v3": {
       "get": {
-        "deprecated": true,
-        "description": "Retrieves JD.com product details for a known item ID. Use it to review a known listing during product research or offer comparison.",
+        "description": "Retrieve JD.com product details by item ID. Use it to review product information and description images for catalog research or product displays.",
         "operationId": "getApiJdGetItemDetailV3",
         "parameters": [
           {
@@ -13240,47 +13239,9 @@
           "JD.com"
         ],
         "x-api-version": "v3",
-        "x-docs-hidden": true,
         "x-docs-slug": "product-details-v3",
         "x-endpoint-family": "jd_get_item_detail",
-        "x-highlights": [
-          {
-            "aliases": [
-              "available coupons",
-              "coupon list",
-              "可用优惠券",
-              "优惠券"
-            ],
-            "concept": "available_coupons",
-            "content": "This endpoint can retrieve available coupons.",
-            "kind": "CAPABILITY",
-            "type": "tip"
-          },
-          {
-            "aliases": [
-              "price after coupon",
-              "post-coupon price",
-              "券后价",
-              "优惠券后价格"
-            ],
-            "concept": "post_coupon_price",
-            "content": "This endpoint can retrieve the price after applying coupons.",
-            "kind": "CAPABILITY",
-            "type": "tip"
-          },
-          {
-            "aliases": [
-              "product coverage",
-              "supported products",
-              "商品覆盖",
-              "支持商品"
-            ],
-            "concept": "product_coverage",
-            "content": "Some products may not be available through this endpoint.",
-            "kind": "CONDITION",
-            "type": "tip"
-          }
-        ],
+        "x-highlights": [],
         "x-order": "19001030",
         "x-search-aliases": [
           "JD.com product details",
@@ -35419,5 +35380,5 @@
       "x-platform-id": "1688"
     }
   ],
-  "x-openapi-release-id": "971b56c1bdc40b26"
+  "x-openapi-release-id": "7d13ad694c2a5dbb"
 }
