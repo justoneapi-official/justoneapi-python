@@ -89,6 +89,26 @@ class JdResource(BaseResource):
             },
         )
 
+    def get_item_description_images_v1(
+        self,
+        *,
+        item_id: str,
+    ) -> ApiResponse[Any]:
+        """
+        Product Description Images
+
+        Retrieve JD.com product description images and product attributes by item ID. Use it to review product introductions for catalog research and product presentation.
+
+        Args:
+            item_id: A unique product identifier on JD.com (item ID).
+        """
+        return self._get(
+            "/api/jd/get-item-description-images/v1",
+            {
+                "itemId": item_id,
+            },
+        )
+
     def get_item_price_v1(
         self,
         *,

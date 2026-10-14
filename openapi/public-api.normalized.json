@@ -13156,6 +13156,77 @@
         ]
       }
     },
+    "/api/jd/get-item-description-images/v1": {
+      "get": {
+        "description": "Retrieve JD.com product description images and product attributes by item ID. Use it to review product introductions for catalog research and product presentation.",
+        "operationId": "getApiJdGetItemDescriptionImagesV1",
+        "parameters": [
+          {
+            "description": "A unique product identifier on JD.com (item ID).",
+            "in": "query",
+            "name": "itemId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "item_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Product Description Images",
+        "tags": [
+          "JD.com"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "product-description-images-v1",
+        "x-endpoint-family": "jd_get_item_description_images",
+        "x-highlights": [],
+        "x-order": "19001045",
+        "x-sdk-class-name": "JdResource",
+        "x-sdk-method-name": "get_item_description_images_v1",
+        "x-sdk-resource": "jd",
+        "x-search-aliases": [
+          "京东商品描述图",
+          "京东商品介绍图",
+          "京东商品属性",
+          "JD product description images"
+        ]
+      }
+    },
     "/api/jd/get-item-detail/v1": {
       "get": {
         "description": "Retrieve JD.com product details for a known item ID. Use it to inspect an individual product after finding its identifier.",
@@ -36034,5 +36105,5 @@
       "x-platform-id": "1688"
     }
   ],
-  "x-openapi-release-id": "3e67455f2332add0"
+  "x-openapi-release-id": "971b56c1bdc40b26"
 }
