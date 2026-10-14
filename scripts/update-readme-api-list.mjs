@@ -397,7 +397,7 @@ function buildDisplayTitle(operation, language, translator) {
 }
 
 function getUtmCampaign() {
-  return "justoneapi_justoneapi_python";
+  return "justoneapi_official_justoneapi_python";
 }
 
 function buildUtmQuery(language) {
