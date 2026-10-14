@@ -13075,7 +13075,73 @@
         "x-api-version": "v1",
         "x-docs-slug": "product-details-v1",
         "x-endpoint-family": "jd_get_item_detail",
-        "x-highlights": [],
+        "x-highlights": [
+          {
+            "aliases": [
+              "product price",
+              "price",
+              "商品价格",
+              "价格"
+            ],
+            "concept": "product_price",
+            "content": "Product price information is available.",
+            "kind": "CAPABILITY",
+            "title": "Price",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "product attributes",
+              "product parameters",
+              "商品属性",
+              "商品参数"
+            ],
+            "concept": "product_attributes",
+            "content": "Provides basic product attributes. Use V3 or V4 for a more detailed parameter list.",
+            "kind": "GUIDANCE",
+            "title": "Attributes",
+            "type": "warning"
+          },
+          {
+            "aliases": [
+              "SKU options",
+              "product variants",
+              "SKU规格",
+              "商品规格"
+            ],
+            "concept": "sku_options",
+            "content": "Provides current-SKU information. Use V3 or V4 for a more complete variant list.",
+            "kind": "GUIDANCE",
+            "title": "SKU options",
+            "type": "warning"
+          },
+          {
+            "aliases": [
+              "main images",
+              "carousel images",
+              "商品主图",
+              "商品轮播图"
+            ],
+            "concept": "main_images",
+            "content": "Provides main and carousel images for the selected SKU.",
+            "kind": "CAPABILITY",
+            "title": "Main and carousel images",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "description images",
+              "product description images",
+              "商品详情图",
+              "详情描述图"
+            ],
+            "concept": "description_images",
+            "content": "A dedicated description-image list and description HTML may be absent. Use V3 for this content.",
+            "kind": "CONDITION",
+            "title": "Description images",
+            "type": "warning"
+          }
+        ],
         "x-order": "19001000",
         "x-search-aliases": [
           "JD.com product details",
@@ -13241,8 +13307,75 @@
         "x-api-version": "v3",
         "x-docs-slug": "product-details-v3",
         "x-endpoint-family": "jd_get_item_detail",
-        "x-highlights": [],
+        "x-highlights": [
+          {
+            "aliases": [
+              "product price",
+              "price",
+              "商品价格",
+              "价格"
+            ],
+            "concept": "product_price",
+            "content": "Product price information is available.",
+            "kind": "CAPABILITY",
+            "title": "Price",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "product attributes",
+              "product parameters",
+              "商品属性",
+              "商品参数"
+            ],
+            "concept": "product_attributes",
+            "content": "Provides a structured product attribute list with names and values.",
+            "kind": "CAPABILITY",
+            "title": "Attributes",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "SKU options",
+              "product variants",
+              "SKU规格",
+              "商品规格"
+            ],
+            "concept": "sku_options",
+            "content": "Provides SKU identifiers, option names and images.",
+            "kind": "CAPABILITY",
+            "title": "SKU options",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "main images",
+              "carousel images",
+              "商品主图",
+              "商品轮播图"
+            ],
+            "concept": "main_images",
+            "content": "Provides structured main and carousel images for the selected SKU.",
+            "kind": "CAPABILITY",
+            "title": "Main and carousel images",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "description images",
+              "product description images",
+              "商品详情图",
+              "详情描述图"
+            ],
+            "concept": "description_images",
+            "content": "Provides a separate description-image list (desc_img) and description HTML (desc), with more complete description coverage than V4.",
+            "kind": "CAPABILITY",
+            "title": "Description images",
+            "type": "info"
+          }
+        ],
         "x-order": "19001030",
+        "x-recommended": true,
         "x-search-aliases": [
           "JD.com product details",
           "JD item ID lookup",
@@ -13255,7 +13388,7 @@
     },
     "/api/jd/get-item-detail/v4": {
       "get": {
-        "description": "Retrieve JD.com product details by item ID, including a complete set of product images. Use it to review product information and images for catalog research or ecommerce analysis.",
+        "description": "Retrieve JD.com product details by item ID. Use it to review product information and images for catalog research or ecommerce analysis.",
         "operationId": "getApiJdGetItemDetailV4",
         "parameters": [
           {
@@ -13314,7 +13447,73 @@
         "x-api-version": "v4",
         "x-docs-slug": "product-details-v4",
         "x-endpoint-family": "jd_get_item_detail",
-        "x-highlights": [],
+        "x-highlights": [
+          {
+            "aliases": [
+              "product price",
+              "price",
+              "商品价格",
+              "价格"
+            ],
+            "concept": "product_price",
+            "content": "Product price information is available.",
+            "kind": "CAPABILITY",
+            "title": "Price",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "product attributes",
+              "product parameters",
+              "商品属性",
+              "商品参数"
+            ],
+            "concept": "product_attributes",
+            "content": "Provides a grouped product-parameter table.",
+            "kind": "CAPABILITY",
+            "title": "Attributes",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "SKU options",
+              "product variants",
+              "SKU规格",
+              "商品规格"
+            ],
+            "concept": "sku_options",
+            "content": "Provides SKU identifiers, option names and images.",
+            "kind": "CAPABILITY",
+            "title": "SKU options",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "main images",
+              "carousel images",
+              "商品主图",
+              "商品轮播图"
+            ],
+            "concept": "main_images",
+            "content": "Provides main and carousel images for the selected SKU.",
+            "kind": "CAPABILITY",
+            "title": "Main and carousel images",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "description images",
+              "product description images",
+              "商品详情图",
+              "详情描述图"
+            ],
+            "concept": "description_images",
+            "content": "img_list may mix main images with some description or illustration images. Use V3 for a separate, more complete description-image list.",
+            "kind": "CONDITION",
+            "title": "Description images",
+            "type": "warning"
+          }
+        ],
         "x-order": "19001040",
         "x-search-aliases": [
           "JD.com product details v4",
@@ -35380,5 +35579,5 @@
       "x-platform-id": "1688"
     }
   ],
-  "x-openapi-release-id": "7d13ad694c2a5dbb"
+  "x-openapi-release-id": "8929e36629aa39e2"
 }
