@@ -13324,6 +13324,7 @@
     },
     "/api/jd/get-item-detail/v3": {
       "get": {
+        "deprecated": true,
         "description": "Retrieves JD.com product details for a known item ID. Use it to review a known listing during product research or offer comparison.",
         "operationId": "getApiJdGetItemDetailV3",
         "parameters": [
@@ -13378,6 +13379,7 @@
           "JD.com"
         ],
         "x-api-version": "v3",
+        "x-docs-hidden": true,
         "x-docs-slug": "product-details-v3",
         "x-endpoint-family": "jd_get_item_detail",
         "x-highlights": [
@@ -36032,5 +36034,5 @@
       "x-platform-id": "1688"
     }
   ],
-  "x-openapi-release-id": "d10193f81ba66467"
+  "x-openapi-release-id": "3e67455f2332add0"
 }
