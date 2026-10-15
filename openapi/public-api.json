@@ -23943,6 +23943,7 @@
           },
           {
             "description": "WeChat Channels video objectId as a numeric string of up to 32 digits.",
+            "example": "14941130915890399732",
             "in": "query",
             "name": "objectId",
             "required": true,
@@ -35650,5 +35651,5 @@
       "x-platform-id": "1688"
     }
   ],
-  "x-openapi-release-id": "a5d32cbd10d07b06"
+  "x-openapi-release-id": "0b3bba2a985965c8"
 }
