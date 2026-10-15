@@ -23927,6 +23927,77 @@
         ]
       }
     },
+    "/api/weixin-channels/get-video-share-url/v1": {
+      "get": {
+        "description": "Generates a share link for a WeChat Channels video identified by objectId. Use it to share a known Channels video or obtain its link for a subsequent lookup.",
+        "operationId": "getApiWeixinChannelsGetVideoShareUrlV1",
+        "parameters": [
+          {
+            "description": "Access token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "WeChat Channels video objectId as a numeric string of up to 32 digits.",
+            "in": "query",
+            "name": "objectId",
+            "required": true,
+            "schema": {
+              "maxLength": 32,
+              "pattern": "^[0-9]+$",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Video Share URL",
+        "tags": [
+          "WeChat Channels"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "video-share-url-v1",
+        "x-endpoint-family": "weixin_channels_get_video_share_url",
+        "x-highlights": [],
+        "x-order": "16201435",
+        "x-search-aliases": [
+          "微信视频号生成分享链接",
+          "视频号作品分享短链"
+        ]
+      }
+    },
     "/api/weixin-channels/get-video-sub-comment/v1": {
       "post": {
         "description": "Retrieves replies under a first-level WeChat Channels video comment using the video and root-comment IDs. Use it to continue a threaded comment discussion with buffer pagination.",
@@ -35579,5 +35650,5 @@
       "x-platform-id": "1688"
     }
   ],
-  "x-openapi-release-id": "8929e36629aa39e2"
+  "x-openapi-release-id": "a5d32cbd10d07b06"
 }

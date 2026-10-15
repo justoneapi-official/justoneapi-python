@@ -210,6 +210,26 @@ class WeixinChannelsResource(BaseResource):
             },
         )
 
+    def get_video_share_url_v1(
+        self,
+        *,
+        object_id: str,
+    ) -> ApiResponse[Any]:
+        """
+        Video Share URL
+
+        Generates a share link for a WeChat Channels video identified by objectId. Use it to share a known Channels video or obtain its link for a subsequent lookup.
+
+        Args:
+            object_id: WeChat Channels video objectId as a numeric string of up to 32 digits.
+        """
+        return self._get(
+            "/api/weixin-channels/get-video-share-url/v1",
+            {
+                "objectId": object_id,
+            },
+        )
+
     def get_video_metrics_v1(
         self,
     ) -> ApiResponse[Any]:
