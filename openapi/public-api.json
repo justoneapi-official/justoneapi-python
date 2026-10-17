@@ -25214,6 +25214,7 @@
           "WeChat Official Accounts"
         ],
         "x-api-version": "v1",
+        "x-docs-hidden": true,
         "x-docs-slug": "account-today-articles-v1",
         "x-endpoint-family": "weixin_get_account_today_articles",
         "x-highlights": [],
@@ -35651,5 +35652,5 @@
       "x-platform-id": "1688"
     }
   ],
-  "x-openapi-release-id": "0b3bba2a985965c8"
+  "x-openapi-release-id": "26627403a2568aff"
 }
