@@ -117,7 +117,7 @@ class TaobaoResource(BaseResource):
         """
         Product Details
 
-        Retrieves Taobao or Tmall product details by item ID through the recommended V6 endpoint, including approximate sales, shipping fees, free-shipping status, and coupon-adjusted prices for some products. Use it for product research and ecommerce monitoring.
+        Retrieves Taobao or Tmall product details by item ID through the recommended V6 endpoint, including approximate sales, shipping fees and free-shipping status. Use it for product research and ecommerce monitoring.
 
         Args:
             item_id: Unique product identifier on Taobao/Tmall (item ID).

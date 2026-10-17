@@ -18038,6 +18038,71 @@
         "x-highlights": [
           {
             "aliases": [
+              "product price",
+              "SKU price",
+              "商品价格",
+              "SKU价格"
+            ],
+            "concept": "product_price",
+            "content": "Returns the original product price. SKU prices are available for some products and may be absent for others.",
+            "kind": "CONDITION",
+            "title": "Price",
+            "type": "warning"
+          },
+          {
+            "aliases": [
+              "product attributes",
+              "product parameters",
+              "商品属性",
+              "商品参数"
+            ],
+            "concept": "product_attributes",
+            "content": "Provides a grouped product-parameter table.",
+            "kind": "CAPABILITY",
+            "title": "Attributes",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "SKU options",
+              "product variants",
+              "SKU规格",
+              "商品规格"
+            ],
+            "concept": "sku_options",
+            "content": "Provides SKU identifiers, specification options and quantity information.",
+            "kind": "CAPABILITY",
+            "title": "SKU options",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "main images",
+              "carousel images",
+              "商品主图",
+              "商品轮播图"
+            ],
+            "concept": "main_images",
+            "content": "Provides product main and carousel images.",
+            "kind": "CAPABILITY",
+            "title": "Main and carousel images",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "description images",
+              "product description images",
+              "商品详情图",
+              "详情描述图"
+            ],
+            "concept": "description_images",
+            "content": "Description images are included in description HTML and need to be extracted; a separate image list is not provided.",
+            "kind": "CONDITION",
+            "title": "Description images",
+            "type": "warning"
+          },
+          {
+            "aliases": [
               "product coverage",
               "supported products",
               "商品覆盖",
@@ -18214,7 +18279,73 @@
         "x-api-version": "v3",
         "x-docs-slug": "product-details-v3",
         "x-endpoint-family": "taobao_get_item_detail",
-        "x-highlights": [],
+        "x-highlights": [
+          {
+            "aliases": [
+              "product price",
+              "SKU price",
+              "商品价格",
+              "SKU价格"
+            ],
+            "concept": "product_price",
+            "content": "Returns the original product price and SKU prices.",
+            "kind": "CAPABILITY",
+            "title": "Price",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "product attributes",
+              "product parameters",
+              "商品属性",
+              "商品参数"
+            ],
+            "concept": "product_attributes",
+            "content": "Provides product attributes as names and values.",
+            "kind": "CAPABILITY",
+            "title": "Attributes",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "SKU options",
+              "product variants",
+              "SKU规格",
+              "商品规格"
+            ],
+            "concept": "sku_options",
+            "content": "Provides SKU identifiers, specification options and quantity information.",
+            "kind": "CAPABILITY",
+            "title": "SKU options",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "main images",
+              "carousel images",
+              "商品主图",
+              "商品轮播图"
+            ],
+            "concept": "main_images",
+            "content": "Provides product main and carousel images.",
+            "kind": "CAPABILITY",
+            "title": "Main and carousel images",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "description images",
+              "product description images",
+              "商品详情图",
+              "详情描述图"
+            ],
+            "concept": "description_images",
+            "content": "Provides a separate description-image list and description HTML.",
+            "kind": "CAPABILITY",
+            "title": "Description images",
+            "type": "info"
+          }
+        ],
         "x-order": "11001150",
         "x-recommended": true,
         "x-search-aliases": [
@@ -18291,6 +18422,71 @@
         "x-highlights": [
           {
             "aliases": [
+              "product price",
+              "SKU price",
+              "商品价格",
+              "SKU价格"
+            ],
+            "concept": "product_price",
+            "content": "Returns the original product price and SKU prices. Final product and SKU prices are available for some products.",
+            "kind": "CONDITION",
+            "title": "Price",
+            "type": "warning"
+          },
+          {
+            "aliases": [
+              "product attributes",
+              "product parameters",
+              "商品属性",
+              "商品参数"
+            ],
+            "concept": "product_attributes",
+            "content": "A product-parameter table was not returned in the verified samples.",
+            "kind": "LIMITATION",
+            "title": "Attributes",
+            "type": "warning"
+          },
+          {
+            "aliases": [
+              "SKU options",
+              "product variants",
+              "SKU规格",
+              "商品规格"
+            ],
+            "concept": "sku_options",
+            "content": "Provides SKU identifiers, specification options and quantity information.",
+            "kind": "CAPABILITY",
+            "title": "SKU options",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "main images",
+              "carousel images",
+              "商品主图",
+              "商品轮播图"
+            ],
+            "concept": "main_images",
+            "content": "Provides product main and carousel images.",
+            "kind": "CAPABILITY",
+            "title": "Main and carousel images",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "description images",
+              "product description images",
+              "商品详情图",
+              "详情描述图"
+            ],
+            "concept": "description_images",
+            "content": "Description images and description HTML were not returned in the verified samples.",
+            "kind": "LIMITATION",
+            "title": "Description images",
+            "type": "warning"
+          },
+          {
+            "aliases": [
               "product coverage",
               "supported products",
               "商品覆盖",
@@ -18299,18 +18495,6 @@
             "concept": "product_coverage",
             "content": "Some products may not be available through this endpoint.",
             "kind": "CONDITION",
-            "type": "tip"
-          },
-          {
-            "aliases": [
-              "price after coupon",
-              "post-coupon price",
-              "券后价",
-              "优惠券后价格"
-            ],
-            "concept": "post_coupon_price",
-            "content": "This endpoint can retrieve the price after applying coupons.",
-            "kind": "CAPABILITY",
             "type": "tip"
           }
         ],
@@ -18389,6 +18573,71 @@
         "x-highlights": [
           {
             "aliases": [
+              "product price",
+              "SKU price",
+              "商品价格",
+              "SKU价格"
+            ],
+            "concept": "product_price",
+            "content": "Returns the original product price and SKU prices.",
+            "kind": "CAPABILITY",
+            "title": "Price",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "product attributes",
+              "product parameters",
+              "商品属性",
+              "商品参数"
+            ],
+            "concept": "product_attributes",
+            "content": "Provides product attributes as names and values.",
+            "kind": "CAPABILITY",
+            "title": "Attributes",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "SKU options",
+              "product variants",
+              "SKU规格",
+              "商品规格"
+            ],
+            "concept": "sku_options",
+            "content": "Provides SKU identifiers, specification options and quantity information.",
+            "kind": "CAPABILITY",
+            "title": "SKU options",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "main images",
+              "carousel images",
+              "商品主图",
+              "商品轮播图"
+            ],
+            "concept": "main_images",
+            "content": "Provides product main and carousel images.",
+            "kind": "CAPABILITY",
+            "title": "Main and carousel images",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "description images",
+              "product description images",
+              "商品详情图",
+              "详情描述图"
+            ],
+            "concept": "description_images",
+            "content": "Provides a separate description-image list.",
+            "kind": "CAPABILITY",
+            "title": "Description images",
+            "type": "info"
+          },
+          {
+            "aliases": [
               "product coverage",
               "supported products",
               "商品覆盖",
@@ -18413,7 +18662,7 @@
     },
     "/api/taobao/get-item-detail/v6": {
       "get": {
-        "description": "Retrieves Taobao or Tmall product details by item ID through the recommended V6 endpoint, including approximate sales, shipping fees, free-shipping status, and coupon-adjusted prices for some products. Use it for product research and ecommerce monitoring.",
+        "description": "Retrieves Taobao or Tmall product details by item ID through the recommended V6 endpoint, including approximate sales, shipping fees and free-shipping status. Use it for product research and ecommerce monitoring.",
         "operationId": "getApiTaobaoGetItemDetailV6",
         "parameters": [
           {
@@ -18475,6 +18724,71 @@
         "x-highlights": [
           {
             "aliases": [
+              "product price",
+              "SKU price",
+              "商品价格",
+              "SKU价格"
+            ],
+            "concept": "product_price",
+            "content": "Returns the original product price and SKU prices.",
+            "kind": "CAPABILITY",
+            "title": "Price",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "product attributes",
+              "product parameters",
+              "商品属性",
+              "商品参数"
+            ],
+            "concept": "product_attributes",
+            "content": "Provides product attributes as names and values.",
+            "kind": "CAPABILITY",
+            "title": "Attributes",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "SKU options",
+              "product variants",
+              "SKU规格",
+              "商品规格"
+            ],
+            "concept": "sku_options",
+            "content": "Provides SKU identifiers, specification options and quantity information.",
+            "kind": "CAPABILITY",
+            "title": "SKU options",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "main images",
+              "carousel images",
+              "商品主图",
+              "商品轮播图"
+            ],
+            "concept": "main_images",
+            "content": "Provides product main and carousel images.",
+            "kind": "CAPABILITY",
+            "title": "Main and carousel images",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "description images",
+              "product description images",
+              "商品详情图",
+              "详情描述图"
+            ],
+            "concept": "description_images",
+            "content": "Provides a separate description-image list and description HTML.",
+            "kind": "CAPABILITY",
+            "title": "Description images",
+            "type": "info"
+          },
+          {
+            "aliases": [
               "approximate sales volume",
               "estimated sales volume",
               "模糊销量",
@@ -18495,18 +18809,6 @@
             "concept": "shipping_fee",
             "content": "This endpoint provides shipping fee information, including whether shipping is free.",
             "kind": "CAPABILITY",
-            "type": "tip"
-          },
-          {
-            "aliases": [
-              "price after coupon",
-              "post-coupon price",
-              "券后价",
-              "优惠券后价格"
-            ],
-            "concept": "post_coupon_price",
-            "content": "For some products, this endpoint can retrieve the price after applying coupons.",
-            "kind": "CONDITION",
             "type": "tip"
           }
         ],
@@ -18667,6 +18969,71 @@
         "x-highlights": [
           {
             "aliases": [
+              "product price",
+              "SKU price",
+              "商品价格",
+              "SKU价格"
+            ],
+            "concept": "product_price",
+            "content": "Returns the original product price and SKU prices. For pre-sale products, distinguish the deposit from the total price.",
+            "kind": "CONDITION",
+            "title": "Price",
+            "type": "warning"
+          },
+          {
+            "aliases": [
+              "product attributes",
+              "product parameters",
+              "商品属性",
+              "商品参数"
+            ],
+            "concept": "product_attributes",
+            "content": "Provides product attributes as names and values.",
+            "kind": "CAPABILITY",
+            "title": "Attributes",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "SKU options",
+              "product variants",
+              "SKU规格",
+              "商品规格"
+            ],
+            "concept": "sku_options",
+            "content": "Provides SKU identifiers, specification options and quantity information.",
+            "kind": "CAPABILITY",
+            "title": "SKU options",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "main images",
+              "carousel images",
+              "商品主图",
+              "商品轮播图"
+            ],
+            "concept": "main_images",
+            "content": "Provides product main and carousel images.",
+            "kind": "CAPABILITY",
+            "title": "Main and carousel images",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "description images",
+              "product description images",
+              "商品详情图",
+              "详情描述图"
+            ],
+            "concept": "description_images",
+            "content": "Verified samples return an empty description-image list and a description retrieval URL. Further retrieval is required to obtain the images.",
+            "kind": "CONDITION",
+            "title": "Description images",
+            "type": "warning"
+          },
+          {
+            "aliases": [
               "accurate SKU quantity",
               "accurate SKU stock",
               "SKU数量准确",
@@ -18765,6 +19132,71 @@
         "x-docs-slug": "product-details-v9",
         "x-endpoint-family": "taobao_get_item_detail",
         "x-highlights": [
+          {
+            "aliases": [
+              "product price",
+              "SKU price",
+              "商品价格",
+              "SKU价格"
+            ],
+            "concept": "product_price",
+            "content": "Returns the original product price and SKU prices.",
+            "kind": "CAPABILITY",
+            "title": "Price",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "product attributes",
+              "product parameters",
+              "商品属性",
+              "商品参数"
+            ],
+            "concept": "product_attributes",
+            "content": "Provides product attributes as names and values.",
+            "kind": "CAPABILITY",
+            "title": "Attributes",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "SKU options",
+              "product variants",
+              "SKU规格",
+              "商品规格"
+            ],
+            "concept": "sku_options",
+            "content": "Provides SKU identifiers, specification options and quantity information.",
+            "kind": "CAPABILITY",
+            "title": "SKU options",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "main images",
+              "carousel images",
+              "商品主图",
+              "商品轮播图"
+            ],
+            "concept": "main_images",
+            "content": "Provides product main and carousel images.",
+            "kind": "CAPABILITY",
+            "title": "Main and carousel images",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "description images",
+              "product description images",
+              "商品详情图",
+              "详情描述图"
+            ],
+            "concept": "description_images",
+            "content": "Description images are included in description HTML and need to be extracted; a separate image list is not provided.",
+            "kind": "CONDITION",
+            "title": "Description images",
+            "type": "warning"
+          },
           {
             "aliases": [
               "product coverage",
@@ -35654,5 +36086,5 @@
       "x-platform-id": "1688"
     }
   ],
-  "x-openapi-release-id": "ac00f68f0b0be072"
+  "x-openapi-release-id": "acb2ef7c1af67750"
 }
