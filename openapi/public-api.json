@@ -15441,6 +15441,142 @@
         ]
       }
     },
+    "/api/qq-huxuan/cgi-bin/advertiser/finder_publisher/get_rank_finder_content/v1": {
+      "get": {
+        "description": "Lists QQ Huxuan hot Video Account content by month and creator category, with six descending sort metrics and page-number pagination. Use it to research monthly content trends for Tencent Huxuan campaign planning.",
+        "operationId": "getApiQqHuxuanCgiBinAdvertiserFinderPublisherGetRankFinderContentV1",
+        "parameters": [
+          {
+            "description": "User authentication token.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Creator category. ALL includes every category.\n\nAvailable Values:\n- `ALL`: All creator categories\n- `FOOD`: Food\n- `LIFESTYLE`: Lifestyle\n- `COMEDY`: Comedy\n- `EMOTION`: Emotion and relationships\n- `SOCIETY`: Society\n- `HUMANITIES_ARTS`: Humanities and arts\n- `DRAMA`: Drama\n- `ENTERTAINMENT`: Entertainment\n- `TECHNOLOGY`: Technology\n- `FINANCE`: Finance\n- `FILM_TV_VARIETY`: Film, television and variety shows\n- `GAMING`: Gaming\n- `PARENTING`: Parenting\n- `MUSIC`: Music\n- `TRAVEL`: Travel\n- `SPORTS`: Sports\n- `SCIENCE`: Science education\n- `AUTOMOTIVE`: Automotive\n- `EDUCATION`: Education\n- `CAREER`: Career\n- `HEALTH`: Health\n- `PETS`: Pets",
+            "in": "query",
+            "name": "category",
+            "required": false,
+            "schema": {
+              "default": "ALL",
+              "description": "Creator category for monthly hot content",
+              "enum": [
+                "ALL",
+                "FOOD",
+                "LIFESTYLE",
+                "COMEDY",
+                "EMOTION",
+                "SOCIETY",
+                "HUMANITIES_ARTS",
+                "DRAMA",
+                "ENTERTAINMENT",
+                "TECHNOLOGY",
+                "FINANCE",
+                "FILM_TV_VARIETY",
+                "GAMING",
+                "PARENTING",
+                "MUSIC",
+                "TRAVEL",
+                "SPORTS",
+                "SCIENCE",
+                "AUTOMOTIVE",
+                "EDUCATION",
+                "CAREER",
+                "HEALTH",
+                "PETS"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Sort metric. Results are sorted in descending order.\n\nAvailable Values:\n- `INTERACTION`: Interaction count\n- `PLAY`: Play count\n- `THUMB_LIKE`: Thumbs-up like count\n- `HEART_LIKE`: Heart like count\n- `COMMENT`: Comment count\n- `SHARE`: Share count",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "default": "INTERACTION",
+              "description": "Descending sort order for monthly hot content",
+              "enum": [
+                "INTERACTION",
+                "PLAY",
+                "THUMB_LIKE",
+                "HEART_LIKE",
+                "COMMENT",
+                "SHARE"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Statistics month in yyyy-MM format. Omit to use the latest month available on QQ Huxuan.",
+            "in": "query",
+            "name": "month",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Page number, starting at 1. Each page contains up to 48 items.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Hot Content Trends",
+        "tags": [
+          "QQ Huxuan Creator Marketplace"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "hot-content-trends-v1",
+        "x-endpoint-family": "qq_huxuan_cgi_bin_advertiser_finder_publisher_get_rank_finder_content",
+        "x-highlights": [],
+        "x-order": "16250700",
+        "x-search-aliases": [
+          "腾讯互选内容趋势",
+          "腾讯互选热门内容",
+          "视频号热门内容榜单"
+        ]
+      }
+    },
     "/api/qq-huxuan/cgi-bin/advertiser/finder_publisher/search/v1": {
       "get": {
         "description": "Searches or browses QQ Huxuan Video Account creators by optional nickname keyword with page-number pagination. Use it to discover and shortlist video creators for Tencent Huxuan campaign planning.",
@@ -36102,5 +36238,5 @@
       "x-platform-id": "1688"
     }
   ],
-  "x-openapi-release-id": "96131c99f64aa6ca"
+  "x-openapi-release-id": "020eb8317b33ea29"
 }

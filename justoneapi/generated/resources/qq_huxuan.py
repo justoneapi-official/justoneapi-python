@@ -161,3 +161,32 @@ class QqHuxuanResource(BaseResource):
                 "page": page,
             },
         )
+
+    def cgi_bin_advertiser_finder_publisher_get_rank_finder_content_v1(
+        self,
+        *,
+        category: str | None = "ALL",
+        sort: str | None = "INTERACTION",
+        month: str | None = None,
+        page: int | None = 1,
+    ) -> ApiResponse[Any]:
+        """
+        Hot Content Trends
+
+        Lists QQ Huxuan hot Video Account content by month and creator category, with six descending sort metrics and page-number pagination. Use it to research monthly content trends for Tencent Huxuan campaign planning.
+
+        Args:
+            category: Creator category. ALL includes every category.  Available Values: - `ALL`: All creator categories - `FOOD`: Food - `LIFESTYLE`: Lifestyle - `COMEDY`: Comedy - `EMOTION`: Emotion and relationships - `SOCIETY`: Society - `HUMANITIES_ARTS`: Humanities and arts - `DRAMA`: Drama - `ENTERTAINMENT`: Entertainment - `TECHNOLOGY`: Technology - `FINANCE`: Finance - `FILM_TV_VARIETY`: Film, television and variety shows - `GAMING`: Gaming - `PARENTING`: Parenting - `MUSIC`: Music - `TRAVEL`: Travel - `SPORTS`: Sports - `SCIENCE`: Science education - `AUTOMOTIVE`: Automotive - `EDUCATION`: Education - `CAREER`: Career - `HEALTH`: Health - `PETS`: Pets
+            sort: Sort metric. Results are sorted in descending order.  Available Values: - `INTERACTION`: Interaction count - `PLAY`: Play count - `THUMB_LIKE`: Thumbs-up like count - `HEART_LIKE`: Heart like count - `COMMENT`: Comment count - `SHARE`: Share count
+            month: Statistics month in yyyy-MM format. Omit to use the latest month available on QQ Huxuan.
+            page: Page number, starting at 1. Each page contains up to 48 items.
+        """
+        return self._get(
+            "/api/qq-huxuan/cgi-bin/advertiser/finder_publisher/get_rank_finder_content/v1",
+            {
+                "category": category,
+                "sort": sort,
+                "month": month,
+                "page": page,
+            },
+        )
