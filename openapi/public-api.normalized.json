@@ -3174,7 +3174,13 @@
         "x-api-version": "v1",
         "x-docs-slug": "product-sku-info-v1",
         "x-endpoint-family": "douyin_ec_get_item_sku_info",
-        "x-highlights": [],
+        "x-highlights": [
+          {
+            "content": "This version returns complete SKU information, but has a relatively low request success rate.",
+            "kind": "GUIDANCE",
+            "type": "warning"
+          }
+        ],
         "x-order": "14502035",
         "x-sdk-class-name": "DouyinEcResource",
         "x-sdk-method-name": "get_item_sku_info_v1",
@@ -3247,7 +3253,13 @@
         "x-api-version": "v2",
         "x-docs-slug": "product-sku-info-v2",
         "x-endpoint-family": "douyin_ec_get_item_sku_info",
-        "x-highlights": [],
+        "x-highlights": [
+          {
+            "content": "SKU information returned by this version may be incomplete, and some products are not supported. Unsupported products return code 202.",
+            "kind": "GUIDANCE",
+            "type": "warning"
+          }
+        ],
         "x-order": "14502040",
         "x-sdk-class-name": "DouyinEcResource",
         "x-sdk-method-name": "get_item_sku_info_v2",
@@ -36772,5 +36784,5 @@
       "x-platform-id": "1688"
     }
   ],
-  "x-openapi-release-id": "acb2ef7c1af67750"
+  "x-openapi-release-id": "7588c8b9aebf4dab"
 }
