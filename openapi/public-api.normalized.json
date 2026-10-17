@@ -19142,6 +19142,7 @@
           "Taobao and Tmall"
         ],
         "x-api-version": "v1",
+        "x-docs-hidden": true,
         "x-docs-slug": "product-sales-v1",
         "x-endpoint-family": "taobao_get_item_sale",
         "x-highlights": [],
@@ -26747,6 +26748,7 @@
           "WeChat Official Accounts"
         ],
         "x-api-version": "v1",
+        "x-docs-hidden": true,
         "x-docs-slug": "hot-article-search-v1",
         "x-endpoint-family": "weixin_search_article_hot",
         "x-highlights": [],
@@ -36338,5 +36340,5 @@
       "x-platform-id": "1688"
     }
   ],
-  "x-openapi-release-id": "26627403a2568aff"
+  "x-openapi-release-id": "ac00f68f0b0be072"
 }
