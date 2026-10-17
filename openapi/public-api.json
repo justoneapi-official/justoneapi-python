@@ -27759,7 +27759,7 @@
     },
     "/api/xiaohongshu-pgy/api/solar/cooperator/blogger/v2/v1": {
       "get": {
-        "description": "Search Xiaohongshu Pugongying creators with keyword, audience, location, content, pricing, performance, cooperation, live, and similarity filters. Use it to build a campaign creator shortlist.",
+        "description": "Search Xiaohongshu Pugongying creators with campaign filters and sorting by followers, daily-note median reads or interactions, or quoted price. Use it to build a creator shortlist.",
         "operationId": "getApiXiaohongshuPgyApiSolarCooperatorBloggerV2V1",
         "parameters": [
           {
@@ -27807,7 +27807,7 @@
             }
           },
           {
-            "description": "Creator search sorting. Values: FANS sorts by follower count descending, DEFAULT uses Pugongying intelligent ranking.\n\nAvailable Values:\n- `DEFAULT`: Platform default intelligent ranking\n- `FANS`: Sort by follower count descending",
+            "description": "Creator search sorting. Values: FANS sorts by follower count descending; DEFAULT uses Pugongying intelligent ranking; READ_MEDIAN sorts by daily-note median reads descending; ENGAGEMENT_MEDIAN sorts by daily-note median interactions descending; PRICE_ASC sorts by all quoted prices ascending; PRICE_DESC sorts by all quoted prices descending. Defaults to FANS.\n\nAvailable Values:\n- `DEFAULT`: Platform default intelligent ranking\n- `FANS`: Sort by follower count descending\n- `READ_MEDIAN`: Sort by daily-note median reads descending\n- `ENGAGEMENT_MEDIAN`: Sort by daily-note median interactions descending\n- `PRICE_ASC`: Sort by all quoted prices ascending\n- `PRICE_DESC`: Sort by all quoted prices descending",
             "in": "query",
             "name": "sort",
             "required": false,
@@ -27816,7 +27816,11 @@
               "description": "Creator search sorting",
               "enum": [
                 "DEFAULT",
-                "FANS"
+                "FANS",
+                "READ_MEDIAN",
+                "ENGAGEMENT_MEDIAN",
+                "PRICE_ASC",
+                "PRICE_DESC"
               ],
               "type": "string"
             }
@@ -36098,5 +36102,5 @@
       "x-platform-id": "1688"
     }
   ],
-  "x-openapi-release-id": "7588c8b9aebf4dab"
+  "x-openapi-release-id": "96131c99f64aa6ca"
 }

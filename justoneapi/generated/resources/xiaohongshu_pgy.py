@@ -68,13 +68,13 @@ class XiaohongshuPgyResource(BaseResource):
         """
         Creator Search
 
-        Search Xiaohongshu Pugongying creators with keyword, audience, location, content, pricing, performance, cooperation, live, and similarity filters. Use it to build a campaign creator shortlist.
+        Search Xiaohongshu Pugongying creators with campaign filters and sorting by followers, daily-note median reads or interactions, or quoted price. Use it to build a creator shortlist.
 
         Args:
             search_type: Search criteria type.  Available Values: - `NICKNAME`: Search by nickname - `NOTE`: Search by note content
             keyword: Search keyword.
             page: Page number.
-            sort: Creator search sorting. Values: FANS sorts by follower count descending, DEFAULT uses Pugongying intelligent ranking.  Available Values: - `DEFAULT`: Platform default intelligent ranking - `FANS`: Sort by follower count descending
+            sort: Creator search sorting. Values: FANS sorts by follower count descending; DEFAULT uses Pugongying intelligent ranking; READ_MEDIAN sorts by daily-note median reads descending; ENGAGEMENT_MEDIAN sorts by daily-note median interactions descending; PRICE_ASC sorts by all quoted prices ascending; PRICE_DESC sorts by all quoted prices descending. Defaults to FANS.  Available Values: - `DEFAULT`: Platform default intelligent ranking - `FANS`: Sort by follower count descending - `READ_MEDIAN`: Sort by daily-note median reads descending - `ENGAGEMENT_MEDIAN`: Sort by daily-note median interactions descending - `PRICE_ASC`: Sort by all quoted prices ascending - `PRICE_DESC`: Sort by all quoted prices descending
             fans_number_lower: Minimum number of fans.
             fans_number_upper: Maximum number of fans.
             fans_age: Target fans age group.  Available Values: - `ALL`: All ages - `LT_18`: Under 18 - `AGE_18_24`: 18 to 24 - `AGE_25_34`: 25 to 34 - `AGE_35_44`: 35 to 44 - `GT_44`: Above 44
