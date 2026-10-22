@@ -12875,6 +12875,7 @@
     },
     "/api/jd/get-item-comments/v2": {
       "get": {
+        "deprecated": true,
         "description": "Retrieve paginated JD.com product comments for a specific SKU. Use it to review buyer feedback for that product.",
         "operationId": "getApiJdGetItemCommentsV2",
         "parameters": [
@@ -12941,6 +12942,7 @@
           "JD.com"
         ],
         "x-api-version": "v2",
+        "x-docs-hidden": true,
         "x-docs-slug": "product-comments-v2",
         "x-endpoint-family": "jd_get_item_comments",
         "x-highlights": [],
@@ -36238,5 +36240,5 @@
       "x-platform-id": "1688"
     }
   ],
-  "x-openapi-release-id": "020eb8317b33ea29"
+  "x-openapi-release-id": "22ca2807b75762f9"
 }
