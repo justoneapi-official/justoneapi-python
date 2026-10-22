@@ -33,6 +33,7 @@ class ParameterInfo:
     required: bool
     default_expr: str | None
     description: str
+    location: str
 
 
 @dataclass(frozen=True)
@@ -43,6 +44,9 @@ class OperationInfo:
     namespace: str
     tag: str
     path: str
+    http_method: str
+    has_form_body: bool
+    token_in_form: bool
     summary: str
     description: str
     order: int
@@ -176,6 +180,7 @@ def operation_order(operation: dict[str, Any]) -> int:
 def normalize_spec(spec: dict[str, Any], overrides: dict[str, Any]) -> dict[str, Any]:
     normalized = copy.deepcopy(spec)
     hidden_query_parameters = set(overrides.get("hidden_query_parameters", []))
+    hidden_form_parameters = set(overrides.get("hidden_form_parameters", []))
     seen_resource_methods: set[tuple[str, str]] = set()
 
     components = normalized.setdefault("components", {})
@@ -190,6 +195,8 @@ def normalize_spec(spec: dict[str, Any], overrides: dict[str, Any]) -> dict[str,
         for method, operation in path_item.items():
             if method.startswith("x-"):
                 continue
+            if method not in {"get", "post"}:
+                raise ValueError(f"Unsupported HTTP method: {method.upper()} {path}")
 
             operation_id = operation.get("operationId")
             if not operation_id:
@@ -222,6 +229,34 @@ def normalize_spec(spec: dict[str, Any], overrides: dict[str, Any]) -> dict[str,
                 normalized_parameters.append(copied_parameter)
             operation["parameters"] = normalized_parameters
 
+            if "requestBody" in operation:
+                content = operation["requestBody"].get("content", {})
+                schema = content.get("application/x-www-form-urlencoded", {}).get(
+                    "schema", {}
+                )
+                if (
+                    method != "post"
+                    or schema.get("type") != "object"
+                    or "$ref" in schema
+                ):
+                    raise ValueError(
+                        f"Unsupported request body for {method.upper()} {path}"
+                    )
+                properties = schema.get("properties", {})
+                operation["x-sdk-token-in-form"] = (
+                    "token" in properties and "token" in hidden_form_parameters
+                )
+                schema["properties"] = {
+                    name: {**field, "x-sdk-python-name": to_python_identifier(name)}
+                    for name, field in properties.items()
+                    if name not in hidden_form_parameters
+                }
+                schema["required"] = [
+                    name
+                    for name in schema.get("required", [])
+                    if name not in hidden_form_parameters
+                ]
+
     return normalized
 
 
@@ -239,9 +274,29 @@ def collect_resources(spec: dict[str, Any]) -> list[ResourceInfo]:
             summary = operation.get("summary") or operation.get("operationId")
             description = (operation.get("description") or "").strip()
             parameters = []
+            request_parameters = list(operation.get("parameters", []))
+            form_schema = (
+                operation.get("requestBody", {})
+                .get("content", {})
+                .get("application/x-www-form-urlencoded", {})
+                .get("schema")
+            )
+            if form_schema is not None:
+                required_fields = set(form_schema.get("required", []))
+                request_parameters.extend(
+                    {
+                        "name": name,
+                        "in": "form",
+                        "required": name in required_fields,
+                        "schema": schema,
+                        "description": schema.get("description", ""),
+                        "x-sdk-python-name": schema["x-sdk-python-name"],
+                    }
+                    for name, schema in form_schema.get("properties", {}).items()
+                )
 
             ordered_parameters = sorted(
-                operation.get("parameters", []),
+                request_parameters,
                 key=lambda item: (
                     python_default_for_schema(
                         item.get("schema", {}), required=item.get("required", False)
@@ -250,6 +305,16 @@ def collect_resources(spec: dict[str, Any]) -> list[ResourceInfo]:
                 ),
             )
             for parameter in ordered_parameters:
+                if parameter.get("in") not in {"query", "form"}:
+                    raise ValueError(
+                        f"Unsupported parameter location for {method.upper()} {path}"
+                    )
+                if any(
+                    p.python_name == parameter["x-sdk-python-name"] for p in parameters
+                ):
+                    raise ValueError(
+                        f"Duplicate parameter name for {method.upper()} {path}"
+                    )
                 schema = parameter.get("schema", {})
                 parameters.append(
                     ParameterInfo(
@@ -263,6 +328,7 @@ def collect_resources(spec: dict[str, Any]) -> list[ResourceInfo]:
                             schema, required=parameter.get("required", False)
                         ),
                         description=(parameter.get("description") or "").strip(),
+                        location=parameter["in"],
                     )
                 )
 
@@ -281,6 +347,9 @@ def collect_resources(spec: dict[str, Any]) -> list[ResourceInfo]:
                     namespace=namespace,
                     tag=tag,
                     path=path,
+                    http_method=method,
+                    has_form_body=form_schema is not None,
+                    token_in_form=operation.get("x-sdk-token-in-form", False),
                     summary=summary,
                     description=description,
                     order=operation_order(operation),
@@ -341,7 +410,10 @@ def render_parameter_signature(parameters: tuple[ParameterInfo, ...]) -> str:
     return ",\n        ".join(rendered)
 
 
-def render_params_dict(parameters: tuple[ParameterInfo, ...]) -> str:
+def render_params_dict(
+    parameters: tuple[ParameterInfo, ...], *, location: str = "query"
+) -> str:
+    parameters = tuple(p for p in parameters if p.location == location)
     if not parameters:
         return "{}"
     lines = ["{"]
@@ -356,6 +428,13 @@ def render_resource_module(resource: ResourceInfo) -> str:
     for operation in resource.operations:
         signature = render_parameter_signature(operation.parameters)
         params_dict = render_params_dict(operation.parameters)
+        form_arguments = ""
+        if operation.has_form_body:
+            form_dict = render_params_dict(operation.parameters, location="form")
+            form_arguments = (
+                f"            data={form_dict},\n"
+                f"            token_in_form={operation.token_in_form!r},\n"
+            )
         docstring = render_docstring(
             operation.summary, operation.description, operation.parameters
         )
@@ -364,9 +443,10 @@ def render_resource_module(resource: ResourceInfo) -> str:
             f"        {signature},\n"
             f"    ) -> ApiResponse[Any]:\n"
             f"{docstring}"
-            f"        return self._get(\n"
+            f"        return self._{operation.http_method}(\n"
             f'            "{operation.path}",\n'
             f"            {params_dict},\n"
+            f"{form_arguments}"
             f"        )\n"
         )
 

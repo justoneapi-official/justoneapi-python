@@ -37,28 +37,58 @@ class WeixinResource(BaseResource):
 
     def get_account_history_articles_v1(
         self,
+        *,
+        username: str,
+        item_show_type: str | None = "ARTICLE",
+        offset: str | None = "",
     ) -> ApiResponse[Any]:
         """
         Account Historical Articles
 
         Retrieves historical posts for a WeChat Official Account by username, with cursor pagination and article, video, audio, or image content tabs. Use it to browse an account's publishing history.
+
+        Args:
+            username: WeChat Official Account username with the gh_ prefix.
+            item_show_type: Content tab. Defaults to ARTICLE.  Available Values: - `ARTICLE`: Articles - `VIDEO`: Videos - `AUDIO`: Audio - `IMAGE`: Images
+            offset: Base64 pagination cursor. Leave empty for the first page; pass next_offset from the previous response for the next page. Send it in the URL-encoded form body.
         """
-        return self._get(
+        return self._post(
             "/api/weixin/get-account-history-articles/v1",
             {},
+            data={
+                "username": username,
+                "itemShowType": item_show_type,
+                "offset": offset,
+            },
+            token_in_form=True,
         )
 
     def get_account_history_articles_v2(
         self,
+        *,
+        ghid: str | None = "",
+        offset: str | None = "",
+        url: str | None = "",
     ) -> ApiResponse[Any]:
         """
         Account Historical Articles
 
         Retrieves historical articles for a WeChat Official Account identified by ghid or article URL, with an offset cursor from the previous page. Use it to continue through an account's article archive with cursor pagination.
+
+        Args:
+            ghid: WeChat Official Account original identifier, using the gh_ prefix returned by WeChat. Use either ghid or url.
+            offset: PagingInfo.Offset cursor returned by the previous response. Leave it empty for the first page. For this POST endpoint, send it in an application/x-www-form-urlencoded form body.
+            url: WeChat Official Account article URL used to identify the account and fetch historical articles. Use either ghid or url.
         """
-        return self._get(
+        return self._post(
             "/api/weixin/get-account-history-articles/v2",
             {},
+            data={
+                "ghid": ghid,
+                "offset": offset,
+                "url": url,
+            },
+            token_in_form=True,
         )
 
     def get_article_metrics_v1(
@@ -209,15 +239,27 @@ class WeixinResource(BaseResource):
 
     def get_article_comment_v1(
         self,
+        *,
+        article_url: str,
+        buffer: str | None = "",
     ) -> ApiResponse[Any]:
         """
         Article Comments
 
         Retrieves top-level comments for a WeChat Official Account article by URL, with an optional buffer cursor for pagination. Use it to review reader discussion or continue through comment pages for a known article.
+
+        Args:
+            article_url: WeChat Official Account article URL used to fetch top-level article comments.
+            buffer: Comment pagination buffer returned by the previous response. Leave it empty for the first page. For this POST endpoint, send it in an application/x-www-form-urlencoded form body.
         """
-        return self._get(
+        return self._post(
             "/api/weixin/get-article-comment/v1",
             {},
+            data={
+                "articleUrl": article_url,
+                "buffer": buffer,
+            },
+            token_in_form=True,
         )
 
     def get_article_sub_comment_v1(
@@ -280,41 +322,104 @@ class WeixinResource(BaseResource):
 
     def search_article_v1(
         self,
+        *,
+        keyword: str,
+        cookies_buffer: str | None = "",
+        current_page: int | None = 1,
+        offset: int | None = 0,
+        publish_time_type: str | None = "ALL",
+        sort_type: str | None = "COMPREHENSIVE",
     ) -> ApiResponse[Any]:
         """
         Article Search
 
         Searches WeChat Official Account articles by keyword with publish-time and sort filters plus page, offset, and continuation-state pagination. Use it to discover recent or high-interest articles for topic research and content monitoring.
+
+        Args:
+            keyword: Search keyword for WeChat Official Account articles.
+            cookies_buffer: Opaque pagination state returned by the previous WeChat web search response. Leave it empty for the first page. For this POST endpoint, send it in an application/x-www-form-urlencoded form body.
+            current_page: Current page number starting from 1 for WeChat web search pagination.
+            offset: Search result offset returned by the previous response. Use 0 for the first page.
+            publish_time_type: Publish time filter for WeChat Official Account article web search.  Available Values: - `ALL`: All time - `ONE_DAY`: Last day - `SEVEN_DAYS`: Last seven days - `HALF_YEAR`: Last half year
+            sort_type: Sort order for WeChat Official Account article web search results.  Available Values: - `COMPREHENSIVE`: Comprehensive sort - `LATEST`: Latest first - `HOT`: Hot first
         """
-        return self._get(
+        return self._post(
             "/api/weixin/search-article/v1",
             {},
+            data={
+                "keyword": keyword,
+                "cookies_buffer": cookies_buffer,
+                "currentPage": current_page,
+                "offset": offset,
+                "publishTimeType": publish_time_type,
+                "sortType": sort_type,
+            },
+            token_in_form=True,
         )
 
     def search_article_v2(
         self,
+        *,
+        keyword: str,
+        cookies_buffer: str | None = "",
+        current_page: int | None = 1,
+        offset: int | None = 0,
+        sub_search_type: str | None = "ALL",
     ) -> ApiResponse[Any]:
         """
         Article Search
 
         Searches WeChat Official Account articles by keyword within a selected category such as followed accounts, latest, recently read, or hot, with continuation pagination. Use it to focus article discovery on a particular result stream.
+
+        Args:
+            keyword: Search keyword for categorized WeChat Official Account article web search.
+            cookies_buffer: Opaque pagination state returned by the previous WeChat web search response. Leave it empty for the first page. For this POST endpoint, send it in an application/x-www-form-urlencoded form body.
+            current_page: Current page number starting from 1 for WeChat web search pagination.
+            offset: Search result offset returned by the previous response. Use 0 for the first page.
+            sub_search_type: Subcategory filter for categorized WeChat Official Account article web search.  Available Values: - `ALL`: All - `FOLLOWED`: Followed accounts - `LATEST`: Latest - `RECENT_READ`: Recently read - `HOT`: Hot
         """
-        return self._get(
+        return self._post(
             "/api/weixin/search-article/v2",
             {},
+            data={
+                "keyword": keyword,
+                "cookies_buffer": cookies_buffer,
+                "currentPage": current_page,
+                "offset": offset,
+                "subSearchType": sub_search_type,
+            },
+            token_in_form=True,
         )
 
     def search_miniprogram_v1(
         self,
+        *,
+        keyword: str,
+        cookies_buffer: str | None = "",
+        current_page: int | None = 1,
+        offset: int | None = 0,
     ) -> ApiResponse[Any]:
         """
         Mini Program Search
 
         Searches WeChat Mini Programs by keyword with page, offset, and continuation-state pagination. Use it to discover mini programs related to a brand, service, topic, or product.
+
+        Args:
+            keyword: Search keyword for WeChat mini program web search.
+            cookies_buffer: Opaque pagination state returned by the previous WeChat web search response. Leave it empty for the first page. For this POST endpoint, send it in an application/x-www-form-urlencoded form body.
+            current_page: Current page number starting from 1 for WeChat web search pagination.
+            offset: Search result offset returned by the previous response. Use 0 for the first page.
         """
-        return self._get(
+        return self._post(
             "/api/weixin/search-miniprogram/v1",
             {},
+            data={
+                "keyword": keyword,
+                "cookies_buffer": cookies_buffer,
+                "currentPage": current_page,
+                "offset": offset,
+            },
+            token_in_form=True,
         )
 
     def search_wechat_index_v1(
@@ -375,7 +480,7 @@ class WeixinResource(BaseResource):
             keyword: Search keyword for WeChat Official Account profiles.
             page: Page number starting from 1 for WeChat Official Account profile search.
         """
-        return self._get(
+        return self._post(
             "/api/weixin/search-account/v1",
             {
                 "keyword": keyword,
@@ -385,15 +490,33 @@ class WeixinResource(BaseResource):
 
     def search_account_v2(
         self,
+        *,
+        keyword: str,
+        cookies_buffer: str | None = "",
+        current_page: int | None = 1,
+        offset: int | None = 0,
     ) -> ApiResponse[Any]:
         """
         Account Search
 
         Searches WeChat Official Accounts by keyword with page, offset, and continuation-state pagination. Use it to browse broader account results for creator, brand, or publisher discovery.
+
+        Args:
+            keyword: Search keyword for WeChat Official Account web search.
+            cookies_buffer: Opaque pagination state returned by the previous WeChat web search response. Leave it empty for the first page. For this POST endpoint, send it in an application/x-www-form-urlencoded form body.
+            current_page: Current page number starting from 1 for WeChat web search pagination.
+            offset: Search result offset returned by the previous response. Use 0 for the first page.
         """
-        return self._get(
+        return self._post(
             "/api/weixin/search-account/v2",
             {},
+            data={
+                "keyword": keyword,
+                "cookies_buffer": cookies_buffer,
+                "currentPage": current_page,
+                "offset": offset,
+            },
+            token_in_form=True,
         )
 
     def get_account_original_count_v1(

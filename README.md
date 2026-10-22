@@ -49,6 +49,22 @@ print(response.message)  # 服务端消息
 print(response.data)     # 实际业务数据
 ```
 
+微信公众号文章搜索示例：
+
+```python
+response = client.weixin.search_article_v1(
+    keyword="人工智能",
+    publish_time_type="SEVEN_DAYS",
+    sort_type="LATEST",
+    current_page=1,
+)
+
+# V2 可按文章类别筛选
+response = client.weixin.search_article_v2(keyword="人工智能", sub_search_type="HOT")
+```
+
+`keyword` 必填。SDK 会自动提交 POST 表单和 Token。连续分页时，按接口文档传回上一页响应中的 `offset` 和 `cookies_buffer`，并设置 `current_page`。
+
 ## 返回结构
 
 每个 API 方法都会返回一个 `ApiResponse` 对象，包含以下字段：

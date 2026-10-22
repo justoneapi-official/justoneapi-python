@@ -14,6 +14,7 @@ from tools.sdk_codegen import (
     load_json,
     load_overrides,
     normalize_spec,
+    render_resource_module,
 )
 
 RAW_SPEC_PATH = Path("openapi/public-api.json")
@@ -157,6 +158,101 @@ def test_normalize_spec_removes_token_and_adds_security_scheme():
     assert normalized["components"]["securitySchemes"]["tokenAuth"]["name"] == "token"
 
 
+def test_form_fields_are_normalized_without_mutating_public_contract():
+    spec = load_json(RAW_SPEC_PATH)
+    path = "/api/weixin/search-article/v1"
+    normalized = normalize_spec(spec, load_overrides(OVERRIDES_PATH))
+    operation = normalized["paths"][path]["post"]
+    schema = operation["requestBody"]["content"]["application/x-www-form-urlencoded"][
+        "schema"
+    ]
+
+    assert "token" not in schema["properties"]
+    assert schema["required"] == ["keyword"]
+    assert schema["properties"]["currentPage"]["x-sdk-python-name"] == "current_page"
+    assert operation["x-sdk-token-in-form"] is True
+    assert (
+        "token"
+        in spec["paths"][path]["post"]["requestBody"]["content"][
+            "application/x-www-form-urlencoded"
+        ]["schema"]["properties"]
+    )
+
+
+def test_generator_keeps_post_query_and_form_fields_separate():
+    spec = {
+        "paths": {
+            "/api/demo/search/v1": {
+                "post": {
+                    "operationId": "postDemoSearchV1",
+                    "parameters": [
+                        {
+                            "name": "page",
+                            "in": "query",
+                            "schema": {"type": "integer", "default": 1},
+                        },
+                    ],
+                    "requestBody": {
+                        "content": {
+                            "application/x-www-form-urlencoded": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "token": {"type": "string"},
+                                        "keyword": {"type": "string"},
+                                        "lastBuffer": {"type": "string", "default": ""},
+                                    },
+                                    "required": ["token", "keyword"],
+                                }
+                            }
+                        }
+                    },
+                }
+            }
+        }
+    }
+    resources = collect_resources(normalize_spec(spec, load_overrides(OVERRIDES_PATH)))
+    namespace = {}
+    exec(render_resource_module(resources[0]), namespace)
+    calls = []
+
+    class RecordingTransport:
+        def post(self, *args, **kwargs):
+            calls.append((args, kwargs))
+
+    resource = namespace["DemoResource"](RecordingTransport())
+    resource.search_v1(keyword="测试", page=2, last_buffer="opaque+&=")
+
+    assert calls == [
+        (
+            ("/api/demo/search/v1", {"page": 2}),
+            {
+                "data": {"keyword": "测试", "lastBuffer": "opaque+&="},
+                "token_in_form": True,
+            },
+        )
+    ]
+
+
+def test_generator_rejects_unsupported_body_instead_of_dropping_fields():
+    spec = {
+        "paths": {
+            "/api/demo/search/v1": {
+                "post": {
+                    "operationId": "postDemoSearchV1",
+                    "requestBody": {
+                        "content": {"application/json": {"schema": {"type": "object"}}}
+                    },
+                }
+            }
+        }
+    }
+    with pytest.raises(
+        ValueError, match="Unsupported request body.*POST /api/demo/search/v1"
+    ):
+        normalize_spec(spec, {})
+
+
 def test_collect_resources_matches_expected_counts():
     normalized = normalize_spec(
         load_json(RAW_SPEC_PATH), load_overrides(OVERRIDES_PATH)
@@ -217,9 +313,7 @@ def test_normalize_spec_derives_method_name_from_path():
 
     normalized = normalize_spec(spec, {})
 
-    assert (
-        normalized["paths"]["/api/demo/v1"]["get"]["x-sdk-method-name"] == "demo_v1"
-    )
+    assert normalized["paths"]["/api/demo/v1"]["get"]["x-sdk-method-name"] == "demo_v1"
     assert (
         normalized["paths"]["/api/demo/path-derived/v1"]["get"]["x-sdk-method-name"]
         == "path_derived_v1"

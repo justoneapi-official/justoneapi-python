@@ -1,5 +1,7 @@
 hidden_query_parameters:
   - token
+hidden_form_parameters:
+  - token
 resource_names:
   douyin-xingtu: douyin_xingtu
   tiktok-shop: tiktok_shop

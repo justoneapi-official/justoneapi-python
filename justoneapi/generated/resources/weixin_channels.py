@@ -11,41 +11,101 @@ class WeixinChannelsResource(BaseResource):
 
     def search_video_v1(
         self,
+        *,
+        keyword: str,
+        cookies_buffer: str | None = "",
+        current_page: int | None = 1,
+        offset: int | None = 0,
+        publish_time_type: str | None = "ALL",
+        sort_type: str | None = "COMPREHENSIVE",
     ) -> ApiResponse[Any]:
         """
         Video Search
 
         Searches WeChat Channels videos by keyword with publish-time, sort, page, offset, and continuation-state controls. Use it to find recent or ordered video results and continue web-search pages.
+
+        Args:
+            keyword: Search keyword for WeChat Channels video results.
+            cookies_buffer: Opaque pagination state returned by the previous WeChat Channels web search response. Leave it empty for the first page. For this POST endpoint, send it in an application/x-www-form-urlencoded form body.
+            current_page: Current page number starting from 1 for WeChat Channels web search pagination.
+            offset: Search result offset returned by the previous WeChat Channels search response. Use 0 for the first page.
+            publish_time_type: Publish time filter for WeChat Channels video web search.  Available Values: - `ALL`: All publish times - `ONE_DAY`: Published in the last day - `SEVEN_DAYS`: Published in the last seven days - `HALF_YEAR`: Published in the last half year
+            sort_type: Sort order for WeChat Channels video search results.  Available Values: - `COMPREHENSIVE`: Comprehensive sort - `LATEST`: Latest first - `HOT`: Hot first
         """
-        return self._get(
+        return self._post(
             "/api/weixin-channels/search-video/v1",
             {},
+            data={
+                "keyword": keyword,
+                "cookies_buffer": cookies_buffer,
+                "currentPage": current_page,
+                "offset": offset,
+                "publishTimeType": publish_time_type,
+                "sortType": sort_type,
+            },
+            token_in_form=True,
         )
 
     def search_video_v2(
         self,
+        *,
+        keyword: str,
+        cookies_buffer: str | None = "",
+        current_page: int | None = 1,
+        offset: int | None = 0,
     ) -> ApiResponse[Any]:
         """
         Video Search
 
         Searches the WeChat Channels video category by keyword with page, offset, and continuation-state controls. Use it to retrieve categorized video results and continue additional pages.
+
+        Args:
+            keyword: Search keyword for categorized WeChat Channels video results.
+            cookies_buffer: Opaque pagination state returned by the previous WeChat Channels web search response. Leave it empty for the first page. For this POST endpoint, send it in an application/x-www-form-urlencoded form body.
+            current_page: Current page number starting from 1 for WeChat Channels web search pagination.
+            offset: Search result offset returned by the previous WeChat Channels search response. Use 0 for the first page.
         """
-        return self._get(
+        return self._post(
             "/api/weixin-channels/search-video/v2",
             {},
+            data={
+                "keyword": keyword,
+                "cookies_buffer": cookies_buffer,
+                "currentPage": current_page,
+                "offset": offset,
+            },
+            token_in_form=True,
         )
 
     def search_account_v1(
         self,
+        *,
+        keyword: str,
+        cookies_buffer: str | None = "",
+        current_page: int | None = 1,
+        offset: int | None = 0,
     ) -> ApiResponse[Any]:
         """
         Account Search
 
         Searches the WeChat Channels account category by keyword with page, offset, and continuation-state controls. Use it to discover creator accounts through paginated web-search results.
+
+        Args:
+            keyword: Search keyword for WeChat Channels account web search.
+            cookies_buffer: Opaque pagination state returned by the previous WeChat Channels account search response. Leave it empty for the first page. For this POST endpoint, send it in an application/x-www-form-urlencoded form body.
+            current_page: Current page number starting from 1 for WeChat Channels web search pagination.
+            offset: Search result offset returned by the previous WeChat Channels account search response. Use 0 for the first page.
         """
-        return self._get(
+        return self._post(
             "/api/weixin-channels/search-account/v1",
             {},
+            data={
+                "keyword": keyword,
+                "cookies_buffer": cookies_buffer,
+                "currentPage": current_page,
+                "offset": offset,
+            },
+            token_in_form=True,
         )
 
     def search_account_v2(
@@ -61,7 +121,7 @@ class WeixinChannelsResource(BaseResource):
         Args:
             keyword: Search keyword used to find WeChat Channels accounts and related video objects.
         """
-        return self._get(
+        return self._post(
             "/api/weixin-channels/search-account/v2",
             {
                 "keyword": keyword,
@@ -81,7 +141,7 @@ class WeixinChannelsResource(BaseResource):
         Args:
             keyword: Search keyword used to resolve a WeChat Channels account id.
         """
-        return self._get(
+        return self._post(
             "/api/weixin-channels/search-account/v3",
             {
                 "keyword": keyword,
@@ -90,15 +150,27 @@ class WeixinChannelsResource(BaseResource):
 
     def get_account_videos_v1(
         self,
+        *,
+        v2_name: str,
+        last_buffer: str | None = "",
     ) -> ApiResponse[Any]:
         """
         Account Videos
 
         Retrieves a paginated WeChat Channels account feed by v2Name with continuation-buffer support. Use it to browse videos and other feed entries published by a known creator account.
+
+        Args:
+            v2_name: WeChat Channels account unique id, usually ending with @finder.
+            last_buffer: Pagination buffer returned by the previous WeChat Channels account videos response. Leave it empty for the first page. For this POST endpoint, send it in an application/x-www-form-urlencoded form body.
         """
-        return self._get(
+        return self._post(
             "/api/weixin-channels/get-account-videos/v1",
             {},
+            data={
+                "v2Name": v2_name,
+                "last_buffer": last_buffer,
+            },
+            token_in_form=True,
         )
 
     def get_bound_channel_v1(
@@ -232,39 +304,84 @@ class WeixinChannelsResource(BaseResource):
 
     def get_video_metrics_v1(
         self,
+        *,
+        object_id: str,
+        last_buffer: str | None = "",
+        object_nonce_id: str | None = "",
     ) -> ApiResponse[Any]:
         """
         Video Metrics
 
         Retrieves interaction metrics for a WeChat Channels video by object ID with optional continuation-buffer input. Use it to review engagement for known video content.
+
+        Args:
+            object_id: WeChat Channels video object id used to fetch interaction metrics.
+            last_buffer: Pagination buffer returned by the previous WeChat Channels metrics response. Leave it empty for the first page. For this POST endpoint, send it in an application/x-www-form-urlencoded form body.
+            object_nonce_id: Optional WeChat Channels object nonce id.
         """
-        return self._get(
+        return self._post(
             "/api/weixin-channels/get-video-metrics/v1",
             {},
+            data={
+                "objectId": object_id,
+                "last_buffer": last_buffer,
+                "objectNonceId": object_nonce_id,
+            },
+            token_in_form=True,
         )
 
     def get_video_comment_v1(
         self,
+        *,
+        object_id: str,
+        last_buffer: str | None = "",
+        object_nonce_id: str | None = "",
     ) -> ApiResponse[Any]:
         """
         Video Comments
 
         Retrieves first-level comments for a WeChat Channels video by object ID with continuation-buffer pagination. Use it to review audience discussion on known video content.
+
+        Args:
+            object_id: WeChat Channels video object id used to fetch first-level comments. If you only have the exportId returned by a video search result, first call the Export Id Conversion (V1) endpoint at /api/weixin-channels/convert-export-id/v1 to convert it to an objectId.
+            last_buffer: Pagination buffer returned by the previous first-level WeChat Channels comment response. Leave it empty for the first page. For this POST endpoint, send it in an application/x-www-form-urlencoded form body.
+            object_nonce_id: Optional WeChat Channels object nonce id.
         """
-        return self._get(
+        return self._post(
             "/api/weixin-channels/get-video-comment/v1",
             {},
+            data={
+                "objectId": object_id,
+                "last_buffer": last_buffer,
+                "objectNonceId": object_nonce_id,
+            },
+            token_in_form=True,
         )
 
     def get_video_sub_comment_v1(
         self,
+        *,
+        object_id: str,
+        root_comment_id: str,
+        last_buffer: str | None = "",
     ) -> ApiResponse[Any]:
         """
         Video Sub Comments
 
         Retrieves replies under a first-level WeChat Channels video comment using the video and root-comment IDs. Use it to continue a threaded comment discussion with buffer pagination.
+
+        Args:
+            object_id: WeChat Channels video object id used to fetch second-level comment replies.
+            root_comment_id: Root first-level comment id returned by the WeChat Channels video comments endpoint.
+            last_buffer: Pagination buffer for WeChat Channels second-level comment replies. Use the first-level comment's last_buffer for the first reply page when present. For this POST endpoint, send it in an application/x-www-form-urlencoded form body.
         """
-        return self._get(
+        return self._post(
             "/api/weixin-channels/get-video-sub-comment/v1",
             {},
+            data={
+                "objectId": object_id,
+                "rootCommentId": root_comment_id,
+                "last_buffer": last_buffer,
+            },
+            token_in_form=True,
         )

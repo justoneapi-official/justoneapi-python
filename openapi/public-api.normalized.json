@@ -24399,19 +24399,16 @@
                   "last_buffer": {
                     "default": "",
                     "description": "Pagination buffer returned by the previous WeChat Channels account videos response. Leave it empty for the first page. For this POST endpoint, send it in an application/x-www-form-urlencoded form body.",
-                    "type": "string"
-                  },
-                  "token": {
-                    "description": "Access token for this API service.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "last_buffer"
                   },
                   "v2Name": {
                     "description": "WeChat Channels account unique id, usually ending with @finder.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "v2_name"
                   }
                 },
                 "required": [
-                  "token",
                   "v2Name"
                 ],
                 "type": "object"
@@ -24467,6 +24464,7 @@
         "x-sdk-class-name": "WeixinChannelsResource",
         "x-sdk-method-name": "get_account_videos_v1",
         "x-sdk-resource": "weixin_channels",
+        "x-sdk-token-in-form": true,
         "x-search-aliases": [
           "WeChat Channels account videos",
           "Weixin Channels creator feed",
@@ -24648,25 +24646,23 @@
                   "last_buffer": {
                     "default": "",
                     "description": "Pagination buffer returned by the previous first-level WeChat Channels comment response. Leave it empty for the first page. For this POST endpoint, send it in an application/x-www-form-urlencoded form body.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "last_buffer"
                   },
                   "objectId": {
                     "description": "WeChat Channels video object id used to fetch first-level comments. If you only have the exportId returned by a video search result, first call the Export Id Conversion (V1) endpoint at /api/weixin-channels/convert-export-id/v1 to convert it to an objectId.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "object_id"
                   },
                   "objectNonceId": {
                     "default": "",
                     "description": "Optional WeChat Channels object nonce id.",
-                    "type": "string"
-                  },
-                  "token": {
-                    "description": "Access token for this API service.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "object_nonce_id"
                   }
                 },
                 "required": [
-                  "objectId",
-                  "token"
+                  "objectId"
                 ],
                 "type": "object"
               }
@@ -24721,6 +24717,7 @@
         "x-sdk-class-name": "WeixinChannelsResource",
         "x-sdk-method-name": "get_video_comment_v1",
         "x-sdk-resource": "weixin_channels",
+        "x-sdk-token-in-form": true,
         "x-search-aliases": [
           "WeChat Channels video comments",
           "Weixin first-level comments",
@@ -24828,25 +24825,23 @@
                   "last_buffer": {
                     "default": "",
                     "description": "Pagination buffer returned by the previous WeChat Channels metrics response. Leave it empty for the first page. For this POST endpoint, send it in an application/x-www-form-urlencoded form body.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "last_buffer"
                   },
                   "objectId": {
                     "description": "WeChat Channels video object id used to fetch interaction metrics.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "object_id"
                   },
                   "objectNonceId": {
                     "default": "",
                     "description": "Optional WeChat Channels object nonce id.",
-                    "type": "string"
-                  },
-                  "token": {
-                    "description": "Access token for this API service.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "object_nonce_id"
                   }
                 },
                 "required": [
-                  "objectId",
-                  "token"
+                  "objectId"
                 ],
                 "type": "object"
               }
@@ -24901,6 +24896,7 @@
         "x-sdk-class-name": "WeixinChannelsResource",
         "x-sdk-method-name": "get_video_metrics_v1",
         "x-sdk-resource": "weixin_channels",
+        "x-sdk-token-in-form": true,
         "x-search-aliases": [
           "WeChat Channels video metrics",
           "Weixin video engagement",
@@ -24996,25 +24992,23 @@
                   "last_buffer": {
                     "default": "",
                     "description": "Pagination buffer for WeChat Channels second-level comment replies. Use the first-level comment's last_buffer for the first reply page when present. For this POST endpoint, send it in an application/x-www-form-urlencoded form body.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "last_buffer"
                   },
                   "objectId": {
                     "description": "WeChat Channels video object id used to fetch second-level comment replies.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "object_id"
                   },
                   "rootCommentId": {
                     "description": "Root first-level comment id returned by the WeChat Channels video comments endpoint.",
-                    "type": "string"
-                  },
-                  "token": {
-                    "description": "Access token for this API service.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "root_comment_id"
                   }
                 },
                 "required": [
                   "objectId",
-                  "rootCommentId",
-                  "token"
+                  "rootCommentId"
                 ],
                 "type": "object"
               }
@@ -25069,6 +25063,7 @@
         "x-sdk-class-name": "WeixinChannelsResource",
         "x-sdk-method-name": "get_video_sub_comment_v1",
         "x-sdk-resource": "weixin_channels",
+        "x-sdk-token-in-form": true,
         "x-search-aliases": [
           "WeChat Channels comment replies",
           "Weixin video sub comments",
@@ -25189,32 +25184,31 @@
                   "cookies_buffer": {
                     "default": "",
                     "description": "Opaque pagination state returned by the previous WeChat Channels account search response. Leave it empty for the first page. For this POST endpoint, send it in an application/x-www-form-urlencoded form body.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "cookies_buffer"
                   },
                   "currentPage": {
                     "default": 1,
                     "description": "Current page number starting from 1 for WeChat Channels web search pagination.",
                     "format": "int32",
-                    "type": "integer"
+                    "type": "integer",
+                    "x-sdk-python-name": "current_page"
                   },
                   "keyword": {
                     "description": "Search keyword for WeChat Channels account web search.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "keyword"
                   },
                   "offset": {
                     "default": 0,
                     "description": "Search result offset returned by the previous WeChat Channels account search response. Use 0 for the first page.",
                     "format": "int32",
-                    "type": "integer"
-                  },
-                  "token": {
-                    "description": "Access token for this API service.",
-                    "type": "string"
+                    "type": "integer",
+                    "x-sdk-python-name": "offset"
                   }
                 },
                 "required": [
-                  "keyword",
-                  "token"
+                  "keyword"
                 ],
                 "type": "object"
               }
@@ -25269,6 +25263,7 @@
         "x-sdk-class-name": "WeixinChannelsResource",
         "x-sdk-method-name": "search_account_v1",
         "x-sdk-resource": "weixin_channels",
+        "x-sdk-token-in-form": true,
         "x-search-aliases": [
           "WeChat Channels account search V1",
           "Weixin Channels creator web search",
@@ -25438,23 +25433,27 @@
                   "cookies_buffer": {
                     "default": "",
                     "description": "Opaque pagination state returned by the previous WeChat Channels web search response. Leave it empty for the first page. For this POST endpoint, send it in an application/x-www-form-urlencoded form body.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "cookies_buffer"
                   },
                   "currentPage": {
                     "default": 1,
                     "description": "Current page number starting from 1 for WeChat Channels web search pagination.",
                     "format": "int32",
-                    "type": "integer"
+                    "type": "integer",
+                    "x-sdk-python-name": "current_page"
                   },
                   "keyword": {
                     "description": "Search keyword for WeChat Channels video results.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "keyword"
                   },
                   "offset": {
                     "default": 0,
                     "description": "Search result offset returned by the previous WeChat Channels search response. Use 0 for the first page.",
                     "format": "int32",
-                    "type": "integer"
+                    "type": "integer",
+                    "x-sdk-python-name": "offset"
                   },
                   "publishTimeType": {
                     "default": "ALL",
@@ -25465,7 +25464,8 @@
                       "SEVEN_DAYS",
                       "HALF_YEAR"
                     ],
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "publish_time_type"
                   },
                   "sortType": {
                     "default": "COMPREHENSIVE",
@@ -25475,16 +25475,12 @@
                       "LATEST",
                       "HOT"
                     ],
-                    "type": "string"
-                  },
-                  "token": {
-                    "description": "Access token for this API service.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "sort_type"
                   }
                 },
                 "required": [
-                  "keyword",
-                  "token"
+                  "keyword"
                 ],
                 "type": "object"
               }
@@ -25539,6 +25535,7 @@
         "x-sdk-class-name": "WeixinChannelsResource",
         "x-sdk-method-name": "search_video_v1",
         "x-sdk-resource": "weixin_channels",
+        "x-sdk-token-in-form": true,
         "x-search-aliases": [
           "WeChat Channels video search V1",
           "Weixin Channels video web search",
@@ -25562,32 +25559,31 @@
                   "cookies_buffer": {
                     "default": "",
                     "description": "Opaque pagination state returned by the previous WeChat Channels web search response. Leave it empty for the first page. For this POST endpoint, send it in an application/x-www-form-urlencoded form body.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "cookies_buffer"
                   },
                   "currentPage": {
                     "default": 1,
                     "description": "Current page number starting from 1 for WeChat Channels web search pagination.",
                     "format": "int32",
-                    "type": "integer"
+                    "type": "integer",
+                    "x-sdk-python-name": "current_page"
                   },
                   "keyword": {
                     "description": "Search keyword for categorized WeChat Channels video results.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "keyword"
                   },
                   "offset": {
                     "default": 0,
                     "description": "Search result offset returned by the previous WeChat Channels search response. Use 0 for the first page.",
                     "format": "int32",
-                    "type": "integer"
-                  },
-                  "token": {
-                    "description": "Access token for this API service.",
-                    "type": "string"
+                    "type": "integer",
+                    "x-sdk-python-name": "offset"
                   }
                 },
                 "required": [
-                  "keyword",
-                  "token"
+                  "keyword"
                 ],
                 "type": "object"
               }
@@ -25642,6 +25638,7 @@
         "x-sdk-class-name": "WeixinChannelsResource",
         "x-sdk-method-name": "search_video_v2",
         "x-sdk-resource": "weixin_channels",
+        "x-sdk-token-in-form": true,
         "x-search-aliases": [
           "WeChat Channels video search V2",
           "Weixin Channels categorized video search",
@@ -25817,24 +25814,22 @@
                       "AUDIO",
                       "IMAGE"
                     ],
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "item_show_type"
                   },
                   "offset": {
                     "default": "",
                     "description": "Base64 pagination cursor. Leave empty for the first page; pass next_offset from the previous response for the next page. Send it in the URL-encoded form body.",
-                    "type": "string"
-                  },
-                  "token": {
-                    "description": "Access token for this API service.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "offset"
                   },
                   "username": {
                     "description": "WeChat Official Account username with the gh_ prefix.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "username"
                   }
                 },
                 "required": [
-                  "token",
                   "username"
                 ],
                 "type": "object"
@@ -25891,6 +25886,7 @@
         "x-sdk-class-name": "WeixinResource",
         "x-sdk-method-name": "get_account_history_articles_v1",
         "x-sdk-resource": "weixin",
+        "x-sdk-token-in-form": true,
         "x-search-aliases": [
           "微信公众号历史文章",
           "公众号文章归档",
@@ -25911,26 +25907,23 @@
                   "ghid": {
                     "default": "",
                     "description": "WeChat Official Account original identifier, using the gh_ prefix returned by WeChat. Use either ghid or url.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "ghid"
                   },
                   "offset": {
                     "default": "",
                     "description": "PagingInfo.Offset cursor returned by the previous response. Leave it empty for the first page. For this POST endpoint, send it in an application/x-www-form-urlencoded form body.",
-                    "type": "string"
-                  },
-                  "token": {
-                    "description": "Access token for this API service.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "offset"
                   },
                   "url": {
                     "default": "",
                     "description": "WeChat Official Account article URL used to identify the account and fetch historical articles. Use either ghid or url.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "url"
                   }
                 },
-                "required": [
-                  "token"
-                ],
+                "required": [],
                 "type": "object"
               }
             }
@@ -25984,6 +25977,7 @@
         "x-sdk-class-name": "WeixinResource",
         "x-sdk-method-name": "get_account_history_articles_v2",
         "x-sdk-resource": "weixin",
+        "x-sdk-token-in-form": true,
         "x-search-aliases": [
           "WeChat Official Account article history v2",
           "WeChat ghid article archive",
@@ -26285,21 +26279,18 @@
                 "properties": {
                   "articleUrl": {
                     "description": "WeChat Official Account article URL used to fetch top-level article comments.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "article_url"
                   },
                   "buffer": {
                     "default": "",
                     "description": "Comment pagination buffer returned by the previous response. Leave it empty for the first page. For this POST endpoint, send it in an application/x-www-form-urlencoded form body.",
-                    "type": "string"
-                  },
-                  "token": {
-                    "description": "Access token for this API service.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "buffer"
                   }
                 },
                 "required": [
-                  "articleUrl",
-                  "token"
+                  "articleUrl"
                 ],
                 "type": "object"
               }
@@ -26354,6 +26345,7 @@
         "x-sdk-class-name": "WeixinResource",
         "x-sdk-method-name": "get_article_comment_v1",
         "x-sdk-resource": "weixin",
+        "x-sdk-token-in-form": true,
         "x-search-aliases": [
           "WeChat article comments API",
           "WeChat Official Account comment list",
@@ -27088,32 +27080,31 @@
                   "cookies_buffer": {
                     "default": "",
                     "description": "Opaque pagination state returned by the previous WeChat web search response. Leave it empty for the first page. For this POST endpoint, send it in an application/x-www-form-urlencoded form body.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "cookies_buffer"
                   },
                   "currentPage": {
                     "default": 1,
                     "description": "Current page number starting from 1 for WeChat web search pagination.",
                     "format": "int32",
-                    "type": "integer"
+                    "type": "integer",
+                    "x-sdk-python-name": "current_page"
                   },
                   "keyword": {
                     "description": "Search keyword for WeChat Official Account web search.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "keyword"
                   },
                   "offset": {
                     "default": 0,
                     "description": "Search result offset returned by the previous response. Use 0 for the first page.",
                     "format": "int32",
-                    "type": "integer"
-                  },
-                  "token": {
-                    "description": "Access token for this API service.",
-                    "type": "string"
+                    "type": "integer",
+                    "x-sdk-python-name": "offset"
                   }
                 },
                 "required": [
-                  "keyword",
-                  "token"
+                  "keyword"
                 ],
                 "type": "object"
               }
@@ -27168,6 +27159,7 @@
         "x-sdk-class-name": "WeixinResource",
         "x-sdk-method-name": "search_account_v2",
         "x-sdk-resource": "weixin",
+        "x-sdk-token-in-form": true,
         "x-search-aliases": [
           "WeChat paginated account search",
           "WeChat account keyword discovery",
@@ -27364,23 +27356,27 @@
                   "cookies_buffer": {
                     "default": "",
                     "description": "Opaque pagination state returned by the previous WeChat web search response. Leave it empty for the first page. For this POST endpoint, send it in an application/x-www-form-urlencoded form body.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "cookies_buffer"
                   },
                   "currentPage": {
                     "default": 1,
                     "description": "Current page number starting from 1 for WeChat web search pagination.",
                     "format": "int32",
-                    "type": "integer"
+                    "type": "integer",
+                    "x-sdk-python-name": "current_page"
                   },
                   "keyword": {
                     "description": "Search keyword for WeChat Official Account articles.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "keyword"
                   },
                   "offset": {
                     "default": 0,
                     "description": "Search result offset returned by the previous response. Use 0 for the first page.",
                     "format": "int32",
-                    "type": "integer"
+                    "type": "integer",
+                    "x-sdk-python-name": "offset"
                   },
                   "publishTimeType": {
                     "default": "ALL",
@@ -27391,7 +27387,8 @@
                       "SEVEN_DAYS",
                       "HALF_YEAR"
                     ],
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "publish_time_type"
                   },
                   "sortType": {
                     "default": "COMPREHENSIVE",
@@ -27401,16 +27398,12 @@
                       "LATEST",
                       "HOT"
                     ],
-                    "type": "string"
-                  },
-                  "token": {
-                    "description": "Access token for this API service.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "sort_type"
                   }
                 },
                 "required": [
-                  "keyword",
-                  "token"
+                  "keyword"
                 ],
                 "type": "object"
               }
@@ -27465,6 +27458,7 @@
         "x-sdk-class-name": "WeixinResource",
         "x-sdk-method-name": "search_article_v1",
         "x-sdk-resource": "weixin",
+        "x-sdk-token-in-form": true,
         "x-search-aliases": [
           "WeChat Official Account article search",
           "WeChat article keyword search",
@@ -27488,23 +27482,27 @@
                   "cookies_buffer": {
                     "default": "",
                     "description": "Opaque pagination state returned by the previous WeChat web search response. Leave it empty for the first page. For this POST endpoint, send it in an application/x-www-form-urlencoded form body.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "cookies_buffer"
                   },
                   "currentPage": {
                     "default": 1,
                     "description": "Current page number starting from 1 for WeChat web search pagination.",
                     "format": "int32",
-                    "type": "integer"
+                    "type": "integer",
+                    "x-sdk-python-name": "current_page"
                   },
                   "keyword": {
                     "description": "Search keyword for categorized WeChat Official Account article web search.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "keyword"
                   },
                   "offset": {
                     "default": 0,
                     "description": "Search result offset returned by the previous response. Use 0 for the first page.",
                     "format": "int32",
-                    "type": "integer"
+                    "type": "integer",
+                    "x-sdk-python-name": "offset"
                   },
                   "subSearchType": {
                     "default": "ALL",
@@ -27516,16 +27514,12 @@
                       "RECENT_READ",
                       "HOT"
                     ],
-                    "type": "string"
-                  },
-                  "token": {
-                    "description": "Access token for this API service.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "sub_search_type"
                   }
                 },
                 "required": [
-                  "keyword",
-                  "token"
+                  "keyword"
                 ],
                 "type": "object"
               }
@@ -27580,6 +27574,7 @@
         "x-sdk-class-name": "WeixinResource",
         "x-sdk-method-name": "search_article_v2",
         "x-sdk-resource": "weixin",
+        "x-sdk-token-in-form": true,
         "x-search-aliases": [
           "WeChat categorized article search",
           "WeChat followed account article search",
@@ -27603,32 +27598,31 @@
                   "cookies_buffer": {
                     "default": "",
                     "description": "Opaque pagination state returned by the previous WeChat web search response. Leave it empty for the first page. For this POST endpoint, send it in an application/x-www-form-urlencoded form body.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "cookies_buffer"
                   },
                   "currentPage": {
                     "default": 1,
                     "description": "Current page number starting from 1 for WeChat web search pagination.",
                     "format": "int32",
-                    "type": "integer"
+                    "type": "integer",
+                    "x-sdk-python-name": "current_page"
                   },
                   "keyword": {
                     "description": "Search keyword for WeChat mini program web search.",
-                    "type": "string"
+                    "type": "string",
+                    "x-sdk-python-name": "keyword"
                   },
                   "offset": {
                     "default": 0,
                     "description": "Search result offset returned by the previous response. Use 0 for the first page.",
                     "format": "int32",
-                    "type": "integer"
-                  },
-                  "token": {
-                    "description": "Access token for this API service.",
-                    "type": "string"
+                    "type": "integer",
+                    "x-sdk-python-name": "offset"
                   }
                 },
                 "required": [
-                  "keyword",
-                  "token"
+                  "keyword"
                 ],
                 "type": "object"
               }
@@ -27683,6 +27677,7 @@
         "x-sdk-class-name": "WeixinResource",
         "x-sdk-method-name": "search_miniprogram_v1",
         "x-sdk-resource": "weixin",
+        "x-sdk-token-in-form": true,
         "x-search-aliases": [
           "WeChat Mini Program search API",
           "WeChat applet keyword search",

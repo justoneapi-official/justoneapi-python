@@ -37,11 +37,41 @@ class Transport:
         self._client.close()
 
     def get(self, path: str, params: dict[str, Any]) -> ApiResponse[Any]:
-        request_params = {"token": self._token, **self._clean_params(params)}
+        return self._request("GET", path, params)
+
+    def post(
+        self,
+        path: str,
+        params: dict[str, Any],
+        *,
+        data: dict[str, Any] | None = None,
+        token_in_form: bool = False,
+    ) -> ApiResponse[Any]:
+        return self._request(
+            "POST", path, params, data=data, token_in_form=token_in_form
+        )
+
+    def _request(
+        self,
+        method: str,
+        path: str,
+        params: dict[str, Any],
+        *,
+        data: dict[str, Any] | None = None,
+        token_in_form: bool = False,
+    ) -> ApiResponse[Any]:
+        request_params = self._clean_params(params)
+        request_data = self._clean_params(data) if data is not None else None
+        if token_in_form:
+            request_data = {"token": self._token, **(request_data or {})}
+        else:
+            request_params = {"token": self._token, **request_params}
         try:
-            response = self._client.get(path, params=request_params)
+            response = self._client.request(
+                method, path, params=request_params, data=request_data
+            )
         except httpx.HTTPError as exc:
-            raise TransportError(f"Request failed for GET {path}: {exc}") from exc
+            raise TransportError(f"Request failed for {method} {path}: {exc}") from exc
 
         log_message = response.headers.get("JUSTONEAPI_PYTHON_SDK_LOG_MESSAGE")
         if log_message:
@@ -51,12 +81,12 @@ class Transport:
             payload = response.json()
         except ValueError as exc:
             raise ProtocolError(
-                f"Server returned a non-JSON response for GET {path}"
+                f"Server returned a non-JSON response for {method} {path}"
             ) from exc
 
         if not isinstance(payload, dict):
             raise ProtocolError(
-                f"Server returned a non-object JSON payload for GET {path}"
+                f"Server returned a non-object JSON payload for {method} {path}"
             )
 
         api_response = ApiResponse(

@@ -47,6 +47,24 @@ print(response.message)  # Server message
 print(response.data)     # Actual payload
 ```
 
+WeChat Official Account article search:
+
+```python
+response = client.weixin.search_article_v1(
+    keyword="artificial intelligence",
+    publish_time_type="SEVEN_DAYS",
+    sort_type="LATEST",
+    current_page=1,
+)
+
+# V2 supports article category filters
+response = client.weixin.search_article_v2(
+    keyword="artificial intelligence", sub_search_type="HOT"
+)
+```
+
+`keyword` is required. The SDK sends the POST form and Token automatically. For continuation pagination, pass back the previous response's `offset` and `cookies_buffer` as described in the endpoint documentation, and set `current_page`.
+
 ## Response Shape
 
 Every API method returns an `ApiResponse` instance with these fields:
