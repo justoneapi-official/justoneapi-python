@@ -8634,6 +8634,7 @@
     },
     "/api/douyin/get-user-video-list/v3": {
       "get": {
+        "deprecated": true,
         "description": "Retrieves videos published by a Douyin (TikTok China) user with cursor pagination. Use it to browse a known creator's public video history or continue through video pages.",
         "operationId": "getApiDouyinGetUserVideoListV3",
         "parameters": [
@@ -8702,6 +8703,7 @@
           "Douyin (TikTok China)"
         ],
         "x-api-version": "v3",
+        "x-docs-hidden": true,
         "x-docs-slug": "user-published-videos-v3",
         "x-endpoint-family": "douyin_get_user_video_list",
         "x-highlights": [
@@ -36240,5 +36242,5 @@
       "x-platform-id": "1688"
     }
   ],
-  "x-openapi-release-id": "22ca2807b75762f9"
+  "x-openapi-release-id": "8449881e197ef8c2"
 }
