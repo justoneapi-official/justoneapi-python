@@ -45,10 +45,11 @@ class Transport:
         params: dict[str, Any],
         *,
         data: dict[str, Any] | None = None,
+        json: dict[str, Any] | None = None,
         token_in_form: bool = False,
     ) -> ApiResponse[Any]:
         return self._request(
-            "POST", path, params, data=data, token_in_form=token_in_form
+            "POST", path, params, data=data, json=json, token_in_form=token_in_form
         )
 
     def _request(
@@ -58,17 +59,27 @@ class Transport:
         params: dict[str, Any],
         *,
         data: dict[str, Any] | None = None,
+        json: dict[str, Any] | None = None,
         token_in_form: bool = False,
     ) -> ApiResponse[Any]:
         request_params = self._clean_params(params)
         request_data = self._clean_params(data) if data is not None else None
+        request_json = (
+            {key: value for key, value in json.items() if value is not None}
+            if json is not None
+            else None
+        )
         if token_in_form:
             request_data = {"token": self._token, **(request_data or {})}
         else:
             request_params = {"token": self._token, **request_params}
         try:
             response = self._client.request(
-                method, path, params=request_params, data=request_data
+                method,
+                path,
+                params=request_params,
+                data=request_data,
+                json=request_json,
             )
         except httpx.HTTPError as exc:
             raise TransportError(f"Request failed for {method} {path}: {exc}") from exc

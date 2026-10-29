@@ -228,21 +228,133 @@ def test_generator_keeps_post_query_and_form_fields_separate():
             ("/api/demo/search/v1", {"page": 2}),
             {
                 "data": {"keyword": "测试", "lastBuffer": "opaque+&="},
+                "json": None,
                 "token_in_form": True,
             },
         )
     ]
 
 
-def test_generator_rejects_unsupported_body_instead_of_dropping_fields():
+@pytest.mark.parametrize("referenced", [False, True], ids=["inline", "reference"])
+def test_generator_supports_image_conversion_json_body(referenced):
+    schema = {
+        "type": "object",
+        "properties": {
+            "url": {"type": "string"},
+            "imgBase64": {"type": "string"},
+            "searchApiEndpoint": {
+                "type": "string",
+                "default": "standard",
+                "enum": ["standard", "cross_border_v1", "cross_border_v2"],
+            },
+        },
+    }
+    spec = {
+        "components": {"schemas": {"Alibaba1688ImageConversionRequest": schema}},
+        "paths": {
+            "/api/1688/convert-image/v1": {
+                "post": {
+                    "operationId": "postApi1688ConvertImageV1",
+                    "parameters": [
+                        {
+                            "name": "token",
+                            "in": "query",
+                            "required": True,
+                            "schema": {"type": "string"},
+                        },
+                    ],
+                    "requestBody": {
+                        "content": {
+                            "application/json": {
+                                "schema": (
+                                    {
+                                        "$ref": "#/components/schemas/Alibaba1688ImageConversionRequest"
+                                    }
+                                    if referenced
+                                    else schema
+                                )
+                            }
+                        }
+                    },
+                },
+            },
+        },
+    }
+    original = json.dumps(spec, sort_keys=True)
+    normalized = normalize_spec(spec, load_overrides(OVERRIDES_PATH))
+    resources = collect_resources(normalized)
+    namespace = {}
+    exec(render_resource_module(resources[0]), namespace)
+    calls = []
+
+    class RecordingTransport:
+        def post(self, *args, **kwargs):
+            calls.append((args, kwargs))
+
+    resource = namespace["Field1688Resource"](RecordingTransport())
+    resource.convert_image_v1(url="https://example.test/image.jpg")
+    resource.convert_image_v1(img_base64="/9j/", search_api_endpoint="cross_border_v2")
+
+    assert calls == [
+        (
+            ("/api/1688/convert-image/v1", {}),
+            {
+                "data": None,
+                "json": {
+                    "url": "https://example.test/image.jpg",
+                    "imgBase64": None,
+                    "searchApiEndpoint": "standard",
+                },
+                "token_in_form": False,
+            },
+        ),
+        (
+            ("/api/1688/convert-image/v1", {}),
+            {
+                "data": None,
+                "json": {
+                    "url": None,
+                    "imgBase64": "/9j/",
+                    "searchApiEndpoint": "cross_border_v2",
+                },
+                "token_in_form": False,
+            },
+        ),
+    ]
+    assert json.dumps(spec, sort_keys=True) == original
+
+
+@pytest.mark.parametrize(
+    "content",
+    [
+        {"multipart/form-data": {"schema": {"type": "object"}}},
+        {
+            "application/json": {
+                "schema": {"type": "array", "items": {"type": "string"}}
+            }
+        },
+        {
+            "application/json": {
+                "schema": {
+                    "type": "object",
+                    "allOf": [
+                        {
+                            "type": "object",
+                            "properties": {"keyword": {"type": "string"}},
+                        }
+                    ],
+                }
+            }
+        },
+    ],
+)
+def test_generator_rejects_unsupported_body_instead_of_dropping_fields(content):
     spec = {
         "paths": {
             "/api/demo/search/v1": {
                 "post": {
                     "operationId": "postDemoSearchV1",
-                    "requestBody": {
-                        "content": {"application/json": {"schema": {"type": "object"}}}
-                    },
+                    "requestBody": {"content": content},
                 }
             }
         }

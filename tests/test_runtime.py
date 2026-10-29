@@ -10,7 +10,12 @@ import pytest
 
 from justoneapi import JustOneAPIClient
 from justoneapi._exceptions import BusinessError, ProtocolError, TransportError
-from tools.sdk_codegen import to_python_identifier
+from tools.sdk_codegen import (
+    collect_resources,
+    normalize_spec,
+    render_resource_module,
+    to_python_identifier,
+)
 
 RAW_SPEC = json.loads(
     (Path(__file__).resolve().parents[1] / "openapi/public-api.json").read_text()
@@ -154,7 +159,7 @@ def test_post_operations_follow_public_request_contract(make_client, path, opera
         return httpx.Response(200, json={"code": 0, "message": "ok", "data": []})
 
     client = make_client(handler)
-    namespace = path.split("/")[2].replace("-", "_")
+    namespace = to_python_identifier(path.split("/")[2])
     method_name = to_python_identifier("_".join(path.split("/")[3:]))
     method = getattr(getattr(client, namespace), method_name)
     form_schema = (
@@ -163,20 +168,27 @@ def test_post_operations_follow_public_request_contract(make_client, path, opera
         .get("application/x-www-form-urlencoded", {})
         .get("schema")
     )
-    fields = (
-        form_schema["properties"]
-        if form_schema is not None
-        else {p["name"]: p["schema"] for p in operation.get("parameters", [])}
+    json_schema = (
+        operation.get("requestBody", {})
+        .get("content", {})
+        .get("application/json", {})
+        .get("schema")
     )
-    required = (
-        set(form_schema.get("required", []))
-        if form_schema is not None
-        else {p["name"] for p in operation.get("parameters", []) if p.get("required")}
-    )
+    if json_schema is not None and "$ref" in json_schema:
+        json_schema = RAW_SPEC["components"]["schemas"][
+            json_schema["$ref"].rsplit("/", 1)[-1]
+        ]
+    body_schema = form_schema if form_schema is not None else json_schema
+    fields = {p["name"]: p["schema"] for p in operation.get("parameters", [])}
+    required = {p["name"] for p in operation.get("parameters", []) if p.get("required")}
+    if body_schema is not None:
+        fields.update(body_schema.get("properties", {}))
+        required.update(body_schema.get("required", []))
     signature = inspect.signature(method)
     assert "token" not in signature.parameters
     arguments = {}
-    expected = {"token": ["test-token"]}
+    expected_query = {"token": ["test-token"]}
+    expected_body = {}
     for name, schema in fields.items():
         if name == "token":
             continue
@@ -190,7 +202,10 @@ def test_post_operations_follow_public_request_contract(make_client, path, opera
         if value is None:
             value = 7 if schema.get("type") == "integer" else "微信 + & = / ?"
         arguments[python_name] = value
-        expected[name] = [str(value)]
+        if body_schema is not None and name in body_schema.get("properties", {}):
+            expected_body[name] = value
+        else:
+            expected_query[name] = [str(value)]
 
     response = method(**arguments)
 
@@ -201,11 +216,96 @@ def test_post_operations_follow_public_request_contract(make_client, path, opera
     assert request.url.path == path
     if form_schema is not None:
         assert request.headers["Content-Type"] == "application/x-www-form-urlencoded"
-        assert not request.url.query
-        assert parse_qs(request.content.decode(), keep_blank_values=True) == expected
+        expected_body["token"] = "test-token"
+        expected_query.pop("token")
+        assert (
+            parse_qs(request.url.query.decode(), keep_blank_values=True)
+            == expected_query
+        )
+        assert parse_qs(request.content.decode(), keep_blank_values=True) == {
+            name: [str(value)] for name, value in expected_body.items()
+        }
+    elif json_schema is not None:
+        assert request.headers["Content-Type"] == "application/json"
+        assert (
+            parse_qs(request.url.query.decode(), keep_blank_values=True)
+            == expected_query
+        )
+        assert json.loads(request.content) == expected_body
     else:
         assert not request.content
-        assert parse_qs(request.url.query.decode(), keep_blank_values=True) == expected
+        assert (
+            parse_qs(request.url.query.decode(), keep_blank_values=True)
+            == expected_query
+        )
+
+
+def test_generated_json_body_preserves_types_and_query_authentication(make_client):
+    requests = []
+
+    def handler(request):
+        requests.append(request)
+        return httpx.Response(200, json={"code": 0, "data": {}})
+
+    spec = {
+        "paths": {
+            "/api/demo/json/v1": {
+                "post": {
+                    "operationId": "postDemoJsonV1",
+                    "parameters": [
+                        {
+                            "name": "page",
+                            "in": "query",
+                            "schema": {"type": "integer", "default": 1},
+                        }
+                    ],
+                    "requestBody": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "required": ["payload"],
+                                    "properties": {
+                                        "payload": {"type": "object"},
+                                        "enabled": {"type": "boolean"},
+                                        "count": {"type": "integer"},
+                                        "imgBase64": {"type": "string"},
+                                        "optional": {"type": "string"},
+                                    },
+                                }
+                            }
+                        }
+                    },
+                }
+            }
+        }
+    }
+    resource_info = collect_resources(normalize_spec(spec, {}))[0]
+    namespace = {}
+    exec(render_resource_module(resource_info), namespace)
+    client = make_client(handler)
+    resource = namespace["DemoResource"](client._transport)
+    payload = {"values": [1, False, None, {"text": "图片 + & = / ?"}]}
+
+    with pytest.raises(TypeError, match="payload"):
+        resource.json_v1()
+    assert not requests
+    response = resource.json_v1(
+        payload=payload, enabled=False, count=0, img_base64="/9j/+&=", page=2
+    )
+
+    assert response.success is True
+    assert len(requests) == 1
+    request = requests[0]
+    assert request.method == "POST"
+    assert request.headers["Content-Type"] == "application/json"
+    assert dict(request.url.params) == {"token": "test-token", "page": "2"}
+    assert json.loads(request.content) == {
+        "payload": payload,
+        "enabled": False,
+        "count": 0,
+        "imgBase64": "/9j/+&=",
+    }
 
 
 @pytest.mark.parametrize("version", ["v1", "v2"])
