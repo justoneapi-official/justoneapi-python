@@ -31,6 +31,45 @@ class Alibaba1688ImageConversionRequest(BaseModel):
     ] = None
 
 
+class NodeType(Enum):
+    ARRAY = "ARRAY"
+    BINARY = "BINARY"
+    BOOLEAN = "BOOLEAN"
+    MISSING = "MISSING"
+    NULL = "NULL"
+    NUMBER = "NUMBER"
+    OBJECT = "OBJECT"
+    POJO = "POJO"
+    STRING = "STRING"
+
+
+class JsonNode(BaseModel):
+    array: bool | None = None
+    bigDecimal: bool | None = None
+    bigInteger: bool | None = None
+    binary: bool | None = None
+    boolean: bool | None = None
+    container: bool | None = None
+    double: bool | None = None
+    embeddedValue: bool | None = None
+    empty: bool | None = None
+    float: bool | None = None
+    floatingPointNumber: bool | None = None
+    int: bool | None = None
+    integralNumber: bool | None = None
+    long: bool | None = None
+    missingNode: bool | None = None
+    nodeType: NodeType | None = None
+    null: bool | None = None
+    number: bool | None = None
+    object: bool | None = None
+    pojo: bool | None = None
+    short: bool | None = None
+    string: bool | None = None
+    textual: Annotated[bool | None, Field(deprecated=True)] = None
+    valueNode: bool | None = None
+
+
 class Code(IntEnum):
     integer_0 = 0
     integer_100 = 100
@@ -49,6 +88,11 @@ class Code(IntEnum):
     integer_602 = 602
 
 
+class ApiRequestParams(BaseModel):
+    body: JsonNode | None = None
+    query: dict[str, dict[str, Any]] | None = None
+
+
 class Result(BaseModel):
     code: Code
     data: Any
@@ -56,3 +100,4 @@ class Result(BaseModel):
     reason: str | None = None
     recordTime: str | None
     requestId: str | None = None
+    requestParams: ApiRequestParams | None = None
