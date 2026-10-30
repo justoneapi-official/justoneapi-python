@@ -63,6 +63,30 @@
       }
     },
     "schemas": {
+      "Alibaba1688ImageConversionRequest": {
+        "description": "Image input and the intended 1688 image search target",
+        "properties": {
+          "imgBase64": {
+            "description": "JPEG image encoded as Base64 without a data URI prefix; decoded size must not exceed 100 KB.",
+            "type": "string"
+          },
+          "searchApiEndpoint": {
+            "default": "standard",
+            "description": "Image search target for the converted reference.",
+            "enum": [
+              "standard",
+              "cross_border_v1",
+              "cross_border_v2"
+            ],
+            "type": "string"
+          },
+          "url": {
+            "description": "Image URL. Supply either url or imgBase64.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "Result": {
         "properties": {
           "code": {
@@ -129,6 +153,669 @@
   },
   "openapi": "3.1.0",
   "paths": {
+    "/api/1688/convert-image/v1": {
+      "post": {
+        "description": "Converts an image URL or JPEG Base64 input into an image reference for a selected 1688 image search endpoint. Use it to prepare external images for visual product sourcing.",
+        "operationId": "postApi1688ConvertImageV1",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "Image input and the intended 1688 image search target",
+                "properties": {
+                  "imgBase64": {
+                    "description": "JPEG image encoded as Base64 without a data URI prefix; decoded size must not exceed 100 KB.",
+                    "type": "string",
+                    "x-sdk-python-name": "img_base64"
+                  },
+                  "searchApiEndpoint": {
+                    "default": "standard",
+                    "description": "Image search target for the converted reference.",
+                    "enum": [
+                      "standard",
+                      "cross_border_v1",
+                      "cross_border_v2"
+                    ],
+                    "type": "string",
+                    "x-sdk-python-name": "search_api_endpoint"
+                  },
+                  "url": {
+                    "description": "Image URL. Supply either url or imgBase64.",
+                    "type": "string",
+                    "x-sdk-python-name": "url"
+                  }
+                },
+                "required": [],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Image Conversion",
+        "tags": [
+          "1688"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "image-conversion-v1",
+        "x-endpoint-family": "1688_convert_image",
+        "x-highlights": [
+          {
+            "content": "Supply exactly one of url and imgBase64. Base64 input must be JPEG and no larger than 100 KB. Pass the returned image reference unchanged to the selected image search endpoint.",
+            "kind": "GUIDANCE",
+            "type": "info"
+          }
+        ],
+        "x-order": "19103000",
+        "x-sdk-class-name": "Field1688Resource",
+        "x-sdk-method-name": "convert_image_v1",
+        "x-sdk-resource": "field_1688",
+        "x-search-aliases": [
+          "1688 图片转链",
+          "1688 image URL conversion"
+        ]
+      }
+    },
+    "/api/1688/get-category-info/v1": {
+      "get": {
+        "description": "Retrieves 1688 category information by category ID, or root categories when no ID is supplied. Use it to navigate categories during product sourcing.",
+        "operationId": "getApi1688GetCategoryInfoV1",
+        "parameters": [
+          {
+            "description": "1688 platform category ID.",
+            "in": "query",
+            "name": "catId",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "cat_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Category Information",
+        "tags": [
+          "1688"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "category-information-v1",
+        "x-endpoint-family": "1688_get_category_info",
+        "x-highlights": [],
+        "x-order": "19101500",
+        "x-sdk-class-name": "Field1688Resource",
+        "x-sdk-method-name": "get_category_info_v1",
+        "x-sdk-resource": "field_1688",
+        "x-search-aliases": [
+          "1688 类目信息"
+        ]
+      }
+    },
+    "/api/1688/get-category-item-list/v1": {
+      "get": {
+        "description": "Retrieves 1688 products by platform category ID with pagination and optional sourcing filters. Use it to discover products within a known category.",
+        "operationId": "getApi1688GetCategoryItemListV1",
+        "parameters": [
+          {
+            "description": "1688 platform category ID.",
+            "in": "query",
+            "name": "catId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "cat_id"
+          },
+          {
+            "description": "Page number, starting at 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-sdk-python-name": "page"
+          },
+          {
+            "description": "Optional super-factory filter.",
+            "in": "query",
+            "name": "isSuperFactory",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "is_super_factory"
+          },
+          {
+            "description": "Filter for support for dropshipping.",
+            "in": "query",
+            "name": "supportDropshipping",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "support_dropshipping"
+          },
+          {
+            "description": "Filter for free shipping.",
+            "in": "query",
+            "name": "freeShipping",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "free_shipping"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Category Products",
+        "tags": [
+          "1688"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "category-products-v1",
+        "x-endpoint-family": "1688_get_category_item_list",
+        "x-highlights": [],
+        "x-order": "19101510",
+        "x-sdk-class-name": "Field1688Resource",
+        "x-sdk-method-name": "get_category_item_list_v1",
+        "x-sdk-resource": "field_1688",
+        "x-search-aliases": [
+          "1688 类目商品"
+        ]
+      }
+    },
+    "/api/1688/get-category-item-list/v2": {
+      "get": {
+        "description": "Retrieves 1688 products by category ID with output language, pagination, sorting and price filters. Use it to discover category products for multilingual sourcing.",
+        "operationId": "getApi1688GetCategoryItemListV2",
+        "parameters": [
+          {
+            "description": "1688 platform category ID.",
+            "in": "query",
+            "name": "catId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "cat_id"
+          },
+          {
+            "description": "Output language.\n\nAvailable Values:\n- `en`: English\n- `zh`: Chinese\n- `ru`: Russian\n- `vi`: Vietnamese\n- `ja`: Japanese\n- `ko`: Korean",
+            "in": "query",
+            "name": "language",
+            "required": false,
+            "schema": {
+              "default": "zh",
+              "description": "Supported output language",
+              "enum": [
+                "en",
+                "zh",
+                "ru",
+                "vi",
+                "ja",
+                "ko"
+              ],
+              "type": "string"
+            },
+            "x-sdk-python-name": "language"
+          },
+          {
+            "description": "Page number, starting at 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-sdk-python-name": "page"
+          },
+          {
+            "description": "Number of items requested per page. The returned count may differ.",
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-sdk-python-name": "page_size"
+          },
+          {
+            "description": "Product sort order.\n\nAvailable Values:\n- `default`: Default order\n- `sales`: Sales order\n- `price_up`: Price ascending\n- `price_down`: Price descending",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "default": "default",
+              "description": "1688 ProductSort request values",
+              "enum": [
+                "default",
+                "sales",
+                "price_up",
+                "price_down"
+              ],
+              "type": "string"
+            },
+            "x-sdk-python-name": "sort"
+          },
+          {
+            "description": "Minimum price filter in CNY.",
+            "in": "query",
+            "name": "priceStart",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "price_start"
+          },
+          {
+            "description": "Maximum price filter in CNY.",
+            "in": "query",
+            "name": "priceEnd",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "price_end"
+          },
+          {
+            "description": "Filter for new products.",
+            "in": "query",
+            "name": "newArrival",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "new_arrival"
+          },
+          {
+            "description": "Filter for support for dropshipping.",
+            "in": "query",
+            "name": "supportDropshipping",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "support_dropshipping"
+          },
+          {
+            "description": "Filter for free shipping.",
+            "in": "query",
+            "name": "freeShipping",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "free_shipping"
+          },
+          {
+            "description": "Optional super-factory filter.",
+            "in": "query",
+            "name": "isSuperFactory",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "is_super_factory"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Category Products",
+        "tags": [
+          "1688"
+        ],
+        "x-api-version": "v2",
+        "x-docs-slug": "category-products-v2",
+        "x-endpoint-family": "1688_get_category_item_list",
+        "x-highlights": [],
+        "x-order": "19101520",
+        "x-sdk-class-name": "Field1688Resource",
+        "x-sdk-method-name": "get_category_item_list_v2",
+        "x-sdk-resource": "field_1688",
+        "x-search-aliases": [
+          "1688 类目商品"
+        ]
+      }
+    },
+    "/api/1688/get-item-description-images/v1": {
+      "get": {
+        "description": "Retrieves 1688 product description images by item ID. Use it to review listing descriptions during catalog preparation and product research.",
+        "operationId": "getApi1688GetItemDescriptionImagesV1",
+        "parameters": [
+          {
+            "description": "1688 product ID.",
+            "in": "query",
+            "name": "itemId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "item_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Product Description Images",
+        "tags": [
+          "1688"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "product-description-images-v1",
+        "x-endpoint-family": "1688_get_item_description_images",
+        "x-highlights": [
+          {
+            "content": "A product-not-found result is a successful, billable lookup and returns null data.",
+            "kind": "GUIDANCE",
+            "type": "info"
+          }
+        ],
+        "x-order": "19101030",
+        "x-sdk-class-name": "Field1688Resource",
+        "x-sdk-method-name": "get_item_description_images_v1",
+        "x-sdk-resource": "field_1688",
+        "x-search-aliases": [
+          "1688 商品描述图片"
+        ]
+      }
+    },
+    "/api/1688/get-item-detail-by-url/v1": {
+      "get": {
+        "description": "Retrieves 1688 product details by product URL with an optional output language. Use it to inspect a known listing during sourcing and catalog research.",
+        "operationId": "getApi1688GetItemDetailByUrlV1",
+        "parameters": [
+          {
+            "description": "1688 product URL.",
+            "in": "query",
+            "name": "url",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "url"
+          },
+          {
+            "description": "Optional dropshipping pricing scene.\n\nAvailable Values:\n- `drop_shipping`: Dropshipping",
+            "in": "query",
+            "name": "scene",
+            "required": false,
+            "schema": {
+              "description": "Optional product pricing scene",
+              "enum": [
+                "drop_shipping"
+              ],
+              "type": "string"
+            },
+            "x-sdk-python-name": "scene"
+          },
+          {
+            "description": "Optimize Chinese titles by removing non-core words.",
+            "in": "query",
+            "name": "optimizeTitle",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "optimize_title"
+          },
+          {
+            "description": "Output language.\n\nAvailable Values:\n- `en`: English\n- `zh`: Chinese\n- `ru`: Russian\n- `th`: Thai\n- `pt`: Portuguese\n- `es`: Spanish\n- `tr`: Turkish\n- `vi`: Vietnamese\n- `ja`: Japanese\n- `ko`: Korean",
+            "in": "query",
+            "name": "language",
+            "required": false,
+            "schema": {
+              "default": "zh",
+              "description": "Supported output language",
+              "enum": [
+                "en",
+                "zh",
+                "ru",
+                "th",
+                "pt",
+                "es",
+                "tr",
+                "vi",
+                "ja",
+                "ko"
+              ],
+              "type": "string"
+            },
+            "x-sdk-python-name": "language"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Product Details [URL]",
+        "tags": [
+          "1688"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "product-details-by-url-v1",
+        "x-endpoint-family": "1688_get_item_detail_by_url",
+        "x-highlights": [
+          {
+            "content": "A product-not-found result is a successful, billable lookup and returns null data.",
+            "kind": "GUIDANCE",
+            "type": "info"
+          }
+        ],
+        "x-order": "19101020",
+        "x-sdk-class-name": "Field1688Resource",
+        "x-sdk-method-name": "get_item_detail_by_url_v1",
+        "x-sdk-resource": "field_1688",
+        "x-search-aliases": [
+          "1688 商品链接查询"
+        ]
+      }
+    },
     "/api/1688/get-item-detail/v1": {
       "get": {
         "description": "Retrieves the public product detail for a 1688 wholesale listing by item ID. Use it to review a known offer during product sourcing or catalog research.",
@@ -202,6 +889,1706 @@
         ]
       }
     },
+    "/api/1688/get-item-detail/v2": {
+      "get": {
+        "description": "Retrieves 1688 product details by item ID with an optional output language and dropshipping scene. Use it to inspect a known product during sourcing and catalog research.",
+        "operationId": "getApi1688GetItemDetailV2",
+        "parameters": [
+          {
+            "description": "1688 product ID.",
+            "in": "query",
+            "name": "itemId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "item_id"
+          },
+          {
+            "description": "Optional dropshipping pricing scene.\n\nAvailable Values:\n- `drop_shipping`: Dropshipping",
+            "in": "query",
+            "name": "scene",
+            "required": false,
+            "schema": {
+              "description": "Optional product pricing scene",
+              "enum": [
+                "drop_shipping"
+              ],
+              "type": "string"
+            },
+            "x-sdk-python-name": "scene"
+          },
+          {
+            "description": "Optimize Chinese titles by removing non-core words.",
+            "in": "query",
+            "name": "optimizeTitle",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "optimize_title"
+          },
+          {
+            "description": "Output language.\n\nAvailable Values:\n- `en`: English\n- `zh`: Chinese\n- `ru`: Russian\n- `th`: Thai\n- `pt`: Portuguese\n- `es`: Spanish\n- `tr`: Turkish\n- `vi`: Vietnamese\n- `ja`: Japanese\n- `ko`: Korean",
+            "in": "query",
+            "name": "language",
+            "required": false,
+            "schema": {
+              "default": "zh",
+              "description": "Supported output language",
+              "enum": [
+                "en",
+                "zh",
+                "ru",
+                "th",
+                "pt",
+                "es",
+                "tr",
+                "vi",
+                "ja",
+                "ko"
+              ],
+              "type": "string"
+            },
+            "x-sdk-python-name": "language"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Product Details",
+        "tags": [
+          "1688"
+        ],
+        "x-api-version": "v2",
+        "x-docs-slug": "product-details-v2",
+        "x-endpoint-family": "1688_get_item_detail",
+        "x-highlights": [
+          {
+            "content": "A product-not-found result is a successful, billable lookup and returns null data.",
+            "kind": "GUIDANCE",
+            "type": "info"
+          }
+        ],
+        "x-order": "19101010",
+        "x-recommended": true,
+        "x-sdk-class-name": "Field1688Resource",
+        "x-sdk-method-name": "get_item_detail_v2",
+        "x-sdk-resource": "field_1688",
+        "x-search-aliases": [
+          "1688 商品详情"
+        ]
+      }
+    },
+    "/api/1688/get-item-rating-list/v1": {
+      "get": {
+        "description": "Retrieves 1688 product reviews by item ID with pagination and default or latest sorting. Use it to review buyer feedback during product sourcing.",
+        "operationId": "getApi1688GetItemRatingListV1",
+        "parameters": [
+          {
+            "description": "1688 product ID.",
+            "in": "query",
+            "name": "itemId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "item_id"
+          },
+          {
+            "description": "Page number, starting at 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-sdk-python-name": "page"
+          },
+          {
+            "description": "Review sort order.\n\nAvailable Values:\n- `default`: Default order\n- `latest`: Latest reviews first",
+            "in": "query",
+            "name": "sortType",
+            "required": false,
+            "schema": {
+              "default": "default",
+              "description": "1688 RatingSort request values",
+              "enum": [
+                "default",
+                "latest"
+              ],
+              "type": "string"
+            },
+            "x-sdk-python-name": "sort_type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Product Reviews",
+        "tags": [
+          "1688"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "product-reviews-v1",
+        "x-endpoint-family": "1688_get_item_rating_list",
+        "x-highlights": [
+          {
+            "content": "A product-not-found result is a successful, billable lookup and returns null data.",
+            "kind": "GUIDANCE",
+            "type": "info"
+          }
+        ],
+        "x-order": "19101040",
+        "x-sdk-class-name": "Field1688Resource",
+        "x-sdk-method-name": "get_item_rating_list_v1",
+        "x-sdk-resource": "field_1688",
+        "x-search-aliases": [
+          "1688 商品评价"
+        ]
+      }
+    },
+    "/api/1688/get-item-shipping/v1": {
+      "get": {
+        "description": "Retrieves a 1688 product shipping estimate for a Chinese province using quantity and optional total weight. Use it to estimate domestic procurement shipping costs.",
+        "operationId": "getApi1688GetItemShippingV1",
+        "parameters": [
+          {
+            "description": "1688 product ID.",
+            "in": "query",
+            "name": "itemId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "item_id"
+          },
+          {
+            "description": "Chinese province name or abbreviation, for example Guangdong or gd.",
+            "in": "query",
+            "name": "province",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "province"
+          },
+          {
+            "description": "Total number of items to ship.",
+            "in": "query",
+            "name": "totalQuantity",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-sdk-python-name": "total_quantity"
+          },
+          {
+            "description": "Total shipment weight in kilograms.",
+            "in": "query",
+            "name": "totalWeight",
+            "required": false,
+            "schema": {
+              "type": "number"
+            },
+            "x-sdk-python-name": "total_weight"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Product Shipping Fee",
+        "tags": [
+          "1688"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "product-shipping-fee-v1",
+        "x-endpoint-family": "1688_get_item_shipping",
+        "x-highlights": [],
+        "x-order": "19101050",
+        "x-sdk-class-name": "Field1688Resource",
+        "x-sdk-method-name": "get_item_shipping_v1",
+        "x-sdk-resource": "field_1688",
+        "x-search-aliases": [
+          "1688 商品运费"
+        ]
+      }
+    },
+    "/api/1688/get-shop-category/v1": {
+      "get": {
+        "description": "Retrieves all categories for a 1688 shop by shop URL or seller member ID. Use it to navigate a shop catalog during product sourcing.",
+        "operationId": "getApi1688GetShopCategoryV1",
+        "parameters": [
+          {
+            "description": "1688 shop homepage URL. Supply shopUrl or memberId.",
+            "in": "query",
+            "name": "shopUrl",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "shop_url"
+          },
+          {
+            "description": "Seller member ID. Supply memberId or shopUrl.",
+            "in": "query",
+            "name": "memberId",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "member_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Shop Categories",
+        "tags": [
+          "1688"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "shop-categories-v1",
+        "x-endpoint-family": "1688_get_shop_category",
+        "x-highlights": [
+          {
+            "content": "Supply at least one of shopUrl and memberId.",
+            "kind": "GUIDANCE",
+            "type": "info"
+          }
+        ],
+        "x-order": "19101410",
+        "x-sdk-class-name": "Field1688Resource",
+        "x-sdk-method-name": "get_shop_category_v1",
+        "x-sdk-resource": "field_1688",
+        "x-search-aliases": [
+          "1688 店铺分类"
+        ]
+      }
+    },
+    "/api/1688/get-shop-info/v1": {
+      "get": {
+        "description": "Retrieves 1688 shop information by shop URL or seller member ID. Use it to research a known shop during procurement.",
+        "operationId": "getApi1688GetShopInfoV1",
+        "parameters": [
+          {
+            "description": "1688 shop homepage URL. Supply shopUrl or memberId.",
+            "in": "query",
+            "name": "shopUrl",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "shop_url"
+          },
+          {
+            "description": "Seller member ID. Supply memberId or shopUrl.",
+            "in": "query",
+            "name": "memberId",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "member_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Shop Information",
+        "tags": [
+          "1688"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "shop-information-v1",
+        "x-endpoint-family": "1688_get_shop_info",
+        "x-highlights": [
+          {
+            "content": "Supply at least one of shopUrl and memberId.",
+            "kind": "GUIDANCE",
+            "type": "info"
+          }
+        ],
+        "x-order": "19101400",
+        "x-sdk-class-name": "Field1688Resource",
+        "x-sdk-method-name": "get_shop_info_v1",
+        "x-sdk-resource": "field_1688",
+        "x-search-aliases": [
+          "1688 店铺信息"
+        ]
+      }
+    },
+    "/api/1688/get-shop-item-list-by-url/v1": {
+      "get": {
+        "description": "Retrieves 1688 shop products by shop homepage URL with pagination, sorting and optional category filters. Use it to research a shop product catalog.",
+        "operationId": "getApi1688GetShopItemListByUrlV1",
+        "parameters": [
+          {
+            "description": "1688 shop homepage URL.",
+            "in": "query",
+            "name": "shopUrl",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "shop_url"
+          },
+          {
+            "description": "Page number, starting at 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-sdk-python-name": "page"
+          },
+          {
+            "description": "Number of items requested per page. The returned count may differ.",
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-sdk-python-name": "page_size"
+          },
+          {
+            "description": "Shop product sort order.\n\nAvailable Values:\n- `default`: Default order\n- `sales`: Sales order\n- `price_up`: Price ascending\n- `price_down`: Price descending\n- `time_up`: Time ascending\n- `time_down`: Time descending",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "default": "default",
+              "description": "1688 ShopSort request values",
+              "enum": [
+                "default",
+                "sales",
+                "price_up",
+                "price_down",
+                "time_up",
+                "time_down"
+              ],
+              "type": "string"
+            },
+            "x-sdk-python-name": "sort"
+          },
+          {
+            "description": "Optional category ID filter.",
+            "in": "query",
+            "name": "cat",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "cat"
+          },
+          {
+            "description": "Optional category mode: 0 or 1.\n\nAvailable Values:\n- `0`: Category mode 0\n- `1`: Category mode 1",
+            "in": "query",
+            "name": "catType",
+            "required": false,
+            "schema": {
+              "description": "1688 CategoryType request values",
+              "enum": [
+                "0",
+                "1"
+              ],
+              "type": "string"
+            },
+            "x-sdk-python-name": "cat_type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Shop Products [URL]",
+        "tags": [
+          "1688"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "shop-products-by-url-v1",
+        "x-endpoint-family": "1688_get_shop_item_list_by_url",
+        "x-highlights": [],
+        "x-order": "19101310",
+        "x-sdk-class-name": "Field1688Resource",
+        "x-sdk-method-name": "get_shop_item_list_by_url_v1",
+        "x-sdk-resource": "field_1688",
+        "x-search-aliases": [
+          "1688 店铺商品 URL查询"
+        ]
+      }
+    },
+    "/api/1688/get-shop-item-list/v1": {
+      "get": {
+        "description": "Retrieves 1688 shop products by seller member ID with pagination, sorting and optional category and price filters. Use it to research a shop product catalog.",
+        "operationId": "getApi1688GetShopItemListV1",
+        "parameters": [
+          {
+            "description": "Seller member ID.",
+            "in": "query",
+            "name": "memberId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "member_id"
+          },
+          {
+            "description": "Page number, starting at 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-sdk-python-name": "page"
+          },
+          {
+            "description": "Number of items requested per page. The returned count may differ.",
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-sdk-python-name": "page_size"
+          },
+          {
+            "description": "Shop product sort order.\n\nAvailable Values:\n- `default`: Default order\n- `sales`: Sales order\n- `price_up`: Price ascending\n- `price_down`: Price descending\n- `time_up`: Time ascending\n- `time_down`: Time descending",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "default": "default",
+              "description": "1688 ShopSort request values",
+              "enum": [
+                "default",
+                "sales",
+                "price_up",
+                "price_down",
+                "time_up",
+                "time_down"
+              ],
+              "type": "string"
+            },
+            "x-sdk-python-name": "sort"
+          },
+          {
+            "description": "Shop category ID.",
+            "in": "query",
+            "name": "shopCatId",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "shop_cat_id"
+          },
+          {
+            "description": "Minimum price filter in CNY.",
+            "in": "query",
+            "name": "priceStart",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "price_start"
+          },
+          {
+            "description": "Maximum price filter in CNY.",
+            "in": "query",
+            "name": "priceEnd",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "price_end"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Shop Products [ID]",
+        "tags": [
+          "1688"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "shop-products-by-member-id-v1",
+        "x-endpoint-family": "1688_get_shop_item_list",
+        "x-highlights": [],
+        "x-order": "19101300",
+        "x-sdk-class-name": "Field1688Resource",
+        "x-sdk-method-name": "get_shop_item_list_v1",
+        "x-sdk-resource": "field_1688",
+        "x-search-aliases": [
+          "1688 店铺商品 ID查询"
+        ]
+      }
+    },
+    "/api/1688/search-cross-border-item-by-image/v1": {
+      "get": {
+        "description": "Searches 1688 cross-border products by image with language selection, pagination, sorting and sourcing filters. Use it to find products for multilingual visual sourcing.",
+        "operationId": "getApi1688SearchCrossBorderItemByImageV1",
+        "parameters": [
+          {
+            "description": "Image URL or image reference returned by Image Conversion. Convert external images for the selected search target before searching.",
+            "in": "query",
+            "name": "imgUrl",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "img_url"
+          },
+          {
+            "description": "Output language.\n\nAvailable Values:\n- `en`: English\n- `zh`: Chinese\n- `ru`: Russian\n- `th`: Thai\n- `pt`: Portuguese\n- `es`: Spanish\n- `tr`: Turkish\n- `vi`: Vietnamese\n- `ja`: Japanese\n- `ko`: Korean",
+            "in": "query",
+            "name": "language",
+            "required": false,
+            "schema": {
+              "default": "en",
+              "description": "Supported output language",
+              "enum": [
+                "en",
+                "zh",
+                "ru",
+                "th",
+                "pt",
+                "es",
+                "tr",
+                "vi",
+                "ja",
+                "ko"
+              ],
+              "type": "string"
+            },
+            "x-sdk-python-name": "language"
+          },
+          {
+            "description": "Page number, starting at 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-sdk-python-name": "page"
+          },
+          {
+            "description": "Number of items requested per page. The returned count may differ.",
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-sdk-python-name": "page_size"
+          },
+          {
+            "description": "Product sort order.\n\nAvailable Values:\n- `default`: Default order\n- `sales`: Sales order\n- `price_up`: Price ascending\n- `price_down`: Price descending",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "default": "default",
+              "description": "1688 ProductSort request values",
+              "enum": [
+                "default",
+                "sales",
+                "price_up",
+                "price_down"
+              ],
+              "type": "string"
+            },
+            "x-sdk-python-name": "sort"
+          },
+          {
+            "description": "Minimum price filter in CNY.",
+            "in": "query",
+            "name": "priceStart",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "price_start"
+          },
+          {
+            "description": "Maximum price filter in CNY.",
+            "in": "query",
+            "name": "priceEnd",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "price_end"
+          },
+          {
+            "description": "Filter for support for dropshipping.",
+            "in": "query",
+            "name": "supportDropshipping",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "support_dropshipping"
+          },
+          {
+            "description": "Filter by factory status.",
+            "in": "query",
+            "name": "isFactory",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "is_factory"
+          },
+          {
+            "description": "Filter for verified sellers.",
+            "in": "query",
+            "name": "verifiedSupplier",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "verified_supplier"
+          },
+          {
+            "description": "Filter for free shipping.",
+            "in": "query",
+            "name": "freeShipping",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "free_shipping"
+          },
+          {
+            "description": "Filter for new products.",
+            "in": "query",
+            "name": "newArrival",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "new_arrival"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Cross-border Image Search",
+        "tags": [
+          "1688"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "cross-border-product-search-by-image-v1",
+        "x-endpoint-family": "1688_search_cross_border_item_by_image",
+        "x-highlights": [
+          {
+            "content": "Convert external images with Image Conversion using the corresponding cross-border image search target.",
+            "kind": "GUIDANCE",
+            "type": "info"
+          }
+        ],
+        "x-order": "19102010",
+        "x-sdk-class-name": "Field1688Resource",
+        "x-sdk-method-name": "search_cross_border_item_by_image_v1",
+        "x-sdk-resource": "field_1688",
+        "x-search-aliases": [
+          "1688 跨境图片搜索"
+        ]
+      }
+    },
+    "/api/1688/search-cross-border-item-by-image/v2": {
+      "get": {
+        "description": "Searches 1688 cross-border products by image with language selection, pagination, sorting and sourcing filters. Use it to find products for multilingual visual sourcing.",
+        "operationId": "getApi1688SearchCrossBorderItemByImageV2",
+        "parameters": [
+          {
+            "description": "Image reference returned by Image Conversion with searchApiEndpoint=cross_border_v2. Convert full image URLs before searching.",
+            "in": "query",
+            "name": "imgUrl",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "img_url"
+          },
+          {
+            "description": "Output language.\n\nAvailable Values:\n- `en`: English\n- `zh`: Chinese\n- `ru`: Russian\n- `vi`: Vietnamese\n- `ja`: Japanese\n- `ko`: Korean",
+            "in": "query",
+            "name": "language",
+            "required": false,
+            "schema": {
+              "default": "en",
+              "description": "Supported output language",
+              "enum": [
+                "en",
+                "zh",
+                "ru",
+                "vi",
+                "ja",
+                "ko"
+              ],
+              "type": "string"
+            },
+            "x-sdk-python-name": "language"
+          },
+          {
+            "description": "Page number, starting at 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-sdk-python-name": "page"
+          },
+          {
+            "description": "Number of items requested per page. The returned count may differ.",
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-sdk-python-name": "page_size"
+          },
+          {
+            "description": "Product sort order.\n\nAvailable Values:\n- `default`: Default order\n- `sales`: Sales order\n- `price_up`: Price ascending\n- `price_down`: Price descending",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "default": "default",
+              "description": "1688 ProductSort request values",
+              "enum": [
+                "default",
+                "sales",
+                "price_up",
+                "price_down"
+              ],
+              "type": "string"
+            },
+            "x-sdk-python-name": "sort"
+          },
+          {
+            "description": "Minimum price filter in CNY.",
+            "in": "query",
+            "name": "priceStart",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "price_start"
+          },
+          {
+            "description": "Maximum price filter in CNY.",
+            "in": "query",
+            "name": "priceEnd",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "price_end"
+          },
+          {
+            "description": "Filter for support for dropshipping.",
+            "in": "query",
+            "name": "supportDropshipping",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "support_dropshipping"
+          },
+          {
+            "description": "Filter by factory status.",
+            "in": "query",
+            "name": "isFactory",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "is_factory"
+          },
+          {
+            "description": "Filter for verified sellers.",
+            "in": "query",
+            "name": "verifiedSupplier",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "verified_supplier"
+          },
+          {
+            "description": "Filter for free shipping.",
+            "in": "query",
+            "name": "freeShipping",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "free_shipping"
+          },
+          {
+            "description": "Filter for new products.",
+            "in": "query",
+            "name": "newArrival",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "new_arrival"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Cross-border Image Search",
+        "tags": [
+          "1688"
+        ],
+        "x-api-version": "v2",
+        "x-docs-slug": "cross-border-product-search-by-image-v2",
+        "x-endpoint-family": "1688_search_cross_border_item_by_image",
+        "x-highlights": [
+          {
+            "content": "Convert image URLs, including Alibaba image URLs, with Image Conversion using searchApiEndpoint=cross_border_v2 before searching.",
+            "kind": "GUIDANCE",
+            "type": "info"
+          }
+        ],
+        "x-order": "19102020",
+        "x-sdk-class-name": "Field1688Resource",
+        "x-sdk-method-name": "search_cross_border_item_by_image_v2",
+        "x-sdk-resource": "field_1688",
+        "x-search-aliases": [
+          "1688 跨境图片搜索"
+        ]
+      }
+    },
+    "/api/1688/search-cross-border-item-list/v1": {
+      "get": {
+        "description": "Searches 1688 cross-border products by keyword or category with language selection, pagination and sourcing filters. Use it to discover products for multilingual procurement.",
+        "operationId": "getApi1688SearchCrossBorderItemListV1",
+        "parameters": [
+          {
+            "description": "Search keyword. Supply keyword or catId.",
+            "in": "query",
+            "name": "keyword",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "keyword"
+          },
+          {
+            "description": "1688 category ID. Supply catId or keyword.",
+            "in": "query",
+            "name": "catId",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "cat_id"
+          },
+          {
+            "description": "Page number, starting at 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-sdk-python-name": "page"
+          },
+          {
+            "description": "Number of items requested per page. The returned count may differ.",
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-sdk-python-name": "page_size"
+          },
+          {
+            "description": "Output language.\n\nAvailable Values:\n- `en`: English\n- `zh`: Chinese\n- `ru`: Russian\n- `vi`: Vietnamese\n- `ja`: Japanese\n- `ko`: Korean",
+            "in": "query",
+            "name": "language",
+            "required": false,
+            "schema": {
+              "default": "en",
+              "description": "Supported output language",
+              "enum": [
+                "en",
+                "zh",
+                "ru",
+                "vi",
+                "ja",
+                "ko"
+              ],
+              "type": "string"
+            },
+            "x-sdk-python-name": "language"
+          },
+          {
+            "description": "Product sort order.\n\nAvailable Values:\n- `default`: Default order\n- `sales`: Sales order\n- `price_up`: Price ascending\n- `price_down`: Price descending",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "default": "default",
+              "description": "1688 ProductSort request values",
+              "enum": [
+                "default",
+                "sales",
+                "price_up",
+                "price_down"
+              ],
+              "type": "string"
+            },
+            "x-sdk-python-name": "sort"
+          },
+          {
+            "description": "Minimum price filter in CNY.",
+            "in": "query",
+            "name": "priceStart",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "price_start"
+          },
+          {
+            "description": "Maximum price filter in CNY.",
+            "in": "query",
+            "name": "priceEnd",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "price_end"
+          },
+          {
+            "description": "Filter for new products.",
+            "in": "query",
+            "name": "newArrival",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "new_arrival"
+          },
+          {
+            "description": "Filter for support for dropshipping.",
+            "in": "query",
+            "name": "supportDropshipping",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "support_dropshipping"
+          },
+          {
+            "description": "Filter for free shipping.",
+            "in": "query",
+            "name": "freeShipping",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "free_shipping"
+          },
+          {
+            "description": "Optional super-factory filter.",
+            "in": "query",
+            "name": "isSuperFactory",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "is_super_factory"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Cross-border Product Search",
+        "tags": [
+          "1688"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "cross-border-product-search-v1",
+        "x-endpoint-family": "1688_search_cross_border_item_list",
+        "x-highlights": [
+          {
+            "content": "Supply at least one of keyword and catId.",
+            "kind": "GUIDANCE",
+            "type": "info"
+          }
+        ],
+        "x-order": "19102000",
+        "x-sdk-class-name": "Field1688Resource",
+        "x-sdk-method-name": "search_cross_border_item_list_v1",
+        "x-sdk-resource": "field_1688",
+        "x-search-aliases": [
+          "1688 跨境关键词搜索"
+        ]
+      }
+    },
+    "/api/1688/search-factory/v1": {
+      "get": {
+        "description": "Searches 1688 factories by keyword with pagination and default or repurchase-rate sorting. Use it to discover manufacturers during procurement research.",
+        "operationId": "getApi1688SearchFactoryV1",
+        "parameters": [
+          {
+            "description": "Factory search keyword.",
+            "in": "query",
+            "name": "keyword",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "keyword"
+          },
+          {
+            "description": "Page number, starting at 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-sdk-python-name": "page"
+          },
+          {
+            "description": "Number of items requested per page. The returned count may differ.",
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-sdk-python-name": "page_size"
+          },
+          {
+            "description": "Factory sort order.\n\nAvailable Values:\n- `default`: Default order\n- `repurchase_rate`: Repurchase-rate order",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "default": "default",
+              "description": "1688 FactorySort request values",
+              "enum": [
+                "default",
+                "repurchase_rate"
+              ],
+              "type": "string"
+            },
+            "x-sdk-python-name": "sort"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Factory Search",
+        "tags": [
+          "1688"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "factory-search-v1",
+        "x-endpoint-family": "1688_search_factory",
+        "x-highlights": [],
+        "x-order": "19101600",
+        "x-sdk-class-name": "Field1688Resource",
+        "x-sdk-method-name": "search_factory_v1",
+        "x-sdk-resource": "field_1688",
+        "x-search-aliases": [
+          "1688 工厂搜索"
+        ]
+      }
+    },
+    "/api/1688/search-item-by-image/v1": {
+      "get": {
+        "description": "Searches 1688 products by image with pagination, sorting and optional sourcing filters. Use it to find matching products during visual sourcing.",
+        "operationId": "getApi1688SearchItemByImageV1",
+        "parameters": [
+          {
+            "description": "Image URL or image reference returned by Image Conversion. Convert external images for the selected search target before searching.",
+            "in": "query",
+            "name": "imgUrl",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "img_url"
+          },
+          {
+            "description": "Page number, starting at 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-sdk-python-name": "page"
+          },
+          {
+            "description": "Number of items requested per page. The returned count may differ.",
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-sdk-python-name": "page_size"
+          },
+          {
+            "description": "Product sort order.\n\nAvailable Values:\n- `default`: Default order\n- `sales`: Sales order\n- `price_up`: Price ascending\n- `price_down`: Price descending",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "default": "default",
+              "description": "1688 ProductSort request values",
+              "enum": [
+                "default",
+                "sales",
+                "price_up",
+                "price_down"
+              ],
+              "type": "string"
+            },
+            "x-sdk-python-name": "sort"
+          },
+          {
+            "description": "Minimum order quantity filter.",
+            "in": "query",
+            "name": "moq",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-sdk-python-name": "moq"
+          },
+          {
+            "description": "Minimum price filter in CNY.",
+            "in": "query",
+            "name": "priceStart",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "price_start"
+          },
+          {
+            "description": "Maximum price filter in CNY.",
+            "in": "query",
+            "name": "priceEnd",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "price_end"
+          },
+          {
+            "description": "Filter for support for dropshipping.",
+            "in": "query",
+            "name": "supportDropshipping",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "support_dropshipping"
+          },
+          {
+            "description": "Filter by factory status.",
+            "in": "query",
+            "name": "isFactory",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "is_factory"
+          },
+          {
+            "description": "Filter for verified sellers.",
+            "in": "query",
+            "name": "verifiedSupplier",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "verified_supplier"
+          },
+          {
+            "description": "Filter for free shipping.",
+            "in": "query",
+            "name": "freeShipping",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "free_shipping"
+          },
+          {
+            "description": "Filter for new products.",
+            "in": "query",
+            "name": "newArrival",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "new_arrival"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Product Search by Image",
+        "tags": [
+          "1688"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "product-search-by-image-v1",
+        "x-endpoint-family": "1688_search_item_by_image",
+        "x-highlights": [
+          {
+            "content": "Convert non-Alibaba images with Image Conversion before searching, using the matching image search target.",
+            "kind": "GUIDANCE",
+            "type": "info"
+          }
+        ],
+        "x-order": "19101200",
+        "x-sdk-class-name": "Field1688Resource",
+        "x-sdk-method-name": "search_item_by_image_v1",
+        "x-sdk-resource": "field_1688",
+        "x-search-aliases": [
+          "1688 图片搜索"
+        ]
+      }
+    },
     "/api/1688/search-item-list/v1": {
       "get": {
         "description": "Searches 1688 wholesale product listings by keyword. Use it to discover candidate products or suppliers during sourcing and market research.",
@@ -272,6 +2659,188 @@
           "1688 商品搜索",
           "1688 批发货源搜索",
           "1688 供应商商品查询"
+        ]
+      }
+    },
+    "/api/1688/search-item-list/v2": {
+      "get": {
+        "description": "Searches 1688 products by keyword with pagination, sorting, price ranges and optional sourcing filters. Use it to discover products during procurement and market research.",
+        "operationId": "getApi1688SearchItemListV2",
+        "parameters": [
+          {
+            "description": "Search keyword.",
+            "in": "query",
+            "name": "keyword",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "keyword"
+          },
+          {
+            "description": "Page number, starting at 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-sdk-python-name": "page"
+          },
+          {
+            "description": "Number of items requested per page. The returned count may differ.",
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-sdk-python-name": "page_size"
+          },
+          {
+            "description": "Product sort order.\n\nAvailable Values:\n- `default`: Default order\n- `sales`: Sales order\n- `price_up`: Price ascending\n- `price_down`: Price descending",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "default": "default",
+              "description": "1688 ProductSort request values",
+              "enum": [
+                "default",
+                "sales",
+                "price_up",
+                "price_down"
+              ],
+              "type": "string"
+            },
+            "x-sdk-python-name": "sort"
+          },
+          {
+            "description": "Minimum order quantity filter.",
+            "in": "query",
+            "name": "moq",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-sdk-python-name": "moq"
+          },
+          {
+            "description": "Minimum price filter in CNY.",
+            "in": "query",
+            "name": "priceStart",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "price_start"
+          },
+          {
+            "description": "Maximum price filter in CNY.",
+            "in": "query",
+            "name": "priceEnd",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "price_end"
+          },
+          {
+            "description": "Filter for new products.",
+            "in": "query",
+            "name": "newArrival",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "new_arrival"
+          },
+          {
+            "description": "Filter for support for dropshipping.",
+            "in": "query",
+            "name": "supportDropshipping",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "support_dropshipping"
+          },
+          {
+            "description": "Filter for free shipping.",
+            "in": "query",
+            "name": "freeShipping",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "free_shipping"
+          },
+          {
+            "description": "Optional super-factory filter.",
+            "in": "query",
+            "name": "isSuperFactory",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-sdk-python-name": "is_super_factory"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Product Search",
+        "tags": [
+          "1688"
+        ],
+        "x-api-version": "v2",
+        "x-docs-slug": "product-search-v2",
+        "x-endpoint-family": "1688_search_item_list",
+        "x-highlights": [],
+        "x-order": "19101110",
+        "x-recommended": true,
+        "x-sdk-class-name": "Field1688Resource",
+        "x-sdk-method-name": "search_item_list_v2",
+        "x-sdk-resource": "field_1688",
+        "x-search-aliases": [
+          "1688 商品关键词搜索"
         ]
       }
     },
@@ -13382,99 +15951,6 @@
         ]
       }
     },
-    "/api/jd/get-item-detail/v2": {
-      "get": {
-        "deprecated": true,
-        "description": "Access the asynchronous JD.com product detail workflow from the Just One API dashboard Task Management page. Use it to submit and download product detail research tasks.",
-        "operationId": "getApiJdGetItemDetailV2",
-        "parameters": [
-          {
-            "description": "A unique product identifier on JD.com (item ID).",
-            "in": "query",
-            "name": "itemId",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "x-sdk-python-name": "item_id"
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Result"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "$ref": "#/components/responses/ResultBadRequestResponse"
-          },
-          "401": {
-            "$ref": "#/components/responses/ResultUnauthorizedResponse"
-          },
-          "403": {
-            "$ref": "#/components/responses/ResultForbiddenResponse"
-          },
-          "429": {
-            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
-          },
-          "500": {
-            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
-          },
-          "503": {
-            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
-          }
-        },
-        "security": [
-          {
-            "tokenAuth": []
-          }
-        ],
-        "summary": "Product Details",
-        "tags": [
-          "JD.com"
-        ],
-        "x-api-version": "v2",
-        "x-docs-hidden": true,
-        "x-docs-slug": "product-details-v2",
-        "x-endpoint-family": "jd_get_item_detail",
-        "x-highlights": [
-          {
-            "aliases": [
-              "direct API call",
-              "synchronous API call",
-              "直接调用",
-              "同步调用"
-            ],
-            "concept": "direct_api_call",
-            "content": "Direct calls to this endpoint do not fetch product data.",
-            "kind": "LIMITATION",
-            "type": "danger"
-          },
-          {
-            "content": "Submit the task, wait for completion, and download the result from the Just One API dashboard Task Management page: https://dashboard.justoneapi.com/en/dashboard/task-records or https://dashboard.justoneapi.com/zh/dashboard/task-records.",
-            "kind": "GUIDANCE",
-            "type": "info"
-          }
-        ],
-        "x-order": "19001025",
-        "x-sdk-class-name": "JdResource",
-        "x-sdk-method-name": "get_item_detail_v2",
-        "x-sdk-resource": "jd",
-        "x-search-aliases": [
-          "JD.com asynchronous product details",
-          "JD product detail task",
-          "JD dashboard product task",
-          "京东异步商品详情",
-          "京东商品详情任务",
-          "京东后台商品任务"
-        ]
-      }
-    },
     "/api/jd/get-item-detail/v3": {
       "get": {
         "description": "Retrieve JD.com product details by item ID. Use it to review product information and description images for catalog research or product displays.",
@@ -18425,6 +20901,102 @@
         ]
       }
     },
+    "/api/taobao/get-item-description/v1": {
+      "get": {
+        "description": "Retrieves Taobao or Tmall product description HTML and a separate list of description images by item ID. Use it to collect listing description assets for catalog preparation and product content review.",
+        "operationId": "getApiTaobaoGetItemDescriptionV1",
+        "parameters": [
+          {
+            "description": "Unique product identifier on Taobao/Tmall (item ID).",
+            "in": "query",
+            "name": "itemId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "item_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Product Description Images",
+        "tags": [
+          "Taobao and Tmall"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "product-description-images-v1",
+        "x-endpoint-family": "taobao_get_item_description",
+        "x-highlights": [
+          {
+            "aliases": [
+              "description HTML",
+              "商品描述HTML"
+            ],
+            "concept": "description_html",
+            "content": "Provides product description HTML.",
+            "kind": "CAPABILITY",
+            "title": "Description HTML",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "description images",
+              "product description images",
+              "商品详情图",
+              "详情描述图"
+            ],
+            "concept": "description_images",
+            "content": "Provides a separate list of product description images.",
+            "kind": "CAPABILITY",
+            "title": "Description images",
+            "type": "info"
+          }
+        ],
+        "x-order": "11001450",
+        "x-sdk-class-name": "TaobaoResource",
+        "x-sdk-method-name": "get_item_description_v1",
+        "x-sdk-resource": "taobao",
+        "x-search-aliases": [
+          "Taobao product description images",
+          "Tmall product description HTML",
+          "淘宝商品描述图片",
+          "天猫商品详情HTML"
+        ]
+      }
+    },
     "/api/taobao/get-item-detail/v1": {
       "get": {
         "description": "Retrieves Taobao or Tmall product details by item ID through the V1 endpoint. Use it to perform direct product lookup for catalog research, product monitoring, or ecommerce analysis.",
@@ -18578,8 +21150,7 @@
     },
     "/api/taobao/get-item-detail/v2": {
       "get": {
-        "deprecated": true,
-        "description": "Access the asynchronous Taobao and Tmall product detail workflow from the Just One API dashboard Task Management page. Use it to submit and download product detail research tasks.",
+        "description": "Retrieves Taobao or Tmall product details by item ID, including product attributes, main images and video, shop information, shipping information, and SKU prices and stock. Use it for product sourcing, catalog research, and inventory monitoring.",
         "operationId": "getApiTaobaoGetItemDetailV2",
         "parameters": [
           {
@@ -18633,39 +21204,99 @@
           "Taobao and Tmall"
         ],
         "x-api-version": "v2",
-        "x-docs-hidden": true,
         "x-docs-slug": "product-details-v2",
         "x-endpoint-family": "taobao_get_item_detail",
         "x-highlights": [
           {
             "aliases": [
-              "direct API call",
-              "synchronous API call",
-              "直接调用",
-              "同步调用"
+              "SKU price",
+              "SKU价格"
             ],
-            "concept": "direct_api_call",
-            "content": "Direct calls to this endpoint do not fetch product data.",
-            "kind": "LIMITATION",
-            "type": "danger"
+            "concept": "product_price",
+            "content": "Provides SKU prices.",
+            "kind": "CAPABILITY",
+            "title": "Price",
+            "type": "info"
           },
           {
-            "content": "Submit the task, wait for completion, and download the result from the Just One API dashboard Task Management page: https://dashboard.justoneapi.com/en/dashboard/task-records or https://dashboard.justoneapi.com/zh/dashboard/task-records.",
-            "kind": "GUIDANCE",
+            "aliases": [
+              "product attributes",
+              "product parameters",
+              "商品属性",
+              "商品参数"
+            ],
+            "concept": "product_attributes",
+            "content": "Provides product parameters and attributes.",
+            "kind": "CAPABILITY",
+            "title": "Attributes",
             "type": "info"
+          },
+          {
+            "aliases": [
+              "SKU options",
+              "SKU stock",
+              "SKU规格",
+              "SKU库存"
+            ],
+            "concept": "sku_options",
+            "content": "Provides SKU option names, thumbnail images and inventory information.",
+            "kind": "CAPABILITY",
+            "title": "SKU options and stock",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "main images",
+              "product video",
+              "商品主图",
+              "商品视频"
+            ],
+            "concept": "main_images",
+            "content": "Provides product main images and video.",
+            "kind": "CAPABILITY",
+            "title": "Main images and video",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "shop information",
+              "shipping origin",
+              "postage",
+              "店铺信息",
+              "发货地",
+              "邮费"
+            ],
+            "concept": "shop_and_shipping",
+            "content": "Provides shop information, shipping origin and postage.",
+            "kind": "CAPABILITY",
+            "title": "Shop and shipping",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "product coverage",
+              "supported products",
+              "stable data collection",
+              "商品覆盖",
+              "支持商品",
+              "稳定采集"
+            ],
+            "concept": "product_coverage",
+            "content": "This endpoint supports all Taobao and Tmall products and provides stable data collection.",
+            "kind": "CAPABILITY",
+            "type": "tip"
           }
         ],
         "x-order": "11001100",
+        "x-recommended": true,
         "x-sdk-class-name": "TaobaoResource",
         "x-sdk-method-name": "get_item_detail_v2",
         "x-sdk-resource": "taobao",
         "x-search-aliases": [
-          "Taobao asynchronous product details",
-          "Tmall product detail task",
-          "Taobao dashboard task download",
-          "淘宝异步商品详情",
-          "天猫商品详情任务",
-          "淘宝后台任务下载"
+          "Taobao product details V2",
+          "Tmall item detail lookup V2",
+          "淘宝商品详情 V2",
+          "天猫商品详情查询 V2"
         ]
       }
     },
@@ -19113,7 +21744,7 @@
     },
     "/api/taobao/get-item-detail/v6": {
       "get": {
-        "description": "Retrieves Taobao or Tmall product details by item ID through the recommended V6 endpoint, including approximate sales, shipping fees and free-shipping status. Use it for product research and ecommerce monitoring.",
+        "description": "Retrieves Taobao or Tmall product details by item ID through the V6 endpoint, including approximate sales, shipping fees and free-shipping status. Use it for product research and ecommerce monitoring.",
         "operationId": "getApiTaobaoGetItemDetailV6",
         "parameters": [
           {
@@ -36401,6 +39032,21 @@
       "x-platform-id": "wechat-channels"
     },
     {
+      "description": "Alibaba 1688 wholesale marketplace product, shop, supplier, and catalog data for sourcing and commerce research.",
+      "name": "1688",
+      "x-platform-aliases": [
+        "1688",
+        "Alibaba 1688",
+        "阿里巴巴1688"
+      ],
+      "x-platform-detection-aliases": [
+        "1688",
+        "Alibaba 1688",
+        "阿里巴巴1688"
+      ],
+      "x-platform-id": "1688"
+    },
+    {
       "description": "Zhihu answers, columns, articles, and search data for knowledge content analysis and topic discovery.",
       "name": "Zhihu",
       "x-platform-aliases": [
@@ -36909,22 +39555,7 @@
         "速卖通"
       ],
       "x-platform-id": "aliexpress"
-    },
-    {
-      "description": "Alibaba 1688 wholesale marketplace product, shop, supplier, and catalog data for sourcing and commerce research.",
-      "name": "1688",
-      "x-platform-aliases": [
-        "1688",
-        "Alibaba 1688",
-        "阿里巴巴1688"
-      ],
-      "x-platform-detection-aliases": [
-        "1688",
-        "Alibaba 1688",
-        "阿里巴巴1688"
-      ],
-      "x-platform-id": "1688"
     }
   ],
-  "x-openapi-release-id": "8449881e197ef8c2"
+  "x-openapi-release-id": "aa2426ee7899015f"
 }

@@ -37,7 +37,7 @@ class TaobaoResource(BaseResource):
         """
         Product Details
 
-        Access the asynchronous Taobao and Tmall product detail workflow from the Just One API dashboard Task Management page. Use it to submit and download product detail research tasks.
+        Retrieves Taobao or Tmall product details by item ID, including product attributes, main images and video, shop information, shipping information, and SKU prices and stock. Use it for product sourcing, catalog research, and inventory monitoring.
 
         Args:
             item_id: Unique product identifier on Taobao/Tmall (item ID).
@@ -117,7 +117,7 @@ class TaobaoResource(BaseResource):
         """
         Product Details
 
-        Retrieves Taobao or Tmall product details by item ID through the recommended V6 endpoint, including approximate sales, shipping fees and free-shipping status. Use it for product research and ecommerce monitoring.
+        Retrieves Taobao or Tmall product details by item ID through the V6 endpoint, including approximate sales, shipping fees and free-shipping status. Use it for product research and ecommerce monitoring.
 
         Args:
             item_id: Unique product identifier on Taobao/Tmall (item ID).
@@ -184,6 +184,26 @@ class TaobaoResource(BaseResource):
         """
         return self._get(
             "/api/taobao/get-item-detail/v9",
+            {
+                "itemId": item_id,
+            },
+        )
+
+    def get_item_description_v1(
+        self,
+        *,
+        item_id: str,
+    ) -> ApiResponse[Any]:
+        """
+        Product Description Images
+
+        Retrieves Taobao or Tmall product description HTML and a separate list of description images by item ID. Use it to collect listing description assets for catalog preparation and product content review.
+
+        Args:
+            item_id: Unique product identifier on Taobao/Tmall (item ID).
+        """
+        return self._get(
+            "/api/taobao/get-item-description/v1",
             {
                 "itemId": item_id,
             },

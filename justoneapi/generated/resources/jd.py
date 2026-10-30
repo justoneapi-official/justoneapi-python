@@ -29,26 +29,6 @@ class JdResource(BaseResource):
             },
         )
 
-    def get_item_detail_v2(
-        self,
-        *,
-        item_id: str,
-    ) -> ApiResponse[Any]:
-        """
-        Product Details
-
-        Access the asynchronous JD.com product detail workflow from the Just One API dashboard Task Management page. Use it to submit and download product detail research tasks.
-
-        Args:
-            item_id: A unique product identifier on JD.com (item ID).
-        """
-        return self._get(
-            "/api/jd/get-item-detail/v2",
-            {
-                "itemId": item_id,
-            },
-        )
-
     def get_item_detail_v3(
         self,
         *,

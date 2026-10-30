@@ -3,10 +3,32 @@
 
 from __future__ import annotations
 
-from enum import IntEnum
-from typing import Any
+from enum import Enum, IntEnum
+from typing import Annotated, Any
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+
+
+class SearchApiEndpoint(Enum):
+    standard = "standard"
+    cross_border_v1 = "cross_border_v1"
+    cross_border_v2 = "cross_border_v2"
+
+
+class Alibaba1688ImageConversionRequest(BaseModel):
+    imgBase64: Annotated[
+        str | None,
+        Field(
+            description="JPEG image encoded as Base64 without a data URI prefix; decoded size must not exceed 100 KB."
+        ),
+    ] = None
+    searchApiEndpoint: Annotated[
+        SearchApiEndpoint | None,
+        Field(description="Image search target for the converted reference."),
+    ] = "standard"
+    url: Annotated[
+        str | None, Field(description="Image URL. Supply either url or imgBase64.")
+    ] = None
 
 
 class Code(IntEnum):
