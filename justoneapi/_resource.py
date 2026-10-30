@@ -19,8 +19,9 @@ class BaseResource:
         params: dict[str, Any],
         *,
         data: dict[str, Any] | None = None,
+        json: dict[str, Any] | None = None,
         token_in_form: bool = False,
     ) -> ApiResponse[Any]:
         return self._transport.post(
-            path, params, data=data, token_in_form=token_in_form
+            path, params, data=data, json=json, token_in_form=token_in_form
         )

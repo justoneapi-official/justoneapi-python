@@ -46,6 +46,7 @@ class OperationInfo:
     path: str
     http_method: str
     has_form_body: bool
+    has_json_body: bool
     token_in_form: bool
     summary: str
     description: str
@@ -177,6 +178,24 @@ def operation_order(operation: dict[str, Any]) -> int:
         return sys.maxsize
 
 
+def resolve_schema(spec: dict[str, Any], schema: dict[str, Any]) -> dict[str, Any]:
+    schema = copy.deepcopy(schema)
+    seen = set()
+    while "$ref" in schema:
+        ref = schema["$ref"]
+        if not ref.startswith("#/components/schemas/") or ref in seen:
+            raise ValueError(f"Unsupported schema reference: {ref}")
+        seen.add(ref)
+        target = spec
+        for part in ref[2:].split("/"):
+            target = target[part.replace("~1", "/").replace("~0", "~")]
+        schema = {
+            **copy.deepcopy(target),
+            **{k: v for k, v in schema.items() if k != "$ref"},
+        }
+    return schema
+
+
 def normalize_spec(spec: dict[str, Any], overrides: dict[str, Any]) -> dict[str, Any]:
     normalized = copy.deepcopy(spec)
     hidden_query_parameters = set(overrides.get("hidden_query_parameters", []))
@@ -231,31 +250,51 @@ def normalize_spec(spec: dict[str, Any], overrides: dict[str, Any]) -> dict[str,
 
             if "requestBody" in operation:
                 content = operation["requestBody"].get("content", {})
-                schema = content.get("application/x-www-form-urlencoded", {}).get(
-                    "schema", {}
+                media_type = next(
+                    (
+                        media
+                        for media in (
+                            "application/x-www-form-urlencoded",
+                            "application/json",
+                        )
+                        if media in content
+                    ),
+                    None,
+                )
+                schema = (
+                    resolve_schema(normalized, content[media_type].get("schema", {}))
+                    if media_type
+                    else {}
                 )
                 if (
                     method != "post"
                     or schema.get("type") != "object"
-                    or "$ref" in schema
+                    or any(key in schema for key in ("allOf", "anyOf", "oneOf"))
                 ):
                     raise ValueError(
                         f"Unsupported request body for {method.upper()} {path}"
                     )
                 properties = schema.get("properties", {})
-                operation["x-sdk-token-in-form"] = (
-                    "token" in properties and "token" in hidden_form_parameters
+                hidden_body_parameters = (
+                    hidden_form_parameters
+                    if media_type == "application/x-www-form-urlencoded"
+                    else set()
                 )
+                if media_type == "application/x-www-form-urlencoded":
+                    operation["x-sdk-token-in-form"] = (
+                        "token" in properties and "token" in hidden_form_parameters
+                    )
                 schema["properties"] = {
                     name: {**field, "x-sdk-python-name": to_python_identifier(name)}
                     for name, field in properties.items()
-                    if name not in hidden_form_parameters
+                    if name not in hidden_body_parameters
                 }
                 schema["required"] = [
                     name
                     for name in schema.get("required", [])
-                    if name not in hidden_form_parameters
+                    if name not in hidden_body_parameters
                 ]
+                content[media_type]["schema"] = schema
 
     return normalized
 
@@ -281,18 +320,29 @@ def collect_resources(spec: dict[str, Any]) -> list[ResourceInfo]:
                 .get("application/x-www-form-urlencoded", {})
                 .get("schema")
             )
-            if form_schema is not None:
-                required_fields = set(form_schema.get("required", []))
+            json_schema = (
+                (
+                    operation.get("requestBody", {})
+                    .get("content", {})
+                    .get("application/json", {})
+                    .get("schema")
+                )
+                if form_schema is None
+                else None
+            )
+            body_schema = form_schema if form_schema is not None else json_schema
+            if body_schema is not None:
+                required_fields = set(body_schema.get("required", []))
                 request_parameters.extend(
                     {
                         "name": name,
-                        "in": "form",
+                        "in": "form" if form_schema is not None else "json",
                         "required": name in required_fields,
                         "schema": schema,
                         "description": schema.get("description", ""),
                         "x-sdk-python-name": schema["x-sdk-python-name"],
                     }
-                    for name, schema in form_schema.get("properties", {}).items()
+                    for name, schema in body_schema.get("properties", {}).items()
                 )
 
             ordered_parameters = sorted(
@@ -305,7 +355,7 @@ def collect_resources(spec: dict[str, Any]) -> list[ResourceInfo]:
                 ),
             )
             for parameter in ordered_parameters:
-                if parameter.get("in") not in {"query", "form"}:
+                if parameter.get("in") not in {"query", "form", "json"}:
                     raise ValueError(
                         f"Unsupported parameter location for {method.upper()} {path}"
                     )
@@ -349,6 +399,7 @@ def collect_resources(spec: dict[str, Any]) -> list[ResourceInfo]:
                     path=path,
                     http_method=method,
                     has_form_body=form_schema is not None,
+                    has_json_body=json_schema is not None,
                     token_in_form=operation.get("x-sdk-token-in-form", False),
                     summary=summary,
                     description=description,
@@ -428,13 +479,16 @@ def render_resource_module(resource: ResourceInfo) -> str:
     for operation in resource.operations:
         signature = render_parameter_signature(operation.parameters)
         params_dict = render_params_dict(operation.parameters)
-        form_arguments = ""
+        body_arguments = ""
         if operation.has_form_body:
             form_dict = render_params_dict(operation.parameters, location="form")
-            form_arguments = (
+            body_arguments = (
                 f"            data={form_dict},\n"
                 f"            token_in_form={operation.token_in_form!r},\n"
             )
+        elif operation.has_json_body:
+            json_dict = render_params_dict(operation.parameters, location="json")
+            body_arguments = f"            json={json_dict},\n"
         docstring = render_docstring(
             operation.summary, operation.description, operation.parameters
         )
@@ -446,7 +500,7 @@ def render_resource_module(resource: ResourceInfo) -> str:
             f"        return self._{operation.http_method}(\n"
             f'            "{operation.path}",\n'
             f"            {params_dict},\n"
-            f"{form_arguments}"
+            f"{body_arguments}"
             f"        )\n"
         )
 
