@@ -20963,20 +20963,6 @@
             "kind": "CAPABILITY",
             "title": "Shop and shipping",
             "type": "info"
-          },
-          {
-            "aliases": [
-              "product coverage",
-              "supported products",
-              "stable data collection",
-              "商品覆盖",
-              "支持商品",
-              "稳定采集"
-            ],
-            "concept": "product_coverage",
-            "content": "This endpoint supports all Taobao and Tmall products and provides stable data collection.",
-            "kind": "CAPABILITY",
-            "type": "tip"
           }
         ],
         "x-order": "11001100",
@@ -21584,7 +21570,6 @@
           }
         ],
         "x-order": "11001350",
-        "x-recommended": true,
         "x-search-aliases": [
           "Taobao product details v6",
           "Tmall item detail lookup v6",
@@ -38861,5 +38846,5 @@
       "x-platform-id": "aliexpress"
     }
   ],
-  "x-openapi-release-id": "60f7c7b736e23403"
+  "x-openapi-release-id": "9cc069e5b23e2f5d"
 }
