@@ -16078,6 +16078,83 @@
         ]
       }
     },
+    "/api/jd/get-item-price/v2": {
+      "get": {
+        "description": "Retrieve JD.com product prices for up to 10 comma-separated item IDs in one request. Use it for batch price checks and catalog comparisons.",
+        "operationId": "getApiJdGetItemPriceV2",
+        "parameters": [
+          {
+            "description": "Access token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Between 1 and 10 numeric JD.com item IDs, separated by commas without spaces.",
+            "in": "query",
+            "name": "itemIds",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Product Price",
+        "tags": [
+          "JD.com"
+        ],
+        "x-api-version": "v2",
+        "x-docs-slug": "product-price-v2",
+        "x-endpoint-family": "jd_get_item_price",
+        "x-highlights": [
+          {
+            "content": "Send 10 item IDs per request whenever possible. A request with 1 item ID costs the same as a request with 10 item IDs.",
+            "kind": "GUIDANCE",
+            "title": "Batch billing",
+            "type": "warning"
+          }
+        ],
+        "x-order": "19001060",
+        "x-search-aliases": [
+          "京东批量商品价格",
+          "京东批量查价",
+          "JD batch price lookup"
+        ]
+      }
+    },
     "/api/jd/get-shop-item-list/v1": {
       "get": {
         "description": "Retrieve a page of products from a JD.com shop identified by shop ID. Use it to browse a seller's catalog and collect item IDs for follow-up lookups.",
@@ -38846,5 +38923,5 @@
       "x-platform-id": "aliexpress"
     }
   ],
-  "x-openapi-release-id": "9cc069e5b23e2f5d"
+  "x-openapi-release-id": "e5989d6423c26a0d"
 }

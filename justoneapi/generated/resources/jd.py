@@ -109,6 +109,26 @@ class JdResource(BaseResource):
             },
         )
 
+    def get_item_price_v2(
+        self,
+        *,
+        item_ids: str,
+    ) -> ApiResponse[Any]:
+        """
+        Product Price
+
+        Retrieve JD.com product prices for up to 10 comma-separated item IDs in one request. Use it for batch price checks and catalog comparisons.
+
+        Args:
+            item_ids: Between 1 and 10 numeric JD.com item IDs, separated by commas without spaces.
+        """
+        return self._get(
+            "/api/jd/get-item-price/v2",
+            {
+                "itemIds": item_ids,
+            },
+        )
+
     def search_item_list_v1(
         self,
         *,
