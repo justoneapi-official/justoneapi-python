@@ -17041,6 +17041,76 @@
         ]
       }
     },
+    "/api/linkedin/get-company-detail/v1": {
+      "get": {
+        "description": "Retrieves a public LinkedIn company profile by its vanity name or company page URL. Use it to research a company and obtain its company identifier before querying company job postings.",
+        "operationId": "getApiLinkedinGetCompanyDetailV1",
+        "parameters": [
+          {
+            "description": "Access token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "LinkedIn company vanity name or company page URL. School pages are not supported.",
+            "in": "query",
+            "name": "company",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Company Details",
+        "tags": [
+          "LinkedIn"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "company-details-v1",
+        "x-endpoint-family": "linkedin_get_company_detail",
+        "x-highlights": [],
+        "x-order": 31501800,
+        "x-search-aliases": [
+          "LinkedIn company details",
+          "领英公司详情",
+          "LinkedIn企业资料"
+        ]
+      }
+    },
     "/api/linkedin/get-company-employees/v1": {
       "get": {
         "deprecated": true,
@@ -17112,6 +17182,7 @@
           "LinkedIn"
         ],
         "x-api-version": "v1",
+        "x-docs-hidden": true,
         "x-docs-slug": "company-employees-v1",
         "x-endpoint-family": "linkedin_get_company_employees",
         "x-highlights": [],
@@ -17126,9 +17197,339 @@
         ]
       }
     },
+    "/api/linkedin/get-company-jobs/v1": {
+      "get": {
+        "description": "Retrieves LinkedIn job postings for companies identified by company IDs, vanity names, or company page URLs, with optional keyword, location, posting age, and pagination filters. Use it to track company hiring activity across one or more employers.",
+        "operationId": "getApiLinkedinGetCompanyJobsV1",
+        "parameters": [
+          {
+            "description": "Access token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated numeric LinkedIn company IDs, up to 10. Supply companyId or company. Companies are matched as a union; a page may contain jobs from only some selected companies.",
+            "in": "query",
+            "name": "companyId",
+            "required": false,
+            "schema": {
+              "default": "",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated LinkedIn company vanity names or company page URLs, up to 10. Supply companyId or company. An unknown vanity name fails the request.",
+            "in": "query",
+            "name": "company",
+            "required": false,
+            "schema": {
+              "default": "",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Optional job keyword to search within the selected companies.",
+            "in": "query",
+            "name": "keyword",
+            "required": false,
+            "schema": {
+              "default": "",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Free-text location, such as London, United Kingdom.",
+            "in": "query",
+            "name": "location",
+            "required": false,
+            "schema": {
+              "default": "",
+              "type": "string"
+            }
+          },
+          {
+            "description": "First page to fetch, from 1 to 100. Each page contains up to 10 jobs.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Number of consecutive pages to fetch, from 1 to 20. The last requested page must not exceed 100.",
+            "in": "query",
+            "name": "numPages",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Numeric LinkedIn geographic location ID. Required when radius is supplied.",
+            "in": "query",
+            "name": "geoId",
+            "required": false,
+            "schema": {
+              "default": "",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Sort order. Date sorting applies to the jobs returned in this response.\n\nAvailable Values:\n- `relevance`: Keep relevance ordering\n- `date`: Sort the returned jobs from newest to oldest",
+            "in": "query",
+            "name": "sortBy",
+            "required": false,
+            "schema": {
+              "default": "relevance",
+              "description": "LinkedIn job result sort order",
+              "enum": [
+                "relevance",
+                "date"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Job posting age filter.\n\nAvailable Values:\n- `all`: All posting dates\n- `today`: Posted within the last 24 hours\n- `3days`: Posted within the last 72 hours\n- `week`: Posted within the last 7 days\n- `month`: Posted within the last 30 days",
+            "in": "query",
+            "name": "datePosted",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "description": "LinkedIn job posting age filter",
+              "enum": [
+                "all",
+                "today",
+                "3days",
+                "week",
+                "month"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated employment types. Applying this filter enables job details and may return fewer jobs than the requested page size.",
+            "explode": false,
+            "in": "query",
+            "name": "employmentTypes",
+            "required": false,
+            "schema": {
+              "items": {
+                "description": "LinkedIn employment type filter",
+                "enum": [
+                  "FULLTIME",
+                  "PARTTIME",
+                  "CONTRACTOR",
+                  "INTERN"
+                ],
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Comma-separated seniority levels. Applying this filter enables job details and may return fewer jobs than the requested page size.",
+            "explode": false,
+            "in": "query",
+            "name": "seniorityLevels",
+            "required": false,
+            "schema": {
+              "items": {
+                "description": "LinkedIn job seniority filter",
+                "enum": [
+                  "Internship",
+                  "Entry level",
+                  "Associate",
+                  "Mid-Senior level",
+                  "Director",
+                  "Executive",
+                  "Not Applicable"
+                ],
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Return only jobs with an explicit remote marker. This best-effort filter may omit remote jobs.",
+            "in": "query",
+            "name": "remoteJobsOnly",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Fetch details for up to 100 jobs per request in addition to search cards. Employment and seniority filters enable details regardless of this value.",
+            "in": "query",
+            "name": "includeDetails",
+            "required": false,
+            "schema": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Search radius in kilometres, at least 1. Requires geoId.",
+            "in": "query",
+            "name": "radius",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Comma-separated job fields to include. job_id and job_title are always included.",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "default": "",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Company Jobs",
+        "tags": [
+          "LinkedIn"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "company-jobs-v1",
+        "x-endpoint-family": "linkedin_get_company_jobs",
+        "x-highlights": [],
+        "x-order": 31501700,
+        "x-search-aliases": [
+          "LinkedIn company jobs",
+          "领英公司职位",
+          "LinkedIn企业招聘岗位"
+        ]
+      }
+    },
+    "/api/linkedin/get-job-detail/v1": {
+      "get": {
+        "description": "Retrieves LinkedIn job details for up to 20 distinct job identifiers, with optional field projection. Use it to inspect selected postings after a job search; unavailable postings are omitted from the result.",
+        "operationId": "getApiLinkedinGetJobDetailV1",
+        "parameters": [
+          {
+            "description": "Access token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated job IDs returned by job search or raw numeric LinkedIn posting IDs, up to 20 distinct values.",
+            "in": "query",
+            "name": "jobId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated job fields to include. job_id and job_title are always included.",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "default": "",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Job Details",
+        "tags": [
+          "LinkedIn"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "job-details-v1",
+        "x-endpoint-family": "linkedin_get_job_detail",
+        "x-highlights": [],
+        "x-order": 31501600,
+        "x-search-aliases": [
+          "LinkedIn job details",
+          "领英职位详情",
+          "LinkedIn批量职位查询"
+        ]
+      }
+    },
     "/api/linkedin/get-post-comments/v1": {
       "get": {
-        "description": "Retrieves LinkedIn comments for an activity post with relevance or recent sorting, page-based navigation, a pagination token, and optional share URN. Use it to review public discussion around known professional content.",
+        "deprecated": true,
+        "description": "This LinkedIn post-comment endpoint is deprecated because the capability is no longer available. Existing integrations should stop sending requests.",
         "operationId": "getApiLinkedinGetPostCommentsV1",
         "parameters": [
           {
@@ -17231,6 +17632,7 @@
           "LinkedIn"
         ],
         "x-api-version": "v1",
+        "x-docs-hidden": true,
         "x-docs-slug": "post-comments-v1",
         "x-endpoint-family": "linkedin_get_post_comments",
         "x-highlights": [],
@@ -17335,6 +17737,7 @@
           "LinkedIn"
         ],
         "x-api-version": "v1",
+        "x-docs-hidden": true,
         "x-docs-slug": "post-reactions-v1",
         "x-endpoint-family": "linkedin_get_post_reactions",
         "x-highlights": [],
@@ -17424,7 +17827,8 @@
     },
     "/api/linkedin/get-user-posts/v1": {
       "get": {
-        "description": "Retrieves posts published, commented on, or reacted to by a LinkedIn member using a profile URL, activity type, offset, and pagination token. Use it to review public professional activity and continue through additional result pages.",
+        "deprecated": true,
+        "description": "This LinkedIn user-post endpoint is deprecated because the capability is no longer available. Existing integrations should stop sending requests.",
         "operationId": "getApiLinkedinGetUserPostsV1",
         "parameters": [
           {
@@ -17518,6 +17922,7 @@
           "LinkedIn"
         ],
         "x-api-version": "v1",
+        "x-docs-hidden": true,
         "x-docs-slug": "user-published-posts-v1",
         "x-endpoint-family": "linkedin_get_user_posts",
         "x-highlights": [],
@@ -17531,6 +17936,244 @@
           "LinkedIn 个人发布内容",
           "领英个人动态",
           "领英用户互动内容"
+        ]
+      }
+    },
+    "/api/linkedin/search-job/v1": {
+      "get": {
+        "description": "Searches LinkedIn job postings by keyword with location, posting age, company, employment type, seniority, and pagination filters. Use it to discover recruitment opportunities and research hiring activity.",
+        "operationId": "getApiLinkedinSearchJobV1",
+        "parameters": [
+          {
+            "description": "Access token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Free-form job search keyword.",
+            "in": "query",
+            "name": "keyword",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Free-text location, such as London, United Kingdom.",
+            "in": "query",
+            "name": "location",
+            "required": false,
+            "schema": {
+              "default": "",
+              "type": "string"
+            }
+          },
+          {
+            "description": "First page to fetch, from 1 to 100. Each page contains up to 10 jobs.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Number of consecutive pages to fetch, from 1 to 20. The last requested page must not exceed 100.",
+            "in": "query",
+            "name": "numPages",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Numeric LinkedIn geographic location ID. Required when radius is supplied.",
+            "in": "query",
+            "name": "geoId",
+            "required": false,
+            "schema": {
+              "default": "",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Sort order. Date sorting applies to the jobs returned in this response.\n\nAvailable Values:\n- `relevance`: Keep relevance ordering\n- `date`: Sort the returned jobs from newest to oldest",
+            "in": "query",
+            "name": "sortBy",
+            "required": false,
+            "schema": {
+              "default": "relevance",
+              "description": "LinkedIn job result sort order",
+              "enum": [
+                "relevance",
+                "date"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Job posting age filter.\n\nAvailable Values:\n- `all`: All posting dates\n- `today`: Posted within the last 24 hours\n- `3days`: Posted within the last 72 hours\n- `week`: Posted within the last 7 days\n- `month`: Posted within the last 30 days",
+            "in": "query",
+            "name": "datePosted",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "description": "LinkedIn job posting age filter",
+              "enum": [
+                "all",
+                "today",
+                "3days",
+                "week",
+                "month"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated employment types. Applying this filter enables job details and may return fewer jobs than the requested page size.",
+            "explode": false,
+            "in": "query",
+            "name": "employmentTypes",
+            "required": false,
+            "schema": {
+              "items": {
+                "description": "LinkedIn employment type filter",
+                "enum": [
+                  "FULLTIME",
+                  "PARTTIME",
+                  "CONTRACTOR",
+                  "INTERN"
+                ],
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Comma-separated seniority levels. Applying this filter enables job details and may return fewer jobs than the requested page size.",
+            "explode": false,
+            "in": "query",
+            "name": "seniorityLevels",
+            "required": false,
+            "schema": {
+              "items": {
+                "description": "LinkedIn job seniority filter",
+                "enum": [
+                  "Internship",
+                  "Entry level",
+                  "Associate",
+                  "Mid-Senior level",
+                  "Director",
+                  "Executive",
+                  "Not Applicable"
+                ],
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Numeric LinkedIn company ID to restrict the search to one company.",
+            "in": "query",
+            "name": "companyId",
+            "required": false,
+            "schema": {
+              "default": "",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Return only jobs with an explicit remote marker. This best-effort filter may omit remote jobs.",
+            "in": "query",
+            "name": "remoteJobsOnly",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Fetch details for up to 100 jobs per request in addition to search cards. Employment and seniority filters enable details regardless of this value.",
+            "in": "query",
+            "name": "includeDetails",
+            "required": false,
+            "schema": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Search radius in kilometres, at least 1. Requires geoId.",
+            "in": "query",
+            "name": "radius",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Comma-separated job fields to include. job_id and job_title are always included.",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "default": "",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Job Search",
+        "tags": [
+          "LinkedIn"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "job-search-v1",
+        "x-endpoint-family": "linkedin_search_job",
+        "x-highlights": [],
+        "x-order": 31501500,
+        "x-search-aliases": [
+          "LinkedIn job search",
+          "领英职位搜索",
+          "LinkedIn招聘岗位搜索"
         ]
       }
     },
@@ -17706,6 +18349,7 @@
           "LinkedIn"
         ],
         "x-api-version": "v1",
+        "x-docs-hidden": true,
         "x-docs-slug": "people-search-v1",
         "x-endpoint-family": "linkedin_search_user",
         "x-highlights": [],
@@ -38923,5 +39567,5 @@
       "x-platform-id": "aliexpress"
     }
   ],
-  "x-openapi-release-id": "e5989d6423c26a0d"
+  "x-openapi-release-id": "6d62c514512a9743"
 }
