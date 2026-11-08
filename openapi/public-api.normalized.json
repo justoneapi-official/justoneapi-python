@@ -16338,6 +16338,7 @@
     },
     "/api/jd/get-item-price/v1": {
       "get": {
+        "deprecated": true,
         "description": "Retrieve the current JD.com product price for a known item ID. Use it to check a product's price before catalog comparison or purchase analysis.",
         "operationId": "getApiJdGetItemPriceV1",
         "parameters": [
@@ -16392,6 +16393,7 @@
           "JD.com"
         ],
         "x-api-version": "v1",
+        "x-docs-hidden": true,
         "x-docs-slug": "product-price-v1",
         "x-endpoint-family": "jd_get_item_price",
         "x-highlights": [],
@@ -40397,5 +40399,5 @@
       "x-platform-id": "aliexpress"
     }
   ],
-  "x-openapi-release-id": "6d62c514512a9743"
+  "x-openapi-release-id": "86c9481aabd4a50c"
 }
