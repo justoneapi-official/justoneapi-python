@@ -365,6 +365,64 @@ class TaobaoResource(BaseResource):
             },
         )
 
+    def get_shop_item_list_v5(
+        self,
+        *,
+        seller_id: str,
+        shop_id: str,
+        cat_id: str | None = None,
+        keyword: str | None = None,
+        sort: str | None = "comprehensive",
+        page: int | None = 1,
+    ) -> ApiResponse[Any]:
+        """
+        Shop Product List
+
+        Retrieves products from a Taobao shop by seller ID and shop ID, with optional shop-category filtering, keyword search, sorting, and page-based pagination. Use it to browse a shop catalog or find matching products within a shop.
+
+        Args:
+            seller_id: Taobao seller user ID associated with the shop.
+            shop_id: Taobao shop ID associated with the seller.
+            cat_id: Shop category ID from Shop Detail. Omit to include all shop categories.
+            keyword: Keyword to search for products within the shop. Omit to list products without a keyword filter.
+            sort: Product sort order.  Available Values: - `comprehensive`: Comprehensive sorting - `sales`: Sort by sales volume - `new`: Sort by new arrivals, newest first - `price-asc`: Price, lowest first - `price-desc`: Price, highest first
+            page: Page number, starting from 1.
+        """
+        return self._get(
+            "/api/taobao/get-shop-item-list/v5",
+            {
+                "sellerId": seller_id,
+                "shopId": shop_id,
+                "catId": cat_id,
+                "keyword": keyword,
+                "sort": sort,
+                "page": page,
+            },
+        )
+
+    def get_shop_detail_v1(
+        self,
+        *,
+        seller_id: str,
+        shop_id: str,
+    ) -> ApiResponse[Any]:
+        """
+        Shop Detail
+
+        Retrieves a Taobao shop's homepage information, shop categories, and default product listing by seller ID and shop ID. Use it to inspect a shop and discover its categories before querying products.
+
+        Args:
+            seller_id: Taobao seller user ID associated with the shop.
+            shop_id: Taobao shop ID associated with the seller.
+        """
+        return self._get(
+            "/api/taobao/get-shop-detail/v1",
+            {
+                "sellerId": seller_id,
+                "shopId": shop_id,
+            },
+        )
+
     def get_item_sale_v1(
         self,
         *,

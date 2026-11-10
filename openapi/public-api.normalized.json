@@ -23220,6 +23220,95 @@
         ]
       }
     },
+    "/api/taobao/get-shop-detail/v1": {
+      "get": {
+        "description": "Retrieves a Taobao shop's homepage information, shop categories, and default product listing by seller ID and shop ID. Use it to inspect a shop and discover its categories before querying products.",
+        "operationId": "getApiTaobaoGetShopDetailV1",
+        "parameters": [
+          {
+            "description": "Taobao seller user ID associated with the shop.",
+            "in": "query",
+            "name": "sellerId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "seller_id"
+          },
+          {
+            "description": "Taobao shop ID associated with the seller.",
+            "in": "query",
+            "name": "shopId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "shop_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Shop Detail",
+        "tags": [
+          "Taobao and Tmall"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "shop-detail-v1",
+        "x-endpoint-family": "taobao_get_shop_detail",
+        "x-highlights": [
+          {
+            "concept": "shop_category_usage",
+            "content": "Use the returned shop category IDs as catId in Shop Product List V5. Use V5 for product sorting, filtering, or pagination.",
+            "kind": "GUIDANCE",
+            "title": "Shop categories and product queries",
+            "type": "tip"
+          }
+        ],
+        "x-order": "11001840",
+        "x-sdk-class-name": "TaobaoResource",
+        "x-sdk-method-name": "get_shop_detail_v1",
+        "x-sdk-resource": "taobao",
+        "x-search-aliases": [
+          "Taobao shop homepage",
+          "Taobao shop categories",
+          "淘宝店铺详情",
+          "淘宝店铺分类"
+        ]
+      }
+    },
     "/api/taobao/get-shop-item-list/v1": {
       "get": {
         "description": "Retrieves products from a Taobao or Tmall shop by seller or user ID, with page-based pagination and default or sales sorting. Use it to browse or monitor a seller catalog.",
@@ -23678,6 +23767,180 @@
           "淘宝店铺商品列表 V4",
           "天猫卖家目录查询",
           "淘宝按卖家 ID 查商品 V4"
+        ]
+      }
+    },
+    "/api/taobao/get-shop-item-list/v5": {
+      "get": {
+        "description": "Retrieves products from a Taobao shop by seller ID and shop ID, with optional shop-category filtering, keyword search, sorting, and page-based pagination. Use it to browse a shop catalog or find matching products within a shop.",
+        "operationId": "getApiTaobaoGetShopItemListV5",
+        "parameters": [
+          {
+            "description": "Taobao seller user ID associated with the shop.",
+            "in": "query",
+            "name": "sellerId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "seller_id"
+          },
+          {
+            "description": "Taobao shop ID associated with the seller.",
+            "in": "query",
+            "name": "shopId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "shop_id"
+          },
+          {
+            "description": "Shop category ID from Shop Detail. Omit to include all shop categories.",
+            "in": "query",
+            "name": "catId",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "cat_id"
+          },
+          {
+            "description": "Keyword to search for products within the shop. Omit to list products without a keyword filter.",
+            "in": "query",
+            "name": "keyword",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "keyword"
+          },
+          {
+            "description": "Product sort order.\n\nAvailable Values:\n- `comprehensive`: Comprehensive sorting\n- `sales`: Sort by sales volume\n- `new`: Sort by new arrivals, newest first\n- `price-asc`: Price, lowest first\n- `price-desc`: Price, highest first",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "default": "comprehensive",
+              "description": "Sort order for shop product list V5",
+              "enum": [
+                "comprehensive",
+                "sales",
+                "new",
+                "price-asc",
+                "price-desc"
+              ],
+              "type": "string"
+            },
+            "x-sdk-python-name": "sort"
+          },
+          {
+            "description": "Page number, starting from 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-sdk-python-name": "page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Shop Product List",
+        "tags": [
+          "Taobao and Tmall"
+        ],
+        "x-api-version": "v5",
+        "x-docs-slug": "shop-product-list-v5",
+        "x-endpoint-family": "taobao_get_shop_item_list",
+        "x-highlights": [
+          {
+            "aliases": [
+              "all shop products",
+              "店铺全部商品"
+            ],
+            "concept": "shop_product_coverage",
+            "content": "Supports retrieving all products from all Taobao shops through pagination.",
+            "kind": "CAPABILITY",
+            "title": "Shop product coverage",
+            "type": "tip"
+          },
+          {
+            "aliases": [
+              "shop keyword search",
+              "店内关键词搜索"
+            ],
+            "concept": "shop_keyword_search",
+            "content": "Supports searching for products within a shop by keyword.",
+            "kind": "CAPABILITY",
+            "title": "Search within a shop",
+            "type": "tip"
+          },
+          {
+            "aliases": [
+              "shop category filter",
+              "店铺分类筛选"
+            ],
+            "concept": "shop_category_filter",
+            "content": "Supports filtering products by a shop category ID.",
+            "kind": "CAPABILITY",
+            "title": "Filter by shop category",
+            "type": "tip"
+          },
+          {
+            "concept": "capacity_guidance",
+            "content": "Capacity is limited. Retry failed requests, and contact an administrator to arrange additional resources for high-volume requests.",
+            "kind": "GUIDANCE",
+            "title": "Limited capacity",
+            "type": "warning"
+          }
+        ],
+        "x-order": "11001830",
+        "x-recommended": true,
+        "x-sdk-class-name": "TaobaoResource",
+        "x-sdk-method-name": "get_shop_item_list_v5",
+        "x-sdk-resource": "taobao",
+        "x-search-aliases": [
+          "Taobao shop product list v5",
+          "Taobao shop category products",
+          "淘宝店铺商品列表 V5",
+          "淘宝店内搜索"
         ]
       }
     },
@@ -40399,5 +40662,5 @@
       "x-platform-id": "aliexpress"
     }
   ],
-  "x-openapi-release-id": "86c9481aabd4a50c"
+  "x-openapi-release-id": "e427ba070acafea9"
 }
