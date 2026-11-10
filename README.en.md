@@ -199,6 +199,7 @@ The API list below is generated from OpenAPI and shows the current public API ca
 ### Xiaohongshu E-commerce (RedNote)
 
 - [Product Search (V1)](https://docs.justoneapi.com/en/api/xiaohongshu-e-commerce-rednote/product-search-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/xiaohongshu-ec/search-products/v1 --> <sub>[JSON](https://github.com/justoneapi-official/justoneapi-python/blob/main/docs/api-examples/getApiXiaohongshuEcSearchProductsV1.json)</sub>
+- [Product Detail (V1)](https://docs.justoneapi.com/en/api/xiaohongshu-e-commerce-rednote/product-detail-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/xiaohongshu-ec/get-product-detail/v1 -->
 
 ### Xiaohongshu Creator Marketplace (Pugongying)
 

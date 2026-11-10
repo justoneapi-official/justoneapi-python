@@ -199,6 +199,7 @@ except BusinessError as exc:
 ### 小红书电商 (RedNote)
 
 - [商品搜索 (V1)](https://docs.justoneapi.com/zh/api/xiaohongshu-e-commerce-rednote/product-search-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/xiaohongshu-ec/search-products/v1 --> <sub>[JSON](https://github.com/justoneapi-official/justoneapi-python/blob/main/docs/api-examples/getApiXiaohongshuEcSearchProductsV1.json)</sub>
+- [商品详情 (V1)](https://docs.justoneapi.com/zh/api/xiaohongshu-e-commerce-rednote/product-detail-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/xiaohongshu-ec/get-product-detail/v1 -->
 
 ### 小红书蒲公英
 
