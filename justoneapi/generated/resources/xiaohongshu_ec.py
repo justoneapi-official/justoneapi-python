@@ -34,3 +34,23 @@ class XiaohongshuEcResource(BaseResource):
                 "searchId": search_id,
             },
         )
+
+    def get_product_detail_v1(
+        self,
+        *,
+        sku_id: str,
+    ) -> ApiResponse[Any]:
+        """
+        Product Detail
+
+        Retrieves Xiaohongshu E-commerce (RedNote) product details by SKU ID. Use it to look up a specific marketplace product for product research and catalog workflows.
+
+        Args:
+            sku_id: Product SKU ID.
+        """
+        return self._get(
+            "/api/xiaohongshu-ec/get-product-detail/v1",
+            {
+                "skuId": sku_id,
+            },
+        )

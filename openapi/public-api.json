@@ -31111,6 +31111,76 @@
         ]
       }
     },
+    "/api/xiaohongshu-ec/get-product-detail/v1": {
+      "get": {
+        "description": "Retrieves Xiaohongshu E-commerce (RedNote) product details by SKU ID. Use it to look up a specific marketplace product for product research and catalog workflows.",
+        "operationId": "getApiXiaohongshuEcGetProductDetailV1",
+        "parameters": [
+          {
+            "description": "Authentication token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Product SKU ID.",
+            "in": "query",
+            "name": "skuId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Product Detail",
+        "tags": [
+          "Xiaohongshu E-commerce (RedNote)"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "product-detail-v1",
+        "x-endpoint-family": "xiaohongshu_ec_get_product_detail",
+        "x-highlights": [],
+        "x-order": "12502000",
+        "x-search-aliases": [
+          "RedNote product detail",
+          "小红书电商商品详情",
+          "小红书商城商品详情"
+        ]
+      }
+    },
     "/api/xiaohongshu-ec/search-products/v1": {
       "get": {
         "description": "Searches Xiaohongshu E-commerce (RedNote) products by keyword with page and search-ID pagination; pages after the first require the search ID returned by the initial search. Use it to discover marketplace products and continue through multi-page results.",
@@ -39826,5 +39896,5 @@
       "x-platform-id": "aliexpress"
     }
   ],
-  "x-openapi-release-id": "e427ba070acafea9"
+  "x-openapi-release-id": "96197f495d73bc8b"
 }
