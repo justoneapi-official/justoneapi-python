@@ -223,8 +223,8 @@ class LinkedinResource(BaseResource):
             geo_id: Numeric LinkedIn geographic location ID. Required when radius is supplied.
             sort_by: Sort order. Date sorting applies to the jobs returned in this response.  Available Values: - `relevance`: Keep relevance ordering - `date`: Sort the returned jobs from newest to oldest
             date_posted: Job posting age filter.  Available Values: - `all`: All posting dates - `today`: Posted within the last 24 hours - `3days`: Posted within the last 72 hours - `week`: Posted within the last 7 days - `month`: Posted within the last 30 days
-            employment_types: Comma-separated employment types. Applying this filter enables job details and may return fewer jobs than the requested page size.
-            seniority_levels: Comma-separated seniority levels. Applying this filter enables job details and may return fewer jobs than the requested page size.
+            employment_types: Comma-separated employment types. Applying this filter enables job details and may return fewer jobs than the requested page size.  Available Values: - `FULLTIME`: Full-time employment - `PARTTIME`: Part-time employment - `CONTRACTOR`: Contract employment - `INTERN`: Internship employment
+            seniority_levels: Comma-separated seniority levels. Applying this filter enables job details and may return fewer jobs than the requested page size.  Available Values: - `Internship`: Internship positions - `Entry level`: Entry-level positions - `Associate`: Associate positions - `Mid-Senior level`: Mid-senior-level positions - `Director`: Director positions - `Executive`: Executive positions - `Not Applicable`: Positions without an applicable seniority level
             company_id: Numeric LinkedIn company ID to restrict the search to one company.
             remote_jobs_only: Return only jobs with an explicit remote marker. This best-effort filter may omit remote jobs.
             include_details: Fetch details for up to 100 jobs per request in addition to search cards. Employment and seniority filters enable details regardless of this value.
@@ -308,8 +308,8 @@ class LinkedinResource(BaseResource):
             geo_id: Numeric LinkedIn geographic location ID. Required when radius is supplied.
             sort_by: Sort order. Date sorting applies to the jobs returned in this response.  Available Values: - `relevance`: Keep relevance ordering - `date`: Sort the returned jobs from newest to oldest
             date_posted: Job posting age filter.  Available Values: - `all`: All posting dates - `today`: Posted within the last 24 hours - `3days`: Posted within the last 72 hours - `week`: Posted within the last 7 days - `month`: Posted within the last 30 days
-            employment_types: Comma-separated employment types. Applying this filter enables job details and may return fewer jobs than the requested page size.
-            seniority_levels: Comma-separated seniority levels. Applying this filter enables job details and may return fewer jobs than the requested page size.
+            employment_types: Comma-separated employment types. Applying this filter enables job details and may return fewer jobs than the requested page size.  Available Values: - `FULLTIME`: Full-time employment - `PARTTIME`: Part-time employment - `CONTRACTOR`: Contract employment - `INTERN`: Internship employment
+            seniority_levels: Comma-separated seniority levels. Applying this filter enables job details and may return fewer jobs than the requested page size.  Available Values: - `Internship`: Internship positions - `Entry level`: Entry-level positions - `Associate`: Associate positions - `Mid-Senior level`: Mid-senior-level positions - `Director`: Director positions - `Executive`: Executive positions - `Not Applicable`: Positions without an applicable seniority level
             remote_jobs_only: Return only jobs with an explicit remote marker. This best-effort filter may omit remote jobs.
             include_details: Fetch details for up to 100 jobs per request in addition to search cards. Employment and seniority filters enable details regardless of this value.
             radius: Search radius in kilometres, at least 1. Requires geoId.
