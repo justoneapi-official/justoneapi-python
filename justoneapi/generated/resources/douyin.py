@@ -161,6 +161,29 @@ class DouyinResource(BaseResource):
             },
         )
 
+    def search_live_v1(
+        self,
+        *,
+        keyword: str,
+        cursor: int | None = 0,
+    ) -> ApiResponse[Any]:
+        """
+        Live Room Search
+
+        Searches Douyin (TikTok China) live rooms by a creator's Douyin ID or nickname with cursor pagination. Use it to find live rooms for creator discovery and live-stream research.
+
+        Args:
+            keyword: The creator's Douyin ID or nickname.
+            cursor: Pagination cursor. Use 0 for the first page, then the cursor returned by the previous response.
+        """
+        return self._get(
+            "/api/douyin/search-live/v1",
+            {
+                "keyword": keyword,
+                "cursor": cursor,
+            },
+        )
+
     def get_user_video_list_v1(
         self,
         *,
