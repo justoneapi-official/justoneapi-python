@@ -22605,7 +22605,6 @@
     },
     "/api/taobao/get-item-detail/v7": {
       "get": {
-        "deprecated": true,
         "description": "Retrieves Taobao or Tmall product details by item ID through the V7 endpoint. Use it to perform direct product lookup for catalog research, product monitoring, or ecommerce analysis.",
         "operationId": "getApiTaobaoGetItemDetailV7",
         "parameters": [
@@ -22663,16 +22662,9 @@
           "Taobao and Tmall"
         ],
         "x-api-version": "v7",
-        "x-docs-hidden": true,
         "x-docs-slug": "product-details-v7",
         "x-endpoint-family": "taobao_get_item_detail",
-        "x-highlights": [
-          {
-            "content": "This endpoint supports all Taobao and Tmall products.",
-            "kind": "GUIDANCE",
-            "type": "tip"
-          }
-        ],
+        "x-highlights": [],
         "x-order": "11001375",
         "x-search-aliases": [
           "Taobao product details v7",
@@ -40196,5 +40188,5 @@
       "x-platform-id": "aliexpress"
     }
   ],
-  "x-openapi-release-id": "f2e0d06fcf5e0727"
+  "x-openapi-release-id": "b2e3858fae9c9c4e"
 }
