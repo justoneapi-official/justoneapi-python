@@ -175,6 +175,44 @@ class JdResource(BaseResource):
             },
         )
 
+    def search_item_list_v3(
+        self,
+        *,
+        keyword: str,
+        cid: str | None = None,
+        cid_level: str | None = None,
+        page: str | None = None,
+        sort: str | None = None,
+        price_interval: str | None = None,
+        brand: str | None = None,
+    ) -> ApiResponse[Any]:
+        """
+        Product Search
+
+        Search JD.com products by keyword, including products in advertising placements, with category filtering, pagination, sorting and price-range filters. Use it to research sponsored product visibility and discover products within a selected category.
+
+        Args:
+            keyword: Search keyword. Required even when a category is selected.
+            cid: Numeric category ID used to filter the search results.
+            cid_level: Category ID level: 1 for a first-level category, 2 for a second-level category, or 3 for a third-level category.  Available Values: - `1`: First-level category - `2`: Second-level category - `3`: Third-level category
+            page: Page number, starting at 1.
+            sort: Sort order for the search results.  Available Values: - `0`: Comprehensive sorting - `1`: Sort by sales volume - `2`: Price, highest first - `3`: Price, lowest first - `6`: Sort by comments
+            price_interval: Price range in minimum-maximum format, for example 0-100. Both values must be non-negative and the minimum must not exceed the maximum.
+            brand: Brand name, for example iQOO or iPhone.
+        """
+        return self._get(
+            "/api/jd/search-item-list/v3",
+            {
+                "keyword": keyword,
+                "cid": cid,
+                "cidLevel": cid_level,
+                "page": page,
+                "sort": sort,
+                "priceInterval": price_interval,
+                "brand": brand,
+            },
+        )
+
     def get_item_comments_v1(
         self,
         *,

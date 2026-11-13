@@ -16822,6 +16822,192 @@
         ]
       }
     },
+    "/api/jd/search-item-list/v3": {
+      "get": {
+        "description": "Search JD.com products by keyword, including products in advertising placements, with category filtering, pagination, sorting and price-range filters. Use it to research sponsored product visibility and discover products within a selected category.",
+        "operationId": "getApiJdSearchItemListV3",
+        "parameters": [
+          {
+            "description": "Search keyword. Required even when a category is selected.",
+            "in": "query",
+            "name": "keyword",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "keyword"
+          },
+          {
+            "description": "Numeric category ID used to filter the search results.",
+            "in": "query",
+            "name": "cid",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "cid"
+          },
+          {
+            "description": "Category ID level: 1 for a first-level category, 2 for a second-level category, or 3 for a third-level category.\n\nAvailable Values:\n- `1`: First-level category\n- `2`: Second-level category\n- `3`: Third-level category",
+            "in": "query",
+            "name": "cidLevel",
+            "required": false,
+            "schema": {
+              "description": "JD.com category ID level",
+              "enum": [
+                "1",
+                "2",
+                "3"
+              ],
+              "type": "string"
+            },
+            "x-sdk-python-name": "cid_level"
+          },
+          {
+            "description": "Page number, starting at 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "page"
+          },
+          {
+            "description": "Sort order for the search results.\n\nAvailable Values:\n- `0`: Comprehensive sorting\n- `1`: Sort by sales volume\n- `2`: Price, highest first\n- `3`: Price, lowest first\n- `6`: Sort by comments",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "description": "JD.com product search sort order",
+              "enum": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "6"
+              ],
+              "type": "string"
+            },
+            "x-sdk-python-name": "sort"
+          },
+          {
+            "description": "Price range in minimum-maximum format, for example 0-100. Both values must be non-negative and the minimum must not exceed the maximum.",
+            "in": "query",
+            "name": "priceInterval",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "price_interval"
+          },
+          {
+            "description": "Brand name, for example iQOO or iPhone.",
+            "in": "query",
+            "name": "brand",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "brand"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Product Search",
+        "tags": [
+          "JD.com"
+        ],
+        "x-api-version": "v3",
+        "x-docs-slug": "product-search-v3",
+        "x-endpoint-family": "jd_search_item_list",
+        "x-highlights": [
+          {
+            "aliases": [
+              "advertising placements",
+              "sponsored products",
+              "广告位商品",
+              "广告商品"
+            ],
+            "concept": "advertising_placements",
+            "content": "Search results include products in advertising placements.",
+            "kind": "CAPABILITY",
+            "title": "Advertising placements",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "category filtering",
+              "category search",
+              "分类筛选",
+              "类目筛选"
+            ],
+            "concept": "category_filter",
+            "content": "Filter products by category using cid and the optional cidLevel parameter.",
+            "kind": "CAPABILITY",
+            "title": "Category filtering",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "low success rate",
+              "retry on failure",
+              "成功率偏低",
+              "失败重试"
+            ],
+            "concept": "failure_retry",
+            "content": "This API has a relatively low collection success rate. Retry the request if data collection fails.",
+            "kind": "GUIDANCE",
+            "title": "Success rate and retries",
+            "type": "warning"
+          }
+        ],
+        "x-order": "19001090",
+        "x-sdk-class-name": "JdResource",
+        "x-sdk-method-name": "search_item_list_v3",
+        "x-sdk-resource": "jd",
+        "x-search-aliases": [
+          "京东广告位商品搜索",
+          "京东广告商品搜索",
+          "京东分类商品搜索",
+          "JD sponsored product search",
+          "JD category product search"
+        ]
+      }
+    },
     "/api/kuaishou/get-user-detail/v1": {
       "get": {
         "description": "Retrieve the public profile for a Kuaishou user identified by user ID. Use it to inspect an account found through user or video results.",
@@ -40856,5 +41042,5 @@
       "x-platform-id": "aliexpress"
     }
   ],
-  "x-openapi-release-id": "ef599c6386005b89"
+  "x-openapi-release-id": "f2e0d06fcf5e0727"
 }
