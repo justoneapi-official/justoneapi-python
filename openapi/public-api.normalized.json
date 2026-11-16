@@ -16824,7 +16824,7 @@
     },
     "/api/jd/search-item-list/v3": {
       "get": {
-        "description": "Search JD.com products by keyword, including products in advertising placements, with category filtering, pagination, sorting and price-range filters. Use it to research sponsored product visibility and discover products within a selected category.",
+        "description": "Search JD.com products by keyword with category, sort and price filters, including advertising placements. Pagination is managed per user and search conditions. Use it for product discovery and sponsored placement research.",
         "operationId": "getApiJdSearchItemListV3",
         "parameters": [
           {
@@ -16864,7 +16864,7 @@
             "x-sdk-python-name": "cid_level"
           },
           {
-            "description": "Page number, starting at 1.",
+            "description": "Page number, starting at 1. Page 1 starts a new search; other pages require saved state for the same search conditions.",
             "in": "query",
             "name": "page",
             "required": false,
@@ -16992,6 +16992,19 @@
             "content": "This API has a relatively low collection success rate. Retry the request if data collection fails.",
             "kind": "GUIDANCE",
             "title": "Success rate and retries",
+            "type": "warning"
+          },
+          {
+            "aliases": [
+              "pagination state",
+              "page order",
+              "分页状态",
+              "翻页顺序"
+            ],
+            "concept": "pagination_state",
+            "content": "Requesting page 1 starts a new search and resets its previous pagination state. Other pages require saved state for the same user and search conditions. State expires after 30 minutes without a successful request. Missing state requires requesting earlier pages again; intermediate pages are not fetched automatically.",
+            "kind": "GUIDANCE",
+            "title": "Pagination state",
             "type": "warning"
           }
         ],
@@ -41034,5 +41047,5 @@
       "x-platform-id": "aliexpress"
     }
   ],
-  "x-openapi-release-id": "b2e3858fae9c9c4e"
+  "x-openapi-release-id": "90da3a42e9788742"
 }

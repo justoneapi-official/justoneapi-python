@@ -189,13 +189,13 @@ class JdResource(BaseResource):
         """
         Product Search
 
-        Search JD.com products by keyword, including products in advertising placements, with category filtering, pagination, sorting and price-range filters. Use it to research sponsored product visibility and discover products within a selected category.
+        Search JD.com products by keyword with category, sort and price filters, including advertising placements. Pagination is managed per user and search conditions. Use it for product discovery and sponsored placement research.
 
         Args:
             keyword: Search keyword. Required even when a category is selected.
             cid: Numeric category ID used to filter the search results.
             cid_level: Category ID level: 1 for a first-level category, 2 for a second-level category, or 3 for a third-level category.  Available Values: - `1`: First-level category - `2`: Second-level category - `3`: Third-level category
-            page: Page number, starting at 1.
+            page: Page number, starting at 1. Page 1 starts a new search; other pages require saved state for the same search conditions.
             sort: Sort order for the search results.  Available Values: - `0`: Comprehensive sorting - `1`: Sort by sales volume - `2`: Price, highest first - `3`: Price, lowest first - `6`: Sort by comments
             price_interval: Price range in minimum-maximum format, for example 0-100. Both values must be non-negative and the minimum must not exceed the maximum.
             brand: Brand name, for example iQOO or iPhone.
