@@ -244,6 +244,29 @@ class WeiboResource(BaseResource):
             },
         )
 
+    def get_comment_replies_v1(
+        self,
+        *,
+        comment_id: str,
+        max_id: str | None = None,
+    ) -> ApiResponse[Any]:
+        """
+        Comment Replies
+
+        Retrieves replies under a Weibo top-level comment identified by commentId, with optional maxId cursor pagination. Use it to follow a comment thread for discussion research or feedback analysis.
+
+        Args:
+            comment_id: Numeric ID of a top-level comment, obtained from the post comments list. Pass the comment ID rather than the post MID.
+            max_id: Numeric pagination cursor returned by the previous reply page. Omit or pass 0 for the first page.
+        """
+        return self._get(
+            "/api/weibo/get-comment-replies/v1",
+            {
+                "commentId": comment_id,
+                "maxId": max_id,
+            },
+        )
+
     def search_profile_v1(
         self,
         *,

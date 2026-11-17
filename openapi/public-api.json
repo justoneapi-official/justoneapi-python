@@ -5953,6 +5953,177 @@
         ]
       }
     },
+    "/api/douyin-index/get-keyword-trends/v1": {
+      "get": {
+        "description": "Retrieves Douyin Index (Ocean Engine trend index) keyword trends for one keyword or up to five keywords over an inclusive date range in China time (UTC+8). Use it for topic research and comparing keyword interest over time.",
+        "operationId": "getApiDouyinIndexGetKeywordTrendsV1",
+        "parameters": [
+          {
+            "description": "Authentication token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "One keyword, at most 50 characters without commas. Provide exactly one of keyword or keywords; letter case does not matter.",
+            "in": "query",
+            "name": "keyword",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "One to five keywords, separated by commas or supplied as repeated query parameters. Each keyword must contain at most 50 characters without commas. Provide exactly one of keyword or keywords; letter case does not matter.",
+            "in": "query",
+            "name": "keywords",
+            "required": false,
+            "schema": {
+              "items": {
+                "maxLength": 50,
+                "type": "string"
+              },
+              "maxItems": 5,
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          {
+            "description": "First day to include. Use YYYY-MM-DD or an RFC 3339 timestamp with a timezone; timestamps are interpreted as calendar days in China time (UTC+8).",
+            "in": "query",
+            "name": "since",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Last day to include, in the same format as since, on or after since in China time (UTC+8). Figures are usually published one or two days later.",
+            "in": "query",
+            "name": "until",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Keyword Trends",
+        "tags": [
+          "Douyin Index"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "keyword-trends-v1",
+        "x-endpoint-family": "douyin_index_get_keyword_trends",
+        "x-highlights": [
+          {
+            "content": "Provide exactly one of keyword or keywords. Keywords without published figures are omitted; a query may successfully return an empty list.",
+            "kind": "GUIDANCE",
+            "type": "info"
+          }
+        ],
+        "x-order": "14701000",
+        "x-search-aliases": [
+          "抖音指数",
+          "巨量算数关键词趋势",
+          "巨量指数",
+          "Douyin keyword index"
+        ]
+      }
+    },
+    "/api/douyin-index/get-realtime-hotspots/v1": {
+      "get": {
+        "description": "Retrieves the current hotspot lists from Douyin Index in Creator Center. Use it to monitor trending topics and plan timely content.",
+        "operationId": "getApiDouyinIndexGetRealtimeHotspotsV1",
+        "parameters": [
+          {
+            "description": "Authentication token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Realtime Hotspots",
+        "tags": [
+          "Douyin Index"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "realtime-hotspots-v1",
+        "x-endpoint-family": "douyin_index_get_realtime_hotspots",
+        "x-highlights": [],
+        "x-order": "14702000",
+        "x-search-aliases": [
+          "抖音实时热点",
+          "抖音热点榜",
+          "Douyin realtime hot topics"
+        ]
+      }
+    },
     "/api/douyin-xingtu/get-author-commerce-seed-base-info/v1": {
       "get": {
         "deprecated": true,
@@ -26850,7 +27021,7 @@
     },
     "/api/vipshop/get-item-detail/v1": {
       "get": {
-        "description": "Retrieves Vipshop product details in batches using up to 15 comma-separated product IDs. Use it for product research and catalog monitoring.",
+        "description": "Retrieves Vipshop product details using one product ID per request. Use it for product research and catalog monitoring.",
         "operationId": "getApiVipshopGetItemDetailV1",
         "parameters": [
           {
@@ -26863,9 +27034,9 @@
             }
           },
           {
-            "description": "One to 15 positive decimal product IDs separated by commas. Spaces around each ID are ignored; order and duplicate IDs are preserved.",
+            "description": "Product ID.",
             "in": "query",
-            "name": "productIds",
+            "name": "productId",
             "required": true,
             "schema": {
               "type": "string"
@@ -26909,17 +27080,91 @@
         "x-api-version": "v1",
         "x-docs-slug": "product-details-v1",
         "x-endpoint-family": "vipshop_get_item_detail",
-        "x-highlights": [
-          {
-            "content": "Queries for nonexistent product IDs are treated as successful queries.",
-            "kind": "GUIDANCE",
-            "type": "info"
-          }
-        ],
+        "x-highlights": [],
         "x-order": "39001000",
         "x-search-aliases": [
-          "唯品会商品详情",
-          "唯品会批量商品详情"
+          "唯品会商品详情"
+        ]
+      }
+    },
+    "/api/weibo/get-comment-replies/v1": {
+      "get": {
+        "description": "Retrieves replies under a Weibo top-level comment identified by commentId, with optional maxId cursor pagination. Use it to follow a comment thread for discussion research or feedback analysis.",
+        "operationId": "getApiWeiboGetCommentRepliesV1",
+        "parameters": [
+          {
+            "description": "API access token.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Numeric ID of a top-level comment, obtained from the post comments list. Pass the comment ID rather than the post MID.",
+            "in": "query",
+            "name": "commentId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Numeric pagination cursor returned by the previous reply page. Omit or pass 0 for the first page.",
+            "in": "query",
+            "name": "maxId",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Comment Replies",
+        "tags": [
+          "Weibo"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "comment-replies-v1",
+        "x-endpoint-family": "weibo_get_comment_replies",
+        "x-highlights": [],
+        "x-order": "17001850",
+        "x-search-aliases": [
+          "Weibo comment replies API",
+          "Weibo nested comments",
+          "微博评论回复",
+          "微博二级评论",
+          "微博楼中楼回复"
         ]
       }
     },
@@ -40188,6 +40433,25 @@
       "x-platform-id": "douyin-creator-marketplace-xingtu"
     },
     {
+      "description": "Douyin Index keyword trends over date ranges for topic research and interest monitoring.",
+      "name": "Douyin Index",
+      "x-platform-aliases": [
+        "Douyin Index",
+        "Ocean Engine Index",
+        "抖音指数",
+        "巨量算数",
+        "巨量指数"
+      ],
+      "x-platform-detection-aliases": [
+        "Douyin Index",
+        "Ocean Engine Index",
+        "抖音指数",
+        "巨量算数",
+        "巨量指数"
+      ],
+      "x-platform-id": "douyin-index"
+    },
+    {
       "description": "Douyin E-commerce product and catalog data for enrichment, price monitoring, and commerce analytics.",
       "name": "Douyin E-commerce",
       "x-platform-aliases": [
@@ -40291,5 +40555,5 @@
       "x-platform-id": "aliexpress"
     }
   ],
-  "x-openapi-release-id": "17a92136a18722c7"
+  "x-openapi-release-id": "64ffeca210b3eb13"
 }

@@ -12,19 +12,19 @@ class VipshopResource(BaseResource):
     def get_item_detail_v1(
         self,
         *,
-        product_ids: str,
+        product_id: str,
     ) -> ApiResponse[Any]:
         """
         Product Details
 
-        Retrieves Vipshop product details in batches using up to 15 comma-separated product IDs. Use it for product research and catalog monitoring.
+        Retrieves Vipshop product details using one product ID per request. Use it for product research and catalog monitoring.
 
         Args:
-            product_ids: One to 15 positive decimal product IDs separated by commas. Spaces around each ID are ignored; order and duplicate IDs are preserved.
+            product_id: Product ID.
         """
         return self._get(
             "/api/vipshop/get-item-detail/v1",
             {
-                "productIds": product_ids,
+                "productId": product_id,
             },
         )
