@@ -26848,6 +26848,81 @@
         ]
       }
     },
+    "/api/vipshop/get-item-detail/v1": {
+      "get": {
+        "description": "Retrieves Vipshop product details in batches using up to 15 comma-separated product IDs. Use it for product research and catalog monitoring.",
+        "operationId": "getApiVipshopGetItemDetailV1",
+        "parameters": [
+          {
+            "description": "Authentication token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "One to 15 positive decimal product IDs separated by commas. Spaces around each ID are ignored; order and duplicate IDs are preserved.",
+            "in": "query",
+            "name": "productIds",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Product Details",
+        "tags": [
+          "Vipshop"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "product-details-v1",
+        "x-endpoint-family": "vipshop_get_item_detail",
+        "x-highlights": [
+          {
+            "content": "Queries for nonexistent product IDs are treated as successful queries.",
+            "kind": "GUIDANCE",
+            "type": "info"
+          }
+        ],
+        "x-order": "39001000",
+        "x-search-aliases": [
+          "唯品会商品详情",
+          "唯品会批量商品详情"
+        ]
+      }
+    },
     "/api/weibo/get-fans/v1": {
       "get": {
         "description": "Retrieves a page of fan accounts that follow a Weibo user identified by UID. Use it to browse the account's follower audience or continue through its fan list.",
@@ -39826,6 +39901,21 @@
       "x-platform-id": "weibo"
     },
     {
+      "description": "Vipshop product details queried by product IDs for product research and catalog monitoring.",
+      "name": "Vipshop",
+      "x-platform-aliases": [
+        "Vipshop",
+        "VIP.com",
+        "唯品会"
+      ],
+      "x-platform-detection-aliases": [
+        "Vipshop",
+        "VIP.com",
+        "唯品会"
+      ],
+      "x-platform-id": "vipshop"
+    },
+    {
       "description": "Twitter profiles and timelines for creator research, account monitoring, and content aggregation.",
       "name": "Twitter",
       "x-platform-aliases": [
@@ -40201,5 +40291,5 @@
       "x-platform-id": "aliexpress"
     }
   ],
-  "x-openapi-release-id": "90da3a42e9788742"
+  "x-openapi-release-id": "17a92136a18722c7"
 }
