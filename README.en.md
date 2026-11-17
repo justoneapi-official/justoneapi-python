@@ -255,6 +255,11 @@ The API list below is generated from OpenAPI and shows the current public API ca
 - [Item Comments (V1)](https://docs.justoneapi.com/en/api/douyin-e-commerce/item-comments-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/douyin-ec/get-item-comments/v1 --> <sub>[JSON](https://github.com/justoneapi-official/justoneapi-python/blob/main/docs/api-examples/getApiDouyinEcGetItemCommentsV1.json)</sub>
 - [Shop Product List (V1)](https://docs.justoneapi.com/en/api/douyin-e-commerce/shop-product-list-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/douyin-ec/get-shop-item-list/v1 --> <sub>[JSON](https://github.com/justoneapi-official/justoneapi-python/blob/main/docs/api-examples/getApiDouyinEcGetShopItemListV1.json)</sub>
 
+### Douyin Index
+
+- [Keyword Trends (V1)](https://docs.justoneapi.com/en/api/douyin-index/keyword-trends-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/douyin-index/get-keyword-trends/v1 -->
+- [Realtime Hotspots (V1)](https://docs.justoneapi.com/en/api/douyin-index/realtime-hotspots-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/douyin-index/get-realtime-hotspots/v1 -->
+
 ### Douyin Creator Marketplace (Xingtu)
 
 - [Creator Search (V1)](https://docs.justoneapi.com/en/api/douyin-creator-marketplace-xingtu/creator-search-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/douyin-xingtu/gw/api/gsearch/search_for_author_square/v1 --> <sub>[JSON](https://github.com/justoneapi-official/justoneapi-python/blob/main/docs/api-examples/getApiDouyinXingtuGwApiGsearchSearchForAuthorSquareV1.json)</sub>

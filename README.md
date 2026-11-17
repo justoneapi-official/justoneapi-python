@@ -255,6 +255,11 @@ except BusinessError as exc:
 - [商品评论 (V1)](https://docs.justoneapi.com/zh/api/douyin-e-commerce/item-comments-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/douyin-ec/get-item-comments/v1 --> <sub>[JSON](https://github.com/justoneapi-official/justoneapi-python/blob/main/docs/api-examples/getApiDouyinEcGetItemCommentsV1.json)</sub>
 - [店铺商品列表 (V1)](https://docs.justoneapi.com/zh/api/douyin-e-commerce/shop-product-list-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/douyin-ec/get-shop-item-list/v1 --> <sub>[JSON](https://github.com/justoneapi-official/justoneapi-python/blob/main/docs/api-examples/getApiDouyinEcGetShopItemListV1.json)</sub>
 
+### 抖音指数
+
+- [关键词趋势 (V1)](https://docs.justoneapi.com/zh/api/douyin-index/keyword-trends-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/douyin-index/get-keyword-trends/v1 -->
+- [实时热点 (V1)](https://docs.justoneapi.com/zh/api/douyin-index/realtime-hotspots-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/douyin-index/get-realtime-hotspots/v1 -->
+
 ### 抖音巨量星图
 
 - [创作者搜索 (V1)](https://docs.justoneapi.com/zh/api/douyin-creator-marketplace-xingtu/creator-search-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/douyin-xingtu/gw/api/gsearch/search_for_author_square/v1 --> <sub>[JSON](https://github.com/justoneapi-official/justoneapi-python/blob/main/docs/api-examples/getApiDouyinXingtuGwApiGsearchSearchForAuthorSquareV1.json)</sub>
