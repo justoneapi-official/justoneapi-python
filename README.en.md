@@ -389,6 +389,7 @@ The API list below is generated from OpenAPI and shows the current public API ca
 - [TV Video Details (V1)](https://docs.justoneapi.com/en/api/weibo/tv-video-details-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/weibo/tv-component/v1 --> <sub>[JSON](https://github.com/justoneapi-official/justoneapi-python/blob/main/docs/api-examples/getApiWeiboTvComponentV1.json)</sub>
 - [Hot Search (V1)](https://docs.justoneapi.com/en/api/weibo/hot-search-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/weibo/hot-search/v1 --> <sub>[JSON](https://github.com/justoneapi-official/justoneapi-python/blob/main/docs/api-examples/getApiWeiboHotSearchV1.json)</sub>
 - [Post Comments (V1)](https://docs.justoneapi.com/en/api/weibo/post-comments-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/weibo/get-post-comments/v1 --> <sub>[JSON](https://github.com/justoneapi-official/justoneapi-python/blob/main/docs/api-examples/getApiWeiboGetPostCommentsV1.json)</sub>
+- [Comment Replies (V1)](https://docs.justoneapi.com/en/api/weibo/comment-replies-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/weibo/get-comment-replies/v1 -->
 - [Search User Published Posts (V1)](https://docs.justoneapi.com/en/api/weibo/search-user-published-posts-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/weibo/search-profile/v1 --> <sub>[JSON](https://github.com/justoneapi-official/justoneapi-python/blob/main/docs/api-examples/getApiWeiboSearchProfileV1.json)</sub>
 
 ### Bilibili
@@ -648,6 +649,10 @@ The API list below is generated from OpenAPI and shows the current public API ca
 ### ZCOOL
 
 - [Image Search (V1)](https://docs.justoneapi.com/en/api/zcool/image-search-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/zcool/search-image/v1 -->
+
+### Vipshop
+
+- [Product Details (V1)](https://docs.justoneapi.com/en/api/vipshop/product-details-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/vipshop/get-item-detail/v1 -->
 
 <!-- API_LIST_END -->
 

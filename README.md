@@ -389,6 +389,7 @@ except BusinessError as exc:
 - [电视视频详情 (V1)](https://docs.justoneapi.com/zh/api/weibo/tv-video-details-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/weibo/tv-component/v1 --> <sub>[JSON](https://github.com/justoneapi-official/justoneapi-python/blob/main/docs/api-examples/getApiWeiboTvComponentV1.json)</sub>
 - [热搜 (V1)](https://docs.justoneapi.com/zh/api/weibo/hot-search-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/weibo/hot-search/v1 --> <sub>[JSON](https://github.com/justoneapi-official/justoneapi-python/blob/main/docs/api-examples/getApiWeiboHotSearchV1.json)</sub>
 - [帖子评论 (V1)](https://docs.justoneapi.com/zh/api/weibo/post-comments-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/weibo/get-post-comments/v1 --> <sub>[JSON](https://github.com/justoneapi-official/justoneapi-python/blob/main/docs/api-examples/getApiWeiboGetPostCommentsV1.json)</sub>
+- [评论回复 (V1)](https://docs.justoneapi.com/zh/api/weibo/comment-replies-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/weibo/get-comment-replies/v1 -->
 - [搜索用户发布帖子 (V1)](https://docs.justoneapi.com/zh/api/weibo/search-user-published-posts-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/weibo/search-profile/v1 --> <sub>[JSON](https://github.com/justoneapi-official/justoneapi-python/blob/main/docs/api-examples/getApiWeiboSearchProfileV1.json)</sub>
 
 ### 哔哩哔哩
@@ -648,6 +649,10 @@ except BusinessError as exc:
 ### ZCOOL
 
 - [图片搜索 (V1)](https://docs.justoneapi.com/zh/api/zcool/image-search-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/zcool/search-image/v1 -->
+
+### 唯品会
+
+- [商品详情 (V1)](https://docs.justoneapi.com/zh/api/vipshop/product-details-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/vipshop/get-item-detail/v1 -->
 
 <!-- API_LIST_END -->
 
