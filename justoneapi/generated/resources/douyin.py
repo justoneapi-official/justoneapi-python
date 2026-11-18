@@ -161,6 +161,19 @@ class DouyinResource(BaseResource):
             },
         )
 
+    def hot_list_v1(
+        self,
+    ) -> ApiResponse[Any]:
+        """
+        Hot Topics Ranking
+
+        Retrieves the current topic ranking from the public Douyin (TikTok China) Hot List. Use it to track trending topics and plan timely content.
+        """
+        return self._get(
+            "/api/douyin/hot-list/v1",
+            {},
+        )
+
     def search_live_v1(
         self,
         *,

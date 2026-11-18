@@ -11969,6 +11969,66 @@
         ]
       }
     },
+    "/api/douyin/hot-list/v1": {
+      "get": {
+        "description": "Retrieves the current topic ranking from the public Douyin (TikTok China) Hot List. Use it to track trending topics and plan timely content.",
+        "operationId": "getApiDouyinHotListV1",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Hot Topics Ranking",
+        "tags": [
+          "Douyin (TikTok China)"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "hot-list-v1",
+        "x-endpoint-family": "douyin_hot_list",
+        "x-highlights": [],
+        "x-order": "14001051",
+        "x-sdk-class-name": "DouyinResource",
+        "x-sdk-method-name": "hot_list_v1",
+        "x-sdk-resource": "douyin",
+        "x-search-aliases": [
+          "Douyin hot list",
+          "Douyin trending topics ranking",
+          "抖音热榜",
+          "抖音热点榜"
+        ]
+      }
+    },
     "/api/douyin/hot-search/v1": {
       "get": {
         "description": "Searches Douyin (TikTok China) content with optional keyword, category, video-type, ranking, pagination, engagement, and creator-follower filters. Use it to support trend discovery and campaign research.",
@@ -41685,5 +41745,5 @@
       "x-platform-id": "aliexpress"
     }
   ],
-  "x-openapi-release-id": "7b505c1ed7e2c0b6"
+  "x-openapi-release-id": "c631f3540d2d36c4"
 }
