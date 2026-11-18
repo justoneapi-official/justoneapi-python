@@ -116,6 +116,26 @@ class QqHuxuanResource(BaseResource):
             },
         )
 
+    def get_video_detail_v1(
+        self,
+        *,
+        export_id: str,
+    ) -> ApiResponse[Any]:
+        """
+        Video Account Video Details
+
+        Retrieves performance metrics for a single QQ Huxuan Video Account video by its export ID. Use it to measure a known video's performance.
+
+        Args:
+            export_id: Video export ID from QQ Huxuan Video Account Recent Videos. Include the export/ prefix.
+        """
+        return self._get(
+            "/api/qq-huxuan/get-video-detail/v1",
+            {
+                "exportId": export_id,
+            },
+        )
+
     def cgi_bin_advertiser_mp_publisher_detail_v1(
         self,
         *,
@@ -168,6 +188,26 @@ class QqHuxuanResource(BaseResource):
                 "keyword": keyword,
                 "articleType": article_type,
                 "page": page,
+            },
+        )
+
+    def get_article_detail_v1(
+        self,
+        *,
+        article_id: str,
+    ) -> ApiResponse[Any]:
+        """
+        Official Account Article Details
+
+        Retrieves a single QQ Huxuan Official Account article by its article ID. Use it to review a known article from the publisher's article list.
+
+        Args:
+            article_id: Article ID from QQ Huxuan Official Account Article List, in appId_msgId_index format.
+        """
+        return self._get(
+            "/api/qq-huxuan/get-article-detail/v1",
+            {
+                "articleId": article_id,
             },
         )
 

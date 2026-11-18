@@ -19622,6 +19622,144 @@
         ]
       }
     },
+    "/api/qq-huxuan/get-article-detail/v1": {
+      "get": {
+        "description": "Retrieves a single QQ Huxuan Official Account article by its article ID. Use it to review a known article from the publisher's article list.",
+        "operationId": "getApiQqHuxuanGetArticleDetailV1",
+        "parameters": [
+          {
+            "description": "User authentication token.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Article ID from QQ Huxuan Official Account Article List, in appId_msgId_index format.",
+            "in": "query",
+            "name": "articleId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Official Account Article Details",
+        "tags": [
+          "QQ Huxuan Creator Marketplace"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "official-account-article-details-v1",
+        "x-endpoint-family": "qq_huxuan_get_article_detail",
+        "x-highlights": [],
+        "x-order": "16250610",
+        "x-search-aliases": [
+          "腾讯互选公众号文章详情",
+          "腾讯互选公众号单篇发文查询"
+        ]
+      }
+    },
+    "/api/qq-huxuan/get-video-detail/v1": {
+      "get": {
+        "description": "Retrieves performance metrics for a single QQ Huxuan Video Account video by its export ID. Use it to measure a known video's performance.",
+        "operationId": "getApiQqHuxuanGetVideoDetailV1",
+        "parameters": [
+          {
+            "description": "User authentication token.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Video export ID from QQ Huxuan Video Account Recent Videos. Include the export/ prefix.",
+            "in": "query",
+            "name": "exportId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Video Account Video Details",
+        "tags": [
+          "QQ Huxuan Creator Marketplace"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "video-account-video-details-v1",
+        "x-endpoint-family": "qq_huxuan_get_video_detail",
+        "x-highlights": [],
+        "x-order": "16250410",
+        "x-search-aliases": [
+          "腾讯互选视频号作品详情",
+          "腾讯互选视频号单条视频查询"
+        ]
+      }
+    },
     "/api/reddit/get-post-comments/v1": {
       "get": {
         "description": "Retrieves comments for a Reddit post with pagination-token support. Use it to review a thread's discussion or continue through additional comment results for a known post.",
@@ -35306,7 +35444,151 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Result"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Result"
+                    }
+                  ],
+                  "if": {
+                    "properties": {
+                      "code": {
+                        "const": 0
+                      }
+                    },
+                    "required": [
+                      "code"
+                    ]
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "description": "Note detail results for a successful lookup.",
+                        "items": {
+                          "properties": {
+                            "note_list": {
+                              "description": "Notes in this result.",
+                              "items": {
+                                "description": "Details for one Xiaohongshu note.",
+                                "properties": {
+                                  "collected_count": {
+                                    "description": "Number of saves on the note.",
+                                    "type": "integer"
+                                  },
+                                  "comments_count": {
+                                    "description": "Number of comments reported for the note.",
+                                    "type": "integer"
+                                  },
+                                  "desc": {
+                                    "description": "Text of the note.",
+                                    "type": "string"
+                                  },
+                                  "hash_tag": {
+                                    "description": "Hashtags attached to the note.",
+                                    "items": {
+                                      "properties": {
+                                        "id": {
+                                          "description": "Hashtag ID.",
+                                          "type": "string"
+                                        },
+                                        "link": {
+                                          "description": "Link to the hashtag.",
+                                          "type": "string"
+                                        },
+                                        "name": {
+                                          "description": "Hashtag name.",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "id": {
+                                    "description": "Xiaohongshu note ID.",
+                                    "type": "string"
+                                  },
+                                  "images_list": {
+                                    "description": "Images associated with the note, which may include cover images for video notes.",
+                                    "items": {
+                                      "properties": {
+                                        "height": {
+                                          "description": "Image height in pixels.",
+                                          "type": "integer"
+                                        },
+                                        "original": {
+                                          "description": "Original image URL.",
+                                          "type": "string"
+                                        },
+                                        "url": {
+                                          "description": "Image URL.",
+                                          "type": "string"
+                                        },
+                                        "width": {
+                                          "description": "Image width in pixels.",
+                                          "type": "integer"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "last_update_time": {
+                                    "description": "Last update time of the note as a Unix timestamp in seconds.",
+                                    "type": "integer"
+                                  },
+                                  "liked_count": {
+                                    "description": "Number of likes on the note.",
+                                    "type": "integer"
+                                  },
+                                  "shared_count": {
+                                    "description": "Number of shares on the note.",
+                                    "type": "integer"
+                                  },
+                                  "time": {
+                                    "description": "Note publication time as a Unix timestamp in seconds.",
+                                    "type": "integer"
+                                  },
+                                  "title": {
+                                    "description": "Note title.",
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "description": "Note type reported by Xiaohongshu.",
+                                    "type": "string"
+                                  },
+                                  "user": {
+                                    "description": "Author of the note.",
+                                    "properties": {
+                                      "id": {
+                                        "description": "Author's Xiaohongshu user ID.",
+                                        "type": "string"
+                                      },
+                                      "image": {
+                                        "description": "URL of the author's profile image.",
+                                        "type": "string"
+                                      },
+                                      "nickname": {
+                                        "description": "Author's display name.",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
+                      }
+                    }
+                  }
                 }
               }
             },
@@ -40555,5 +40837,5 @@
       "x-platform-id": "aliexpress"
     }
   ],
-  "x-openapi-release-id": "64ffeca210b3eb13"
+  "x-openapi-release-id": "7b505c1ed7e2c0b6"
 }
