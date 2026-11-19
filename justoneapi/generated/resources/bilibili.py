@@ -147,6 +147,39 @@ class BilibiliResource(BaseResource):
             },
         )
 
+    def hot_list_v1(
+        self,
+    ) -> ApiResponse[Any]:
+        """
+        Video Ranking
+
+        Retrieves the current sitewide video ranking shown on Bilibili's public ranking page. Use it to discover trending videos and plan content research.
+        """
+        return self._get(
+            "/api/bilibili/hot-list/v1",
+            {},
+        )
+
+    def popular_feed_v1(
+        self,
+        *,
+        page: int | None = 1,
+    ) -> ApiResponse[Any]:
+        """
+        Popular Video Feed
+
+        Retrieves a numbered page of Bilibili's public Popular video feed with a page size of 20. Use it to discover popular videos and browse further pages.
+
+        Args:
+            page: Page number, starting from 1.
+        """
+        return self._get(
+            "/api/bilibili/popular-feed/v1",
+            {
+                "page": page,
+            },
+        )
+
     def share_url_transfer_v1(
         self,
         *,

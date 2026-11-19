@@ -4607,6 +4607,280 @@
         ]
       }
     },
+    "/api/bilibili/hot-list/v1": {
+      "get": {
+        "description": "Retrieves the current sitewide video ranking shown on Bilibili's public ranking page. Use it to discover trending videos and plan content research.",
+        "operationId": "getApiBilibiliHotListV1",
+        "parameters": [
+          {
+            "description": "Access token for the API.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Result"
+                    }
+                  ],
+                  "if": {
+                    "properties": {
+                      "code": {
+                        "const": 0
+                      }
+                    },
+                    "required": [
+                      "code"
+                    ]
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "description": "The sitewide Bilibili video ranking.",
+                        "properties": {
+                          "video_list": {
+                            "description": "Videos in the order shown on the official sitewide ranking.",
+                            "items": {
+                              "properties": {
+                                "author": {
+                                  "description": "The video's uploader name on Bilibili.",
+                                  "type": "string"
+                                },
+                                "bvid": {
+                                  "description": "The video's Bilibili BV identifier.",
+                                  "type": "string"
+                                },
+                                "rank": {
+                                  "description": "One-based position in the official ranking, derived from the source list order.",
+                                  "type": "integer"
+                                },
+                                "title": {
+                                  "description": "The video's title as displayed on Bilibili.",
+                                  "type": "string"
+                                },
+                                "url": {
+                                  "description": "Official Bilibili webpage for the video.",
+                                  "format": "uri",
+                                  "type": "string"
+                                },
+                                "view_count": {
+                                  "description": "The video's reported play count as an integer.",
+                                  "type": "integer"
+                                }
+                              },
+                              "required": [
+                                "author",
+                                "bvid",
+                                "rank",
+                                "title",
+                                "url",
+                                "view_count"
+                              ],
+                              "type": "object"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "required": [
+                          "video_list"
+                        ],
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Video Ranking",
+        "tags": [
+          "Bilibili"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "hot-list-v1",
+        "x-endpoint-family": "bilibili_hot_list",
+        "x-highlights": [],
+        "x-order": 18001550,
+        "x-search-aliases": [
+          "Bilibili sitewide ranking",
+          "Bilibili video hot list",
+          "B站全站视频榜",
+          "哔哩哔哩全站排行榜"
+        ]
+      }
+    },
+    "/api/bilibili/popular-feed/v1": {
+      "get": {
+        "description": "Retrieves a numbered page of Bilibili's public Popular video feed with a page size of 20. Use it to discover popular videos and browse further pages.",
+        "operationId": "getApiBilibiliPopularFeedV1",
+        "parameters": [
+          {
+            "description": "Access token for the API.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Page number, starting from 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Result"
+                    }
+                  ],
+                  "if": {
+                    "properties": {
+                      "code": {
+                        "const": 0
+                      }
+                    },
+                    "required": [
+                      "code"
+                    ]
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "description": "Videos and pagination details from the Bilibili Popular feed.",
+                        "properties": {
+                          "has_more": {
+                            "description": "Whether Bilibili reports more videos after this page.",
+                            "type": "boolean"
+                          },
+                          "video_list": {
+                            "description": "Videos in the order shown in the feed. The list can be empty after the end of the feed.",
+                            "items": {
+                              "properties": {
+                                "author": {
+                                  "description": "The video's uploader name on Bilibili.",
+                                  "type": "string"
+                                },
+                                "bvid": {
+                                  "description": "The video's Bilibili BV identifier.",
+                                  "type": "string"
+                                },
+                                "title": {
+                                  "description": "The video's title as displayed on Bilibili.",
+                                  "type": "string"
+                                },
+                                "url": {
+                                  "description": "Official Bilibili webpage for the video.",
+                                  "format": "uri",
+                                  "type": "string"
+                                },
+                                "view_count": {
+                                  "description": "The video's reported play count as an integer.",
+                                  "minimum": 0,
+                                  "type": "integer"
+                                }
+                              },
+                              "required": [
+                                "author",
+                                "bvid",
+                                "title",
+                                "url",
+                                "view_count"
+                              ],
+                              "type": "object"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "required": [
+                          "has_more",
+                          "video_list"
+                        ],
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Popular Video Feed",
+        "tags": [
+          "Bilibili"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "popular-feed-v1",
+        "x-endpoint-family": "bilibili_popular_feed",
+        "x-highlights": [],
+        "x-order": 18001575,
+        "x-search-aliases": [
+          "Bilibili popular videos",
+          "Bilibili general popular feed",
+          "B站综合热门",
+          "哔哩哔哩综合热门"
+        ]
+      }
+    },
     "/api/bilibili/search-video/v2": {
       "get": {
         "description": "Searches Bilibili videos by keyword with page-based pagination and sorting by general ranking, play count, publish time, danmaku count, or favorites. Use it to support content discovery, topic research, or ranking-focused searches.",
@@ -42227,5 +42501,5 @@
       "x-platform-id": "aliexpress"
     }
   ],
-  "x-openapi-release-id": "5c1481abe2cf5549"
+  "x-openapi-release-id": "4c85998006d0d2bd"
 }
