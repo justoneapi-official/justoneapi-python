@@ -55,6 +55,19 @@ class KuaishouResource(BaseResource):
             },
         )
 
+    def hot_list_v1(
+        self,
+    ) -> ApiResponse[Any]:
+        """
+        Short Video Hot List
+
+        Retrieves the current short-video hot list shown on the public Kuaishou website, including each topic's displayed rank and popularity. Use it to monitor trending topics and plan timely content.
+        """
+        return self._get(
+            "/api/kuaishou/hot-list/v1",
+            {},
+        )
+
     def search_user_v2(
         self,
         *,

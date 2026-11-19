@@ -17570,6 +17570,122 @@
         ]
       }
     },
+    "/api/kuaishou/hot-list/v1": {
+      "get": {
+        "description": "Retrieves the current short-video hot list shown on the public Kuaishou website, including each topic's displayed rank and popularity. Use it to monitor trending topics and plan timely content.",
+        "operationId": "getApiKuaishouHotListV1",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Result"
+                    }
+                  ],
+                  "if": {
+                    "properties": {
+                      "code": {
+                        "const": 0
+                      }
+                    },
+                    "required": [
+                      "code"
+                    ]
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "description": "The public Kuaishou short-video hot list.",
+                        "properties": {
+                          "word_list": {
+                            "description": "Topics in the order shown on the public short-video hot list.",
+                            "items": {
+                              "properties": {
+                                "hot_value": {
+                                  "description": "Popularity text as displayed on Kuaishou, including any display unit. A pinned topic without a displayed popularity value has null.",
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ]
+                                },
+                                "rank": {
+                                  "description": "Displayed position in the list. A pinned topic, when present, has rank 0.",
+                                  "type": "integer"
+                                },
+                                "word": {
+                                  "description": "The topic text as displayed on Kuaishou.",
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "hot_value",
+                                "rank",
+                                "word"
+                              ],
+                              "type": "object"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "required": [
+                          "word_list"
+                        ],
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Short Video Hot List",
+        "tags": [
+          "Kuaishou"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "hot-list-v1",
+        "x-endpoint-family": "kuaishou_hot_list",
+        "x-highlights": [],
+        "x-order": "16001050",
+        "x-sdk-class-name": "KuaishouResource",
+        "x-sdk-method-name": "hot_list_v1",
+        "x-sdk-resource": "kuaishou",
+        "x-search-aliases": [
+          "Kuaishou short-video hot list",
+          "Kuaishou trending short videos",
+          "快手短视频热榜",
+          "快手热榜"
+        ]
+      }
+    },
     "/api/kuaishou/search-user/v2": {
       "get": {
         "description": "Search public Kuaishou user accounts by keyword with page-number pagination. Use it to discover relevant creators or accounts before requesting profile and published-video data.",
@@ -28646,7 +28762,130 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Result"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Result"
+                    }
+                  ],
+                  "if": {
+                    "properties": {
+                      "code": {
+                        "const": 0
+                      }
+                    },
+                    "required": [
+                      "code"
+                    ]
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "description": "Search results and pagination information for the requested page.",
+                        "properties": {
+                          "has_next_page": {
+                            "description": "Whether another numbered page may be available. When true, continue with the next page number within the allowed range. The current list can still be empty.",
+                            "type": "boolean"
+                          },
+                          "weibo_list": {
+                            "description": "Posts returned for the requested page. The list can be empty. It can include original posts referenced by reposts.",
+                            "items": {
+                              "description": "A Weibo search result or an original post included for a repost.",
+                              "properties": {
+                                "article_url": {
+                                  "description": "Link to a Weibo headline article shared in the post, when available. It can be empty.",
+                                  "type": "string"
+                                },
+                                "at_users": {
+                                  "description": "Display names of accounts mentioned in the post, separated by commas. It can be empty.",
+                                  "type": "string"
+                                },
+                                "attitudes_count": {
+                                  "description": "Displayed like count, returned as text. The value can include a display unit.",
+                                  "type": "string"
+                                },
+                                "bid": {
+                                  "description": "Short post identifier used in Weibo post URLs.",
+                                  "type": "string"
+                                },
+                                "comments_count": {
+                                  "description": "Displayed comment count, returned as text. The value can include a display unit.",
+                                  "type": "string"
+                                },
+                                "created_at": {
+                                  "description": "Post publication time as text, usually a date followed by hours and minutes in 24-hour time. The value contains no time zone offset.",
+                                  "type": "string"
+                                },
+                                "forwarded": {
+                                  "description": "Text flag indicating whether this row is the original post included for a repost. The values are true and false as strings.",
+                                  "type": "string"
+                                },
+                                "id": {
+                                  "description": "Weibo post ID as a string.",
+                                  "type": "string"
+                                },
+                                "location": {
+                                  "description": "Name of a place tagged in the post, when available. It can be empty.",
+                                  "type": "string"
+                                },
+                                "pics": {
+                                  "description": "Image URLs for the post. This value can be an array of URLs or an empty string.",
+                                  "items": {
+                                    "type": "string"
+                                  },
+                                  "type": [
+                                    "array",
+                                    "string"
+                                  ]
+                                },
+                                "reposts_count": {
+                                  "description": "Displayed repost count, returned as text. The value can include a display unit.",
+                                  "type": "string"
+                                },
+                                "retweet_id": {
+                                  "description": "ID of the original post referenced by this repost, when available. It can be empty.",
+                                  "type": "string"
+                                },
+                                "screen_name": {
+                                  "description": "Display name of the post author.",
+                                  "type": "string"
+                                },
+                                "source": {
+                                  "description": "Posting client or source label shown by Weibo, when it is available.",
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ]
+                                },
+                                "text": {
+                                  "description": "Post text returned by the search. It can include mentions, topic names, and tagged places.",
+                                  "type": "string"
+                                },
+                                "text_hidden": {
+                                  "description": "Text flag showing when the post text was unavailable under the author's viewing settings. The values are true and false as strings.",
+                                  "type": "string"
+                                },
+                                "topics": {
+                                  "description": "Names of topics in the post, separated by commas. It can be empty.",
+                                  "type": "string"
+                                },
+                                "user_id": {
+                                  "description": "Account ID of the post author, returned as a string.",
+                                  "type": "string"
+                                },
+                                "video_url": {
+                                  "description": "Video link shown for the post, when available. It can be empty.",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    }
+                  }
                 }
               }
             },
@@ -36289,14 +36528,96 @@
                         "description": "Note detail results for a successful lookup.",
                         "items": {
                           "properties": {
+                            "comment_list": {
+                              "description": "Comment list attached to the detail result. It may be empty even when the reported comment count is positive.",
+                              "type": "array"
+                            },
+                            "model_type": {
+                              "description": "Result model type reported by Xiaohongshu.",
+                              "type": "string"
+                            },
                             "note_list": {
                               "description": "Notes in this result.",
                               "items": {
                                 "description": "Details for one Xiaohongshu note.",
                                 "properties": {
+                                  "ats": {
+                                    "description": "User profiles mentioned in the note.",
+                                    "items": {
+                                      "description": "User profile returned for a mention.",
+                                      "properties": {
+                                        "followed": {
+                                          "description": "Follow status reported by Xiaohongshu for the current response context.",
+                                          "type": "boolean"
+                                        },
+                                        "id": {
+                                          "description": "Xiaohongshu user ID of the mentioned account.",
+                                          "type": "string"
+                                        },
+                                        "level": {
+                                          "description": "User level metadata reported by Xiaohongshu.",
+                                          "properties": {
+                                            "image": {
+                                              "description": "Image field in the user level metadata. It may be empty.",
+                                              "type": "string"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "name": {
+                                          "description": "Name field supplied for the user.",
+                                          "type": "string"
+                                        },
+                                        "nickname": {
+                                          "description": "Author's display name.",
+                                          "type": "string"
+                                        },
+                                        "red_official_verified": {
+                                          "description": "Official verification status reported by Xiaohongshu.",
+                                          "type": "boolean"
+                                        },
+                                        "red_official_verify_type": {
+                                          "description": "Official verification category code reported by Xiaohongshu.",
+                                          "type": "integer"
+                                        },
+                                        "show_red_official_verify_icon": {
+                                          "description": "Flag indicating whether to display the official verification icon.",
+                                          "type": "boolean"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "co_produce_link": {
+                                    "description": "Link supplied by Xiaohongshu for co-creation.",
+                                    "type": "string"
+                                  },
+                                  "collected": {
+                                    "description": "Save status reported by Xiaohongshu for the current response context.",
+                                    "type": "boolean"
+                                  },
                                   "collected_count": {
-                                    "description": "Number of saves on the note.",
+                                    "description": "Number of saves reported for the note.",
                                     "type": "integer"
+                                  },
+                                  "comment_prompt_config": {
+                                    "description": "Comment entry prompts and restriction configuration.",
+                                    "properties": {
+                                      "forbidden_cmt_type": {
+                                        "description": "Comment restriction type code reported by the platform.",
+                                        "type": "integer"
+                                      },
+                                      "placeholder_long": {
+                                        "description": "Long placeholder text for comment input.",
+                                        "type": "string"
+                                      },
+                                      "placeholder_short": {
+                                        "description": "Short placeholder text for comment input.",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
                                   },
                                   "comments_count": {
                                     "description": "Number of comments reported for the note.",
@@ -36305,6 +36626,57 @@
                                   "desc": {
                                     "description": "Text of the note.",
                                     "type": "string"
+                                  },
+                                  "enable_brand_lottery": {
+                                    "description": "Platform switch for the brand giveaway feature.",
+                                    "type": "boolean"
+                                  },
+                                  "enable_co_produce": {
+                                    "description": "Platform switch for the co-creation feature.",
+                                    "type": "boolean"
+                                  },
+                                  "feedback_info": {
+                                    "description": "Feedback information returned for the note.",
+                                    "properties": {
+                                      "dislike_status": {
+                                        "description": "Platform status code for dislike feedback.",
+                                        "type": "integer"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "function_switch": {
+                                    "description": "Feature switches supplied by the platform for the note.",
+                                    "items": {
+                                      "properties": {
+                                        "enable": {
+                                          "description": "Whether the platform marks the feature as enabled.",
+                                          "type": "boolean"
+                                        },
+                                        "reason": {
+                                          "description": "Reason supplied for the feature switch, when available.",
+                                          "type": "string"
+                                        },
+                                        "type": {
+                                          "description": "Feature type code for the switch.",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "has_co_produce": {
+                                    "description": "Flag indicating whether the note is associated with co-creation.",
+                                    "type": "boolean"
+                                  },
+                                  "has_music": {
+                                    "description": "Music association flag reported by Xiaohongshu for the note.",
+                                    "type": "boolean"
+                                  },
+                                  "has_related_goods": {
+                                    "description": "Flag indicating whether the note has associated products.",
+                                    "type": "boolean"
                                   },
                                   "hash_tag": {
                                     "description": "Hashtags attached to the note.",
@@ -36315,11 +36687,15 @@
                                           "type": "string"
                                         },
                                         "link": {
-                                          "description": "Link to the hashtag.",
+                                          "description": "Link to the hashtag, which may use the Xiaohongshu app link scheme.",
                                           "type": "string"
                                         },
                                         "name": {
                                           "description": "Hashtag name.",
+                                          "type": "string"
+                                        },
+                                        "type": {
+                                          "description": "Hashtag type code reported by the platform.",
                                           "type": "string"
                                         }
                                       },
@@ -36335,16 +36711,360 @@
                                     "description": "Images associated with the note, which may include cover images for video notes.",
                                     "items": {
                                       "properties": {
+                                        "fileid": {
+                                          "description": "Platform file identifier for the image.",
+                                          "type": "string"
+                                        },
+                                        "filter": {
+                                          "description": "Filter metadata associated with the image.",
+                                          "properties": {
+                                            "creator_nickname": {
+                                              "description": "Display name supplied for the filter creator.",
+                                              "type": "string"
+                                            },
+                                            "filter_entrance_name": {
+                                              "description": "Display label for the filter entry point.",
+                                              "type": "string"
+                                            },
+                                            "filter_id": {
+                                              "description": "Filter ID reported by Xiaohongshu.",
+                                              "type": "string"
+                                            },
+                                            "filter_url": {
+                                              "description": "URL supplied for the filter.",
+                                              "type": "string"
+                                            },
+                                            "link": {
+                                              "description": "Link associated with the filter.",
+                                              "type": "string"
+                                            },
+                                            "show_filter_entrance": {
+                                              "description": "Flag for displaying this filter entry point.",
+                                              "type": "boolean"
+                                            },
+                                            "special_effect_image": {
+                                              "description": "Image supplied for the filter effect.",
+                                              "type": "string"
+                                            },
+                                            "user_id": {
+                                              "description": "User ID returned in this filter entry.",
+                                              "type": "string"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
                                         "height": {
                                           "description": "Image height in pixels.",
                                           "type": "integer"
                                         },
+                                        "index": {
+                                          "description": "Image position index reported by the platform.",
+                                          "type": "integer"
+                                        },
+                                        "live_photo": {
+                                          "description": "Live Photo metadata returned for the image when available.",
+                                          "properties": {
+                                            "image": {
+                                              "description": "Image metadata returned within the Live Photo.",
+                                              "properties": {
+                                                "first_frame": {
+                                                  "description": "First-frame image field returned for the Live Photo. It may be empty.",
+                                                  "type": "string"
+                                                }
+                                              },
+                                              "type": "object"
+                                            },
+                                            "media": {
+                                              "description": "Playback metadata supplied for the Live Photo.",
+                                              "properties": {
+                                                "stream": {
+                                                  "description": "Stream variants grouped by the codec labels returned by Xiaohongshu.",
+                                                  "properties": {
+                                                    "av1": {
+                                                      "description": "AV1 stream list returned by Xiaohongshu. It may be empty.",
+                                                      "type": "array"
+                                                    },
+                                                    "h264": {
+                                                      "description": "H.264 streams returned for the Live Photo.",
+                                                      "items": {
+                                                        "description": "Metadata for one H.264 Live Photo stream.",
+                                                        "properties": {
+                                                          "audio_bitrate": {
+                                                            "description": "Audio bitrate value reported for the stream.",
+                                                            "type": "integer"
+                                                          },
+                                                          "audio_channels": {
+                                                            "description": "Number of audio channels reported for the stream.",
+                                                            "type": "integer"
+                                                          },
+                                                          "audio_codec": {
+                                                            "description": "Audio codec reported for the stream. It may be empty.",
+                                                            "type": "string"
+                                                          },
+                                                          "audio_duration": {
+                                                            "description": "Audio duration value reported for the stream.",
+                                                            "type": "integer"
+                                                          },
+                                                          "avg_bitrate": {
+                                                            "description": "Average bitrate value reported for the stream.",
+                                                            "type": "integer"
+                                                          },
+                                                          "backup_urls": {
+                                                            "description": "Alternate URLs supplied for the stream.",
+                                                            "items": {
+                                                              "description": "Alternate stream URL.",
+                                                              "type": "string"
+                                                            },
+                                                            "type": "array"
+                                                          },
+                                                          "duration": {
+                                                            "description": "Stream duration value reported by Xiaohongshu.",
+                                                            "type": "integer"
+                                                          },
+                                                          "format": {
+                                                            "description": "Media format reported for the stream.",
+                                                            "type": "string"
+                                                          },
+                                                          "fps": {
+                                                            "description": "Frame rate reported for the stream.",
+                                                            "type": "integer"
+                                                          },
+                                                          "height": {
+                                                            "description": "Stream height in pixels.",
+                                                            "type": "integer"
+                                                          },
+                                                          "master_url": {
+                                                            "description": "Primary URL supplied for this stream.",
+                                                            "type": "string"
+                                                          },
+                                                          "quality_type": {
+                                                            "description": "Raw quality label reported for the stream.",
+                                                            "type": "string"
+                                                          },
+                                                          "size": {
+                                                            "description": "Stream size value reported by Xiaohongshu.",
+                                                            "type": "integer"
+                                                          },
+                                                          "stream_desc": {
+                                                            "description": "Description supplied by Xiaohongshu for the stream.",
+                                                            "type": "string"
+                                                          },
+                                                          "video_bitrate": {
+                                                            "description": "Video bitrate value reported for the stream.",
+                                                            "type": "integer"
+                                                          },
+                                                          "video_codec": {
+                                                            "description": "Video codec reported for the stream.",
+                                                            "type": "string"
+                                                          },
+                                                          "video_duration": {
+                                                            "description": "Video duration value reported for the stream.",
+                                                            "type": "integer"
+                                                          },
+                                                          "width": {
+                                                            "description": "Stream width in pixels.",
+                                                            "type": "integer"
+                                                          }
+                                                        },
+                                                        "type": "object"
+                                                      },
+                                                      "type": "array"
+                                                    },
+                                                    "h265": {
+                                                      "description": "H.265 streams returned for the Live Photo.",
+                                                      "items": {
+                                                        "description": "Metadata for one H.265 Live Photo stream.",
+                                                        "properties": {
+                                                          "audio_bitrate": {
+                                                            "description": "Audio bitrate value reported for the stream.",
+                                                            "type": "integer"
+                                                          },
+                                                          "audio_channels": {
+                                                            "description": "Number of audio channels reported for the stream.",
+                                                            "type": "integer"
+                                                          },
+                                                          "audio_codec": {
+                                                            "description": "Audio codec reported for the stream. It may be empty.",
+                                                            "type": "string"
+                                                          },
+                                                          "audio_duration": {
+                                                            "description": "Audio duration value reported for the stream.",
+                                                            "type": "integer"
+                                                          },
+                                                          "avg_bitrate": {
+                                                            "description": "Average bitrate value reported for the stream.",
+                                                            "type": "integer"
+                                                          },
+                                                          "backup_urls": {
+                                                            "description": "Alternate URLs supplied for the stream.",
+                                                            "items": {
+                                                              "description": "Alternate stream URL.",
+                                                              "type": "string"
+                                                            },
+                                                            "type": "array"
+                                                          },
+                                                          "duration": {
+                                                            "description": "Stream duration value reported by Xiaohongshu.",
+                                                            "type": "integer"
+                                                          },
+                                                          "format": {
+                                                            "description": "Media format reported for the stream.",
+                                                            "type": "string"
+                                                          },
+                                                          "fps": {
+                                                            "description": "Frame rate reported for the stream.",
+                                                            "type": "integer"
+                                                          },
+                                                          "height": {
+                                                            "description": "Stream height in pixels.",
+                                                            "type": "integer"
+                                                          },
+                                                          "master_url": {
+                                                            "description": "Primary URL supplied for this stream.",
+                                                            "type": "string"
+                                                          },
+                                                          "quality_type": {
+                                                            "description": "Raw quality label reported for the stream.",
+                                                            "type": "string"
+                                                          },
+                                                          "size": {
+                                                            "description": "Stream size value reported by Xiaohongshu.",
+                                                            "type": "integer"
+                                                          },
+                                                          "stream_desc": {
+                                                            "description": "Description supplied by Xiaohongshu for the stream.",
+                                                            "type": "string"
+                                                          },
+                                                          "video_bitrate": {
+                                                            "description": "Video bitrate value reported for the stream.",
+                                                            "type": "integer"
+                                                          },
+                                                          "video_codec": {
+                                                            "description": "Video codec reported for the stream.",
+                                                            "type": "string"
+                                                          },
+                                                          "video_duration": {
+                                                            "description": "Video duration value reported for the stream.",
+                                                            "type": "integer"
+                                                          },
+                                                          "width": {
+                                                            "description": "Stream width in pixels.",
+                                                            "type": "integer"
+                                                          }
+                                                        },
+                                                        "type": "object"
+                                                      },
+                                                      "type": "array"
+                                                    },
+                                                    "h266": {
+                                                      "description": "H.266 stream list returned by Xiaohongshu. It may be empty.",
+                                                      "type": "array"
+                                                    }
+                                                  },
+                                                  "type": "object"
+                                                },
+                                                "video": {
+                                                  "description": "Video metadata associated with the Live Photo.",
+                                                  "properties": {
+                                                    "drm_type": {
+                                                      "description": "Raw DRM category code reported for the video.",
+                                                      "type": "integer"
+                                                    },
+                                                    "duration": {
+                                                      "description": "Video duration value reported for the Live Photo.",
+                                                      "type": "integer"
+                                                    },
+                                                    "hdr_type": {
+                                                      "description": "Raw HDR category code reported for the video.",
+                                                      "type": "integer"
+                                                    },
+                                                    "height": {
+                                                      "description": "Video height in pixels.",
+                                                      "type": "integer"
+                                                    },
+                                                    "stream_types": {
+                                                      "description": "Stream type codes reported for the video.",
+                                                      "items": {
+                                                        "description": "Raw stream type code reported for the video.",
+                                                        "type": "integer"
+                                                      },
+                                                      "type": "array"
+                                                    },
+                                                    "width": {
+                                                      "description": "Video width in pixels.",
+                                                      "type": "integer"
+                                                    }
+                                                  },
+                                                  "type": "object"
+                                                },
+                                                "video_id": {
+                                                  "description": "Video ID reported for the Live Photo media.",
+                                                  "type": "string"
+                                                }
+                                              },
+                                              "type": "object"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "live_photo_file_id": {
+                                          "description": "File ID reported for the image’s Live Photo.",
+                                          "type": "string"
+                                        },
+                                        "need_load_original_image": {
+                                          "description": "Platform flag for loading the original image.",
+                                          "type": "boolean"
+                                        },
+                                        "origin_img": {
+                                          "description": "Original-image metadata supplied by Xiaohongshu.",
+                                          "properties": {
+                                            "height": {
+                                              "description": "Original image height in pixels. Some responses return 0.",
+                                              "type": "integer"
+                                            },
+                                            "size": {
+                                              "description": "Original-image size value reported by Xiaohongshu.",
+                                              "type": "number"
+                                            },
+                                            "width": {
+                                              "description": "Original image width in pixels. Some responses return 0.",
+                                              "type": "integer"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
                                         "original": {
-                                          "description": "Original image URL.",
+                                          "description": "URL supplied in the original-image field.",
                                           "type": "string"
                                         },
                                         "url": {
                                           "description": "Image URL.",
+                                          "type": "string"
+                                        },
+                                        "url_8k": {
+                                          "description": "URL supplied for the 8K image variant.",
+                                          "type": "string"
+                                        },
+                                        "url_multi_level": {
+                                          "description": "Image URLs grouped by levels reported by the platform. URLs may repeat across levels.",
+                                          "properties": {
+                                            "high": {
+                                              "description": "URL reported for the high image level.",
+                                              "type": "string"
+                                            },
+                                            "low": {
+                                              "description": "URL reported for the low image level.",
+                                              "type": "string"
+                                            },
+                                            "medium": {
+                                              "description": "URL reported for the medium image level.",
+                                              "type": "string"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "url_size_large": {
+                                          "description": "URL supplied for the large-size image variant.",
                                           "type": "string"
                                         },
                                         "width": {
@@ -36356,17 +37076,336 @@
                                     },
                                     "type": "array"
                                   },
+                                  "ip_location": {
+                                    "description": "IP location label supplied by Xiaohongshu for this note.",
+                                    "type": "string"
+                                  },
                                   "last_update_time": {
-                                    "description": "Last update time of the note as a Unix timestamp in seconds.",
+                                    "description": "Last update time of the note as a Unix timestamp in seconds. Some responses return 0.",
                                     "type": "integer"
+                                  },
+                                  "liked": {
+                                    "description": "Like status reported by Xiaohongshu for the current response context.",
+                                    "type": "boolean"
                                   },
                                   "liked_count": {
-                                    "description": "Number of likes on the note.",
+                                    "description": "Number of likes reported for the note.",
                                     "type": "integer"
                                   },
+                                  "liked_users": {
+                                    "description": "List of users who liked the note. It may be empty even when the reported like count is positive.",
+                                    "type": "array"
+                                  },
+                                  "long_press_share_info": {
+                                    "description": "Sharing information associated with the long-press menu.",
+                                    "properties": {
+                                      "block_private_msg": {
+                                        "description": "Private-message restriction flag in the sharing configuration.",
+                                        "type": "boolean"
+                                      },
+                                      "content": {
+                                        "description": "Share body text supplied for the long-press menu.",
+                                        "type": "string"
+                                      },
+                                      "function_entries": {
+                                        "description": "Sharing action entries supplied by the platform.",
+                                        "items": {
+                                          "properties": {
+                                            "type": {
+                                              "description": "Type code of the sharing action entry.",
+                                              "type": "string"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "type": "array"
+                                      },
+                                      "show_wechat_tag": {
+                                        "description": "Flag for displaying the WeChat label in the sharing configuration.",
+                                        "type": "boolean"
+                                      },
+                                      "title": {
+                                        "description": "Share title supplied for the long-press menu.",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "may_have_red_packet": {
+                                    "description": "Flag indicating that a red envelope may be associated with the note.",
+                                    "type": "boolean"
+                                  },
+                                  "media_save_config": {
+                                    "description": "Media saving configuration supplied by the platform.",
+                                    "properties": {
+                                      "disable_save": {
+                                        "description": "Platform flag for disabling media saving.",
+                                        "type": "boolean"
+                                      },
+                                      "disable_watermark": {
+                                        "description": "Platform flag for disabling watermarks in the media saving configuration.",
+                                        "type": "boolean"
+                                      },
+                                      "disable_weibo_cover": {
+                                        "description": "Platform flag for disabling the Weibo cover in the media saving configuration.",
+                                        "type": "boolean"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "mini_program_info": {
+                                    "description": "Mini-program linking and sharing metadata for the note.",
+                                    "properties": {
+                                      "desc": {
+                                        "description": "Mini-program description supplied with the note.",
+                                        "type": "string"
+                                      },
+                                      "path": {
+                                        "description": "Path to the page inside the mini-program.",
+                                        "type": "string"
+                                      },
+                                      "share_title": {
+                                        "description": "Title used to share the mini-program.",
+                                        "type": "string"
+                                      },
+                                      "thumb": {
+                                        "description": "Mini-program thumbnail URL.",
+                                        "type": "string"
+                                      },
+                                      "title": {
+                                        "description": "Mini-program title supplied with the note.",
+                                        "type": "string"
+                                      },
+                                      "user_name": {
+                                        "description": "Account name reported for the mini-program.",
+                                        "type": "string"
+                                      },
+                                      "webpage_url": {
+                                        "description": "Web page URL supplied for the mini-program.",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "model_type": {
+                                    "description": "Note model type reported by Xiaohongshu.",
+                                    "type": "string"
+                                  },
+                                  "native_voice_info": {
+                                    "description": "Voice and audio metadata attached to the note.",
+                                    "properties": {
+                                      "cover": {
+                                        "description": "Cover image URL of the audio item.",
+                                        "type": "string"
+                                      },
+                                      "desc": {
+                                        "description": "Description supplied for the audio item.",
+                                        "type": "string"
+                                      },
+                                      "duration": {
+                                        "description": "Audio duration in milliseconds.",
+                                        "type": "integer"
+                                      },
+                                      "md5sum": {
+                                        "description": "MD5 checksum of the audio file supplied in this entry.",
+                                        "type": "string"
+                                      },
+                                      "name": {
+                                        "description": "Name of the audio item.",
+                                        "type": "string"
+                                      },
+                                      "sound_bg_music_type": {
+                                        "description": "Platform category code for the audio background music.",
+                                        "type": "integer"
+                                      },
+                                      "sound_id": {
+                                        "description": "Platform identifier of the audio item.",
+                                        "type": "string"
+                                      },
+                                      "subtitle": {
+                                        "description": "Subtitle text supplied for the audio item.",
+                                        "type": "string"
+                                      },
+                                      "url": {
+                                        "description": "Audio file URL.",
+                                        "type": "string"
+                                      },
+                                      "use_count": {
+                                        "description": "Usage count reported for the audio item.",
+                                        "type": "integer"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "note_attributes": {
+                                    "description": "Note attributes reported by Xiaohongshu.",
+                                    "items": {
+                                      "description": "Raw note attribute value returned by Xiaohongshu.",
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "note_statement": {
+                                    "description": "Statement metadata associated with the note.",
+                                    "properties": {
+                                      "origin_info": {
+                                        "description": "Source attribution metadata supplied for the note.",
+                                        "properties": {
+                                          "origin_link": {
+                                            "description": "Link associated with the source attribution.",
+                                            "type": "string"
+                                          },
+                                          "origin_text": {
+                                            "description": "Text associated with the source attribution.",
+                                            "type": "string"
+                                          }
+                                        },
+                                        "type": "object"
+                                      },
+                                      "pop_text": {
+                                        "description": "Statement text supplied for the popup.",
+                                        "type": "string"
+                                      },
+                                      "show_text": {
+                                        "description": "Statement text supplied for display with the note.",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "note_text_press_options": {
+                                    "description": "Menu options associated with a long press on note text.",
+                                    "items": {
+                                      "properties": {
+                                        "key": {
+                                          "description": "Platform key of the long-press menu option.",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "order_cooperate": {
+                                    "description": "Cooperation order metadata reported by Xiaohongshu.",
+                                    "properties": {
+                                      "status": {
+                                        "description": "Raw cooperation order status code reported by Xiaohongshu.",
+                                        "type": "integer"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "privacy": {
+                                    "description": "Visibility and privacy metadata reported by Xiaohongshu for the current response context.",
+                                    "properties": {
+                                      "show_tips": {
+                                        "description": "Flag for displaying a privacy-related tip.",
+                                        "type": "boolean"
+                                      },
+                                      "type": {
+                                        "description": "Raw visibility category code reported by Xiaohongshu.",
+                                        "type": "integer"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "qq_mini_program_info": {
+                                    "description": "QQ mini-program linking and sharing metadata for the note.",
+                                    "properties": {
+                                      "desc": {
+                                        "description": "Mini-program description supplied with the note.",
+                                        "type": "string"
+                                      },
+                                      "path": {
+                                        "description": "Path to the page inside the mini-program.",
+                                        "type": "string"
+                                      },
+                                      "share_title": {
+                                        "description": "Title used to share the mini-program.",
+                                        "type": "string"
+                                      },
+                                      "thumb": {
+                                        "description": "Mini-program thumbnail URL.",
+                                        "type": "string"
+                                      },
+                                      "title": {
+                                        "description": "Mini-program title supplied with the note.",
+                                        "type": "string"
+                                      },
+                                      "user_name": {
+                                        "description": "Account name reported for the mini-program.",
+                                        "type": "string"
+                                      },
+                                      "webpage_url": {
+                                        "description": "Web page URL supplied for the mini-program.",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "red_envelope_note": {
+                                    "description": "Flag indicating whether the platform marks this as a red envelope note.",
+                                    "type": "boolean"
+                                  },
+                                  "share_info": {
+                                    "description": "Sharing information associated with the note.",
+                                    "properties": {
+                                      "block_private_msg": {
+                                        "description": "Private-message restriction flag in the sharing configuration.",
+                                        "type": "boolean"
+                                      },
+                                      "content": {
+                                        "description": "Body text supplied for sharing the note.",
+                                        "type": "string"
+                                      },
+                                      "function_entries": {
+                                        "description": "Sharing action entries supplied by the platform.",
+                                        "items": {
+                                          "properties": {
+                                            "type": {
+                                              "description": "Type code of the sharing action entry.",
+                                              "type": "string"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "type": "array"
+                                      },
+                                      "image": {
+                                        "description": "Image URL supplied for the share preview.",
+                                        "type": "string"
+                                      },
+                                      "link": {
+                                        "description": "Share URL for the Xiaohongshu note.",
+                                        "type": "string"
+                                      },
+                                      "show_wechat_tag": {
+                                        "description": "Flag for displaying the WeChat label in the sharing configuration.",
+                                        "type": "boolean"
+                                      },
+                                      "title": {
+                                        "description": "Title used in the share preview.",
+                                        "type": "string"
+                                      },
+                                      "wechat_share_desc": {
+                                        "description": "Description supplied for sharing on WeChat.",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
                                   "shared_count": {
-                                    "description": "Number of shares on the note.",
+                                    "description": "Number of shares reported for the note.",
                                     "type": "integer"
+                                  },
+                                  "sticky": {
+                                    "description": "Pinned status reported for the note.",
+                                    "type": "boolean"
+                                  },
+                                  "text_language_code": {
+                                    "description": "Language code reported for the note text.",
+                                    "type": "string"
                                   },
                                   "time": {
                                     "description": "Note publication time as a Unix timestamp in seconds.",
@@ -36376,6 +37415,47 @@
                                     "description": "Note title.",
                                     "type": "string"
                                   },
+                                  "topics": {
+                                    "description": "Topic entries attached to the note. Entries may overlap with hashtags.",
+                                    "items": {
+                                      "properties": {
+                                        "activity_online": {
+                                          "description": "Online status flag for the topic activity.",
+                                          "type": "boolean"
+                                        },
+                                        "business_type": {
+                                          "description": "Business category code reported for the topic.",
+                                          "type": "integer"
+                                        },
+                                        "discuss_num": {
+                                          "description": "Discussion count reported for this topic.",
+                                          "type": "integer"
+                                        },
+                                        "id": {
+                                          "description": "Xiaohongshu topic ID.",
+                                          "type": "string"
+                                        },
+                                        "image": {
+                                          "description": "URL of the topic image.",
+                                          "type": "string"
+                                        },
+                                        "link": {
+                                          "description": "Link to the topic, which may use the Xiaohongshu app link scheme.",
+                                          "type": "string"
+                                        },
+                                        "name": {
+                                          "description": "Name of the topic.",
+                                          "type": "string"
+                                        },
+                                        "style": {
+                                          "description": "Style code reported for the topic.",
+                                          "type": "integer"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
                                   "type": {
                                     "description": "Note type reported by Xiaohongshu.",
                                     "type": "string"
@@ -36383,6 +37463,10 @@
                                   "user": {
                                     "description": "Author of the note.",
                                     "properties": {
+                                      "followed": {
+                                        "description": "Follow status reported by Xiaohongshu for the current response context.",
+                                        "type": "boolean"
+                                      },
                                       "id": {
                                         "description": "Author's Xiaohongshu user ID.",
                                         "type": "string"
@@ -36391,9 +37475,149 @@
                                         "description": "URL of the author's profile image.",
                                         "type": "string"
                                       },
+                                      "level": {
+                                        "description": "User level metadata reported by Xiaohongshu.",
+                                        "properties": {
+                                          "image": {
+                                            "description": "Image field in the user level metadata. It may be empty.",
+                                            "type": "string"
+                                          }
+                                        },
+                                        "type": "object"
+                                      },
+                                      "live": {
+                                        "description": "Livestream metadata returned for the user, when available.",
+                                        "properties": {
+                                          "has_draw": {
+                                            "description": "Livestream prize draw flag reported by Xiaohongshu.",
+                                            "type": "boolean"
+                                          },
+                                          "has_goods": {
+                                            "description": "Livestream merchandise flag reported by Xiaohongshu.",
+                                            "type": "boolean"
+                                          },
+                                          "has_red_packet": {
+                                            "description": "Livestream red envelope flag reported by Xiaohongshu.",
+                                            "type": "boolean"
+                                          },
+                                          "live_link": {
+                                            "description": "Link supplied by Xiaohongshu for the livestream.",
+                                            "type": "string"
+                                          },
+                                          "live_status": {
+                                            "description": "Raw livestream status code reported by Xiaohongshu.",
+                                            "type": "integer"
+                                          },
+                                          "room_id": {
+                                            "description": "Livestream room ID reported by Xiaohongshu.",
+                                            "type": "string"
+                                          },
+                                          "show_light": {
+                                            "description": "Livestream indicator flag reported by Xiaohongshu.",
+                                            "type": "boolean"
+                                          },
+                                          "start_time": {
+                                            "description": "Livestream start time value reported by Xiaohongshu.",
+                                            "type": "integer"
+                                          },
+                                          "user_id": {
+                                            "description": "User ID associated with the livestream.",
+                                            "type": "string"
+                                          }
+                                        },
+                                        "type": "object"
+                                      },
+                                      "name": {
+                                        "description": "Name field supplied for the user.",
+                                        "type": "string"
+                                      },
                                       "nickname": {
                                         "description": "Author's display name.",
                                         "type": "string"
+                                      },
+                                      "red_id": {
+                                        "description": "Xiaohongshu account number returned for the user.",
+                                        "type": "string"
+                                      },
+                                      "red_official_verified": {
+                                        "description": "Official verification status reported by Xiaohongshu.",
+                                        "type": "boolean"
+                                      },
+                                      "red_official_verify_type": {
+                                        "description": "Official verification category code reported by Xiaohongshu.",
+                                        "type": "integer"
+                                      },
+                                      "show_red_official_verify_icon": {
+                                        "description": "Flag indicating whether to display the official verification icon.",
+                                        "type": "boolean"
+                                      },
+                                      "userid": {
+                                        "description": "User identifier returned in the userid field.",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "user_id": {
+                                    "description": "User ID returned directly on the note record, when supplied.",
+                                    "type": "string"
+                                  },
+                                  "video": {
+                                    "description": "Video metadata that may be returned for some notes. Use V6 for video downloads.",
+                                    "properties": {
+                                      "duration": {
+                                        "description": "Video duration value reported by Xiaohongshu.",
+                                        "type": "integer"
+                                      },
+                                      "first_frame": {
+                                        "description": "URL supplied for the first frame of the video.",
+                                        "type": "string"
+                                      },
+                                      "height": {
+                                        "description": "Video height in pixels.",
+                                        "type": "integer"
+                                      },
+                                      "id": {
+                                        "description": "Video ID reported for the note.",
+                                        "type": "string"
+                                      },
+                                      "thumbnail": {
+                                        "description": "URL supplied for the video thumbnail.",
+                                        "type": "string"
+                                      },
+                                      "url": {
+                                        "description": "Media URL supplied by Xiaohongshu for the video.",
+                                        "type": "string"
+                                      },
+                                      "url_info_list": {
+                                        "description": "Media variants returned for the video.",
+                                        "items": {
+                                          "description": "Metadata for a returned video variant.",
+                                          "properties": {
+                                            "desc": {
+                                              "description": "Description supplied for the video variant.",
+                                              "type": "string"
+                                            },
+                                            "height": {
+                                              "description": "Video variant height in pixels.",
+                                              "type": "integer"
+                                            },
+                                            "url": {
+                                              "description": "Media URL supplied for the video variant.",
+                                              "type": "string"
+                                            },
+                                            "width": {
+                                              "description": "Video variant width in pixels.",
+                                              "type": "integer"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "type": "array"
+                                      },
+                                      "width": {
+                                        "description": "Video width in pixels.",
+                                        "type": "integer"
                                       }
                                     },
                                     "type": "object"
@@ -36402,6 +37626,108 @@
                                 "type": "object"
                               },
                               "type": "array"
+                            },
+                            "track_id": {
+                              "description": "Opaque tracking ID returned with the result, which may be empty.",
+                              "type": "string"
+                            },
+                            "user": {
+                              "description": "User profile attached to this result.",
+                              "properties": {
+                                "followed": {
+                                  "description": "Follow status reported by Xiaohongshu for the current response context.",
+                                  "type": "boolean"
+                                },
+                                "id": {
+                                  "description": "Xiaohongshu user ID.",
+                                  "type": "string"
+                                },
+                                "image": {
+                                  "description": "URL of the user's profile image.",
+                                  "type": "string"
+                                },
+                                "level": {
+                                  "description": "User level metadata reported by Xiaohongshu.",
+                                  "properties": {
+                                    "image": {
+                                      "description": "Image field in the user level metadata. It may be empty.",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "live": {
+                                  "description": "Livestream metadata returned for the user, when available.",
+                                  "properties": {
+                                    "has_draw": {
+                                      "description": "Livestream prize draw flag reported by Xiaohongshu.",
+                                      "type": "boolean"
+                                    },
+                                    "has_goods": {
+                                      "description": "Livestream merchandise flag reported by Xiaohongshu.",
+                                      "type": "boolean"
+                                    },
+                                    "has_red_packet": {
+                                      "description": "Livestream red envelope flag reported by Xiaohongshu.",
+                                      "type": "boolean"
+                                    },
+                                    "live_link": {
+                                      "description": "Link supplied by Xiaohongshu for the livestream.",
+                                      "type": "string"
+                                    },
+                                    "live_status": {
+                                      "description": "Raw livestream status code reported by Xiaohongshu.",
+                                      "type": "integer"
+                                    },
+                                    "room_id": {
+                                      "description": "Livestream room ID reported by Xiaohongshu.",
+                                      "type": "string"
+                                    },
+                                    "show_light": {
+                                      "description": "Livestream indicator flag reported by Xiaohongshu.",
+                                      "type": "boolean"
+                                    },
+                                    "start_time": {
+                                      "description": "Livestream start time value reported by Xiaohongshu.",
+                                      "type": "integer"
+                                    },
+                                    "user_id": {
+                                      "description": "User ID associated with the livestream.",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "name": {
+                                  "description": "Name field supplied for the user.",
+                                  "type": "string"
+                                },
+                                "nickname": {
+                                  "description": "User display name.",
+                                  "type": "string"
+                                },
+                                "red_id": {
+                                  "description": "Xiaohongshu account number returned for the user.",
+                                  "type": "string"
+                                },
+                                "red_official_verified": {
+                                  "description": "Official verification status reported by Xiaohongshu.",
+                                  "type": "boolean"
+                                },
+                                "red_official_verify_type": {
+                                  "description": "Official verification category code reported by Xiaohongshu.",
+                                  "type": "integer"
+                                },
+                                "show_red_official_verify_icon": {
+                                  "description": "Flag indicating whether to display the official verification icon.",
+                                  "type": "boolean"
+                                },
+                                "userid": {
+                                  "description": "User identifier returned in the userid field.",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
                             }
                           },
                           "type": "object"
@@ -41745,5 +43071,5 @@
       "x-platform-id": "aliexpress"
     }
   ],
-  "x-openapi-release-id": "c631f3540d2d36c4"
+  "x-openapi-release-id": "5c1481abe2cf5549"
 }
