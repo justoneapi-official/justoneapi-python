@@ -23816,6 +23816,7 @@
           }
         ],
         "x-order": "11001350",
+        "x-recommended": true,
         "x-sdk-class-name": "TaobaoResource",
         "x-sdk-method-name": "get_item_detail_v6",
         "x-sdk-resource": "taobao",
@@ -23889,6 +23890,7 @@
         "x-endpoint-family": "taobao_get_item_detail",
         "x-highlights": [],
         "x-order": "11001375",
+        "x-recommended": true,
         "x-sdk-class-name": "TaobaoResource",
         "x-sdk-method-name": "get_item_detail_v7",
         "x-sdk-resource": "taobao",
@@ -24053,7 +24055,6 @@
           }
         ],
         "x-order": "11001390",
-        "x-recommended": true,
         "x-sdk-class-name": "TaobaoResource",
         "x-sdk-method-name": "get_item_detail_v8",
         "x-sdk-resource": "taobao",
@@ -43343,5 +43344,5 @@
       "x-platform-id": "aliexpress"
     }
   ],
-  "x-openapi-release-id": "4c85998006d0d2bd"
+  "x-openapi-release-id": "342b481e3732f7cd"
 }

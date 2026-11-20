@@ -23369,6 +23369,7 @@
           }
         ],
         "x-order": "11001350",
+        "x-recommended": true,
         "x-search-aliases": [
           "Taobao product details v6",
           "Tmall item detail lookup v6",
@@ -23442,6 +23443,7 @@
         "x-endpoint-family": "taobao_get_item_detail",
         "x-highlights": [],
         "x-order": "11001375",
+        "x-recommended": true,
         "x-search-aliases": [
           "Taobao product details v7",
           "Tmall item detail lookup v7",
@@ -23606,7 +23608,6 @@
           }
         ],
         "x-order": "11001390",
-        "x-recommended": true,
         "x-search-aliases": [
           "Taobao product details v8",
           "Tmall item detail lookup v8",
@@ -42501,5 +42502,5 @@
       "x-platform-id": "aliexpress"
     }
   ],
-  "x-openapi-release-id": "4c85998006d0d2bd"
+  "x-openapi-release-id": "342b481e3732f7cd"
 }
