@@ -260,6 +260,7 @@ The API list below is generated from OpenAPI and shows the current public API ca
 
 - [Keyword Trends (V1)](https://docs.justoneapi.com/en/api/douyin-index/keyword-trends-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/douyin-index/get-keyword-trends/v1 -->
 - [Realtime Hotspots (V1)](https://docs.justoneapi.com/en/api/douyin-index/realtime-hotspots-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/douyin-index/get-realtime-hotspots/v1 -->
+- [Creation Guide (V1)](https://docs.justoneapi.com/en/api/douyin-index/creation-guide-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/douyin-index/get-creation-guide/v1 -->
 
 ### Douyin Creator Marketplace (Xingtu)
 
@@ -572,6 +573,7 @@ The API list below is generated from OpenAPI and shows the current public API ca
 
 ### Zhihu
 
+- [Hot List (V1)](https://docs.justoneapi.com/en/api/zhihu/hot-list-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/zhihu/hot-list/v1 -->
 - [Column Article Details (V1)](https://docs.justoneapi.com/en/api/zhihu/column-article-details-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/zhihu/get-column-article-detail/v1 --> <sub>[JSON](https://github.com/justoneapi-official/justoneapi-python/blob/main/docs/api-examples/getApiZhihuGetColumnArticleDetailV1.json)</sub>
 - [Answer List (V1)](https://docs.justoneapi.com/en/api/zhihu/answer-list-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/zhihu/get-answer-list/v1 --> <sub>[JSON](https://github.com/justoneapi-official/justoneapi-python/blob/main/docs/api-examples/getApiZhihuGetAnswerListV1.json)</sub>
 - [Keyword Search (V1)](https://docs.justoneapi.com/en/api/zhihu/keyword-search-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/zhihu/search/v1 --> <sub>[JSON](https://github.com/justoneapi-official/justoneapi-python/blob/main/docs/api-examples/getApiZhihuSearchV1.json)</sub>

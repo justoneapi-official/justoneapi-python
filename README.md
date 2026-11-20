@@ -260,6 +260,7 @@ except BusinessError as exc:
 
 - [关键词趋势 (V1)](https://docs.justoneapi.com/zh/api/douyin-index/keyword-trends-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/douyin-index/get-keyword-trends/v1 -->
 - [实时热点 (V1)](https://docs.justoneapi.com/zh/api/douyin-index/realtime-hotspots-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/douyin-index/get-realtime-hotspots/v1 -->
+- [创建指南 (V1)](https://docs.justoneapi.com/zh/api/douyin-index/creation-guide-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/douyin-index/get-creation-guide/v1 -->
 
 ### 抖音巨量星图
 
@@ -572,6 +573,7 @@ except BusinessError as exc:
 
 ### 知乎
 
+- [热门榜单 (V1)](https://docs.justoneapi.com/zh/api/zhihu/hot-list-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/zhihu/hot-list/v1 -->
 - [专栏文章详情 (V1)](https://docs.justoneapi.com/zh/api/zhihu/column-article-details-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/zhihu/get-column-article-detail/v1 --> <sub>[JSON](https://github.com/justoneapi-official/justoneapi-python/blob/main/docs/api-examples/getApiZhihuGetColumnArticleDetailV1.json)</sub>
 - [回答列表 (V1)](https://docs.justoneapi.com/zh/api/zhihu/answer-list-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/zhihu/get-answer-list/v1 --> <sub>[JSON](https://github.com/justoneapi-official/justoneapi-python/blob/main/docs/api-examples/getApiZhihuGetAnswerListV1.json)</sub>
 - [关键词搜索 (V1)](https://docs.justoneapi.com/zh/api/zhihu/keyword-search-v1?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme_api_list) <!-- api-operation:GET /api/zhihu/search/v1 --> <sub>[JSON](https://github.com/justoneapi-official/justoneapi-python/blob/main/docs/api-examples/getApiZhihuSearchV1.json)</sub>
