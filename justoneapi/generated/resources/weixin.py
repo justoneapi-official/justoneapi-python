@@ -131,6 +131,26 @@ class WeixinResource(BaseResource):
             },
         )
 
+    def get_article_metrics_v3(
+        self,
+        *,
+        article_url: str,
+    ) -> ApiResponse[Any]:
+        """
+        Article Metrics
+
+        Retrieves engagement counts for a WeChat Official Account article by its standard long URL. Use it to track article performance across multiple interactions.
+
+        Args:
+            article_url: Standard WeChat Official Account article long URL on mp.weixin.qq.com with __biz, mid, idx, and sn query parameters.
+        """
+        return self._get(
+            "/api/weixin/get-article-metrics/v3",
+            {
+                "articleUrl": article_url,
+            },
+        )
+
     def get_article_detail_v1(
         self,
         *,
@@ -232,6 +252,26 @@ class WeixinResource(BaseResource):
         """
         return self._get(
             "/api/weixin/get-article-detail/v5",
+            {
+                "articleUrl": article_url,
+            },
+        )
+
+    def get_article_detail_v6(
+        self,
+        *,
+        article_url: str,
+    ) -> ApiResponse[Any]:
+        """
+        Article Details
+
+        Retrieves content and public metadata for a WeChat Official Account article by its long or short URL. Use it to extract article text, render the body, or collect inline images.
+
+        Args:
+            article_url: WeChat Official Account article URL. Use a standard long URL with __biz, mid, idx, and sn, or an article short URL from WeChat.
+        """
+        return self._get(
+            "/api/weixin/get-article-detail/v6",
             {
                 "articleUrl": article_url,
             },
