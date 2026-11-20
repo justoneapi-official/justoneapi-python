@@ -9,6 +9,19 @@ from justoneapi._response import ApiResponse
 class ZhihuResource(BaseResource):
     """Generated resource for Zhihu."""
 
+    def hot_list_v1(
+        self,
+    ) -> ApiResponse[Any]:
+        """
+        Hot List
+
+        Retrieves the current question ranking displayed on the Zhihu Hot List. Each entry includes its position, question title, popularity text when available, and a link to the original question.
+        """
+        return self._get(
+            "/api/zhihu/hot-list/v1",
+            {},
+        )
+
     def get_column_article_detail_v1(
         self,
         *,

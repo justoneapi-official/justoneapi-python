@@ -59,7 +59,7 @@ class AmazonResource(BaseResource):
         Retrieves details for an Amazon product identified by ASIN in a selected country marketplace. Use it to look up a known listing for catalog review, product comparison, or downstream commerce analysis.
 
         Args:
-            asin: ASIN (Amazon Standard Identification Number).
+            asin: 10-character alphanumeric Amazon Standard Identification Number (ASIN).
             country: Country code for the Amazon product.  Available Values: - `US`: United States - `AU`: Australia - `BR`: Brazil - `CA`: Canada - `CN`: China - `FR`: France - `DE`: Germany - `IN`: India - `IT`: Italy - `MX`: Mexico - `NL`: Netherlands - `SG`: Singapore - `ES`: Spain - `TR`: Turkey - `AE`: United Arab Emirates - `GB`: United Kingdom - `JP`: Japan - `SA`: Saudi Arabia - `PL`: Poland - `SE`: Sweden - `BE`: Belgium - `EG`: Egypt - `ZA`: South Africa - `IE`: Ireland
         """
         return self._get(
@@ -82,7 +82,7 @@ class AmazonResource(BaseResource):
         Retrieves the top reviews for an Amazon product identified by ASIN in a selected country marketplace. Use it to review prominent customer feedback for product research, sentiment analysis, or quality assessment.
 
         Args:
-            asin: ASIN (Amazon Standard Identification Number).
+            asin: 10-character alphanumeric Amazon Standard Identification Number (ASIN).
             country: Country code for the Amazon product.  Available Values: - `US`: United States - `AU`: Australia - `BR`: Brazil - `CA`: Canada - `CN`: China - `FR`: France - `DE`: Germany - `IN`: India - `IT`: Italy - `MX`: Mexico - `NL`: Netherlands - `SG`: Singapore - `ES`: Spain - `TR`: Turkey - `AE`: United Arab Emirates - `GB`: United Kingdom - `JP`: Japan - `SA`: Saudi Arabia - `PL`: Poland - `SE`: Sweden - `BE`: Belgium - `EG`: Egypt - `ZA`: South Africa - `IE`: Ireland
         """
         return self._get(
