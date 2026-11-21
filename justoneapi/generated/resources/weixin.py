@@ -91,6 +91,31 @@ class WeixinResource(BaseResource):
             token_in_form=True,
         )
 
+    def get_account_history_articles_v3(
+        self,
+        *,
+        wxid: str,
+        cursor: str | None = "",
+    ) -> ApiResponse[Any]:
+        """
+        Account Historical Articles
+
+        Retrieves historical articles for a WeChat Official Account by account ID or original ID, with one entry per article and cursor pagination. Use it to browse or archive the account's published articles.
+
+        Args:
+            wxid: WeChat Official Account ID or original ID beginning with gh_.
+            cursor: Pagination cursor. Leave empty for the first page and pass data.cursor from the previous response for the next page.
+        """
+        return self._post(
+            "/api/weixin/get-account-history-articles/v3",
+            {},
+            data={
+                "wxid": wxid,
+                "cursor": cursor,
+            },
+            token_in_form=True,
+        )
+
     def get_article_metrics_v1(
         self,
         *,

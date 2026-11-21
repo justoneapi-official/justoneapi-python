@@ -103924,7 +103924,6 @@
         "x-endpoint-family": "weixin_get_account_history_articles",
         "x-highlights": [],
         "x-order": "16101010",
-        "x-recommended": true,
         "x-sdk-class-name": "WeixinResource",
         "x-sdk-method-name": "get_account_history_articles_v1",
         "x-sdk-resource": "weixin",
@@ -104315,6 +104314,154 @@
           "微信公众号历史文章 V2",
           "公众号 ghid 文章查询",
           "微信公众号游标分页文章"
+        ]
+      }
+    },
+    "/api/weixin/get-account-history-articles/v3": {
+      "post": {
+        "description": "Retrieves historical articles for a WeChat Official Account by account ID or original ID, with one entry per article and cursor pagination. Use it to browse or archive the account's published articles.",
+        "operationId": "postApiWeixinGetAccountHistoryArticlesV3",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "properties": {
+                  "cursor": {
+                    "default": "",
+                    "description": "Pagination cursor. Leave empty for the first page and pass data.cursor from the previous response for the next page.",
+                    "type": "string",
+                    "x-sdk-python-name": "cursor"
+                  },
+                  "wxid": {
+                    "description": "WeChat Official Account ID or original ID beginning with gh_.",
+                    "type": "string",
+                    "x-sdk-python-name": "wxid"
+                  }
+                },
+                "required": [
+                  "wxid"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Result"
+                    }
+                  ],
+                  "if": {
+                    "properties": {
+                      "code": {
+                        "const": 0
+                      }
+                    },
+                    "required": [
+                      "code"
+                    ]
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "description": "A page of historical articles published by the WeChat Official Account.",
+                        "properties": {
+                          "cursor": {
+                            "description": "Pagination cursor to pass in the next request.",
+                            "type": "string"
+                          },
+                          "list": {
+                            "description": "Articles in the returned order. Each item is a single article.",
+                            "items": {
+                              "properties": {
+                                "art_url": {
+                                  "description": "Link to the published article.",
+                                  "type": "string"
+                                },
+                                "pic_url": {
+                                  "description": "Article image URL.",
+                                  "type": "string"
+                                },
+                                "pub_time": {
+                                  "description": "Article publication time in YYYY-MM-DD HH:mm:ss format.",
+                                  "type": "string"
+                                },
+                                "sn": {
+                                  "description": "Article identifier from the article link.",
+                                  "type": "string"
+                                },
+                                "title": {
+                                  "description": "Article title.",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "wxid": {
+                            "description": "Original identifier of the WeChat Official Account.",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Account Historical Articles",
+        "tags": [
+          "WeChat Official Accounts"
+        ],
+        "x-api-version": "v3",
+        "x-docs-slug": "account-historical-articles-v3",
+        "x-endpoint-family": "weixin_get_account_history_articles",
+        "x-highlights": [],
+        "x-order": "16101030",
+        "x-recommended": true,
+        "x-sdk-class-name": "WeixinResource",
+        "x-sdk-method-name": "get_account_history_articles_v3",
+        "x-sdk-resource": "weixin",
+        "x-sdk-token-in-form": true,
+        "x-search-aliases": [
+          "公众号历史文章列表",
+          "公众号历史推文",
+          "WeChat Official Account article history"
         ]
       }
     },
@@ -137679,5 +137826,5 @@
       "x-platform-id": "aliexpress"
     }
   ],
-  "x-openapi-release-id": "6ccec243909740c7"
+  "x-openapi-release-id": "ec497b7086b4c7b2"
 }
