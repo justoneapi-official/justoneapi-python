@@ -107705,6 +107705,145 @@
         ]
       }
     },
+    "/api/weixin/search-account/v3": {
+      "post": {
+        "description": "Searches WeChat Official Accounts by keyword and page number. Use it to find matching accounts and their public profile information.",
+        "operationId": "postApiWeixinSearchAccountV3",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "properties": {
+                  "keyword": {
+                    "description": "Keyword to search for in WeChat Official Account profiles.",
+                    "type": "string",
+                    "x-sdk-python-name": "keyword"
+                  },
+                  "page": {
+                    "default": 1,
+                    "description": "Page number starting from 1.",
+                    "minimum": 1,
+                    "type": "integer",
+                    "x-sdk-python-name": "page"
+                  }
+                },
+                "required": [
+                  "keyword"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Result"
+                    }
+                  ],
+                  "if": {
+                    "properties": {
+                      "code": {
+                        "const": 0
+                      }
+                    },
+                    "required": [
+                      "code"
+                    ]
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "description": "WeChat Official Accounts matched on the requested page.",
+                        "items": {
+                          "properties": {
+                            "description": {
+                              "description": "Public profile description of the official account.",
+                              "type": "string"
+                            },
+                            "headImgUrl": {
+                              "description": "URL of the official account avatar.",
+                              "type": "string"
+                            },
+                            "wx_biz": {
+                              "description": "Business identifier of the official account.",
+                              "type": "string"
+                            },
+                            "wx_id": {
+                              "description": "WeChat ID shown on the official account profile.",
+                              "type": "string"
+                            },
+                            "wx_name": {
+                              "description": "Display name of the official account.",
+                              "type": "string"
+                            },
+                            "wx_user": {
+                              "description": "Original identifier of the official account.",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": "array"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Account Search",
+        "tags": [
+          "WeChat Official Accounts"
+        ],
+        "x-api-version": "v3",
+        "x-docs-slug": "account-search-v3",
+        "x-endpoint-family": "weixin_search_account",
+        "x-highlights": [],
+        "x-order": "16101515",
+        "x-recommended": true,
+        "x-sdk-class-name": "WeixinResource",
+        "x-sdk-method-name": "search_account_v3",
+        "x-sdk-resource": "weixin",
+        "x-sdk-token-in-form": true,
+        "x-search-aliases": [
+          "微信公众号账号搜索",
+          "公众号昵称搜索",
+          "WeChat Official Account lookup by name"
+        ]
+      }
+    },
     "/api/weixin/search-article-hot/v1": {
       "get": {
         "deprecated": true,
@@ -108547,6 +108686,168 @@
           "微信公众号分类文章搜索",
           "微信关注公众号文章搜索",
           "公众号最新热门文章查询"
+        ]
+      }
+    },
+    "/api/weixin/search-article/v3": {
+      "post": {
+        "description": "Searches the WeChat Official Account article category by keyword, with default, latest, and popular ordering and cursor pagination. Use it to discover and monitor published articles on a topic.",
+        "operationId": "postApiWeixinSearchArticleV3",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "properties": {
+                  "cursor": {
+                    "default": "",
+                    "description": "Pagination cursor. Leave empty for the first page and pass data.cursor from the previous response for the next page.",
+                    "type": "string",
+                    "x-sdk-python-name": "cursor"
+                  },
+                  "keyword": {
+                    "description": "Keyword to search for in the WeChat article category.",
+                    "type": "string",
+                    "x-sdk-python-name": "keyword"
+                  },
+                  "sortType": {
+                    "default": "COMPREHENSIVE",
+                    "description": "Article order. COMPREHENSIVE uses the default order within the article category.\n\nAvailable Values:\n- `COMPREHENSIVE`: Comprehensive sort\n- `LATEST`: Latest first\n- `HOT`: Hot first",
+                    "enum": [
+                      "COMPREHENSIVE",
+                      "LATEST",
+                      "HOT"
+                    ],
+                    "type": "string",
+                    "x-sdk-python-name": "sort_type"
+                  }
+                },
+                "required": [
+                  "keyword"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Result"
+                    }
+                  ],
+                  "if": {
+                    "properties": {
+                      "code": {
+                        "const": 0
+                      }
+                    },
+                    "required": [
+                      "code"
+                    ]
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "description": "A page of search results from the WeChat article category.",
+                        "properties": {
+                          "cursor": {
+                            "description": "Cursor to pass in the next request when present and nonempty.",
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "list": {
+                            "description": "Articles in the returned order.",
+                            "items": {
+                              "properties": {
+                                "art_url": {
+                                  "description": "Link to the published article.",
+                                  "type": "string"
+                                },
+                                "desc": {
+                                  "description": "Article excerpt shown in the search result.",
+                                  "type": "string"
+                                },
+                                "pic_url": {
+                                  "description": "Article cover image URL.",
+                                  "type": "string"
+                                },
+                                "pub_time": {
+                                  "description": "Article publication time in YYYY-MM-DD HH:mm:ss format.",
+                                  "type": "string"
+                                },
+                                "title": {
+                                  "description": "Article title.",
+                                  "type": "string"
+                                },
+                                "wx_name": {
+                                  "description": "Name of the WeChat Official Account that published the article.",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Article Search",
+        "tags": [
+          "WeChat Official Accounts"
+        ],
+        "x-api-version": "v3",
+        "x-docs-slug": "article-search-v3",
+        "x-endpoint-family": "weixin_search_article",
+        "x-highlights": [],
+        "x-order": "16101445",
+        "x-recommended": true,
+        "x-sdk-class-name": "WeixinResource",
+        "x-sdk-method-name": "search_article_v3",
+        "x-sdk-resource": "weixin",
+        "x-sdk-token-in-form": true,
+        "x-search-aliases": [
+          "微信搜一搜文章",
+          "公众号文章关键词搜索",
+          "WeChat article category search"
         ]
       }
     },
@@ -137826,5 +138127,5 @@
       "x-platform-id": "aliexpress"
     }
   ],
-  "x-openapi-release-id": "ec497b7086b4c7b2"
+  "x-openapi-release-id": "bd0cee33b1c52c08"
 }

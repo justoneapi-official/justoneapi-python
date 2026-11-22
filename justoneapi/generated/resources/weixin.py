@@ -456,6 +456,34 @@ class WeixinResource(BaseResource):
             token_in_form=True,
         )
 
+    def search_article_v3(
+        self,
+        *,
+        keyword: str,
+        cursor: str | None = "",
+        sort_type: str | None = "COMPREHENSIVE",
+    ) -> ApiResponse[Any]:
+        """
+        Article Search
+
+        Searches the WeChat Official Account article category by keyword, with default, latest, and popular ordering and cursor pagination. Use it to discover and monitor published articles on a topic.
+
+        Args:
+            keyword: Keyword to search for in the WeChat article category.
+            cursor: Pagination cursor. Leave empty for the first page and pass data.cursor from the previous response for the next page.
+            sort_type: Article order. COMPREHENSIVE uses the default order within the article category.  Available Values: - `COMPREHENSIVE`: Comprehensive sort - `LATEST`: Latest first - `HOT`: Hot first
+        """
+        return self._post(
+            "/api/weixin/search-article/v3",
+            {},
+            data={
+                "keyword": keyword,
+                "cursor": cursor,
+                "sortType": sort_type,
+            },
+            token_in_form=True,
+        )
+
     def search_miniprogram_v1(
         self,
         *,
@@ -580,6 +608,31 @@ class WeixinResource(BaseResource):
                 "cookies_buffer": cookies_buffer,
                 "currentPage": current_page,
                 "offset": offset,
+            },
+            token_in_form=True,
+        )
+
+    def search_account_v3(
+        self,
+        *,
+        keyword: str,
+        page: int | None = 1,
+    ) -> ApiResponse[Any]:
+        """
+        Account Search
+
+        Searches WeChat Official Accounts by keyword and page number. Use it to find matching accounts and their public profile information.
+
+        Args:
+            keyword: Keyword to search for in WeChat Official Account profiles.
+            page: Page number starting from 1.
+        """
+        return self._post(
+            "/api/weixin/search-account/v3",
+            {},
+            data={
+                "keyword": keyword,
+                "page": page,
             },
             token_in_form=True,
         )
