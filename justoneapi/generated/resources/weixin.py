@@ -706,6 +706,46 @@ class WeixinResource(BaseResource):
             },
         )
 
+    def get_account_basic_info_v2(
+        self,
+        *,
+        biz: str,
+    ) -> ApiResponse[Any]:
+        """
+        Account Basic Info
+
+        Retrieves public profile information from the About page of a WeChat Official Account by its biz ID. Use it to look up an account's profile description, verification information, or name history when available.
+
+        Args:
+            biz: Business ID of the WeChat Official Account. Use wx_biz from Account Search V3 or the __biz parameter of a full WeChat article URL.
+        """
+        return self._get(
+            "/api/weixin/get-account-basic-info/v2",
+            {
+                "biz": biz,
+            },
+        )
+
+    def get_account_original_id_v1(
+        self,
+        *,
+        biz: str,
+    ) -> ApiResponse[Any]:
+        """
+        Account Original ID
+
+        Looks up a WeChat Official Account's original gh_ identifier by its biz ID. Use the identifier for account history lookups. The response also includes the account name, profile description, and avatar when available.
+
+        Args:
+            biz: Business ID of the WeChat Official Account. Use wx_biz from Account Search V3 or the __biz parameter of a full WeChat article URL.
+        """
+        return self._get(
+            "/api/weixin/get-account-original-id/v1",
+            {
+                "biz": biz,
+            },
+        )
+
     def convert_article_link_v1(
         self,
         *,

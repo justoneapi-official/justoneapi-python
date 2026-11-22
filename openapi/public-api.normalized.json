@@ -103600,6 +103600,118 @@
         ]
       }
     },
+    "/api/weixin/get-account-basic-info/v2": {
+      "get": {
+        "description": "Retrieves public profile information from the About page of a WeChat Official Account by its biz ID. Use it to look up an account's profile description, verification information, or name history when available.",
+        "operationId": "getApiWeixinGetAccountBasicInfoV2",
+        "parameters": [
+          {
+            "description": "Business ID of the WeChat Official Account. Use wx_biz from Account Search V3 or the __biz parameter of a full WeChat article URL.",
+            "in": "query",
+            "name": "biz",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "biz"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Result"
+                    }
+                  ],
+                  "if": {
+                    "properties": {
+                      "code": {
+                        "const": 0
+                      }
+                    },
+                    "required": [
+                      "code"
+                    ]
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "description": "Public profile entries from the account's About page. The entries available vary by account.",
+                        "items": {
+                          "properties": {
+                            "key": {
+                              "description": "Public profile field label.",
+                              "type": "string"
+                            },
+                            "value": {
+                              "description": "Field value. Fields such as name history can contain a list of text entries.",
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": [
+                                "string",
+                                "array"
+                              ]
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": "array"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Account Basic Info",
+        "tags": [
+          "WeChat Official Accounts"
+        ],
+        "x-api-version": "v2",
+        "x-docs-slug": "account-basic-info-v2",
+        "x-endpoint-family": "weixin_get_account_basic_info",
+        "x-highlights": [],
+        "x-order": "16101625",
+        "x-recommended": true,
+        "x-sdk-class-name": "WeixinResource",
+        "x-sdk-method-name": "get_account_basic_info_v2",
+        "x-sdk-resource": "weixin",
+        "x-search-aliases": [
+          "按 biz 查询公众号",
+          "公众号公开资料",
+          "WeChat Official Account profile by biz"
+        ]
+      }
+    },
     "/api/weixin/get-account-history-articles/v1": {
       "post": {
         "description": "Retrieves historical posts for a WeChat Official Account by username, with cursor pagination and article, video, audio, or image content tabs. Use it to browse an account's publishing history.",
@@ -104608,6 +104720,118 @@
           "微信公众号原创文章数",
           "公众号原创内容统计",
           "微信 ghid 原创文章查询"
+        ]
+      }
+    },
+    "/api/weixin/get-account-original-id/v1": {
+      "get": {
+        "description": "Looks up a WeChat Official Account's original gh_ identifier by its biz ID. Use the identifier for account history lookups. The response also includes the account name, profile description, and avatar when available.",
+        "operationId": "getApiWeixinGetAccountOriginalIdV1",
+        "parameters": [
+          {
+            "description": "Business ID of the WeChat Official Account. Use wx_biz from Account Search V3 or the __biz parameter of a full WeChat article URL.",
+            "in": "query",
+            "name": "biz",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "biz"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Result"
+                    }
+                  ],
+                  "if": {
+                    "properties": {
+                      "code": {
+                        "const": 0
+                      }
+                    },
+                    "required": [
+                      "code"
+                    ]
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "properties": {
+                          "description": {
+                            "description": "Public profile description of the official account.",
+                            "type": "string"
+                          },
+                          "hd_head_img": {
+                            "description": "URL of the official account's high-resolution avatar.",
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "Display name of the official account.",
+                            "type": "string"
+                          },
+                          "user_name": {
+                            "description": "Original WeChat Official Account identifier, beginning with gh_.",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "user_name"
+                        ],
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Account Original ID",
+        "tags": [
+          "WeChat Official Accounts"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "account-original-id-v1",
+        "x-endpoint-family": "weixin_get_account_original_id",
+        "x-highlights": [],
+        "x-order": "16101630",
+        "x-sdk-class-name": "WeixinResource",
+        "x-sdk-method-name": "get_account_original_id_v1",
+        "x-sdk-resource": "weixin",
+        "x-search-aliases": [
+          "公众号原始 ID",
+          "biz 转 gh_id",
+          "WeChat Official Account gh_ ID lookup"
         ]
       }
     },
@@ -138127,5 +138351,5 @@
       "x-platform-id": "aliexpress"
     }
   ],
-  "x-openapi-release-id": "bd0cee33b1c52c08"
+  "x-openapi-release-id": "8afc260ea3d27af5"
 }
