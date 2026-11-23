@@ -104794,6 +104794,238 @@
         ]
       }
     },
+    "/api/weixin/get-article-detail-with-metrics/v1": {
+      "get": {
+        "description": "Retrieves article content and engagement counts together for a WeChat Official Account article by its standard long URL. Use it to collect the article body and track reads, likes, shares, and comments from a single response.",
+        "operationId": "getApiWeixinGetArticleDetailWithMetricsV1",
+        "parameters": [
+          {
+            "description": "Access token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Standard WeChat Official Account article long URL on mp.weixin.qq.com with __biz, mid, idx, and sn query parameters.",
+            "in": "query",
+            "name": "articleUrl",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Result"
+                    }
+                  ],
+                  "if": {
+                    "properties": {
+                      "code": {
+                        "const": 0
+                      }
+                    },
+                    "required": [
+                      "code"
+                    ]
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "description": "Content, public metadata, and engagement counts for the requested WeChat Official Account article.",
+                        "properties": {
+                          "appmsg_bar_data": {
+                            "description": "Engagement counts reported for the requested WeChat Official Account article.",
+                            "minProperties": 1,
+                            "properties": {
+                              "collect_num": {
+                                "description": "Reported number of times the article was saved to Favorites.",
+                                "type": "integer"
+                              },
+                              "comment_count": {
+                                "description": "Reported number of comments on the article.",
+                                "type": "integer"
+                              },
+                              "like_num": {
+                                "description": "Reported number of likes for the article.",
+                                "type": "integer"
+                              },
+                              "look_num": {
+                                "description": "Reported count for the article's Wow interaction.",
+                                "type": "integer"
+                              },
+                              "original_content_num": {
+                                "description": "Reported number of original posts returned with the article.",
+                                "type": "integer"
+                              },
+                              "read_num": {
+                                "description": "Reported read count for the article.",
+                                "type": "integer"
+                              },
+                              "reward_count": {
+                                "description": "Reported number of rewards received by the article.",
+                                "type": "integer"
+                              },
+                              "share_num": {
+                                "description": "Reported number of times the article was shared.",
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "article_url": {
+                            "description": "Long URL returned for the article.",
+                            "type": "string"
+                          },
+                          "author": {
+                            "description": "Credited author of the article.",
+                            "type": "string"
+                          },
+                          "biz": {
+                            "description": "Business account identifier matching __biz in the article URL.",
+                            "type": "string"
+                          },
+                          "comment_id": {
+                            "description": "Comment thread identifier for the article, returned as text.",
+                            "type": "string"
+                          },
+                          "copyright_stat": {
+                            "description": "Reported copyright status code of the article, returned as text.",
+                            "type": "string"
+                          },
+                          "description": {
+                            "description": "Public profile description of the publishing Official Account.",
+                            "type": "string"
+                          },
+                          "digest": {
+                            "description": "Article summary. It can be empty.",
+                            "type": "string"
+                          },
+                          "hd_head_img": {
+                            "description": "Avatar image URL of the publishing Official Account.",
+                            "type": "string"
+                          },
+                          "html": {
+                            "contentMediaType": "text/html",
+                            "description": "Article body as an HTML fragment.",
+                            "type": "string"
+                          },
+                          "idx": {
+                            "description": "Article position in the publication group, returned as text.",
+                            "type": "string"
+                          },
+                          "item_show_type": {
+                            "description": "Reported display type code for the article, returned as text.",
+                            "type": "string"
+                          },
+                          "mid": {
+                            "description": "Article message identifier, returned as text.",
+                            "type": "string"
+                          },
+                          "msg_cdn_url": {
+                            "description": "Cover image URL returned for the article.",
+                            "type": "string"
+                          },
+                          "msg_daily_idx": {
+                            "description": "Index of the publication within the day, returned as text.",
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "Display name of the publishing Official Account.",
+                            "type": "string"
+                          },
+                          "picture_url_list": {
+                            "description": "URLs of images included in the article.",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "province_name": {
+                            "description": "Region attribution reported for the article.",
+                            "type": "string"
+                          },
+                          "pub_time": {
+                            "description": "Article publication time as text with second precision.",
+                            "type": "string"
+                          },
+                          "service_type": {
+                            "description": "Reported type code of the Official Account, returned as text.",
+                            "type": "string"
+                          },
+                          "sn": {
+                            "description": "Article identifier matching sn in the article URL.",
+                            "type": "string"
+                          },
+                          "text": {
+                            "description": "Plain-text representation of the article body.",
+                            "type": "string"
+                          },
+                          "title": {
+                            "description": "Display title of the article.",
+                            "type": "string"
+                          },
+                          "user_name": {
+                            "description": "Original identifier of the publishing Official Account.",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "appmsg_bar_data"
+                        ],
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Article Details with Metrics",
+        "tags": [
+          "WeChat Official Accounts"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "article-detail-with-metrics-v1",
+        "x-endpoint-family": "weixin_get_article_detail_with_metrics",
+        "x-highlights": [],
+        "x-order": "16101260",
+        "x-search-aliases": [
+          "WeChat article content and engagement",
+          "微信公众号文章详情和阅读量",
+          "公众号文章正文和互动数据"
+        ]
+      }
+    },
     "/api/weixin/get-article-detail/v1": {
       "get": {
         "description": "Retrieves a WeChat Official Account article by URL with selectable plain-text or rich-text content mode. Use it to collect a known article in the preferred representation for reading, extraction, or storage.",
@@ -137484,5 +137716,5 @@
       "x-platform-id": "aliexpress"
     }
   ],
-  "x-openapi-release-id": "8afc260ea3d27af5"
+  "x-openapi-release-id": "94d1b07e3abf8292"
 }

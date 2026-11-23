@@ -302,6 +302,26 @@ class WeixinResource(BaseResource):
             },
         )
 
+    def get_article_detail_with_metrics_v1(
+        self,
+        *,
+        article_url: str,
+    ) -> ApiResponse[Any]:
+        """
+        Article Details with Metrics
+
+        Retrieves article content and engagement counts together for a WeChat Official Account article by its standard long URL. Use it to collect the article body and track reads, likes, shares, and comments from a single response.
+
+        Args:
+            article_url: Standard WeChat Official Account article long URL on mp.weixin.qq.com with __biz, mid, idx, and sn query parameters.
+        """
+        return self._get(
+            "/api/weixin/get-article-detail-with-metrics/v1",
+            {
+                "articleUrl": article_url,
+            },
+        )
+
     def get_article_comment_v1(
         self,
         *,
