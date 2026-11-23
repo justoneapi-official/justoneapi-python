@@ -124339,7 +124339,7 @@
         "operationId": "getApiXiaohongshuGetUserV3",
         "parameters": [
           {
-            "description": "A Xiaohongshu user ID or a profile URL containing /user/profile/.",
+            "description": "A 24- or 29-character Xiaohongshu user ID or a profile URL containing /user/profile/.",
             "in": "query",
             "name": "userId",
             "required": true,
@@ -138583,5 +138583,5 @@
       "x-platform-id": "aliexpress"
     }
   ],
-  "x-openapi-release-id": "94d1b07e3abf8292"
+  "x-openapi-release-id": "4840c8768a51977a"
 }

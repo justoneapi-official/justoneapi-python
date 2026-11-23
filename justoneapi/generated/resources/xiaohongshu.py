@@ -615,7 +615,7 @@ class XiaohongshuResource(BaseResource):
         Retrieves a Xiaohongshu (RedNote) user profile from a user ID or supported profile URL. Use it to support creator discovery, account research, and reviewing a known profile before related content analysis.
 
         Args:
-            user_id: A Xiaohongshu user ID or a profile URL containing /user/profile/.
+            user_id: A 24- or 29-character Xiaohongshu user ID or a profile URL containing /user/profile/.
         """
         return self._get(
             "/api/xiaohongshu/get-user/v3",
