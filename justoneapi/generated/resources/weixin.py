@@ -405,6 +405,32 @@ class WeixinResource(BaseResource):
             },
         )
 
+    def get_low_follower_viral_articles_v1(
+        self,
+        *,
+        date: str | None = None,
+        range: str | None = "7d",
+        page: int | None = 1,
+    ) -> ApiResponse[Any]:
+        """
+        Low-Follower Viral Articles
+
+        Retrieves a dated ranking of WeChat Official Account articles that outperform their accounts' usual readership, with 3-, 7-, or 30-day publication windows and page-based pagination. Use it to discover breakout articles across smaller accounts.
+
+        Args:
+            date: Ranking date in YYYY-MM-DD format. Defaults to yesterday.
+            range: Article publication window ending on and including the ranking date.  Available Values: - `3d`: The last three days through the ranking date. - `7d`: The last seven days through the ranking date. - `30d`: The last thirty days through the ranking date.
+            page: Page number. Defaults to 1. Values outside 1 through 500 are clamped to the nearest limit.
+        """
+        return self._get(
+            "/api/weixin/get-low-follower-viral-articles/v1",
+            {
+                "date": date,
+                "range": range,
+                "page": page,
+            },
+        )
+
     def search_article_v1(
         self,
         *,

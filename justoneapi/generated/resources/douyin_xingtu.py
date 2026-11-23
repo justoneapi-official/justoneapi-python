@@ -868,6 +868,46 @@ class DouyinXingtuResource(BaseResource):
             },
         )
 
+    def gw_api_aggregator_get_author_video_live_linkage_stat_v1(
+        self,
+        *,
+        o_author_id: str,
+    ) -> ApiResponse[Any]:
+        """
+        Commerce Conversion Stats
+
+        Returns Douyin Creator Marketplace (Xingtu) commerce conversion and live shopping statistics for a creator over the last 30 days. Use it to review sales performance and live audience reach when evaluating creators.
+
+        Args:
+            o_author_id: Xingtu creator ID.
+        """
+        return self._get(
+            "/api/douyin-xingtu/gw/api/aggregator/get_author_video_live_linkage_stat/v1",
+            {
+                "oAuthorId": o_author_id,
+            },
+        )
+
+    def gw_api_aggregator_get_author_video_live_linkage_product_list_v1(
+        self,
+        *,
+        o_author_id: str,
+    ) -> ApiResponse[Any]:
+        """
+        Commerce Product Rankings
+
+        Returns Douyin Creator Marketplace (Xingtu) product rankings for a creator over the last 30 days, based on sales, new buyers, and positive reviews. Use it to identify products that have performed well for the creator.
+
+        Args:
+            o_author_id: Xingtu creator ID.
+        """
+        return self._get(
+            "/api/douyin-xingtu/gw/api/aggregator/get_author_video_live_linkage_product_list/v1",
+            {
+                "oAuthorId": o_author_id,
+            },
+        )
+
     def gw_api_aggregator_get_author_commerce_seed_base_info_v1(
         self,
         *,

@@ -23460,6 +23460,381 @@
         ]
       }
     },
+    "/api/douyin-xingtu/gw/api/aggregator/get_author_video_live_linkage_product_list/v1": {
+      "get": {
+        "description": "Returns Douyin Creator Marketplace (Xingtu) product rankings for a creator over the last 30 days, based on sales, new buyers, and positive reviews. Use it to identify products that have performed well for the creator.",
+        "operationId": "getApiDouyinXingtuGwApiAggregatorGetAuthorVideoLiveLinkageProductListV1",
+        "parameters": [
+          {
+            "description": "Xingtu creator ID.",
+            "in": "query",
+            "name": "oAuthorId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "o_author_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Result"
+                    }
+                  ],
+                  "if": {
+                    "properties": {
+                      "code": {
+                        "const": 0
+                      }
+                    },
+                    "required": [
+                      "code"
+                    ]
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "description": "Creator commerce product rankings reported by Xingtu over the last 30 days.",
+                        "properties": {
+                          "base_resp": {
+                            "description": "Status information returned by Xingtu for this request.",
+                            "properties": {
+                              "status_code": {
+                                "description": "Xingtu status code inside the result.",
+                                "type": "integer"
+                              },
+                              "status_message": {
+                                "description": "Message returned with the Xingtu status, which may be empty.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "good_eval_rate_top10_prod_list": {
+                            "description": "Top products by positive review rate. The list can be empty.",
+                            "items": {
+                              "properties": {
+                                "new_pay_ucnt_range": {
+                                  "description": "New buyer count range, returned as display text.",
+                                  "type": "string"
+                                },
+                                "pay_amt_range": {
+                                  "description": "Transaction amount range, returned as display text.",
+                                  "type": "string"
+                                },
+                                "pay_ucnt_range": {
+                                  "description": "Buyer count range, returned as display text.",
+                                  "type": "string"
+                                },
+                                "product_id": {
+                                  "description": "Product identifier reported by Xingtu.",
+                                  "type": "string"
+                                },
+                                "product_img": {
+                                  "description": "Resource reference for the product image.",
+                                  "type": "string"
+                                },
+                                "product_name": {
+                                  "description": "Name of the product.",
+                                  "type": "string"
+                                },
+                                "rank": {
+                                  "description": "Product position in the ranking, returned as text.",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "new_pay_ucnt_top10_prod_list": {
+                            "description": "Top products by number of new buyers. The list can be empty.",
+                            "items": {
+                              "properties": {
+                                "new_pay_ucnt_range": {
+                                  "description": "New buyer count range, returned as display text.",
+                                  "type": "string"
+                                },
+                                "pay_amt_range": {
+                                  "description": "Transaction amount range, returned as display text.",
+                                  "type": "string"
+                                },
+                                "pay_ucnt_range": {
+                                  "description": "Buyer count range, returned as display text.",
+                                  "type": "string"
+                                },
+                                "product_id": {
+                                  "description": "Product identifier reported by Xingtu.",
+                                  "type": "string"
+                                },
+                                "product_img": {
+                                  "description": "Resource reference for the product image.",
+                                  "type": "string"
+                                },
+                                "product_name": {
+                                  "description": "Name of the product.",
+                                  "type": "string"
+                                },
+                                "rank": {
+                                  "description": "Product position in the ranking, returned as text.",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "pay_amt_top10_prod_list": {
+                            "description": "Top products by transaction amount. The list can be empty.",
+                            "items": {
+                              "properties": {
+                                "new_pay_ucnt_range": {
+                                  "description": "New buyer count range, returned as display text.",
+                                  "type": "string"
+                                },
+                                "pay_amt_range": {
+                                  "description": "Transaction amount range, returned as display text.",
+                                  "type": "string"
+                                },
+                                "pay_ucnt_range": {
+                                  "description": "Buyer count range, returned as display text.",
+                                  "type": "string"
+                                },
+                                "product_id": {
+                                  "description": "Product identifier reported by Xingtu.",
+                                  "type": "string"
+                                },
+                                "product_img": {
+                                  "description": "Resource reference for the product image.",
+                                  "type": "string"
+                                },
+                                "product_name": {
+                                  "description": "Name of the product.",
+                                  "type": "string"
+                                },
+                                "rank": {
+                                  "description": "Product position in the ranking, returned as text.",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Commerce Product Rankings",
+        "tags": [
+          "Douyin Creator Marketplace (Xingtu)"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "commerce-product-rankings-v1",
+        "x-endpoint-family": "douyin_xingtu_gw_api_aggregator_get_author_video_live_linkage_product_list",
+        "x-highlights": [],
+        "x-order": "15003089",
+        "x-sdk-class-name": "DouyinXingtuResource",
+        "x-sdk-method-name": "gw_api_aggregator_get_author_video_live_linkage_product_list_v1",
+        "x-sdk-resource": "douyin_xingtu",
+        "x-search-aliases": [
+          "星图达人带货榜单",
+          "星图带货商品 Top 10"
+        ]
+      }
+    },
+    "/api/douyin-xingtu/gw/api/aggregator/get_author_video_live_linkage_stat/v1": {
+      "get": {
+        "description": "Returns Douyin Creator Marketplace (Xingtu) commerce conversion and live shopping statistics for a creator over the last 30 days. Use it to review sales performance and live audience reach when evaluating creators.",
+        "operationId": "getApiDouyinXingtuGwApiAggregatorGetAuthorVideoLiveLinkageStatV1",
+        "parameters": [
+          {
+            "description": "Xingtu creator ID.",
+            "in": "query",
+            "name": "oAuthorId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-sdk-python-name": "o_author_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Result"
+                    }
+                  ],
+                  "if": {
+                    "properties": {
+                      "code": {
+                        "const": 0
+                      }
+                    },
+                    "required": [
+                      "code"
+                    ]
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "description": "Creator commerce and live shopping statistics reported by Xingtu over the last 30 days.",
+                        "properties": {
+                          "base_resp": {
+                            "description": "Status information returned by Xingtu for this request.",
+                            "properties": {
+                              "status_code": {
+                                "description": "Xingtu status code inside the result.",
+                                "type": "integer"
+                              },
+                              "status_message": {
+                                "description": "Message returned with the Xingtu status, which may be empty.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "ecom_stat": {
+                            "description": "Commerce and live-stream metrics reported for the selected creator. Individual fields can be omitted.",
+                            "properties": {
+                              "atv_range": {
+                                "description": "Average paid order value range, returned as display text.",
+                                "type": "string"
+                              },
+                              "author_level": {
+                                "description": "Creator commerce level reported by Xingtu.",
+                                "type": "string"
+                              },
+                              "ecom_live_cnt": {
+                                "description": "Number of commerce live sessions, returned as text.",
+                                "type": "string"
+                              },
+                              "ecom_live_days": {
+                                "description": "Number of days with commerce live sessions, returned as text.",
+                                "type": "string"
+                              },
+                              "ecom_live_show_cnt_ah": {
+                                "description": "Live-room impressions per hour, returned as text.",
+                                "type": "string"
+                              },
+                              "ecom_live_watch_apv": {
+                                "description": "Average number of live-room views per viewer.",
+                                "type": "number"
+                              },
+                              "ecom_live_watch_cnt": {
+                                "description": "Total live-room impressions, returned as text.",
+                                "type": "string"
+                              },
+                              "ecom_live_watch_ucnt": {
+                                "description": "Number of unique live-room viewers, returned as text.",
+                                "type": "string"
+                              },
+                              "gmv_range": {
+                                "description": "Gross merchandise value range, returned as display text.",
+                                "type": "string"
+                              },
+                              "gpm_range": {
+                                "description": "Live commerce gross merchandise value per thousand views, returned as display text.",
+                                "type": "string"
+                              },
+                              "pay_cnt_range": {
+                                "description": "Paid order count range, returned as display text.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Commerce Conversion Stats",
+        "tags": [
+          "Douyin Creator Marketplace (Xingtu)"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "commerce-conversion-stats-v1",
+        "x-endpoint-family": "douyin_xingtu_gw_api_aggregator_get_author_video_live_linkage_stat",
+        "x-highlights": [],
+        "x-order": "15003088",
+        "x-sdk-class-name": "DouyinXingtuResource",
+        "x-sdk-method-name": "gw_api_aggregator_get_author_video_live_linkage_stat_v1",
+        "x-sdk-resource": "douyin_xingtu",
+        "x-search-aliases": [
+          "星图全部带货数据",
+          "星图直播带货数据"
+        ]
+      }
+    },
     "/api/douyin-xingtu/gw/api/author/get_author_base_info/v1": {
       "get": {
         "description": "Returns the Douyin Creator Marketplace (Xingtu) profile for a specified creator and content channel. Use it to review creator information before shortlisting or campaign outreach.",
@@ -107630,6 +108005,281 @@
         ]
       }
     },
+    "/api/weixin/get-low-follower-viral-articles/v1": {
+      "get": {
+        "description": "Retrieves a dated ranking of WeChat Official Account articles that outperform their accounts' usual readership, with 3-, 7-, or 30-day publication windows and page-based pagination. Use it to discover breakout articles across smaller accounts.",
+        "operationId": "getApiWeixinGetLowFollowerViralArticlesV1",
+        "parameters": [
+          {
+            "description": "Ranking date in YYYY-MM-DD format. Defaults to yesterday.",
+            "in": "query",
+            "name": "date",
+            "required": false,
+            "schema": {
+              "format": "date",
+              "type": "string"
+            },
+            "x-sdk-python-name": "date"
+          },
+          {
+            "description": "Article publication window ending on and including the ranking date.\n\nAvailable Values:\n- `3d`: The last three days through the ranking date.\n- `7d`: The last seven days through the ranking date.\n- `30d`: The last thirty days through the ranking date.",
+            "in": "query",
+            "name": "range",
+            "required": false,
+            "schema": {
+              "default": "7d",
+              "description": "Publication window for the low-follower viral article ranking",
+              "enum": [
+                "3d",
+                "7d",
+                "30d"
+              ],
+              "type": "string"
+            },
+            "x-sdk-python-name": "range"
+          },
+          {
+            "description": "Page number. Defaults to 1. Values outside 1 through 500 are clamped to the nearest limit.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "int32",
+              "type": "integer"
+            },
+            "x-sdk-python-name": "page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Result"
+                    }
+                  ],
+                  "if": {
+                    "properties": {
+                      "code": {
+                        "const": 0
+                      }
+                    },
+                    "required": [
+                      "code"
+                    ]
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "description": "A page of a dated ranking of WeChat Official Account articles that outperform their accounts' typical readership.",
+                        "properties": {
+                          "has_more": {
+                            "description": "Whether another page is available.",
+                            "type": "boolean"
+                          },
+                          "list": {
+                            "description": "Current page of articles in ascending rank number.",
+                            "items": {
+                              "properties": {
+                                "account_read_avg": {
+                                  "description": "Average article reads in the baseline window.",
+                                  "type": "integer"
+                                },
+                                "account_read_base": {
+                                  "description": "Typical article readership used to calculate the article's readership multiple.",
+                                  "type": "integer"
+                                },
+                                "account_read_max": {
+                                  "description": "Highest article read count in the baseline window.",
+                                  "type": "integer"
+                                },
+                                "account_read_median": {
+                                  "description": "Median article reads in the baseline window.",
+                                  "type": "integer"
+                                },
+                                "art_id": {
+                                  "description": "Article identifier from the sn parameter in its link.",
+                                  "type": "string"
+                                },
+                                "art_url": {
+                                  "description": "Link to the original article.",
+                                  "type": "string"
+                                },
+                                "avatar": {
+                                  "description": "Profile image URL of the account. An empty string indicates an unavailable image.",
+                                  "type": "string"
+                                },
+                                "boost_ratio": {
+                                  "description": "Article read count divided by the account's typical readership, expressed as a multiple.",
+                                  "type": "number"
+                                },
+                                "burst_score": {
+                                  "description": "Ranking score based on article popularity and the readership multiple.",
+                                  "type": "number"
+                                },
+                                "comment_num": {
+                                  "description": "Collected article comment count.",
+                                  "type": "integer"
+                                },
+                                "like_num": {
+                                  "description": "Collected article like count.",
+                                  "type": "integer"
+                                },
+                                "look_num": {
+                                  "description": "Collected article recommendation count.",
+                                  "type": "integer"
+                                },
+                                "pub_time": {
+                                  "description": "Article publication time in YYYY-MM-DD HH:mm:ss format when available.",
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ]
+                                },
+                                "publish_name": {
+                                  "description": "Reported publication region or collected publication information. May be empty.",
+                                  "type": "string"
+                                },
+                                "range_type": {
+                                  "description": "Article publication window used to generate this ranking.",
+                                  "type": "string"
+                                },
+                                "rank_no": {
+                                  "description": "One-based position in the ranking.",
+                                  "minimum": 1,
+                                  "type": "integer"
+                                },
+                                "read_num": {
+                                  "description": "Collected article read count.",
+                                  "type": "integer"
+                                },
+                                "share_num": {
+                                  "description": "Collected article share count.",
+                                  "type": "integer"
+                                },
+                                "stat_date": {
+                                  "description": "Ranking date for the article entry.",
+                                  "type": "string"
+                                },
+                                "stats_range": {
+                                  "description": "Window used to calculate the account's typical readership.",
+                                  "type": "string"
+                                },
+                                "title": {
+                                  "description": "Article title.",
+                                  "type": "string"
+                                },
+                                "wx_biz": {
+                                  "description": "Biz identifier of the WeChat Official Account.",
+                                  "type": "string"
+                                },
+                                "wx_name": {
+                                  "description": "Display name of the account.",
+                                  "type": "string"
+                                },
+                                "wx_type": {
+                                  "description": "Category of the account.",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "maxItems": 50,
+                            "type": "array"
+                          },
+                          "page": {
+                            "description": "Page number applied to the ranking query.",
+                            "maximum": 500,
+                            "minimum": 1,
+                            "type": "integer"
+                          },
+                          "page_size": {
+                            "description": "Maximum number of entries on one page.",
+                            "type": "integer"
+                          },
+                          "range": {
+                            "description": "Article publication window ending on the ranking date.",
+                            "enum": [
+                              "3d",
+                              "7d",
+                              "30d"
+                            ],
+                            "type": "string"
+                          },
+                          "stat_date": {
+                            "description": "Ranking date in YYYY-MM-DD format.",
+                            "type": "string"
+                          },
+                          "total": {
+                            "description": "Total number of entries for the selected ranking date and window.",
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "list"
+                        ],
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Low-Follower Viral Articles",
+        "tags": [
+          "WeChat Official Accounts"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "low-follower-viral-articles-v1",
+        "x-endpoint-family": "weixin_get_low_follower_viral_articles",
+        "x-highlights": [
+          {
+            "content": "Historical snapshots may be unavailable for some dates. Keep the same date and window when requesting successive pages.",
+            "kind": "GUIDANCE",
+            "title": "Historical Rankings",
+            "type": "info"
+          }
+        ],
+        "x-order": "16101425",
+        "x-sdk-class-name": "WeixinResource",
+        "x-sdk-method-name": "get_low_follower_viral_articles_v1",
+        "x-sdk-resource": "weixin",
+        "x-search-aliases": [
+          "公众号低粉爆文榜",
+          "微信低粉爆文",
+          "WeChat breakout article ranking"
+        ]
+      }
+    },
     "/api/weixin/search-account/v1": {
       "post": {
         "description": "Searches WeChat Official Accounts by keyword with page-number pagination and one result per page. Use it to find an account by name or related term before profile or article lookup.",
@@ -138583,5 +139233,5 @@
       "x-platform-id": "aliexpress"
     }
   ],
-  "x-openapi-release-id": "4840c8768a51977a"
+  "x-openapi-release-id": "a1067d08b3f1c74a"
 }
