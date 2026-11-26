@@ -189,6 +189,26 @@ class TaobaoResource(BaseResource):
             },
         )
 
+    def get_item_detail_v11(
+        self,
+        *,
+        item_id: str,
+    ) -> ApiResponse[Any]:
+        """
+        Product Details
+
+        Retrieves Taobao product details by item ID. Use it to look up product information for catalog research or monitoring.
+
+        Args:
+            item_id: Taobao product ID.
+        """
+        return self._get(
+            "/api/taobao/get-item-detail/v11",
+            {
+                "itemId": item_id,
+            },
+        )
+
     def get_item_description_v1(
         self,
         *,
@@ -431,10 +451,10 @@ class TaobaoResource(BaseResource):
         """
         Product Sales
 
-        Retrieves the 30-day sales count for a Taobao or Tmall product by item ID. Use it to compare recent product sales or support ecommerce monitoring and product research.
+        Retrieves the monthly sales count for a Taobao product by item ID. Use it to monitor or compare recent product sales.
 
         Args:
-            item_id: Unique product identifier on Taobao/Tmall (item ID).
+            item_id: Taobao product ID.
         """
         return self._get(
             "/api/taobao/get-item-sale/v1",

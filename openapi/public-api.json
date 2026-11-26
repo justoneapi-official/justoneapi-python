@@ -70575,6 +70575,933 @@
         ]
       }
     },
+    "/api/taobao/get-item-detail/v11": {
+      "get": {
+        "description": "Retrieves Taobao product details by item ID. Use it to look up product information for catalog research or monitoring.",
+        "operationId": "getApiTaobaoGetItemDetailV11",
+        "parameters": [
+          {
+            "description": "Access token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Taobao product ID.",
+            "in": "query",
+            "name": "itemId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Result"
+                    }
+                  ],
+                  "if": {
+                    "properties": {
+                      "code": {
+                        "const": 0
+                      }
+                    },
+                    "required": [
+                      "code"
+                    ]
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "description": "Details for the requested Taobao product. A successful lookup can indicate that product details were unavailable.",
+                        "properties": {
+                          "consumerProtection": {
+                            "description": "Consumer protection information shown for the product.",
+                            "properties": {
+                              "channel": {
+                                "description": "Additional consumer protection information shown for the product.",
+                                "properties": {
+                                  "logo": {
+                                    "description": "Logo URL displayed for the consumer protection channel.",
+                                    "type": "string"
+                                  },
+                                  "title": {
+                                    "description": "Title displayed for the consumer protection channel.",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "items": {
+                                "description": "Displayed consumer protection entries.",
+                                "items": {
+                                  "description": "One consumer protection entry.",
+                                  "properties": {
+                                    "desc": {
+                                      "description": "Description shown for the protection entry.",
+                                      "type": "string"
+                                    },
+                                    "title": {
+                                      "description": "Title of the protection entry.",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "passValue": {
+                                "description": "Additional text returned with consumer protection information.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "debug": {
+                            "description": "Diagnostic metadata returned with product details.",
+                            "type": "object"
+                          },
+                          "delivery": {
+                            "description": "Reported delivery information for the product.",
+                            "properties": {
+                              "addressWeexUrl": {
+                                "description": "URL returned for the delivery address interface.",
+                                "type": "string"
+                              },
+                              "areaId": {
+                                "description": "Delivery area identifier as text.",
+                                "type": "string"
+                              },
+                              "completedTo": {
+                                "description": "Additional shipping destination text.",
+                                "type": "string"
+                              },
+                              "extras": {
+                                "description": "Additional delivery information.",
+                                "type": "object"
+                              },
+                              "from": {
+                                "description": "Reported shipping origin text.",
+                                "type": "string"
+                              },
+                              "overseaContraBandFlag": {
+                                "description": "Overseas shipping restriction flag represented as text.",
+                                "type": "string"
+                              },
+                              "postage": {
+                                "description": "Displayed shipping fee or postage description.",
+                                "type": "string"
+                              },
+                              "to": {
+                                "description": "Reported shipping destination text.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "diversion": {
+                            "description": "Additional product recommendation metadata.",
+                            "type": "object"
+                          },
+                          "exists": {
+                            "description": "Whether product details were found for the requested item ID.",
+                            "type": "boolean"
+                          },
+                          "extendedData": {
+                            "description": "Additional product details returned with the response.",
+                            "type": "object"
+                          },
+                          "feature": {
+                            "description": "Product page feature settings.",
+                            "type": "object"
+                          },
+                          "gallery": {
+                            "description": "Additional product gallery information.",
+                            "type": "object"
+                          },
+                          "hybrid": {
+                            "description": "Additional embedded content metadata.",
+                            "type": "object"
+                          },
+                          "item": {
+                            "description": "Product title, media and display labels.",
+                            "properties": {
+                              "images": {
+                                "description": "Reported product images.",
+                                "items": {
+                                  "description": "URL of a product image.",
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "showShopActivitySize": {
+                                "description": "Reported shop activity display count as text.",
+                                "type": "string"
+                              },
+                              "skuText": {
+                                "description": "Text shown for SKU selection.",
+                                "type": "string"
+                              },
+                              "title": {
+                                "description": "Product title.",
+                                "type": "string"
+                              },
+                              "titleIcon": {
+                                "description": "Icon associated with the product title.",
+                                "type": "string"
+                              },
+                              "vagueSellCount": {
+                                "description": "Sales count as displayed on the product page. It can be abbreviated.",
+                                "type": "string"
+                              },
+                              "videoDetail": {
+                                "description": "Details of a product video.",
+                                "properties": {
+                                  "mainPicList": {
+                                    "description": "Product images returned with the video details.",
+                                    "items": {
+                                      "description": "URL of a product image.",
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "spatialVideoDimension": {
+                                    "description": "Reported video dimensions as text.",
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "description": "Reported video type.",
+                                    "type": "string"
+                                  },
+                                  "url": {
+                                    "description": "Product video URL.",
+                                    "type": "string"
+                                  },
+                                  "videoId": {
+                                    "description": "Product video identifier as text.",
+                                    "type": "string"
+                                  },
+                                  "videoThumbnailURL": {
+                                    "description": "URL of the video thumbnail.",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "videos": {
+                                "description": "Reported product videos.",
+                                "items": {
+                                  "description": "One product video.",
+                                  "properties": {
+                                    "spatialVideoDimension": {
+                                      "description": "Reported video dimensions as text.",
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "description": "Reported video type.",
+                                      "type": "string"
+                                    },
+                                    "url": {
+                                      "description": "Product video URL.",
+                                      "type": "string"
+                                    },
+                                    "videoId": {
+                                      "description": "Product video identifier as text.",
+                                      "type": "string"
+                                    },
+                                    "videoThumbnailURL": {
+                                      "description": "URL of the video thumbnail.",
+                                      "type": "string"
+                                    },
+                                    "weexRecommendUrl": {
+                                      "description": "Related content URL returned with this video.",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "layout": {
+                            "description": "Product page layout information.",
+                            "properties": {
+                              "layoutId": {
+                                "description": "Reported layout identifier as text.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "params": {
+                            "description": "Additional product page metadata.",
+                            "type": "object"
+                          },
+                          "price": {
+                            "description": "Reported product prices and price labels.",
+                            "properties": {
+                              "extraPrices": {
+                                "description": "Additional prices displayed for the product.",
+                                "items": {
+                                  "description": "One additional price.",
+                                  "properties": {
+                                    "lineThrough": {
+                                      "description": "Whether the price is shown with a strikethrough, represented as text.",
+                                      "type": "string"
+                                    },
+                                    "priceText": {
+                                      "description": "Display text for this price.",
+                                      "type": "string"
+                                    },
+                                    "priceTitle": {
+                                      "description": "Label shown with this price.",
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "description": "Reported price type code.",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "price": {
+                                "description": "Primary displayed product price.",
+                                "properties": {
+                                  "priceText": {
+                                    "description": "Display text for the primary price.",
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "description": "Reported price type code.",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "priceTag": {
+                                "description": "Labels displayed near the product price.",
+                                "items": {
+                                  "description": "One price label.",
+                                  "properties": {
+                                    "bgColor": {
+                                      "description": "Background color of the label.",
+                                      "type": "string"
+                                    },
+                                    "text": {
+                                      "description": "Text shown on the label.",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "transmitPrice": {
+                                "description": "Additional price details.",
+                                "properties": {
+                                  "priceText": {
+                                    "description": "Display text for this price.",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "promotion": {
+                            "description": "Promotional information displayed for the product.",
+                            "properties": {
+                              "entranceTip": {
+                                "description": "Text shown for the promotions entry point.",
+                                "type": "string"
+                              },
+                              "entranceUrl": {
+                                "description": "URL for the promotions entry point.",
+                                "type": "string"
+                              },
+                              "items": {
+                                "description": "Displayed promotional entries.",
+                                "items": {
+                                  "description": "One displayed promotional entry.",
+                                  "properties": {
+                                    "bgImage": {
+                                      "description": "URL of the primary promotional background image.",
+                                      "type": "string"
+                                    },
+                                    "content": {
+                                      "description": "Primary promotional text.",
+                                      "type": "string"
+                                    },
+                                    "sbgImage": {
+                                      "description": "URL of an additional promotional background image.",
+                                      "type": "string"
+                                    },
+                                    "scontent": {
+                                      "description": "Additional promotional text.",
+                                      "type": "string"
+                                    },
+                                    "textColor": {
+                                      "description": "Text color for the promotional entry.",
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "description": "Reported promotion type.",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "promotionFloatingData": {
+                            "description": "Display information for a promotional overlay.",
+                            "properties": {
+                              "detailPromotionTimeDO": {
+                                "description": "Promotion display metadata.",
+                                "properties": {
+                                  "promotionType": {
+                                    "description": "Reported promotion type.",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "promotionName": {
+                                "description": "Displayed promotion name.",
+                                "type": "string"
+                              },
+                              "showNow": {
+                                "description": "Current promotion display flag as text.",
+                                "type": "string"
+                              },
+                              "showWarm": {
+                                "description": "Promotion preview display flag as text.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "reason": {
+                            "description": "Reason returned when product details were unavailable.",
+                            "type": "string"
+                          },
+                          "resource": {
+                            "description": "Additional coupon, promotion and presentation resources.",
+                            "properties": {
+                              "coupon": {
+                                "description": "Coupon resource returned with the product.",
+                                "properties": {
+                                  "h5LinkUrl": {
+                                    "description": "URL for the coupon page.",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "entrances": {
+                                "description": "Additional resource entry points.",
+                                "type": "object"
+                              },
+                              "floatView": {
+                                "description": "Resources for a floating display.",
+                                "properties": {
+                                  "list": {
+                                    "description": "Entries returned for the floating display.",
+                                    "type": "array"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "newBigPromotion": {
+                                "description": "Additional promotion metadata.",
+                                "type": "object"
+                              },
+                              "promsCalcInfo": {
+                                "description": "Reported promotion calculation information.",
+                                "properties": {
+                                  "cheapestMoney": {
+                                    "description": "Reported lowest amount for this promotion calculation, returned as text.",
+                                    "type": "string"
+                                  },
+                                  "hasCoupon": {
+                                    "description": "Coupon availability indicator as text.",
+                                    "type": "string"
+                                  },
+                                  "hitPromItems": {
+                                    "description": "Promotion entries returned by the calculation.",
+                                    "type": "array"
+                                  },
+                                  "promTip": {
+                                    "description": "Presentation details for the promotion calculation.",
+                                    "properties": {
+                                      "icon": {
+                                        "description": "Icon returned with the promotion tip.",
+                                        "type": "string"
+                                      },
+                                      "title": {
+                                        "description": "Text of the promotion tip.",
+                                        "type": "string"
+                                      },
+                                      "useHuaBian": {
+                                        "description": "Additional display setting for the promotion tip.",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "shopProm": {
+                                "description": "Shop promotions returned with the product.",
+                                "items": {
+                                  "description": "One shop promotion.",
+                                  "properties": {
+                                    "actionUrl": {
+                                      "description": "URL associated with the promotion.",
+                                      "type": "string"
+                                    },
+                                    "content": {
+                                      "description": "Text shown for the promotion.",
+                                      "items": {
+                                        "description": "One promotional text entry.",
+                                        "type": "string"
+                                      },
+                                      "type": "array"
+                                    },
+                                    "icon": {
+                                      "description": "Icon shown for the promotion.",
+                                      "type": "string"
+                                    },
+                                    "iconText": {
+                                      "description": "Text shown with the promotion icon.",
+                                      "type": "string"
+                                    },
+                                    "title": {
+                                      "description": "Title of the shop promotion.",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "skuBase": {
+                            "description": "Product variant identifiers and their specification options.",
+                            "properties": {
+                              "props": {
+                                "description": "Specification properties available for the product.",
+                                "items": {
+                                  "description": "One specification property.",
+                                  "properties": {
+                                    "name": {
+                                      "description": "Display name of the specification property.",
+                                      "type": "string"
+                                    },
+                                    "pid": {
+                                      "description": "Specification property ID as text.",
+                                      "type": "string"
+                                    },
+                                    "values": {
+                                      "description": "Options for this property.",
+                                      "items": {
+                                        "description": "One specification option.",
+                                        "properties": {
+                                          "image": {
+                                            "description": "URL of an image associated with the option.",
+                                            "type": "string"
+                                          },
+                                          "name": {
+                                            "description": "Display name of the option.",
+                                            "type": "string"
+                                          },
+                                          "vid": {
+                                            "description": "Specification option ID as text.",
+                                            "type": "string"
+                                          }
+                                        },
+                                        "type": "object"
+                                      },
+                                      "type": "array"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "skus": {
+                                "description": "SKU identifiers and their specification combinations.",
+                                "items": {
+                                  "description": "One SKU combination.",
+                                  "properties": {
+                                    "propPath": {
+                                      "description": "Encoded path of property and option IDs for this SKU.",
+                                      "type": "string"
+                                    },
+                                    "skuId": {
+                                      "description": "SKU ID as text. Use it to look up the corresponding entry in skuCore.sku2info.",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "skuCore": {
+                            "description": "Reported variant price, quantity and delivery information.",
+                            "properties": {
+                              "abSwitch": {
+                                "description": "Additional variant display settings.",
+                                "type": "object"
+                              },
+                              "atmosphere": {
+                                "description": "Additional variant display metadata.",
+                                "type": "object"
+                              },
+                              "sku2info": {
+                                "additionalProperties": {
+                                  "description": "Reported values for one SKU entry.",
+                                  "properties": {
+                                    "logisticsTime": {
+                                      "description": "Reported delivery timing text for this entry.",
+                                      "type": "string"
+                                    },
+                                    "price": {
+                                      "description": "Reported price for this entry.",
+                                      "properties": {
+                                        "priceMoney": {
+                                          "description": "Numeric representation of the reported price, returned as text.",
+                                          "type": "string"
+                                        },
+                                        "priceText": {
+                                          "description": "Display text for the reported price.",
+                                          "type": "string"
+                                        },
+                                        "type": {
+                                          "description": "Reported price type code.",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "quantity": {
+                                      "description": "Reported inventory quantity for this entry, as text.",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "description": "Map of SKU IDs to their reported price and quantity records.",
+                                "type": "object"
+                              },
+                              "skuItem": {
+                                "description": "Delivery information shown with the variant selector.",
+                                "properties": {
+                                  "location": {
+                                    "description": "Location text shown with the variant selector.",
+                                    "type": "string"
+                                  },
+                                  "showAddressTaobao": {
+                                    "description": "Address display flag represented as text.",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "skuTransform": {
+                            "description": "Additional display content for the variant selector.",
+                            "properties": {
+                              "extraText": {
+                                "description": "Additional text shown with variant choices.",
+                                "type": "string"
+                              },
+                              "skuContents": {
+                                "description": "Additional content shown for variant choices.",
+                                "items": {
+                                  "description": "One variant content entry.",
+                                  "properties": {
+                                    "img": {
+                                      "description": "URL of an image shown for the variant choice.",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "skuVertical": {
+                            "description": "Additional SKU module information.",
+                            "type": "object"
+                          },
+                          "traceDatas": {
+                            "description": "Trace metadata returned with product details.",
+                            "type": "object"
+                          },
+                          "trade": {
+                            "description": "Availability and links for purchase and cart actions.",
+                            "properties": {
+                              "buyEnable": {
+                                "description": "Purchase availability flag represented as text.",
+                                "type": "string"
+                              },
+                              "buyParam": {
+                                "description": "Additional purchase action parameters.",
+                                "type": "object"
+                              },
+                              "buyUrl": {
+                                "description": "URL for the purchase action.",
+                                "type": "string"
+                              },
+                              "cartEnable": {
+                                "description": "Add-to-cart availability flag represented as text.",
+                                "type": "string"
+                              },
+                              "cartJumpUrl": {
+                                "description": "URL for the cart action.",
+                                "type": "string"
+                              },
+                              "cartParam": {
+                                "description": "Additional cart action parameters.",
+                                "type": "object"
+                              },
+                              "isBanSale4Oversea": {
+                                "description": "Overseas purchase restriction flag represented as text.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "vertical": {
+                            "description": "Additional content modules returned with the product.",
+                            "properties": {
+                              "askAll": {
+                                "description": "Product questions and answers entry point.",
+                                "properties": {
+                                  "askIcon": {
+                                    "description": "Icon shown for the product questions entry point.",
+                                    "type": "string"
+                                  },
+                                  "askText": {
+                                    "description": "Text shown for the product questions entry point.",
+                                    "type": "string"
+                                  },
+                                  "linkUrl": {
+                                    "description": "URL for the product questions section.",
+                                    "type": "string"
+                                  },
+                                  "questNum": {
+                                    "description": "Reported question count as text.",
+                                    "type": "string"
+                                  },
+                                  "title": {
+                                    "description": "Displayed title of the product questions section.",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "groupChat": {
+                                "description": "Group chat information, when available.",
+                                "properties": {
+                                  "desc": {
+                                    "description": "Displayed group chat description.",
+                                    "type": "string"
+                                  },
+                                  "fansCount": {
+                                    "description": "Displayed follower count as text.",
+                                    "type": "string"
+                                  },
+                                  "image": {
+                                    "description": "Group chat image URL.",
+                                    "type": "string"
+                                  },
+                                  "title": {
+                                    "description": "Displayed group chat title.",
+                                    "type": "string"
+                                  },
+                                  "url": {
+                                    "description": "URL for the group chat entry point.",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "overSeas": {
+                                "description": "Additional overseas shopping information.",
+                                "type": "object"
+                              },
+                              "transparentBroadcast": {
+                                "description": "Live video information, when available.",
+                                "properties": {
+                                  "jumpUrl": {
+                                    "description": "URL for the live broadcast entry point.",
+                                    "type": "string"
+                                  },
+                                  "liveId": {
+                                    "description": "Live broadcast identifier as text.",
+                                    "type": "string"
+                                  },
+                                  "playUrl": {
+                                    "description": "URL for live video playback.",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "videoFlow": {
+                                "description": "Additional video module information.",
+                                "type": "object"
+                              },
+                              "vipComment": {
+                                "description": "Additional review content metadata.",
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "weappData": {
+                            "description": "Additional app presentation data.",
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "exists"
+                        ],
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Product Details",
+        "tags": [
+          "Taobao and Tmall"
+        ],
+        "x-api-version": "v11",
+        "x-docs-slug": "product-details-v11",
+        "x-endpoint-family": "taobao_get_item_detail",
+        "x-highlights": [
+          {
+            "aliases": [
+              "product coverage",
+              "all Taobao products",
+              "商品覆盖",
+              "所有淘宝商品"
+            ],
+            "concept": "product_coverage",
+            "content": "Supports product detail lookups for all Taobao products by item ID.",
+            "kind": "CAPABILITY",
+            "title": "Product coverage",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "product price",
+              "SKU price",
+              "商品价格",
+              "SKU价格"
+            ],
+            "concept": "product_price",
+            "content": "Provides displayed product prices and SKU prices when available.",
+            "kind": "CAPABILITY",
+            "title": "Price",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "SKU options",
+              "product variants",
+              "SKU规格",
+              "SKU库存"
+            ],
+            "concept": "sku_options",
+            "content": "Provides SKU identifiers, specification options, and reported inventory quantities.",
+            "kind": "CAPABILITY",
+            "title": "SKU options",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "main images",
+              "product video",
+              "商品主图",
+              "商品视频"
+            ],
+            "concept": "main_images",
+            "content": "Provides product images and videos when available.",
+            "kind": "CAPABILITY",
+            "title": "Product images and video",
+            "type": "info"
+          },
+          {
+            "aliases": [
+              "shipping origin",
+              "postage",
+              "发货地",
+              "邮费"
+            ],
+            "concept": "shipping_fee",
+            "content": "Provides the shipping origin and displayed postage when available.",
+            "kind": "CAPABILITY",
+            "title": "Shipping",
+            "type": "info"
+          }
+        ],
+        "x-order": "11001425",
+        "x-recommended": true
+      }
+    },
     "/api/taobao/get-item-detail/v2": {
       "get": {
         "description": "Retrieves Taobao or Tmall product details by item ID, including product attributes, main images and video, shop information, shipping information, and SKU prices and stock. Use it for product sourcing, catalog research, and inventory monitoring.",
@@ -72825,7 +73752,6 @@
         "x-endpoint-family": "taobao_get_item_detail",
         "x-highlights": [],
         "x-order": "11001375",
-        "x-recommended": true,
         "x-search-aliases": [
           "Taobao product details v7",
           "Tmall item detail lookup v7",
@@ -74368,8 +75294,7 @@
     },
     "/api/taobao/get-item-sale/v1": {
       "get": {
-        "deprecated": true,
-        "description": "Retrieves the 30-day sales count for a Taobao or Tmall product by item ID. Use it to compare recent product sales or support ecommerce monitoring and product research.",
+        "description": "Retrieves the monthly sales count for a Taobao product by item ID. Use it to monitor or compare recent product sales.",
         "operationId": "getApiTaobaoGetItemSaleV1",
         "parameters": [
           {
@@ -74382,7 +75307,7 @@
             }
           },
           {
-            "description": "Unique product identifier on Taobao/Tmall (item ID).",
+            "description": "Taobao product ID.",
             "in": "query",
             "name": "itemId",
             "required": true,
@@ -74396,7 +75321,38 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Result"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Result"
+                    }
+                  ],
+                  "if": {
+                    "properties": {
+                      "code": {
+                        "const": 0
+                      }
+                    },
+                    "required": [
+                      "code"
+                    ]
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "description": "Monthly sales result for the requested Taobao product.",
+                        "properties": {
+                          "biz30day": {
+                            "description": "Monthly sales count. A value of -1 indicates that a count is unavailable.",
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "biz30day"
+                        ],
+                        "type": "object"
+                      }
+                    }
+                  }
                 }
               }
             },
@@ -74426,17 +75382,14 @@
           "Taobao and Tmall"
         ],
         "x-api-version": "v1",
-        "x-docs-hidden": true,
         "x-docs-slug": "product-sales-v1",
         "x-endpoint-family": "taobao_get_item_sale",
         "x-highlights": [],
         "x-order": "11001850",
         "x-search-aliases": [
-          "Taobao 30-day product sales",
-          "Tmall monthly sales API",
+          "Taobao monthly product sales",
           "Taobao item sales count",
-          "淘宝商品近30天销量",
-          "天猫月销量接口",
+          "淘宝商品月销量",
           "淘宝商品销量查询"
         ]
       }
@@ -107643,6 +108596,253 @@
         ]
       }
     },
+    "/api/weixin/get-popular-articles/v1": {
+      "get": {
+        "description": "Retrieves the latest three-day ranking of popular WeChat Official Account articles with page-based pagination. Use it to discover and track trending articles.",
+        "operationId": "getApiWeixinGetPopularArticlesV1",
+        "parameters": [
+          {
+            "description": "Access token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Page number, starting at 1. Defaults to 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Result"
+                    }
+                  ],
+                  "if": {
+                    "properties": {
+                      "code": {
+                        "const": 0
+                      }
+                    },
+                    "required": [
+                      "code"
+                    ]
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "description": "A page of the latest three-day WeChat Official Account popular article ranking.",
+                        "properties": {
+                          "has_more": {
+                            "description": "Whether another page is available.",
+                            "type": "boolean"
+                          },
+                          "list": {
+                            "description": "Articles in the ranking's original order.",
+                            "items": {
+                              "properties": {
+                                "art_id": {
+                                  "description": "Article identifier when available.",
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ]
+                                },
+                                "art_url": {
+                                  "description": "Original WeChat article link.",
+                                  "format": "uri",
+                                  "type": "string"
+                                },
+                                "avatar": {
+                                  "description": "Profile image URL of the WeChat Official Account.",
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ]
+                                },
+                                "comment_num": {
+                                  "description": "Collected article comment count.",
+                                  "minimum": 0,
+                                  "type": [
+                                    "integer",
+                                    "null"
+                                  ]
+                                },
+                                "hot_score": {
+                                  "description": "Article popularity score when available.",
+                                  "type": [
+                                    "number",
+                                    "null"
+                                  ]
+                                },
+                                "like_num": {
+                                  "description": "Collected article like count.",
+                                  "minimum": 0,
+                                  "type": [
+                                    "integer",
+                                    "null"
+                                  ]
+                                },
+                                "look_num": {
+                                  "description": "Collected article recommendation count.",
+                                  "minimum": 0,
+                                  "type": [
+                                    "integer",
+                                    "null"
+                                  ]
+                                },
+                                "pub_time": {
+                                  "description": "Article publication time when available.",
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ]
+                                },
+                                "publish_name": {
+                                  "description": "Publication metadata shown with the article.",
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ]
+                                },
+                                "rank_no": {
+                                  "description": "One-based position in the ranking.",
+                                  "minimum": 1,
+                                  "type": "integer"
+                                },
+                                "read_num": {
+                                  "description": "Collected article read count.",
+                                  "minimum": 0,
+                                  "type": [
+                                    "integer",
+                                    "null"
+                                  ]
+                                },
+                                "share_num": {
+                                  "description": "Collected article share count.",
+                                  "minimum": 0,
+                                  "type": [
+                                    "integer",
+                                    "null"
+                                  ]
+                                },
+                                "title": {
+                                  "description": "Article title.",
+                                  "type": "string"
+                                },
+                                "wx_biz": {
+                                  "description": "Biz identifier of the WeChat Official Account.",
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ]
+                                },
+                                "wx_name": {
+                                  "description": "Display name of the WeChat Official Account.",
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ]
+                                },
+                                "wx_type": {
+                                  "description": "Category of the WeChat Official Account.",
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "art_url",
+                                "rank_no",
+                                "title"
+                              ],
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "stat_date": {
+                            "description": "Date of the ranking snapshot.",
+                            "format": "date",
+                            "type": "string"
+                          },
+                          "total": {
+                            "description": "Total number of articles in the ranking.",
+                            "minimum": 0,
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "has_more",
+                          "list",
+                          "stat_date",
+                          "total"
+                        ],
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Popular Articles",
+        "tags": [
+          "WeChat Official Accounts"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "popular-articles-v1",
+        "x-endpoint-family": "weixin_get_popular_articles",
+        "x-highlights": [
+          {
+            "content": "The response reports the ranking's published date. If the date changes between pages, restart from page 1 for a consistent snapshot.",
+            "kind": "GUIDANCE",
+            "title": "Ranking Date",
+            "type": "info"
+          }
+        ],
+        "x-order": "16101427",
+        "x-search-aliases": [
+          "公众号热门文章榜",
+          "微信公众号近3日热榜",
+          "WeChat Official Account top articles"
+        ]
+      }
+    },
     "/api/weixin/search-account/v1": {
       "post": {
         "description": "Searches WeChat Official Accounts by keyword with page-number pagination and one result per page. Use it to find an account by name or related term before profile or article lookup.",
@@ -138364,5 +139564,5 @@
       "x-platform-id": "aliexpress"
     }
   ],
-  "x-openapi-release-id": "a1067d08b3f1c74a"
+  "x-openapi-release-id": "b2521bed0d76662e"
 }

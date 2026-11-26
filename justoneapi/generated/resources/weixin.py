@@ -431,6 +431,26 @@ class WeixinResource(BaseResource):
             },
         )
 
+    def get_popular_articles_v1(
+        self,
+        *,
+        page: int | None = 1,
+    ) -> ApiResponse[Any]:
+        """
+        Popular Articles
+
+        Retrieves the latest three-day ranking of popular WeChat Official Account articles with page-based pagination. Use it to discover and track trending articles.
+
+        Args:
+            page: Page number, starting at 1. Defaults to 1.
+        """
+        return self._get(
+            "/api/weixin/get-popular-articles/v1",
+            {
+                "page": page,
+            },
+        )
+
     def search_article_v1(
         self,
         *,
