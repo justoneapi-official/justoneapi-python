@@ -9,6 +9,7 @@ from justoneapi.generated.resources.douban import DoubanResource
 from justoneapi.generated.resources.douyin import DouyinResource
 from justoneapi.generated.resources.douyin_ec import DouyinEcResource
 from justoneapi.generated.resources.douyin_index import DouyinIndexResource
+from justoneapi.generated.resources.douyin_live import DouyinLiveResource
 from justoneapi.generated.resources.douyin_xingtu import DouyinXingtuResource
 from justoneapi.generated.resources.facebook import FacebookResource
 from justoneapi.generated.resources.field_1688 import Field1688Resource
@@ -51,6 +52,7 @@ RESOURCE_CLASSES = {
     "douyin": DouyinResource,
     "douyin_ec": DouyinEcResource,
     "douyin_index": DouyinIndexResource,
+    "douyin_live": DouyinLiveResource,
     "douyin_xingtu": DouyinXingtuResource,
     "facebook": FacebookResource,
     "field_1688": Field1688Resource,
@@ -94,6 +96,7 @@ __all__ = [
     "DouyinResource",
     "DouyinEcResource",
     "DouyinIndexResource",
+    "DouyinLiveResource",
     "DouyinXingtuResource",
     "FacebookResource",
     "Field1688Resource",

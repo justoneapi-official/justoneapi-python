@@ -20140,6 +20140,572 @@
         ]
       }
     },
+    "/api/douyin-live/convert-webcast-id/v1": {
+      "get": {
+        "description": "Converts a Douyin webcast ID from a live room URL to the corresponding room ID. Use the room ID to query livestream information or gift sender rankings.",
+        "operationId": "getApiDouyinLiveConvertWebcastIdV1",
+        "parameters": [
+          {
+            "description": "Access token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The digits in the final path segment of the Douyin live room URL.",
+            "in": "query",
+            "name": "webcastId",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9]+$",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Result"
+                    }
+                  ],
+                  "if": {
+                    "properties": {
+                      "code": {
+                        "const": 0
+                      }
+                    },
+                    "required": [
+                      "code"
+                    ]
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "description": "The room ID lookup result for the requested Douyin webcast ID.",
+                        "not": {
+                          "type": "null"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Webcast ID Conversion",
+        "tags": [
+          "Douyin Live"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "webcast-id-conversion-v1",
+        "x-endpoint-family": "douyin_live_convert_webcast_id",
+        "x-highlights": [],
+        "x-order": "14603000",
+        "x-search-aliases": [
+          "Douyin webcast ID to room ID",
+          "Douyin webcast to room ID conversion",
+          "直播间号转房间号",
+          "抖音直播间号转房间号",
+          "抖音 webcastId 转 roomId"
+        ]
+      }
+    },
+    "/api/douyin-live/get-live-gift-ranking/v1": {
+      "get": {
+        "description": "Retrieves the gift sender ranking for a Douyin livestream by room ID. Use it to review the leading gift senders for a known live room.",
+        "operationId": "getApiDouyinLiveGetLiveGiftRankingV1",
+        "parameters": [
+          {
+            "description": "Access token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Douyin live room ID (room_id), supplied as a string.",
+            "in": "query",
+            "name": "roomId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Result"
+                    }
+                  ],
+                  "if": {
+                    "properties": {
+                      "code": {
+                        "const": 0
+                      }
+                    },
+                    "required": [
+                      "code"
+                    ]
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "description": "Gift sender ranking data for the requested Douyin live room.",
+                        "not": {
+                          "type": "null"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Live Gift Ranking",
+        "tags": [
+          "Douyin Live"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "live-gift-ranking-v1",
+        "x-endpoint-family": "douyin_live_get_live_gift_ranking",
+        "x-highlights": [],
+        "x-order": "14602000",
+        "x-search-aliases": [
+          "Douyin live gift ranking",
+          "Douyin live gift sender leaderboard",
+          "抖音直播礼物排行榜",
+          "抖音直播间送礼排行榜",
+          "抖音直播间送礼用户排行"
+        ]
+      }
+    },
+    "/api/douyin-live/get-livestream-info/v1": {
+      "get": {
+        "description": "Retrieves Douyin livestream information by webcast ID. Use it to look up a known live room using the ID from its Douyin live URL.",
+        "operationId": "getApiDouyinLiveGetLivestreamInfoV1",
+        "parameters": [
+          {
+            "description": "Access token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The digits in the final path segment of the Douyin live room URL.",
+            "in": "query",
+            "name": "webcastId",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9]+$",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Result"
+                    }
+                  ],
+                  "if": {
+                    "properties": {
+                      "code": {
+                        "const": 0
+                      }
+                    },
+                    "required": [
+                      "code"
+                    ]
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "description": "Douyin livestream information for the requested webcast ID.",
+                        "not": {
+                          "type": "null"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Livestream Info",
+        "tags": [
+          "Douyin Live"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "livestream-info-v1",
+        "x-endpoint-family": "douyin_live_get_livestream_info",
+        "x-highlights": [],
+        "x-order": "14601000",
+        "x-search-aliases": [
+          "Douyin live room details",
+          "抖音直播间信息",
+          "抖音直播间详情",
+          "查询抖音直播间详情",
+          "抖音直播流数据",
+          "直播间链接 ID 查询"
+        ]
+      }
+    },
+    "/api/douyin-live/get-livestream-info/v2": {
+      "get": {
+        "description": "Retrieves Douyin livestream information by the user's secUid. Use it to look up a known user's livestream using the ID from their Douyin profile URL.",
+        "operationId": "getApiDouyinLiveGetLivestreamInfoV2",
+        "parameters": [
+          {
+            "description": "Access token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The user's secUid from the Douyin profile URL, also called sec_user_id.",
+            "in": "query",
+            "name": "secUid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Result"
+                    }
+                  ],
+                  "if": {
+                    "properties": {
+                      "code": {
+                        "const": 0
+                      }
+                    },
+                    "required": [
+                      "code"
+                    ]
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "description": "Douyin livestream information for the user identified by secUid.",
+                        "not": {
+                          "type": "null"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Livestream Info",
+        "tags": [
+          "Douyin Live"
+        ],
+        "x-api-version": "v2",
+        "x-docs-slug": "livestream-info-v2",
+        "x-endpoint-family": "douyin_live_get_livestream_info",
+        "x-highlights": [],
+        "x-order": "14601010",
+        "x-search-aliases": [
+          "Douyin live by secUid",
+          "Douyin livestream by secure user ID",
+          "按抖音用户查直播",
+          "抖音按 secUid 查直播"
+        ]
+      }
+    },
+    "/api/douyin-live/get-livestream-info/v3": {
+      "get": {
+        "description": "Retrieves Douyin livestream information by room ID. Use it to inspect a specific live room when you already have its roomId.",
+        "operationId": "getApiDouyinLiveGetLivestreamInfoV3",
+        "parameters": [
+          {
+            "description": "Access token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Douyin live room ID (room_id), supplied as a string.",
+            "in": "query",
+            "name": "roomId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Result"
+                    }
+                  ],
+                  "if": {
+                    "properties": {
+                      "code": {
+                        "const": 0
+                      }
+                    },
+                    "required": [
+                      "code"
+                    ]
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "description": "Douyin livestream information for the requested room ID.",
+                        "not": {
+                          "type": "null"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Livestream Info",
+        "tags": [
+          "Douyin Live"
+        ],
+        "x-api-version": "v3",
+        "x-docs-slug": "livestream-info-v3",
+        "x-endpoint-family": "douyin_live_get_livestream_info",
+        "x-highlights": [],
+        "x-order": "14601020",
+        "x-search-aliases": [
+          "Douyin live by roomId",
+          "Douyin livestream by room ID",
+          "抖音按 roomId 查直播",
+          "按抖音房间 ID 查直播"
+        ]
+      }
+    },
+    "/api/douyin-live/search-live/v1": {
+      "get": {
+        "description": "Searches Douyin (TikTok China) live rooms by a creator's Douyin ID or nickname with cursor pagination. Use it to find live rooms for creator discovery and live-stream research.",
+        "operationId": "getApiDouyinLiveSearchLiveV1",
+        "parameters": [
+          {
+            "description": "Access token for this API service.",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The creator's Douyin ID or nickname.",
+            "in": "query",
+            "name": "keyword",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Pagination cursor. Use 0 for the first page, then the cursor returned by the previous response.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "format": "int64",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResultBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResultUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ResultForbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ResultTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/ResultInternalServerErrorResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ResultServiceUnavailableResponse"
+          }
+        },
+        "summary": "Live Room Search",
+        "tags": [
+          "Douyin Live"
+        ],
+        "x-api-version": "v1",
+        "x-docs-slug": "live-room-search-v1",
+        "x-endpoint-family": "douyin_live_search_live",
+        "x-highlights": [],
+        "x-order": "14600500",
+        "x-search-aliases": [
+          "抖音搜索直播间",
+          "抖音直播间搜索",
+          "抖音号搜索直播间",
+          "抖音昵称搜索直播间",
+          "Douyin live room search",
+          "Search Douyin live rooms by nickname",
+          "Search Douyin live rooms by Douyin ID"
+        ]
+      }
+    },
     "/api/douyin-xingtu/get-author-commerce-seed-base-info/v1": {
       "get": {
         "deprecated": true,
@@ -36411,6 +36977,7 @@
     },
     "/api/douyin/search-live/v1": {
       "get": {
+        "deprecated": true,
         "description": "Searches Douyin (TikTok China) live rooms by a creator's Douyin ID or nickname with cursor pagination. Use it to find live rooms for creator discovery and live-stream research.",
         "operationId": "getApiDouyinSearchLiveV1",
         "parameters": [
@@ -36479,6 +37046,7 @@
           "Douyin (TikTok China)"
         ],
         "x-api-version": "v1",
+        "x-docs-hidden": true,
         "x-docs-slug": "live-room-search-v1",
         "x-endpoint-family": "douyin_search_live",
         "x-highlights": [],
@@ -139442,6 +140010,23 @@
       "x-platform-id": "douyin-creator-marketplace-xingtu"
     },
     {
+      "description": "Douyin live room search by creator ID or nickname, livestream information, gift sender rankings, and conversion from webcast IDs to room IDs.",
+      "name": "Douyin Live",
+      "x-platform-aliases": [
+        "Douyin Live",
+        "抖音直播"
+      ],
+      "x-platform-detection-aliases": [
+        "douyin-live",
+        "douyin_live",
+        "Douyin livestream info",
+        "Douyin live room info",
+        "Douyin webcast ID",
+        "抖音直播间 ID"
+      ],
+      "x-platform-id": "douyin-live"
+    },
+    {
       "description": "Douyin Index keyword trends over date ranges for topic research and interest monitoring.",
       "name": "Douyin Index",
       "x-platform-aliases": [
@@ -139564,5 +140149,5 @@
       "x-platform-id": "aliexpress"
     }
   ],
-  "x-openapi-release-id": "b2521bed0d76662e"
+  "x-openapi-release-id": "946b5351137c6c71"
 }
