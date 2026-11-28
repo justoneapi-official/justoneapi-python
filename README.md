@@ -11,6 +11,11 @@
 
 # JustOneAPI - Python SDK
 
+> [!NOTE]
+> Python SDK 已迁回 [justoneapi/justoneapi-python](https://github.com/justoneapi/justoneapi-python)，后续更新将在那里发布。本仓库已发布的历史版本和附件仍可在 [GitHub Releases](https://github.com/justoneapi-official/justoneapi-python/releases) 下载。
+>
+> The Python SDK has moved back to [justoneapi/justoneapi-python](https://github.com/justoneapi/justoneapi-python) for future updates. Releases and assets previously published in this repository remain available under [GitHub Releases](https://github.com/justoneapi-official/justoneapi-python/releases).
+
 官方 Python SDK，用于访问 [JustOneAPI](https://justoneapi.com/zh/?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme)。
 
 JustOneAPI 是一个统一的数据服务平台，提供来自社交媒体、电商和内容平台的结构化数据。

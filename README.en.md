@@ -11,6 +11,11 @@
 
 # JustOneAPI - Python SDK
 
+> [!NOTE]
+> The Python SDK has moved back to [justoneapi/justoneapi-python](https://github.com/justoneapi/justoneapi-python) for future updates. Releases and assets previously published in this repository remain available under [GitHub Releases](https://github.com/justoneapi-official/justoneapi-python/releases).
+>
+> Python SDK 已迁回 [justoneapi/justoneapi-python](https://github.com/justoneapi/justoneapi-python)，后续更新将在那里发布。本仓库已发布的历史版本和附件仍可在 [GitHub Releases](https://github.com/justoneapi-official/justoneapi-python/releases) 下载。
+
 Official Python SDK for accessing [JustOneAPI](https://justoneapi.com/en?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme) - a unified data service platform that provides structured data from social media, e-commerce, and content platforms.
 
 Supported platforms include Taobao & Tmall, Xiaohongshu, Xiaohongshu Pugongying, Douyin, Douyin Xingtu, Kuaishou, Weibo, Bilibili, JD, WeChat, Douban, TikTok, TikTok Shop, Youku, Instagram, YouTube, Reddit, Toutiao, Zhihu, Amazon, Facebook, X (Twitter), Beike, IMDb, and more. To explore the full API catalog, visit the [official website](https://justoneapi.com/en?utm_source=github.com&utm_medium=referral&utm_campaign=justoneapi_official_justoneapi_python&utm_content=repo_readme).
